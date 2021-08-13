@@ -6,12 +6,12 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 **What's not this:** Not a traditional programming course/book, this book only emphasis on whats important. Maybe somewhat not beginner friendly, some concepts I consider are better explained on the internet already so have been left off and I don't know what I don't know right?. But I have tried to keep explainations as simple/short as possible most of the times.</br>  
 
 **Index**
-1. [Basics](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#1-basics)
-2. [Data Types](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#2-data-types)
-3. [Data structures](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#3-data-structures)
-4. [Flow Control and Exception Handling](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#4-flow-control-and-exception-handling)
-5. [Functions, Classes and Objects](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#5-functions-classes-and-objects)
-6. [OOP Concepts](https://github.com/Anku5hk/ML-Projects/blob/master/Programmer's_guide_to_Python.md#6-oop-concepts)
+1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#1-basics)
+2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#2-data-types)
+3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#3-data-structures)
+4. [Flow Control and Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#4-flow-control-and-exception-handling)
+5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#5-functions-classes-and-objects)
+6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#6-oop-concepts)
 
 
 ## 1. Basics
@@ -769,7 +769,7 @@ assert a == 30 # AssertionError
 * A function can be defined to perform some operation/task on some data/variables/sequences, it can/can't have paramerters, it can/cannot return something (in Python, None is returned by default if not defined). 
 * Functions in python are first class which means they behave just like an object, they can be stored as vairable or passed as argument to other functions.
 * Parameters vs arguments: Parameters are the ones which are defined in function defination, arguments are passed when a function is called. 
-* Functions support Packing and Unpacking varaibles into tuple/dict, Packing is when we pass more than number of defined variables to a function. It is useful when we are not sure about exact number of arguments needed be to passed, they should always be the last parameters in function(or they'll contain all the values). Unpacking is when a list/tuple/dict is passed which then unpacks as arguments into a function. Now passing tuple/list can be done with * (which are generally named args) and passing dict requires ** (which are generally named kwargs), follwed by seqeunce's name. Eg \*args and \*\*kwargs.
+* Functions support Packing and Unpacking varaibles into tuple/dict, Packing is when we pass more than number of defined variables to a function. It is useful when we are not sure about exact number of arguments needed be to passed, they should always be the last parameters in function(or they'll contain all the values). Unpacking is when a list/tuple/dict is passed which then unpacks as arguments into a function. Now passing tuple/list can be done with * (which are generally named args) and passing dict requires ** (which are generally named kwargs), follwed by sequence's name. Eg \*args and \*\*kwargs.
 * Usage:
 ```Python
 # defining functions
