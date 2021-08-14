@@ -6,17 +6,17 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 **What's not this:** Not a traditional programming course/book, this book only emphasis on whats important. Maybe somewhat not beginner friendly, some concepts I consider are better explained on the internet already so have been left off and I don't know what I don't know right?. But I have tried to keep explainations concise most of the times.</br>  
 
 ## Index
-1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#1-basics)
-2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#2-data-types)
-3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#3-data-structures)
-4. [Flow Control and Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#4-flow-control-and-exception-handling)
-5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#5-functions-classes-and-objects)
-6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#6-oop-concepts)
+1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
+2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-data-types)
+3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures)
+4. [Flow Control and Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-and-exception-handling)
+5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-functions-classes-and-objects)
+6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-oop-concepts)
 
 
 ## 1. Basics
 ### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java,.Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Everything in python is an object. Why is so? What is an object? An object contains data(can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods. In python's defination of object, some objects can/cannot have meta-data/functions and are still objects. Data-types in python have attributes/methods, data structures have thier attributes/methods, Functions/Classes also have thier attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object.        
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most part that does affects its usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia and might eventually replace python atleast at some tasks.  
 ### Some Terminology  
@@ -348,65 +348,71 @@ Data Structure is a way to store and organize data so that it can be used effici
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects. They are prefered in most use cases. Where indexing, looping over some items is reqiured lists are used.
 ```Python
- # create list
- my_list = [1,2,3,'a','this way','cab',1.0,2.0]
+## create list
+my_list = [1,2,3,'a','this way','cab',1.0,2.0]
 
- # add,remove
- my_var = 1
- my_list.append(my_var)
- my_list.remove(my_var) # or del my_list[index] or my_list.pop(index)
- # using 'del' keyword
- del my_list[0] # or even with slicing like, del my_list[2:4]
- # del statement can also be used to delete a variable/data-structure
- 
- # acessing element
- var_1 = my_list[0]
- var_2 = my_list[1]
- # using loop
- for var in my_list:
-   # do something with var
+## add,remove
+my_var = 1
+my_list.append(my_var)
+my_list.remove(my_var) # or del my_list[index] or my_list.pop(index)
+# using 'del' statement
+del my_list[0] # or even with slicing like, del my_list[2:4]
+# del can also be used to delete a variable/data-structure
 
- # slicing list
- print(my_list[3:5]) # ['a','this way']
- print(my_list[5:]) # ['cab',1.0,2.0]
- print(my_list[:3]) # [1,2,3]
- print(my_list[:5:2]) # [1, 3, 'this way']
- # this is negative index which begins from end of list from 1
- print(my_list[:-4]) # [1, 2, 3, 'a']
- # reverse a list
- print(my_list[::-1]) # [2.0, 1.0, 'cab', 'this way', 'a', 3, 2, 1]
- # or my_list.copy() to create a copy, which does not stays the same reference
- print(my_list[:]) 
+## concat lists
+# using '+' operator
+my_list1 = [2,4,5,6] + [34,7,4,2]
+# using extend method
+my_list1.extend([3,6,2])
 
- # list comprehension
- my_list = [x for x in range(10)] # without condition
- my_list = [[y for y in range(x)] for x in range(1, 4)] # which also can be nested
- my_list = [x for x in range(10) if x > 5] # if condition
- my_list = [True if x > 5 else False for x in range(10)] # if with else condition
- 
- # Some functions on list
- # returns sorted list of items in ascending order by default, sorting is O(nLogn)
- print(sorted(my_list, reverse=True)) 
- # return length of list
- print(len(my_list))
- # sum of variables
- print(sum([10, 20])) # 30
- 
- # Some methods of list
- my_list.append(9) # adds value to the list 
- my_list.reverse() # reverses list inplace
- my_list.sort() # sorts list inplace
- my_list.clear() # empty's list
- # returns index of first arival of value passed 
- print(my_list.index(3)) # 2 
- # removes value from a list given index
- print(my_list.pop(0)) # 1
- # removes value from a list given value
- my_list.remove(2) 
- 
- # type conversion
- my_list = list((1,2,3,4,5)) # tuple to list
- my_list = list({1,2,3,4,5}) # set to list
+## acessing element
+var_1 = my_list[0]
+var_2 = my_list[1]
+# using loop
+for var in my_list:
+# do something with var
+
+## slicing list
+print(my_list[3:5]) # ['a','this way']
+print(my_list[5:]) # ['cab',1.0,2.0]
+print(my_list[:3]) # [1,2,3]
+print(my_list[:5:2]) # [1, 3, 'this way']
+# this is negative index which begins from end of list from 1
+print(my_list[:-4]) # [1, 2, 3, 'a']
+# reverse a list
+print(my_list[::-1]) # [2.0, 1.0, 'cab', 'this way', 'a', 3, 2, 1]
+# or my_list.copy() to create a copy, which does not stays the same reference
+print(my_list[:]) 
+
+## list comprehension
+my_list = [x for x in range(10)] # without condition
+my_list = [[y for y in range(x)] for x in range(1, 4)] # which also can be nested
+my_list = [x for x in range(10) if x > 5] # if condition
+my_list = [True if x > 5 else False for x in range(10)] # if with else condition
+
+## Some functions on list
+# returns sorted list of items in ascending order by default, sorting is O(nLogn)
+print(sorted(my_list, reverse=True)) 
+# return length of list
+print(len(my_list))
+# sum of variables
+print(sum([10, 20])) # 30
+
+## Some methods of list
+my_list.append(9) # adds value to the list 
+my_list.reverse() # reverses list inplace
+my_list.sort() # sorts list inplace
+my_list.clear() # empty's list
+# returns index of first arival of value passed 
+print(my_list.index(3)) # 2 
+# removes value from a list given index
+print(my_list.pop(0)) # 1
+# removes value from a list given value
+my_list.remove(2) 
+
+## type conversion
+my_list = list((1,2,3,4,5)) # tuple to list
+my_list = list({1,2,3,4,5}) # set to list
 ```
 * Time Complexity:</br>
 indexing, appending and get_length are O(1).</br>
@@ -417,12 +423,19 @@ Are ordered collection of sequence of items similar to lists. But unlike list th
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
-# acessing element
+## acessing element
 my_var = 10
 my_var = my_tuple[0] # okay
 my_tuple[0] = my_var # not okay because Immutable, raises TypeError
 
-# slicing tuple
+## only add elements, can't remove elements from tuple
+my_tuple += (5,) # adding another element as tuple
+# the target tuple should have ',' if single element is being added
+
+## concat tuples
+my_tuple = (34,65,23) + (34,34)
+
+## slicing tuple
 print(my_tuple[3:5]) # ('we','are')
 print(my_tuple[5:]) # ('one',5.0)
 print(my_tuple[:3]) # (1,2,3)
@@ -432,7 +445,7 @@ print(my_tuple[:-4]) # (1, 2, 3)
 # reverse a tuple
 print(my_tuple[::-1]) # (5.0, 'one', 'are', 'we', 3, 2, 1)
 
-# unpacking tuple
+## unpacking tuple
 a,b,c = (1,2,3) # unpacking values into a,b,c
 # even this does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c 
 # same is true when returing comma seperated values from a function 
@@ -440,20 +453,20 @@ a,b,c = 1,2,3
 # this behaviour further aids in swaping without using extra variable
 a,b = b,a 
 
-# Some functions on tuple
+## Some functions on tuple
 # returns sorted list of items in ascending order by default, sorting is O(nLogn)
 my_tuple = (3,6,1,8,2,3)
 print(sorted(my_tuple, reverse=True)) # [8, 6, 3, 3, 2, 1]
 # returns length of tuple
 print(len(my_tuple)) # 6
  
-# Some methods of tuple
+## Some methods of tuple
 # Returns number of occurrences of value.
 print(my_tuple.count(5.0)) # 0
 # Returns first index of value.
 print(my_tuple.index(3)) # 0
 
-# type conversion
+## type conversion
 my_tuple = tuple([1,2,3,4,5]) # list to tuple
 my_tuple = tuple({1,2,3,4,5}) # set to tuple
 ```
@@ -464,7 +477,7 @@ deleting, poping, inserting, iteration are O(n).
 ### Set
 Are unordered collection of non repeating sequence of items. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as thier order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
-# create set
+## create set
 my_set = set() 
 # or dict like parenthesis but without keys, it becomes set eg. {1,2,3,4,5}
 # here my_list is mutable, but set() function unpacks the items from my_list
@@ -472,12 +485,18 @@ my_list = [1,2,3,4,5]
 my_set = set(my_list) 
 # but if my_list contained list inside it, TypeError: unhashable type: 'list' is raised.
 
-# add, remove
+## add, remove
 my_var = 4
 my_set.add(my_var) # if repeated value, it will not be added again 
 my_set.remove(my_var) # removes a member, raises KeyError if not found
 
-# acessing element
+## concat sets
+a = {54,23,67}
+b = {34,65,55.6}
+a.update(b) 
+print(a) # {65, 34, 67, 55.6, 54, 23}
+
+## acessing element
 my_set[0] # not allowed, TypeError: 'set' object is not subscriptable.
 for var in my_set:
    # do something with var
@@ -485,7 +504,7 @@ for var in my_set:
 if my_var in my_set: 
   # true
   
-# Some methods of sets
+## Some methods of sets
 my_set1 = {3,5,7,1,8}
 my_set2 = {1,2,3,4,5}
 # find intersection, or my_set1 & my_set2     
@@ -501,7 +520,7 @@ print(my_set1.issubset(my_set2)) # False
 # checks if my_set2 is a supersubset of my_set1
 print(my_set1.issuperset(my_set2)) # False
 
-# type conversion
+## type conversion
 my_set = set([1,2,3,4,5]) # list to set
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
@@ -515,19 +534,23 @@ intersection is O(min(m,n)), worst is O(m\*n).
 ### Dict
 Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrival operations. Keys in dict should be hashable(immutable data structures and numeric, string data types). They are used in Dynamic Programming and where values are supposed to have some key associated with them.
 ```Python
-# create dict
+## create dict
 my_dict = dict()
 # or 
 my_dict = {}
 
-# dict comprehension 
-my_dict = {x:x\*x for x in range(6)} # stand alone, generating keys and values
-# more cleaner way
-my_keys = ['a', 'b', 'c']
-my_values = [1,2,3]
-my_dict = {k:v for k,v in zip(my_keys, my_values)}
+## add,remove
+my_var = 20
+key = 10
+my_dict[key] = my_var # add item at key
+del my_dict[key] # remove item at key
 
-# acessing element
+## concat dicts
+my_dict1 = {'z':5, 'y':3, 'x':4}
+my_dict.update(my_dict1)
+print(my_dict) # {'a': 1, 'b': 2, 'c': 3, 'z': 5, 'y': 3, 'x': 4}
+
+## acessing element
 key = 'a'
 my_var = my_dict[key] # can raise KeyError if not present
 # use get() method to avoid KeyError, None is default, can be set to anything else
@@ -535,14 +558,15 @@ my_dict.get(key, None)
 # traverse all items
 for k,v in my_dict.items(): 
    # do something with v or k
+   
+## dict comprehension 
+my_dict = {x:x\*x for x in range(6)} # stand alone, generating keys and values
+# more cleaner way
+my_keys = ['a', 'b', 'c']
+my_values = [1,2,3]
+my_dict = {k:v for k,v in zip(my_keys, my_values)}
 
-# add,remove
-my_var = 20
-key = 10
-my_dict[key] = my_var # add item at key
-del my_dict[key] # remove item at key
-
-# Some methods of dicts
+## Some methods of dicts
 my_dict1 = {'a':1, 'b':2, 'c':3}
 my_dict2 = {'z':50, 'y':40, 'x':30}
 # returns keys inside my_dict1, a dict_keys object, which is iterable and can be converted to list
@@ -556,7 +580,7 @@ my_dict1.update(my_dict2) # concats my_dict2 into my_dict1 inplace
 print(my_dict1.pop("a")) # 1 
 my_dict1.clear() # removes all items of dict
 
-# type conversion
+## type conversion
 keys = [1,2]
 values = [2,3]
 my_dict = dict([keys, values]) # list to dict
