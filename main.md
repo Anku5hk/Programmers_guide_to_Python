@@ -1,9 +1,9 @@
 # Programmer's guide to Python
-Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. This is by no means a complete python walkthrough, but should cover all important aspects of python. I hope this helps you in learning python.
+Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. This is by no means a complete python walkthrough, but should cover all important aspects of python. I hope this helps you in learning python programming.
 
 **What is this:** This book is meant for a programmer who's already familiar with other langauges such as c/c++/Java and wants to learn python but fast. The goal is to take you through enough python, while saving you tons of time. The one who have taken python course from somewhere else can also use this as to solidfy their learning further. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes. 
 
-**What's not this:** Not a traditional programming course/book, this book only emphasis on whats important. Maybe somewhat not beginner friendly, some concepts I consider are better explained on the internet already so have been left off and I don't know what I don't know right?. But I have tried to keep explainations as simple/short as possible most of the times.</br>  
+**What's not this:** Not a traditional programming course/book, this book only emphasis on whats important. Maybe somewhat not beginner friendly, some concepts I consider are better explained on the internet already so have been left off and I don't know what I don't know right?. But I have tried to keep explainations as concise as possible most of the times.</br>  
 
 **Index**
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/main.md#1-basics)
@@ -20,12 +20,53 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Everything in python is an object. Why is so? What is an object? An object contains data(can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods. In python's defination of object, some objects can/cannot have meta-data/functions and are still objects. Data-types in python have attributes/methods, data structures have thier attributes/methods, Functions/Classes also have thier attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object.        
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most parts that does affects usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). 
 ### Some Terminology  
-* Literals: Are raw data given to a variable, litrals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal.eg 4,6,2.5,7.4,'string','something'.
-* Keywords: Are reserved words which are defined by python, so they can't be used as operands, say eg. if,else,for,while,is,as,or,not,and,def,class,return,yeild,pass,raise.
-* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a underscroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike in other languages, python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. Python is dynamically-typed means variables can point to any type of object. So a variable assigned string can be changed to int, float, custom object.
-* Operators: Are used to perform operations on operands. eg. +,-,/,\*,is,in,=,!,<,>,.,not,and,or.
-* Expressions: Are a part of statement(as in expression statement), a expression is something that returns value/sequence by doing some operation(arthimatic/boolean/conditional/lambda function). eg x+4, a+"this", 5+6, a if a==2 else 30, a or b, 3 and 4, etc.
-* Statements: Are basically every instruction/line of code that python interpreter executes. There are simple statements(expression, assignment, yield, del, return, pass, raise, break, continue) and compound statements(if, while, for, try, with, function/class definations). 
+* Literals: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
+```Python
+# some literals
+4, 6, 2.5, 7.4, 'string', 'something'
+```
+* Keywords: Are reserved words which are defined by python, so they can't be used as operands.
+```Python
+# some keywords
+if, else, for, while, is, as, or, not, and, None, def, class, return, yeild, pass, raise
+```
+* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a underscroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike in other languages, python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. Python is dynamically-typed means that the variables can point to any type of object. This allows a variable assigned string be changed to any int, float, data structure, custom object.
+```python
+# dynamically typed
+a = 34
+a = 4.0
+a = "I am string"
+a = [1,2,3,4]
+```
+* Operators: Are used to perform operations on operands.
+```Python
+# example(commma seperated)
++,-,/,//,\*,\*\*,%,=,!,<,>,==,!=,<=,>=,.,is,in,not,and,or
+# chaining operators
+x <= y < z # similar to x<=y and y<z
+```
+* Expressions: Are a part of statement(as in expression statement), a expression is something that returns value/sequence by doing some operation(arthimatic/boolean/conditional/lambda function).
+```Python
+# some examples
+"Yes"+"this"
+x+6
+if a==3 else 2
+a or b
+2 and 3
+lambda x:x**2
+```
+* Statements: Are basically every instruction/line of code that python interpreter executes. There are two types, simple and compound statements. 
+```Python
+## simple statements
+# like expressions and assignments
+# and also keywords like
+yield, del, return, pass, raise, break, continue
+
+## compound statements
+# like function and class definations
+# and also keywords like 
+if, while, for, try, with 
+```
 
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
@@ -95,10 +136,14 @@ text = f"This is a String number {n}" # f-string to pass varaible
 text = f"This is a String number {20-19}" # or even to pass expression
 print(text) # This is a String number 1
 
-# concatenate 2 strings
+# concatenate 2 strings, both should be str 
 string1 = "This is 1."
 string2 = "This is 2."
 print(string1 + string2) # This is 1.This is 2.
+
+# multiplying string
+string1 = "this" * 5
+print(string1) # thisthisthisthisthis
 
 # slicing string syntax is [start_index:end_index:step], end_index is not considered
 print(string1[5:7]) # is 
@@ -302,7 +347,6 @@ Data Structure is a way to store and organize data so that it can be used effici
 
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects. They are prefered in most use cases. Where indexing, looping over some items is reqiured lists are used.
-* Usage:
 ```Python
  # create list
  my_list = [1,2,3,'a','this way','cab',1.0,2.0]
@@ -370,7 +414,6 @@ deleting, poping, inserting, iteration are O(n).
 
 ### Tuple
 Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(values cannot be changed), so they are prefered when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). They are used to store different data type items, unlike list which are mostly used for sotring similar items, but either way is also valid. 
-* Usage:
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
@@ -420,7 +463,6 @@ deleting, poping, inserting, iteration are O(n).
 
 ### Set
 Are unordered collection of non repeating sequence of items. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as thier order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
-* Usage:
 ```Python
 # create set
 my_set = set() 
@@ -472,7 +514,6 @@ intersection is O(min(m,n)), worst is O(m\*n).
 
 ### Dict
 Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrival operations. Keys in dict should be hashable(immutable data structures and numeric, string data types). They are used in Dynamic Programming and where values are supposed to have some key associated with them.
-* Usage:
 ```Python
 # create dict
 my_dict = dict()
@@ -544,7 +585,7 @@ queue.pop(0) # remove at front
 ```
 
 ### Extras
-* range(): Returns sequence of length start_index(0 by default) to end_index(end_index is not included). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work.
+* range(): Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
 # syntax range(start_index:optional, end_index, step:optional)
 print(range(20)) # [0:20] 
@@ -569,7 +610,7 @@ my_tuple = (2,5,1,3)
 print(sorted(my_list)) # [1,2,3,5]
 print(sorted(my_tuple, reverse=True)) # [5, 3, 2, 1]
 ```
-* enumerate(): Returns a iterable object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length and value is item from the list. enumerate() function returns a enumerate object which is iterable but Indexing/slicing is not supported.
+* enumerate(): Returns a iterable object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate() function returns a enumerate object which is iterable but Indexing/slicing is not supported.
 ```Python
 my_list = [100,200,500,100]
 # returns a iterable object
@@ -582,7 +623,7 @@ for i, val in enumerate(my_list):
   # i values are 0,1,2,3
   # val values are 100,200,500,100
 ```
-* filter(): Takes a function, a list and applies that function on every item of that list. filter() returns a filter object which iterable but Indexing/slicing is not supported. 
+* filter(): Takes a function & a list and applies that function on every item of that list. filter() returns a filter object which iterable but Indexing/slicing is not supported. 
 ```Python
 def my_func(var):
   # do something
@@ -595,7 +636,7 @@ print(list(filter(my_func, [100,200,500,100]))) # [102,202,502,102]
 for val in filter(my_func, [100,200,500,100]):
   # do something to val
 ```
-* map(): Takes a function, a list and applies that function on every list item. The difference is map() returns None if some condition is not met(or nothing can be returned), whereas filter returns only if return is provided/some condition is met that makes a return call and else nothing is returned.
+* map(): Takes a function & a list and applies that function on every list item. The difference is map() returns None if some condition is not met(or nothing can be returned), whereas filter returns only if some return condition is met, else nothing is returned.
 ```Python
 def my_func(var):
   # do something
@@ -625,7 +666,7 @@ print(chr(ord("c"))) # c
 
 ## 4. Flow Control and Exception Handling
 
-Unlike using brackets in c/c++/java indentations are used for any Flow Control, Exception Handling, Functions, Classes in python. Any expression or even comments should follow indentation rule.
+Unlike using brackets in c/c++/java, indentations are used for any Flow Control, Exception Handling, Functions/Classes defination in python. Any statements or even comments should follow the indentation rule.
 
 ### if...else
 ```Python
@@ -738,7 +779,7 @@ finally:
 
 * break: breaks from loop. 
 * continue: continue to next iteration in loops.
-* pass: move down to next expression.
+* pass: move down to next statement.
 ```Python
 ## break and continue
 i=0
@@ -766,11 +807,12 @@ assert a == 30 # AssertionError
 ## 5. Functions, Classes and Objects
 
 ### Functions
-* A function can be defined to perform some operation/task on some data/variables/sequences, it can/can't have paramerters, it can/cannot return something (in Python, None is returned by default if not defined). 
-* Functions in python are first class which means they behave just like an object, they can be stored as vairable or passed as argument to other functions.
-* Parameters vs arguments: Parameters are the ones which are defined in function defination, arguments are passed when a function is called. 
-* Functions support Packing and Unpacking varaibles into tuple/dict, Packing is when we pass more than number of defined variables to a function. It is useful when we are not sure about exact number of arguments needed be to passed, they should always be the last parameters in function(or they'll contain all the values). Unpacking is when a list/tuple/dict is passed which then unpacks as arguments into a function. Now passing tuple/list can be done with * (which are generally named args) and passing dict requires ** (which are generally named kwargs), follwed by sequence's name. Eg \*args and \*\*kwargs.
-* Usage:
+* A function can be defined to perform some operation/task on some data/variables/sequences, it may or may not have paramerters, it may or may not return something(in Python, None is returned by default if nothing is defined). 
+* Functions in python are first class which means they behave just like an object, they can be stored in a vairable or can be passed as a argument to other functions.
+* Parameters vs arguments: Parameters are the ones which are defined in function defination, arguments are the ones which are passed when a function is called. 
+* Functions in python support Packing and Unpacking varaibles into tuple/dict.
+1. Packing is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments needed be to passed. They should always be the last parameters in a function(or they'll contain all the values). 
+2. Unpacking is when a list/tuple/dict is passed, which then unpacks as arguments into a function. Now passing tuple/list can be done with '\*' prefix follwed by sequence's name, generally as '\*args'. Passing dict requires '\*\*' prefix follwed by sequence's name, generally as '\*\*kwargs'.
 ```Python
 # defining functions
 # Non-parameterize function which returns nothing 
@@ -854,8 +896,7 @@ print(my_fun1(*my_list)) # 10
 # passing from dict
 print(my_fun1(**my_dict)) # 10 
 ```
-* Anonymous functions(function that is defined without a name, without using def keyword in python) can be created using lambda keyword, it is a single line function. 
-* Usage:
+* Anonymous functions: Is a function that is defined without a name(without using 'def' keyword in python). This can be created using 'lambda' keyword, it is a single line function. 
 ```Python
 # define function
 # function to add values and returns it(a+b is return statement)
@@ -875,10 +916,9 @@ class MyClass:
 
 ### Class
 * Class: Is a blueprint of an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
-* Instance: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that class is designed todo. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
-* Constructor: Is a function that is called when the class's object is instantiated/created,a class can/cannot have a constructor. A default constructor does not have parameters and parameterized constructor does.
-* Methods: Functions that are inside class are called as methods. They should have 'self' object as the first parameter inside the defination, not required when calling that method. self resembles a instance of that class. When a instance calls a method, the calling instance gets passed automatically by python as self object to that method, explained more below.
-* Usage:
+* Instance: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
+* Constructor: Is a function that is called when the class's object is instantiated/created, a class can/cannot have a constructor. A default constructor does not have parameters and parameterized constructor does.
+* Methods: Functions that are inside class are called as methods. They should have 'self' object as the first parameter inside their defination. Although argument is not required to be passed when calling such method. 'self' resembles a instance of that class. When a instance calls a method, the calling instance gets passed automatically by python as 'self' object to that method, explained more below.
 ```Python
 # define class
 # python defines empty constructor automatically in background, if not provided
@@ -930,10 +970,10 @@ new_var = MyClass2.my_func(my_instance, 40)
 # the 'self' keyword ressembles the instance object, which is 'my_instance' here
 ```
 
-* Types of methods in class:
-1. Class: Class methods are bound to classes and not instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using classmethod as decoration, these methods should have class as first parameter(which unlike self can be of any name, CLS is prefered) which then can be used to access other class variables/methods inside these methods.
-2. Instance: Instance methods are bound to instances. They have access to instance and class state, so they can access both class & instance variables/methods and also modify class & instance variables. Instance methods can only be accessed by instances and not class. A normal function inside a class is a instance method, these methods should have self as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
-3. Static: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class. They are defined using staticmethod as decoration, these methods are not required to pass class as first argument.
+* Type of methods in class:
+1. Class: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration(using '@classmethod' prefix), these methods should have class as first parameter, which unlike self can be of any name, CLS is prefered. This parameter further can be used to access other class variables/methods inside these methods.
+2. Instance: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have 'self' as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
+3. Static: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class. They are defined using 'staticmethod' as decoration(using '@staticmethod' prefix), these methods are not required to pass class as first argument.
 ```Python
 class MyClass: 
   # class variables
@@ -981,7 +1021,7 @@ print(my_instance.fun3()) # can access
 
 ### Extras
 
-* Decorators: Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, i.e nested function. This allows to extend the wraped function's behaviour without actually modifying the function itself. Using @ prefix a function can be decorated. This functionality is utilized using functions being first class in python.
+* Decorators: Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wraped function's behaviour without actually modifying the function itself. This are called decorators, using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
 def my_outer_func(some_func):
@@ -1014,8 +1054,28 @@ def my_fun(a,b):
 # now just call my_fun() normally, this will call my_outer_func()
 print(my_fun(10,20)) # 30
 ```
-* Namespaces are collection of names, python maintain namespaces and thier scopes automatically just like in any programming language. There are built-in(readily available functions like print,len), global(which user defines outside of any function/class), local(which user defines inside a function/class) namespaces.
-* Module is simply a python file(with .py extension), dir() can be used to find variables/fucntions/class inside a module. Python looks for modules in a sequence local dir(where current .py is located) -> PYTHONPATH(given python dir path, PYTHONPATH is a env var which is used to define python dirs) ->  lastly inside python installation directory. This does means any module with repeating name will be given priority according to this sequecnce.
+* Namespaces as seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have 'namespace' keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. And according to thier scopes automatically just like in any programming language. There are built-in(readily available functions without any import), global(which user defines outside of any function/class), local(which user defines inside a function/class/nested) namespaces.
+```Python
+## built-in namespace 
+# functions which dont require any imports 
+print(), len(), map(), rnage(), list(), set(), str()
+
+## global namespace
+# importing any modules adds them global namespace
+import time 
+# variables and functions
+my_var = 10
+def my_fun():
+    pass
+
+## local namespace
+def some_fun():
+    # variables and functions
+    my_var = 10
+    def my_fun():
+        pass
+```
+* Module is simply a python file(with .py extension), dir() can be used to find variables/fucntions/class inside a module. Python looks for modules in a sequence local dir(where current .py is located) -> PYTHONPATH(provide python dir path using PYTHONPATH env variable) ->  lastly inside python installation directory. This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
 * Packages are folder with \_\_init\_\_().py file in them.
 ```Python
 ## Namespaces
@@ -1064,8 +1124,8 @@ my_var = math()
 ## 6. OOP concepts
 
 ### Inheritance
-* Inherit a base class to use its methods/variables inside a child class and not the other way. Multilevel and Multiple inheritence are also supported in python.
-* super() function can be used to access parent's methods/variables inside child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
+* Inherit a base class to use its methods/variables inside a child class but not the other way. Multilevel and Multiple inheritence are also supported in python.
+* super() function can be used to access parent's methods/variables inside of child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * Method Resolution Order (MRO) is the order in which Python looks for a method in hierarchy of classes. The general order is child -> parent1 -> parent2..., when a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 ```Python
 ## Single Inheritance
@@ -1201,8 +1261,8 @@ output2 = MyParent1.other_method(child, 2) # 4
 * Access modifiers: 
   1. Public: Can be accessed anywhere in the program.
   2. Protected: Only the current class and derived class can access them.
-  3. Private: Only the current class can acecss them, not even instance can access them.
-In python, all variables are public by default, the way private/protected are implemented they don't really work as one would expect, shown below.
+  3. Private: Only the current class can acecss them, not even thier instance can access them.
+In python, all variables are public by default, the way private/protected are implemented they don't really work as one would expect(shown below).
 ```Python
 class MyClass:
   def __init__(self):
@@ -1233,9 +1293,9 @@ print(my_instance.__dict__)
 # which then further can be accessed using the naming convention
 print(my_instance._MyClass__my_var3) 
 ```
-* Extras: Some keywords to modify scope of variables.
-1. global: To modify a variable with global scope inside a function.  
-2. nonlocal: To modify a variable of local scope inside a nested function.
+* Extras: Some keywords to modify variables outside of scope.
+1. global: To modify a variable with global scope from inside a function.  
+2. nonlocal: To modify a variable of local scope from inside a nested function.
 ```Python 
 ## global
 # my_var1 and my_var2 have global scope 
@@ -1256,13 +1316,11 @@ def some_fun():
   # my_var1 and my_var2 have local scope 
   my_var1 = 10
   my_var2 = 20
-  
   def some_nested_fun():
     # declaring my_var2 as nonlocal, so now it can be modified for some_fun's scope
     nonlocal my_var2 
     my_var1 = 30
     my_var2 = 40
-    
   print(my_var1, my_var2) # 10, 40    
 
 some_nested_fun()
@@ -1271,7 +1329,7 @@ some_nested_fun()
 ### Polymorphism
 * The ability of an object to take on many forms. 
   1. Method overloading: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usally other parameters are set to None and are checked throughout using if..else or isinstance() function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
-  2. Method overriding: Use same named functions but inside different classes. Two clases can have same named functions, but the functionality differ with thier class.
+  2. Method overriding: Use same named functions but inside different classes. Two clases can have same named functions, but the functionality might differ with thier class.
 ```Python
 ## method overloading
 class MyClass:
@@ -1347,7 +1405,7 @@ print(my_ins1 + my_ins2) # 200
 ```
 
 ### Abstraction
-Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
+Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right?. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
 ```Python
 ## Abstraction using module
 import math
@@ -1372,11 +1430,11 @@ class MyBaseClass:
 
 ### Extras
 
-* Iterators: Are objects that can be iterated using loops, these aren't necessarily list. It implements \_\_iter\_\_() and \_\_next\_\_() special functions. These can be implemented inside a class to make it's object iterable.
-* Generators: Generators functions are lazy iterators, they return value when next() function is called upon. They can/cannot have loops in them. yeild makes a function iterable with/without loops. The 'yeild' keyword saves state, which helps in iterating value changes over the generators's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interupted, it can be intertupted and resumed whenever inside a program. For longer iteration(larger data) generators are prefered because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension, using rounded brackets.
+* Iterators: Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
+* Generators: Generators are lazy iterators, they return value when next() function is called upon. They can/cannot have loops in them. yeild statement makes a function iterable with/without loops. yeild saves the state, which helps in iterating value changes over the generators's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interupted, it can be intertupted and resumed whenever inside a program. For longer iteration(larger data) generators are prefered because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## Iterators
-## user-defined iterators
+# user-defined iterators
 class SquareIterator:
   """SquareIterator takes items and returns item's square upon call"""
   def __init__(self, *args):
