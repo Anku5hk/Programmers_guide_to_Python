@@ -19,7 +19,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Everything in python is an object. Why is so? What is an object? An object contains data(can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods. In python's defination of object, some objects may or may not have meta-data/functions and are still objects. Data-types in python have attributes/methods, data structures have thier attributes/methods, Functions/Classes also have thier attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object.        
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most part that does not affect its usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These might eventually replace python atleast at some tasks.  
-### Some Terminology  
+### Fundamentals
 * Literals: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
 ```Python
 # some literals
@@ -58,16 +58,28 @@ lambda x:x**2
 * Statements: Are basically every instruction/line of code that python interpreter executes. There are two types, simple and compound statements. 
 ```Python
 ## simple statements
-# like expressions and assignments
+# expressions we saw earlier
+# assignments like
+a = 40
+t = "Time"
 # and also keywords like
 yield, del, return, pass, raise, break, continue
 
 ## compound statements
-# like function and class definations
+# like function and class definations which we will covered later on 
 # and also keywords like 
 if, while, for, try, with 
 ```
-
+* Time Complexity: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
+**Common Time Complexities in ascending order of thier growing time.** 
+  1. O(1): Constant time. time does not increase at all.
+  2. O(logN): Logarithmic time. when time is increasing logarithmically(grows at inversely proportional rate of N).
+  3. O(N): Linear time. time increases linearly with the input size.
+  4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
+  5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K(constant) times.
+  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.
+**Note**: Explaining all time complexities one by one would consume lots of space for this book, so I'll keep it for later.
+ 
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
 ### Numeric
@@ -625,6 +637,10 @@ print(list(range(5,20))) [5:20]
 # looping range object
 for var in range(20): # 0 to 19 var loop
   # do something with var
+  
+# reversing the order
+for var in range(20, -1, -1): # 19 to 0 var loop
+  # do something with var     
 ```
 * sorted(): Returns a sorted list given list/tuple as input. Sorting is O(nLogn). Also has 'reverse' parameter, which is used to do reverse sorting if it is set to True.
 ```Python
