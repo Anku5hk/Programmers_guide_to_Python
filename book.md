@@ -77,8 +77,8 @@ if, while, for, try, with
   3. O(N): Linear time. time increases linearly with the input size.
   4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
   5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K(constant) times.
-  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.
-**Note**: Explaining all time complexities one by one would consume lots of space for this book, so I'll keep it for later.
+  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.</br>
+**Note**: Explaining all time complexities would consume lots of space for this book, [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples) is a good explaination with examples.
  
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
