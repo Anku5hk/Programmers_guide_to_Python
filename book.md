@@ -15,11 +15,9 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 
 ## 1. Basics
-
 ### Introduction
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most part that does not affect its usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, atleast at some tasks in coming time, but it is yet to be seen.  
-
 ### Fundamentals
 * Literals: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
 ```Python
@@ -71,7 +69,6 @@ yield, del, return, pass, raise, break, continue
 # and also keywords like 
 if, while, for, try, with 
 ```
-
 ### Extras
 * Time Complexity: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
 **Common Time Complexities in ascending order of thier growing time.** 
@@ -82,7 +79,6 @@ if, while, for, try, with
   5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K(constant) times.
   6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.</br>
 **Note**: Explaining all time complexities would consume lots of space for this book, so i have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
- 
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
 ### Numeric
@@ -130,7 +126,6 @@ print(int(my_float)) # 3
 # float to str
 print(str(my_float)) # 3.0
 ```
-
 ### String
 Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object which is a collection of character data. They are immutable i.e items/values(here characters) cannot be changed/deleted, only inserted. 
 ```Python
@@ -208,7 +203,6 @@ print(int(my_string1)) # 20
 print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
 ```
-
 ### Boolean
 Has only 2 values(0 and 1), 1 is True (is also 1, so 4 + True is 5) and 0 is False (is also 0, so 4 + False stays 4).
 ```Python
@@ -225,7 +219,6 @@ print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
-
 ### Special 
 None: None is similar to 'null' in java.
 ```Python
@@ -238,7 +231,6 @@ if n: # same as if n != None:
 if not n:
   # will enter this condition, as n is None
 ```
-
 ### Custom Data Type
 User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have 'struct', but what it does has is objects, which can be utilized to do the same.
 ```Python
@@ -301,7 +293,6 @@ my_dt.insert(y="Bar")
 print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
-
 ### Extras
 * isinstance(): Checks if a object is an instance of a particular class. Returns True/False.
 ```Python
@@ -318,47 +309,54 @@ print(type(a)) # str
 b = 5.0
 print(type(b)) # float
 ```
-* is operator: Checks if 2 objects are refering to the same object. 
+* 'is','not','and','or' operators in python.
 ```Python
+## is: checks if 2 objects are refering to the same object. 
 some_var1 = 42
 some_var2 = 42
 if some_var1 is some_var2:
-  # true
+  print('printed')
   
 # check with id  
 print(id(some_var1) # 2587096149584
 print(id(some_var2)) # 2587096149584
-
 if some_var1 == some_var2:
-  # this also is true, here values are checked
+  # this is also true, here values are checked
+  print('printed')
 
 # another check
 a = 42
 b = 42.0
 print(id(a)) # 2753953689168
 print(id(b)) # 2753956924080
-print(id(int(b))) # 2753953689168
-
 if a is int(b):
-  # true, right
+  # true due to dynamic typing i.e as 42 == int(42.0) are the same
+  print(id(int(b))) # 2753953689168
   
 # but where's the difference  
 a = [20, 30]
 b = [20, 30]
-
 if a is b:
-  # false, no?
-  
+  # even though thier values are same, they are different object so not True
+  print('printed')
 print(id(a)) # 2055633338880
 print(id(b)) # 2055638580288
-# even though thier values are same, they are different objects
+
+## not: to negate the underlying condition, reverses the condition
+a = 30
+# here the underlying condition is the isinstance() function, which return True/False 
+# normally 'if' executes when a underlying condition is True, by applying 'not' to it
+# the 'if' condition is satisfied when the output is False
+if not isinstance(a, int):
+  print('not printed')
+if not isinstance(a, str):
+  print('printed')
+
+## 'and' is similar to '&&' in c/c++/java: both conditions should be satisfied
+## or is similar to '||' in c/c++/java: either of conditions should be satisfied
 ```
-
-
 ## 3. Data Structures
-
 Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrive data from. Data can be data types or even other data structures. Different data structures have thier advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/dont't need to declare the size of a data structure, it is scaled automatically in background.
-
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects. They are prefered in most use cases. Where indexing, looping over some items is reqiured lists are used.
 ```Python
@@ -376,15 +374,20 @@ del my_list[0] # or even with slicing like, del my_list[2:4]
 ## concat lists
 # using '+' operator
 my_list1 = [2,4,5,6] + [34,7,4,2]
-# using extend method
+# using extend() method
 my_list1.extend([3,6,2])
 
-## acessing element
-var_1 = my_list[0]
-var_2 = my_list[1]
+## acessing/altering elements
+var_1 = my_list1[0]
+var_2 = my_list1[1]
+print(var_1, var_2) # 2,4
 # using loop
 for var in my_list:
-# do something with var
+  print(var) # [2,4,5,6,34,7,4,2,3,6,2]  
+# altering values in list
+my_list1[0] = 100
+my_list1[1] = 200
+print(my_list) # [100,200,5,6,34,7,4,2,3,6,2]  
 
 ## slicing list
 print(my_list[3:5]) # ['a','this way']
@@ -431,7 +434,6 @@ my_list = list({1,2,3,4,5}) # set to list
 * Time Complexity:</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
-
 ### Tuple
 Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(values cannot be changed), so they are prefered when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). They are used to store different data type items, unlike list which are mostly used for sotring similar items, but either way is also valid. 
 ```Python
@@ -487,7 +489,6 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 * Time Complexity:</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
-
 ### Set
 Are unordered collection of non repeating sequence of items. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as thier order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
@@ -544,7 +545,6 @@ iterating is O(n).</br>
 printing should be O(nLogn).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
-
 ### Dict
 Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrival operations. Keys in dict should be hashable(immutable data structures and numeric, string data types). They are used in Dynamic Programming and where values are supposed to have some key associated with them.
 ```Python
@@ -603,26 +603,34 @@ my_dict = dict(((1,2), (2,3))) # tuple to dict
 * Time Complexity: Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
 insert, add, delete is O(1).</br>
 iteration is O(n).
-
 ### Implementing other Data Structures
 * Stack: can be easily implemented using lists.
 ```Python
-stack = []
-
+my_stack = []
 # add/remove operation
-stack.append(20) # append at top
-stack.pop() # remove at top
+my_stack.append(20) # append at top
+my_stack.pop() # remove at top
 ```
 * Queue: similarly can be easily implemented using lists.
 ```Python
-queue = []
-
+my_queue = []
 # add/remove operation
-queue.append(20) # append at rear
-queue.pop(0) # remove at front
+my_queue.append(20) # append at rear
+my_queue.pop(0) # remove at front
 ```
-
 ### Extras
+* 'in' operator in python: Check if something is present inside some data structure. When checking with dictionaries keys are checked, rest data structures have similar working.
+```Python
+my_list = [23,43,21,45,27,68]
+if 20 in my_list: # similar to "if some_var in my_list:" where "some_var = 20"
+  print('not printed')
+if 68 in my_list:
+  print('printed')
+# check keys in dictionary
+some_dict = {'a':23, 'b':40, 'c':42}
+if 'c' in some_dict:
+  print('printed')
+```
 * range(): Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
 # syntax range(start_index:optional, end_index, step:optional)
@@ -695,7 +703,6 @@ for val in map(my_func, [100,200,500,100]):
 def myfun(val):
     if val == 2:
         return val+2
-        
 print(list(map(myfun, [1,2,3,4]))) # [None, 4, None, None] 
 print(list(filter(myfun, [1,2,3,4]))) # [4] 
 ```
@@ -705,11 +712,8 @@ print(list(filter(myfun, [1,2,3,4]))) # [4]
 print(ord("c")) # 99
 print(chr(ord("c"))) # c
 ```
-
 ## 4. Flow Control and Exception Handling
-
 Unlike using brackets in c/c++/java, indentations are used for any Flow Control, Exception Handling, Functions/Classes defination in python. Any statements or even comments should follow the indentation rule.
-
 ### if...else
 ```Python
 my_var = 20
@@ -741,7 +745,6 @@ if not my_var1:
   # my_var1 is 'None', so will print 
   print(my_var1)  
 ```
-
 ### for loop
 ```Python
 my_list = [10,20,30,40,50]
@@ -756,7 +759,6 @@ for v in my_list:
 for a in [10,20,30,40,50]:
   print(a)   
 ```
-
 ### while loop
 ```Python
 # while loops are similar like in c/c++/java
@@ -766,7 +768,6 @@ while i<len(my_list):
   print(my_list[i])
   i+=1 # (this is shorthand for i=i+1) i++ is not supported
 ```
-
 ### Exception Handling
 ```Python
 # use traceback module for printing traceback
@@ -816,9 +817,7 @@ else:
 finally:
     print("Finally, its finally, which always executes.")      
 ```
-
 ### Extras
-
 * break: breaks from loop. 
 * continue: continue to next iteration in loops.
 * pass: move down to next statement.
@@ -845,9 +844,7 @@ def my_fun():
 a = 10
 assert a == 30 # AssertionError
 ```
-
 ## 5. Functions, Classes and Objects
-
 ### Functions
 * A function can be defined to perform some operation/task on some data/variables/sequences, it may or may not have paramerters, it may or may not return something(in Python, None is returned by default if nothing is defined). 
 * Functions in python are first class, which means they behave just like an object, they can be stored in a vairable or can be passed as a argument to other functions.
@@ -1199,9 +1196,7 @@ my_var = maths.sqrt(8)
 # this math does something else
 my_var = math()
 ```
-
 ## 6. OOP concepts
-
 ### Inheritance
 * Inherit a base class to use its methods/variables inside a child class but not the other way. Multilevel and Multiple inheritence are also supported in python.
 * super() function can be used to access parent's methods/variables inside of child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
@@ -1334,7 +1329,6 @@ print(child.other_method(2))
 output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
 ```
-
 ### Encapsulation
 * Restrict access to methods and variables inside a class using access modifier. Inside a class, use "\_" underscroll for protected, and "\_\_" double underscroll for private. 
 * Access modifiers: 
@@ -1404,7 +1398,6 @@ def some_fun():
 
 some_nested_fun()
 ```
-
 ### Polymorphism
 * The ability of an object to take on many forms. 
   1. Method overloading: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usally other parameters are set to None and are checked throughout using if..else or isinstance() function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
@@ -1482,7 +1475,6 @@ my_ins1 = MyClass(10, 20, 30, 40)
 my_ins2 = MyClass(10, 20, 30, 40)
 print(my_ins1 + my_ins2) # 200 
 ```
-
 ### Abstraction
 Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right?. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
 ```Python
@@ -1506,9 +1498,7 @@ class MyBaseClass:
   def __str__(self):
     raise NotImplementedError("Implementaion of __str__ is required")
 ```
-
 ### Extras
-
 * Iterators: Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
 * Generators: Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. yeild statement makes a function iterable with/without loops. yeild saves the state, which helps in iterating value changes over the generators's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interupted, it can be intertupted and resumed whenever inside a program. For longer iteration(larger data) generators are prefered because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
