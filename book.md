@@ -619,7 +619,7 @@ my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 ### Extras
-* 'in' operator in python: Check if something is present inside some data structure. When checking with dictionaries keys are checked, rest data structures have similar working.
+* 'in' operator in python: Check if something is present inside some data structure. When checking with dictionaries keys are checked, rest data structures have similar working. The 'in' operator is also supported on 'str' data type.
 ```Python
 my_list = [23,43,21,45,27,68]
 if 20 in my_list: # similar to "if some_var in my_list:" where "some_var = 20"
@@ -630,6 +630,10 @@ if 68 in my_list:
 some_dict = {'a':23, 'b':40, 'c':42}
 if 'c' in some_dict:
   print('printed')
+# working on str object
+my_str = "okay, that's it."
+if 'okay' in my_str:
+  print("printed")
 ```
 * range(): Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
