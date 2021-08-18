@@ -1,9 +1,9 @@
 # Programmer's guide to Python
-Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. This is by no means a complete python walkthrough, but should cover all important aspects of python. I hope this helps you in learning python programming.
+Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. This is by no means a complete python walkthrough, but should cover all important aspects of python. I hope this helps you in learning python programming. Happy Learning!!
 
-**What is this:** This book is meant for a programmer who's already familiar with other langauges such as c/c++/Java and wants to learn python but fast. The goal is to take you through enough python, while saving you tons of time. The one who have taken python course from somewhere else can also use this as to solidfy their learning further. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes. 
+**What is this:** This book is meant for a programmer who's already familiar with other langauges such as c/c++/Java and wants to learn python but fast. The goal is to take you through enough python, while saving you tons of time. The one who have taken a basic python course from somewhere else can also use this as to solidfy their learning. I have tried to keep explainations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes. 
 
-**What's not this:** Not a traditional programming course/book, this book only emphasis on whats important. Maybe somewhat not beginner friendly, some concepts I consider are better explained on the internet already so have been left off and I don't know what I don't know right?. But I have tried to keep explainations concise most of the times.</br>  
+**What's not this:** Not a traditional programming course/book, this book is structured somewhat differently(intentionally) to cover and only emphasis on whats important, although you'll miss almost nothing. Maybe somewhat not beginner friendly, you do need to have prior general programming knowledge to get what's going on. That's all.</br>  
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -82,7 +82,7 @@ if, while, for, try, with
   4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
   5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K(constant) times.
   6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.</br>
-**Note**: Explaining all time complexities would consume lots of space for this book, [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples) is a good explaination with examples.
+**Note**: Explaining all time complexities would consume lots of space for this book, so i have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
  
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
@@ -358,7 +358,7 @@ print(id(b)) # 2055638580288
 
 ## 3. Data Structures
 
-Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrive data from. Data can be data types or even other data structures. Different data structures have thier advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task. They can also be called literal collections. Python has built-in 4 data structures.
+Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrive data from. Data can be data types or even other data structures. Different data structures have thier advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/dont't need to declare the size of a data structure, it is scaled automatically in background.
 
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects. They are prefered in most use cases. Where indexing, looping over some items is reqiured lists are used.
