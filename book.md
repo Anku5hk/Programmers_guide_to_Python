@@ -17,9 +17,8 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 ## 1. Basics
 
 ### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Everything in python is an object. Why is so? What is an object? An object contains data(can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods. In python's defination of object, some objects may or may not have meta-data/functions and are still objects. Data-types in python have attributes/methods, data structures have thier attributes/methods, Functions/Classes also have thier attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object.        
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most part that does not affect its usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These might eventually replace python atleast at some tasks.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.</br>       
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some anwsers, but for most part that does not affect its usability/credibility, it is the most prefered programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, atleast at some tasks in coming time, but it is yet to be seen.  
 
 ### Fundamentals
 * Literals: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
@@ -851,35 +850,40 @@ assert a == 30 # AssertionError
 
 ### Functions
 * A function can be defined to perform some operation/task on some data/variables/sequences, it may or may not have paramerters, it may or may not return something(in Python, None is returned by default if nothing is defined). 
-* Functions in python are first class which means they behave just like an object, they can be stored in a vairable or can be passed as a argument to other functions.
+* Functions in python are first class, which means they behave just like an object, they can be stored in a vairable or can be passed as a argument to other functions.
 * Parameters vs arguments: Parameters are the ones which are defined in function defination, arguments are the ones which are passed when a function is called. 
 * Functions in python support Packing and Unpacking varaibles into tuple/dict.
 1. Packing is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments needed be to passed. They should always be the last parameters in a function(or they'll contain all the values). 
 2. Unpacking is when a list/tuple/dict is passed, which then unpacks as arguments into a function. Now passing tuple/list can be done with '\*' prefix follwed by sequence's name, generally as '\*args'. Passing dict requires '\*\*' prefix follwed by sequence's name, generally as '\*\*kwargs'.
 ```Python
-# defining functions
-# Non-parameterize function which returns nothing 
+## defining functions
+# Eg 1. Non-parameterize function which returns nothing 
 def my_function1():
   # do something
-# function with parameter which returns nothing
+  pass # to ensure the program runs this empty function   
+  # if the function is not empty pass is not required at all
+  
+# Eg 2. function with parameter which returns nothing
 def my_function2(var1, var2):
   # do something  
+  pass
 # alternative way is to describe the input/return type hints
 # As they are just hints, it does not matter what is send/returned
 def my_function2(var1: int, var2: int) -> None: 
-
-# default parameters should always follow later
+  pass
+  
+# Eg 3. default parameters should always follow later
 def my_function3(var1, var2, var3, do_something=False): 
   if do_something:
     # did something
     return var1 + var2 + var3
 
-# calling a function, returns None by default
+## calling a function, returns None by default
 my_var = my_function1()
 print(my_var) # None
 print(my_function3(30, 20, 10, do_something=True)) # 60
 
-# first class functions behaviour
+## first class functions behaviour
 def my_fun1(number, some_fun=None):
   output=number**2
   if some_fun:
@@ -889,14 +893,18 @@ def my_fun1(number, some_fun=None):
 def my_fun2(n):
   return n**3
 
-# function as var, notice no rounded brackets on function
+# assigning a function to a variable, notice no rounded brackets on the function
 my_var = my_fun2 
 print(my_var) # <function my_funtion at 0x000001C1FDFAF0D0>
+# my_var is now a function so calling my_var is calling my_fun2
+print(my_var(2)) # 8
 
+# passing a function as argument inside a function
 print(my_fun1(2)) # 4 
 # pass function as argument
 print(my_fun1(2, my_var)) # 8
 
+## packing inside functions 
 # packing variables into tuple and dict
 def my_test(*args, **kwargs):
   print(type(args)) # tuple
@@ -928,13 +936,14 @@ print(my_fun2(2,3)) # 5
 # passing more than 2 arguments, however arguments should have some unique name
 print(my_fun2(2, 3, c=2, d=4, e=4, any_name=5, my_var=5)) # 25
 
-# unpacking variables into tuple functions
+## unpacking in functions
+# unpacking variables from tuple/dict
 def my_fun1(a,b,c,d):
   return a+b+c+d
 
 my_list = [1,2,3,4]
 my_dict = {a:1,b:2,c:3,d:4}
-# passing from list, can also be tuple
+# passing from list/tuple, list here
 print(my_fun1(*my_list)) # 10
 # passing from dict
 print(my_fun1(**my_dict)) # 10 
@@ -955,14 +964,13 @@ class MyClass:
   def my_fun():
   """This is what this method does..."""
 ```
-
-
 ### Class
 * Class: Is a blueprint of an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
 * Instance: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
 * Constructor: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
 * Methods: Functions that are inside class are called as methods. They should have 'self' object as the first parameter inside their defination. Although argument is not required to be passed when calling such method. 'self' resembles a instance of that class. When a instance calls a method, the calling instance gets passed automatically by python as 'self' object to that method, explained more below.
 ```Python
+## class
 # define class
 # python defines empty constructor automatically in background, if not provided
 class MyClass: 
@@ -1001,6 +1009,7 @@ class MyClass2:
   def my_func(self, var1): 
     return var1 + self.para1
 
+## instance
 # use '.' dot operator to access methods/variables of an object
 # create instance, pass arguments for parameterized constructor
 my_instance = MyClass2(22,34,42) 
@@ -1012,7 +1021,6 @@ print(my_instance.my_func(40)) # 62
 new_var = MyClass2.my_func(my_instance, 40)
 # the 'self' keyword ressembles the instance object, which is 'my_instance' here
 ```
-
 * Type of methods in class:
 1. Class: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration(using '@classmethod' prefix), these methods should have class as first parameter, which unlike self can be of any name, CLS is prefered. This parameter further can be used to access other class variables/methods inside these methods.
 2. Instance: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have 'self' as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
@@ -1061,9 +1069,37 @@ print(MyClass.fun1()) # can't access
 print(MyClass.fun2()) # can access
 print(my_instance.fun3()) # can access
 ```
+### Objects
+* An object contains data(can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods.
+* **"Everything in python is an object"**, in python's defination of object, some objects may or may not have meta-data/functions and are still objects. The Data-types in python have attributes/methods, data structures have thier attributes/methods, Functions(are first class, as we saw earlier)/Classes also have thier attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
+* We saw earlier how to create a instance/object from a class and what can be done using objects, what/how they can access variables and methods.
+```Python
+## data types are object
+a = 30
+print(type(a)) # <class 'int'>
+# print attributes/methods of class int
+print(dir(a)) 
 
+## data structures are object
+a = [30, 10, 20]
+print(type(a)) # <class 'list'>
+# print attributes/methods of class list
+print(dir(a)) 
+
+## functions are objects
+def my_fun():
+  pass
+print(my_fun) # <class 'function'>
+print(dir(my_fun))
+
+## classes are objects
+class MyClass: 
+  def __init__(self):
+    pass    
+print(MyClass) # <class '__main__.MyClass'>
+print(dir(MyClass))
+```
 ### Extras
-
 * Decorators: Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wraped function's behaviour without actually modifying the function itself. This are called decorators, using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
