@@ -381,14 +381,19 @@ my_list1.extend([3,6,2])
 var_1 = my_list1[0]
 var_2 = my_list1[1]
 print(var_1, var_2) # 2,4
-# using loop
+# iterating with loop
 for var in my_list:
   print(var) # [2,4,5,6,34,7,4,2,3,6,2]  
 # altering values in list
 my_list1[0] = 100
 my_list1[1] = 200
 print(my_list) # [100,200,5,6,34,7,4,2,3,6,2]  
-
+# checking if some value is present in list
+if 20 in my_list1: # similar to "if some_var in my_list1:" where "some_var = 20"
+  print('not printed')
+if 200 in my_list1:
+  print('printed')
+  
 ## slicing list
 print(my_list[3:5]) # ['a','this way']
 print(my_list[5:]) # ['cab',1.0,2.0]
@@ -443,6 +448,12 @@ my_tuple = (1,2,3,'we','are','one',5.0)
 my_var = 10
 my_var = my_tuple[0] # okay
 my_tuple[0] = my_var # not okay because Immutable, raises TypeError
+# iterating over a tuple  
+for var in my_tuple:
+  print(var) # (1,2,3,'we','are','one',5.0)
+# checking if some value is present in tuple
+if 5.0 in tuple:
+  print('printed')
 
 ## only add elements, can't remove elements from tuple
 my_tuple += (5,) # adding another element as tuple
@@ -513,11 +524,12 @@ print(a) # {65, 34, 67, 55.6, 54, 23}
 
 ## acessing element
 my_set[0] # not allowed, TypeError: 'set' object is not subscriptable.
+# iterating over a set
 for var in my_set:
-   # do something with var
+   print(var)
 # check if my_var is inside my_set   
 if my_var in my_set: 
-  # true
+  print('printed')
   
 ## Some methods of sets
 my_set1 = {3,5,7,1,8}
@@ -572,6 +584,9 @@ my_dict.get(key, None)
 # traverse all items
 for k,v in my_dict.items(): 
    # do something with v or k
+# check if key is inside my_dict   
+if key in my_dict:
+  print('printed')
    
 ## dict comprehension 
 my_dict = {x:x\*x for x in range(6)} # stand alone, generating keys and values
@@ -619,22 +634,6 @@ my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 ### Extras
-* 'in' operator in python: Check if something is present inside some data structure. When checking with dictionaries keys are checked, rest data structures have similar working. The 'in' operator is also supported on 'str' data type.
-```Python
-my_list = [23,43,21,45,27,68]
-if 20 in my_list: # similar to "if some_var in my_list:" where "some_var = 20"
-  print('not printed')
-if 68 in my_list:
-  print('printed')
-# check keys in dictionary
-some_dict = {'a':23, 'b':40, 'c':42}
-if 'c' in some_dict:
-  print('printed')
-# working on str object
-my_str = "okay, that's it."
-if 'okay' in my_str:
-  print("printed")
-```
 * range(): Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
 # syntax range(start_index:optional, end_index, step:optional)
