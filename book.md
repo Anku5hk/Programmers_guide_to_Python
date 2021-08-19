@@ -29,7 +29,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a under scroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike in other languages, python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. Python is dynamically-typed means that the variables can point to any type of object. This allows a variable assigned string be changed to any int, float, data structure, custom object.
+* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a under scroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 # dynamically typed
 a = 34
@@ -37,12 +37,25 @@ a = 4.0
 a = "I am string"
 a = [1,2,3,4]
 ```
-* Operators: Are used to perform operations on operands.
+* Operators: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in any other programming languages. Other Logical, Identity, Membership operators I'll explain going through later on.
 ```Python
-# example(comma separated)
-+,-,/,//,\*,\*\*,%,=,!,<,>,==,!=,<=,>=,.,is,in,not,and,or
-# chaining operators
-x <= y < z # similar to x<=y and y<z
+## Operators in python(comma separated)
+## Arithmetic operators
++,-,\*,/,%,\*\*,//
+## Assignment operators
+=,+=,-=,/*=,/=,%=,//=,\*\*=,&=,|=,^=,>>=,<<=
+## Comparison operators
+==,!=,>,<,>=,<=
+## Logical Operators
+not,and,or
+## Identity Operators
+is,is not
+## Membership Operators
+in,not in
+
+## extra operations
+# chaining operators operation Eg.
+if x <= y < z: # is similar to "if x<=y and y<z:"
 ```
 * Expressions: Are a part of statement(as in expression statement), a expression is something that returns value/sequence by doing some operation(arithmetic/conditional/lambda function).
 ```Python
@@ -70,6 +83,14 @@ yield, del, return, pass, raise, break, continue
 if, while, for, try, with 
 ```
 ### Extras
+* Comments:
+```Python
+# this is a single line comment
+
+"""this is a 
+multiline comment
+"""
+```
 * Time Complexity: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
 **Common Time Complexities in ascending order of their growing time.** 
   1. O(1): Constant time. time does not increase at all.
@@ -84,9 +105,10 @@ Are used to define the type of data a variable holds. Python doesn't require dec
 ### Numeric
 * Three Numeric Types: 
 1. int(interger): Numbers that do not have decimal values.
-2. float: Numbers that have decimal values.
+2. float: Numbers that do have decimal values.
 3. complex: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
+## assigning values to variables 
 # here my_int is an operand, 42 is a literal and its data type is int
 my_int = 42 # int
 print(type(my_int)) # <class 'int'>
@@ -94,27 +116,24 @@ my_float = 3.0 # float
 print(type(my_float)) # <class 'float'>
 my_complex = 4.22 + 20j # complex
 my_complex = complex(4.22, 20) # alternative way
-print(my_complex) # 4.22+20j
+print(my_complex) # (4.22+20j)
 
-# type assignment
-some_var = 42 # some_var is assigned int
-some_var = 50.033 # some_var is now assigned a float value
-
-# Functions supported
+## Some supported functions
 # returns maximum from n numbers(n > 2)
 print(max(30, 20)) # 30
 # returns minimum from n numbers(n > 2)
 print(min(30, 20)) # 20
 # returns absolute value
 print(abs(-50)) # 50
-# returns sum of numbers
-print(sum([10, 20])) # 30
-# returns object id
+# returns object id of a variable
+# object id can differ on your machine
 print(id(my_float)) # 1875526208176
 # returns a rounded to decimal value
 print(round(my_float)) # 3
+# returns the power of a number, similar to using '**' operator, eg "10**2" 
+print(pow(10, 2)) # 100
 
-# type conversion
+## type conversion
 my_int = 42
 my_float = 3.0
 # int to str
@@ -129,34 +148,34 @@ print(str(my_float)) # 3.0
 ### String
 Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object which is a collection of character data. They are immutable i.e items/values(here characters) cannot be changed/deleted, only inserted. 
 ```Python
+## assigning strings
 text = 'strings can be single quoted'
 text = "strings can be double quoted"
-# multiline string
 text = """This is a long text.
         And want to use multiple lines."""
-
-print(r"\n raw string no escaping characters") # \n raw string no escaping characters
-print("normal str,\t escaping characters") # normal str,  escaping characters
-
-# String formatting, to pass python expression/variable inside a string
+        
+## String types
+print("normal str,\t escaping characters") # normal str, escaping characters
+print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
+# String formatting, used to pass python expression/variable inside a string
 n = 1
-text = "This is a String number %s" %n  # C like formatting 
-text = "This is a String number {0}".format(n) # format method of string
 text = f"This is a String number {n}" # f-string to pass variable
 text = f"This is a String number {20-19}" # or even to pass expression
+text = "This is a String number %s" %n  # or C like formatting 
+text = "This is a String number {0}".format(n) # or format method of string
 print(text) # This is a String number 1
 
-# concatenate 2 strings, both should be str 
+## multiplying('*') operator on string
+string1 = "this" * 5
+print(string1) # thisthisthisthisthis
+
+## join two strings, both should be str 
 string1 = "This is 1."
 string2 = "This is 2."
 print(string1 + string2) # This is 1.This is 2.
 
-# multiplying string
-string1 = "this" * 5
-print(string1) # thisthisthisthisthis
-
-# slicing string syntax is [start_index:end_index:step], end_index is not considered
-print(string1[5:7]) # is 
+## slicing string syntax is [start_index:end_index:step], end_index is not considered
+print(string1[5:7]) # is
 print(string1[5:]) # is 1.
 print(string1[:4]) # This 
 print(string1[:5:2]) # Ti 
@@ -166,34 +185,35 @@ print(string1[::-1]) # .1 si sihT
 # unlike list, string does not create a copy 
 print(string1[:]) # This is 1.
 
-# Some methods
+## Some methods of string
 my_string = "this IS it."
-# Returns Lowercases all characters string
+# Returns Lowercases all characters of given string
 print(my_string.lower()) # this is it.
-# Returns Uppercases all characters string
+# Returns Uppercases all characters of given string
 print(my_string.upper()) # THIS IS IT.
-# Returns Capitalizes first character string
+# Returns Capitalizing first character string
 print(my_string.capitalize()) # This is it.
 # Splits at a given string key(which is whitespace here) and returns list of strings
 print(my_string.split(" ")) # ['this', 'IS', 'it.']
-# Removes whitespace from beginning, also can strip given a key string 
+# Removes whitespace from beginning, also can strip given another key string 
 print(my_string.strip()) # this IS it.
 # Searches given key/string(which is 'it' here) and returns starting index if found
 print(my_string.index("it")) # 8
-# Searches given key string(which is 'it' here), replaces with second key string and returns final string
-print(my_string.replace("it","not")) # this IS not.
-# joins a list of string to a single string with given string key(which is '.' here)
-print(".".join(['hey','this','it'])) # hey.this.it
+# Searches given key string(which is 'it' here), replaces with 
+# second key(which is 'not it' here) string and then returns the final string
+print(my_string.replace("it","not it")) # this IS not it.
+# joins a list of strings to a single string with given string key(which is '.' here)
+print(".".join(['hey','is','this','it?'])) # hey.is.this.it?
 
-# Some functions on string
-# Returns length of string
+## Some functions on string
+# Returns the length of a string
 print(len(my_string)) 
 # Returns a Unicode of a character
 print(ord("c")) # 99 
 # Returns Converted the Unicode to a character
-print(chr(ord("c")) # c
+print(chr(ord("c"))) # c
 
-# type conversion
+## type conversion
 my_string = "bar"
 my_string1 = "20"
 # str to int
@@ -204,16 +224,16 @@ print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
 ```
 ### Boolean
-Has only 2 values(0 and 1), 1 is True (is also 1, so 4 + True is 5) and 0 is False (is also 0, so 4 + False stays 4).
+Has only 2 values(True and False), True(is also 1, so 4 + True is 5) and False(is also 0, so 4 + False stays 4).
 ```Python
+## assigning bool
 my_bool = True
 print(type(my_bool)) # <class 'bool'>
 my_bool = my_bool + 4 # becomes 5
-
 my_bool = False
 my_bool = my_bool + 4 # stays 4
 
-# type conversion
+## type conversion
 # int/float to bool, anything not 0 is True
 print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
@@ -223,13 +243,13 @@ print(bool(""), bool("This is string")) # False True
 None: None is similar to 'null' in java.
 ```Python
 n = None
+## to check whether an object is not None
+if n: # same as "if n != None:"
+  print('will not enter this condition')
 
-# to check whether an object is not None
-if n: # same as if n != None:
-  # will not enter this condition
-
-if not n:
-  # will enter this condition, as n is None
+## not is used to negate the condition
+if not n: # same as "if n == None:"
+  print('will enter this condition, as n is None')
 ```
 ### Custom Data Type
 User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have 'struct', but what it does has is objects, which can be utilized to do the same.
@@ -1196,6 +1216,67 @@ my_var = maths.sqrt(8)
 # this math does something else
 my_var = math()
 ```
+* Iterators: Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
+* Generators: Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. yield statement makes a function iterable with/without loops. yield saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+```Python
+## Iterators
+# user-defined iterators
+class SquareIterator:
+  """SquareIterator takes items and returns item's square upon call"""
+  def __init__(self, *args):
+    self.args = args
+    self.iter_len = len(args)-1
+  def __iter__(self):
+    """This method is used to initialize a iterator, it returns an iterator object."""
+    self.idx = -1 # we initialize index
+    return self
+  def __next__(self):
+    """This method is used to fetch next value, it can be called or loops do call it automatically."""
+    self.idx += 1  
+    if self.idx > self.iter_len:
+      raise StopIteration
+    return self.args[self.idx]**2
+
+my_iter = SquareIterator(10,20,30,40,50)  
+# initialize iterator
+my_iter = iter(my_iter) 
+# iterate values using next
+print(next(my_iter)) # 100
+# same as next(my_iter)
+print(my_iter.__next__()) # 400
+
+# for loop call __iter__ and __next__ functions on a iterable
+for v in my_iter:
+  print(v)
+  
+# use hasattr to check if some object has some particular function 
+print(hasattr(my_iter, "__iter__")) # True
+print(hasattr(list, '__iter__')) # True
+print(hasattr(tuple, '__iter__')) # True
+
+## Generators
+# basic generator
+def my_generator(*args):
+  for a in args:
+    yield a
+generator = my_generator(10,20,30,40,50)
+# or using comprehension
+generator = (a for a in [10,20,30,40,50])
+print(type(generator)) # <class 'generator'>
+print(next(generator)) # 10
+# loop over all values
+for a in generator:
+  print(a)
+
+# generator without loop
+def my_generator():
+  yield 1
+  yield 2
+  yield 3
+for a in my_generator():
+  print(a)
+```
+
 ## 6. OOP concepts
 ### Inheritance
 * Inherit a base class to use its methods/variables inside a child class but not the other way. Multilevel and Multiple inheritance are also supported in python.
@@ -1498,69 +1579,6 @@ class MyBaseClass:
   def __str__(self):
     raise NotImplementedError("Implementaion of __str__ is required")
 ```
-### Extras
-* Iterators: Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
-* Generators: Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. yield statement makes a function iterable with/without loops. yield saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
-```Python
-## Iterators
-# user-defined iterators
-class SquareIterator:
-  """SquareIterator takes items and returns item's square upon call"""
-  def __init__(self, *args):
-    self.args = args
-    self.iter_len = len(args)-1
-  def __iter__(self):
-    """This method is used to initialize a iterator, it returns an iterator object."""
-    self.idx = -1 # we initialize index
-    return self
-  def __next__(self):
-    """This method is used to fetch next value, it can be called or loops do call it automatically."""
-    self.idx += 1  
-    if self.idx > self.iter_len:
-      raise StopIteration
-    return self.args[self.idx]**2
-
-my_iter = SquareIterator(10,20,30,40,50)  
-# initialize iterator
-my_iter = iter(my_iter) 
-# iterate values using next
-print(next(my_iter)) # 100
-# same as next(my_iter)
-print(my_iter.__next__()) # 400
-
-# for loop call __iter__ and __next__ functions on a iterable
-for v in my_iter:
-  print(v)
-  
-# use hasattr to check if some object has some particular function 
-print(hasattr(my_iter, "__iter__")) # True
-print(hasattr(list, '__iter__')) # True
-print(hasattr(tuple, '__iter__')) # True
-
-
-## Generators
-# basic generator
-def my_generator(*args):
-  for a in args:
-    yield a
-generator = my_generator(10,20,30,40,50)
-# or using comprehension
-generator = (a for a in [10,20,30,40,50])
-print(type(generator)) # <class 'generator'>
-print(next(generator)) # 10
-# loop over all values
-for a in generator:
-  print(a)
-
-# generator without loop
-def my_generator():
-  yield 1
-  yield 2
-  yield 3
-for a in my_generator():
-  print(a)
-```
-
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
