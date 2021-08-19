@@ -29,9 +29,12 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a under scroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a under scroll(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
-# dynamically typed
+## variable names example
+MyInt, some_var, my_string12, SOME_NUMBER
+
+## dynamically typed
 a = 34
 a = 4.0
 a = "I am string"
@@ -104,7 +107,7 @@ multiline comment
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
 ### Numeric
 * Three Numeric Types: 
-1. int(interger): Numbers that do not have decimal values.
+1. int (interger): Numbers that do not have decimal values.
 2. float: Numbers that do have decimal values.
 3. complex: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
@@ -146,7 +149,7 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### String
-Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object which is a collection of character data. They are immutable i.e items/values(here characters) cannot be changed/deleted, only inserted. 
+Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object which is a collection of character data. They are immutable i.e items/values (here characters) cannot be changed/deleted, only inserted. 
 ```Python
 ## assigning strings
 text = 'strings can be single quoted'
@@ -224,7 +227,7 @@ print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
 ```
 ### Boolean
-Has only 2 values(True and False), True(is also 1, so 4 + True is 5) and False(is also 0, so 4 + False stays 4).
+Has only 2 values (True and False), True (is also 1, so 4 + True is 5) and False (is also 0, so 4 + False stays 4).
 ```Python
 ## assigning bool
 my_bool = True
@@ -254,14 +257,17 @@ if not n: # same as "if n == None:"
 ### Custom Data Type
 User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have 'struct', but what it does has is objects, which can be utilized to do the same.
 ```Python
+## Example 1
 # create object of a data type
 class MyDataType:
   def __init__(self, x, y):
     # initialize here
     self.x = x 
     self.y = y
+    
+  # this function is totally optional  
   def __str__(self):
-    """This magic method is used to represent print function for this object, should return a string."""
+    """Define this 'magic function' to enable print functionality for this object, it should return a string."""
     return f"{self.x} {self.y}"
 
 my_dt = MyDataType(10, "Hello")
@@ -279,17 +285,18 @@ my_dt.x = "THis can also become a string"
 # where you can check the type of data that is fed in
 # But will not that be a Data structure? Nope?
 
+## Example 2
 class MyDataType:
   def __init__(self, x, y):
+    """__init__ is antoher magic function, which enables usage of construtor in python, more on this later."""
     # initialize here
     if not isinstance(x, int) or not isinstance(y, str):
-      raise TypeError()
-      
+      raise TypeError() # raise error if type does not match
     self.x = x 
     self.y = y
     
   def insert(self, x=None, y=None):
-    """To check values while inserting in custom data types"""
+    """To check values while inserting in our custom data type"""
     if x:
       if isinstance(x, int):
         self.x = x
@@ -302,78 +309,93 @@ class MyDataType:
         raise TypeError("Should be a String")
         
   def __str__(self):
-    """This magic method is used to represent print function for this object, should return a string."""
+    """Define this 'magic function' to enable print functionality for this object, it should return a string."""
     return f"{self.x} {self.y}"
 
+# create our data type
 my_dt = MyDataType(10, "Hello")  
-my_dt.insert(15, "Foo")
+# insert values
+my_dt.insert(15, "Foo") 
 print(my_dt) # 15 Foo
 my_dt.insert(20) 
 my_dt.insert(y="Bar")
 print(my_dt) # 20 Bar
+# raising type error if data type is not what we expected
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-* isinstance(): Checks if a object is an instance of a particular class. Returns True/False.
+* type() function, PARAMETERS => [object], RETURNS => str: Returns the class_name of an object.
+```Python
+a = "What?"
+print(type(a)) # str
+b = 5.0
+print(type(b)) # float
+```
+* isinstance() function, PARAMETERS => [object, class], RETURNS => bool: Checks if a object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
 print(isinstance(a, int)) # True
 print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
-* type(): Returns the class_name of an object.
+* Logical and Identity operators in python.
 ```Python
-a = "What?"
-print(type(a)) # str
-
-b = 5.0
-print(type(b)) # float
-```
-* 'is','not','and','or' operators in python.
-```Python
-## is: checks if 2 objects are referring to the same object. 
-some_var1 = 42
-some_var2 = 42
-if some_var1 is some_var2:
-  print('printed')
-  
-# check with id  
-print(id(some_var1) # 2587096149584
-print(id(some_var2)) # 2587096149584
-if some_var1 == some_var2:
-  # this is also true, here values are checked
-  print('printed')
-
-# another check
-a = 42
-b = 42.0
-print(id(a)) # 2753953689168
-print(id(b)) # 2753956924080
-if a is int(b):
-  # true due to dynamic typing i.e as 42 == int(42.0) are the same
-  print(id(int(b))) # 2753953689168
-  
-# but where's the difference  
-a = [20, 30]
-b = [20, 30]
-if a is b:
-  # even though their values are same, they are different object so not True
-  print('printed')
-print(id(a)) # 2055633338880
-print(id(b)) # 2055638580288
-
+### Logical operators: not,and,or
 ## not: to negate the underlying condition, reverses the condition
 a = 30
 # here the underlying condition is the isinstance() function, which return True/False 
-# normally 'if' executes when a underlying condition is True, by applying 'not' to it
-# the 'if' condition is satisfied when the output is False
+# normally 'if' executes when a underlying condition is 'True' right, by applying 'not' to it
+# the 'if' condition is satisfied when the output is 'False'
 if not isinstance(a, int):
   print('not printed')
 if not isinstance(a, str):
   print('printed')
 
 ## 'and' is similar to '&&' in c/c++/java: both conditions should be satisfied
-## or is similar to '||' in c/c++/java: either of conditions should be satisfied
+a=20
+b=30
+if a > 10 and b < 50:
+  print('printed')
+  
+## 'or' is similar to '||' in c/c++/java: either of conditions should be satisfied
+if a > 10 or b < 10:
+  print('printed')
+  
+### Identity operator: is,is not
+## is: checks if 2 objects are referring to the same object. 
+some_var1 = 42
+some_var2 = 42
+if some_var1 is some_var2:
+  print('printed')
+# check with id  
+print(id(some_var1)) # 2587096149584
+print(id(some_var2)) # 2587096149584
+if some_var1 == some_var2:
+  # this is also true, here values are checked
+  print('printed')
+
+# another example
+a = 42
+b = 42.0
+print(id(a)) # 2753953689168
+print(id(b)) # 2753956924080
+if a is int(b):
+  # true due to dynamic typing i.e as 42 == int(42.0) are the same, check the id
+  print(id(int(b))) # 2753953689168
+  
+# but then where's the difference  
+a = [20, 30]
+b = [20, 30]
+if a is b:
+  # even though their values are same, they are different object so not True
+  print('not printed')
+print(id(a)) # 2055633338880
+print(id(b)) # 2055638580288
+
+## is not: negate the 'is' condition, working is similar as we saw above
+# Notice: 'not' should be applied after 'if' and not after 'is'
+if not a is b:
+  print("printed") 
 ```
 ## 3. Data Structures
 Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/don't need to declare the size of a data structure, it is scaled automatically in background.
