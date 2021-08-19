@@ -27,7 +27,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 * Keywords: Are reserved words which are defined by python, so they can't be used as operands.
 ```Python
 # some keywords
-if, else, for, while, is, as, or, not, and, None, def, class, return, yeild, pass, raise
+if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
 * Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a underscroll(because it is reserved for something else), other naming rules are similar to other languages. eg. my_int, some_var, my_string12, numbers_list. Unlike in other languages, python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. Python is dynamically-typed means that the variables can point to any type of object. This allows a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
@@ -1503,7 +1503,7 @@ class MyBaseClass:
 ```
 ### Extras
 * Iterators: Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
-* Generators: Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. yeild statement makes a function iterable with/without loops. yeild saves the state, which helps in iterating value changes over the generators's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interupted, it can be intertupted and resumed whenever inside a program. For longer iteration(larger data) generators are prefered because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+* Generators: Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. yield statement makes a function iterable with/without loops. yield saves the state, which helps in iterating value changes over the generators's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interupted, it can be intertupted and resumed whenever inside a program. For longer iteration(larger data) generators are prefered because they are memory efficient, in a sense the can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## Iterators
 # user-defined iterators
