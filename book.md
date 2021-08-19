@@ -29,7 +29,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a under scroll(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -1433,7 +1433,7 @@ output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
 ```
 ### Encapsulation
-* Restrict access to methods and variables inside a class using access modifier. Inside a class, use "\_" under scroll for protected, and "\_\_" double under scroll for private. 
+* Restrict access to methods and variables inside a class using access modifier. Inside a class, use "\_" underscore for protected, and "\_\_" double underscore for private. 
 * Access modifiers: 
   1. Public: Can be accessed anywhere in the program.
   2. Protected: Only the current class and derived class can access them.
