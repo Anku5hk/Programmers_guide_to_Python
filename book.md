@@ -323,21 +323,22 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-* type() function, PARAMETERS => [object], RETURNS => str: Returns the class_name of an object.
+* Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#extras-1), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#)
+#### 1. type(): PARAMETERS => [object], RETURNS => str: Returns the class_name of an object.
 ```Python
 a = "What?"
 print(type(a)) # str
 b = 5.0
 print(type(b)) # float
 ```
-* isinstance() function, PARAMETERS => [object, class], RETURNS => bool: Checks if a object is an instance of a particular class. Returns True/False.
+#### 2. isinstance(): PARAMETERS => [object, class], RETURNS => bool: Checks if a object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
 print(isinstance(a, int)) # True
 print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
-* id() function, PARAMETERS => [object], RETURNS => int: Returns object id of a object.
+#### 3. id(): PARAMETERS => [object], RETURNS => int: Returns object id of a object.
 ```Python
 my_float = 50.0
 # object id wil differ each time with program
