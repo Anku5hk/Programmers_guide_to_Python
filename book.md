@@ -364,7 +364,7 @@ my_float = 50.0
 # object id wil differ each time with program
 print(id(my_float)) # 1875526208176
 ```
-### Logical and Identity operators.
+#### Logical and Identity operators.
 ```Python
 ### Logical operators: not,and,or
 ## not: to negate the underlying condition (it reverses the condition)
