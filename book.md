@@ -553,7 +553,7 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
-Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, literals & immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
+Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable(must have a \_\_hash\_\_() method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
 ## create set
 my_set = set() # create a empty set
@@ -610,39 +610,43 @@ iterating is O(n).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
 ### Dict
-Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(immutable data structures and numeric, string data types). They are used in Dynamic Programming and where values are supposed to have some key associated with them.
+Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 ```Python
-## create dict
-my_dict = dict()
-# or 
-my_dict = {}
+## create empty dict
+my_dict = dict() # or "my_dict = {}"
+# create non empty dict
+my_dict = {'e':23, 'w':65, 'q':52}
 
 ## add, remove
 my_var = 20
 key = 10
+tuple_key = (20,)
 my_dict[key] = my_var # add item at key
-del my_dict[key] # remove item at key
+my_dict[tuple_key] = 45
+print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 10: 20, (20,): 45}
+del my_dict[tuple_key] # remove the item
 
 ## join two dicts
 my_dict1 = {'z':5, 'y':3, 'x':4}
 my_dict.update(my_dict1)
-print(my_dict) # {'a': 1, 'b': 2, 'c': 3, 'z': 5, 'y': 3, 'x': 4}
+print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
 
 ## accessing element
 key = 'a'
 my_var = my_dict[key] # can raise KeyError if not present
 # use get() method to avoid KeyError, None is default, can be set to anything else
-my_dict.get(key, None) 
+print(my_dict.get(key, None)) # None
 # traverse all items
 for k,v in my_dict.items(): 
-   # do something with v or k
+  print(k, v) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
 # check if key is inside my_dict   
-if key in my_dict:
+if 'w' in my_dict:
   print('printed')
    
 ## dict comprehension 
-my_dict = {x:x\*x for x in range(6)} # stand alone, generating keys and values
-# more cleaner way
+my_dict = {x:x*x for x in range(6)} # stand alone, generating keys and values
+print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+# another way
 my_keys = ['a', 'b', 'c']
 my_values = [1,2,3]
 my_dict = {k:v for k,v in zip(my_keys, my_values)}
@@ -650,13 +654,13 @@ my_dict = {k:v for k,v in zip(my_keys, my_values)}
 ## Some methods of dicts
 my_dict1 = {'a':1, 'b':2, 'c':3}
 my_dict2 = {'z':50, 'y':40, 'x':30}
-# returns keys inside my_dict1, a dict_keys object, which is iterable and can be converted to list
+# returns a dict_keys object, it contains dict's keys, it is iterable, you can also convert it to list
 print(my_dict1.keys()) # dict_keys(['a', 'b', 'c'])
-# returns values inside my_dict1, a dict_values object, which is iterable and can be converted to list
+# returns a dict_values object, it contains dict's values, it is iterable, you can also convert it to list
 print(my_dict1.values()) # dict_values([1, 2, 3])
-# returns keys and values inside my_dict1, a dict_items object, which is iterable and can be converted to list
+# returns a dict_items object, has keys & values, is also iterable and you know the rest
 print(my_dict1.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
-# removes item(key,value) given key, which is 'a' here
+# removes item(key,value) given key, which is 'a' here and returns value
 print(my_dict1.pop("a")) # 1 
 my_dict1.clear() # removes all items of dict
 
@@ -669,7 +673,7 @@ my_dict = dict(((1,2), (2,3))) # tuple to dict
 * Time Complexity: Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
 insert, add, delete is O(1).</br>
 iteration is O(n).
-### Implementing other Data Structures
+### Other Data Structures
 * Stack: can be easily implemented using lists.
 ```Python
 my_stack = []
@@ -706,14 +710,6 @@ for var in range(20): # 0 to 19 var loop
 for var in range(20, -1, -1): # 19 to 0 var loop
   # do something with var     
 ```
-* sorted(): Returns a sorted list given list/tuple as input. Sorting is O(nLogn). Also has 'reverse' parameter, which is used to do reverse sorting if it is set to True.
-```Python
-my_list = [2,5,1,3]
-my_tuple = (2,5,1,3)
-
-print(sorted(my_list)) # [1,2,3,5]
-print(sorted(my_tuple, reverse=True)) # [5, 3, 2, 1]
-```
 * enumerate(): Returns a iterable object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate() function returns a enumerate object which is iterable but Indexing/slicing is not supported.
 ```Python
 my_list = [100,200,500,100]
@@ -726,6 +722,15 @@ print(list(enumerate(my_list))[0]) # (0,100)
 for i, val in enumerate(my_list):
   # i values are 0,1,2,3
   # val values are 100,200,500,100
+```
+* zip():
+* sorted(): Returns a sorted list given list/tuple as input. Sorting is O(nLogn). Also has 'reverse' parameter, which is used to do reverse sorting if it is set to True.
+```Python
+my_list = [2,5,1,3]
+my_tuple = (2,5,1,3)
+
+print(sorted(my_list)) # [1,2,3,5]
+print(sorted(my_tuple, reverse=True)) # [5, 3, 2, 1]
 ```
 * filter(): Takes a function & a list and applies that function on every item of that list. filter() returns a filter object which iterable but Indexing/slicing is not supported. 
 ```Python
