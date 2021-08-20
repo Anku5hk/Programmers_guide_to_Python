@@ -132,6 +132,10 @@ print(abs(-50)) # 50
 print(round(my_float)) # 3
 # returns the power of a number, similar to using '**' operator, eg "10**2" 
 print(pow(10, 2)) # 100
+# returns the unicode value given a character
+print(ord("c")) # 99
+# returns normal value back given the unicode value
+print(chr(ord("c"))) # c
 
 ## type conversion
 my_int = 42
@@ -323,22 +327,31 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-* Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#extras-1), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#)
-#### 1. type(): PARAMETERS => [object], RETURNS => str: Returns the class_name of an object.
+* Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-type), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#2-isinstance), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#3-id).
+#### 1. type() 
+ **Parameters** => [object] </br>
+ **Returns** => str </br>
+**Explaination**: This function returns the class_name of an object.
 ```Python
 a = "What?"
 print(type(a)) # str
 b = 5.0
 print(type(b)) # float
 ```
-#### 2. isinstance(): PARAMETERS => [object, class], RETURNS => bool: Checks if a object is an instance of a particular class. Returns True/False.
+#### 2. isinstance() 
+**Parameters** => [object, class] </br>
+**Returns** => bool </br>
+**Explaination**: This function checks if a object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
 print(isinstance(a, int)) # True
 print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
-#### 3. id(): PARAMETERS => [object], RETURNS => int: Returns object id of a object.
+#### 3. id() 
+**Parameters** => [object] </br>
+**Returns** => int </br>
+**Explaination**: This function returns object id of a object.
 ```Python
 my_float = 50.0
 # object id wil differ each time with program
@@ -690,7 +703,11 @@ my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 ### Extras
-* range() function, PARAMETERS => [start_index=0, end_index, step=1], RETURNS => range: Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
+* Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerate), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sorted), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-map).
+#### 1. range()
+**Parameters** => [start_index=0, end_index, step=1] </br>
+**Returns** => range </br>
+**Explaination**: This function returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
 ## examples
 print(range(20)) # [0:20] 
@@ -710,7 +727,10 @@ for var in range(20):
 for var in range(20, -1, -1): 
   print(var) # [19:0]
 ```
-* enumerate() function, PARAMETERS => [iterable], RETURNS => tuple: Returns a enumerate object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate object is iterable but Indexing/slicing is not supported.
+#### 2. enumerate()
+**Parameters** => [iterable] </br>
+**Returns** => tuple </br>
+**Explaination**: This function returns a enumerate object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate object is iterable but Indexing/slicing is not supported.
 ```Python
 ## examples
 my_list = [100,200,500,100]
@@ -724,7 +744,10 @@ for i, val in enumerate(my_list):
   print(i) # 0,1,2,3
   print(val) # 100,200,500,100
 ```
-* zip() function, PARAMETERS => [\*iterable], RETURNS => zip: Returns a zip object given multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned 'zip' object is the smallest iterable's length. zip() is commonly used to unpack values from multiple iterables simultaneously.  
+#### 3. zip() 
+**Parameters** => [\*iterable] </br>
+**Returns** => zip </br>
+**Explaination**: This function returns a zip object given multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned 'zip' object is the smallest iterable's length. zip() is commonly used to unpack values from multiple iterables simultaneously.  
 ```Python
 ## examples
 a = ['This','is','something']
@@ -744,7 +767,10 @@ for v in zip(a, b, c):
 for var1, var2 in zip(a,b):
   print(var1, var2) # [('This','is','something'), (14, 3, 6)]
 ```
-* sorted() function, PARAMETERS => [iterable, key=None, reverse=False], RETURNS => list: Returns a sorted list given a iterable object. Sorting is O(nLogn). key parameter takes function which is then used to extract the elements, helpful when input iterable is . Also has 'reverse' parameter, which is used to do reverse sorting if it is set to 'True'.
+#### 4. sorted()
+**Parameters** => [iterable, key=None, reverse=False] </br>
+**Returns** => list </br>
+**Explaination**: This function returns a sorted list given a iterable object. Sorting is O(nLogn). key parameter takes function which is then used to extract the elements, helpful when input iterable is . Also has 'reverse' parameter, which is used to do reverse sorting if it is set to 'True'.
 ```Python
 ## examples
 my_tuple = (14, 3, 6)
@@ -762,7 +788,10 @@ print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
 # sort list by the length of sub-list
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 ```
-* filter() function, PARAMETERS => [function, iterable], RETURNS => filter: Takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. filter() returns only if 'True' condition is met, if 'False' is met nothing is returned, also if no condition is met nothing is returned. filter() as the name suggests, is used to filter out not required values from a iterable object. filter() returns a filter object which iterable but indexing/slicing is not supported.
+#### 5. filter()
+**Parameters** => [function, iterable] </br>
+**Returns** => filter </br>
+**Explaination**: This function takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. filter() returns only if 'True' condition is met, if 'False' is met nothing is returned, also if no condition is met nothing is returned. filter() as the name suggests, is used to filter out not required values from a iterable object. filter() returns a filter object which iterable but indexing/slicing is not supported.
 ```Python
 ## Example 1
 my_list = [101,100,501,200]
@@ -784,7 +813,10 @@ output = list(filter(my_func, my_list)) # [100, 200]
 for val in filter(my_func, my_list):
   print(val) # [100, 200]
 ```
-* map() function, PARAMETERS => [function, iterable], RETURNS => map: Takes a function & a iterable and applies that function on every item of that iterable. As name suggests, a function is mapped to each element of an iterable. So unlike filter(), map() returns the direct value returned by our function.
+#### 6. map()
+**Parameters** => [function, iterable] </br>
+**Returns** => map </br>
+**Explaination**: This function takes a function & a iterable and applies that function on every item of that iterable. As name suggests, a function is mapped to each element of an iterable. So unlike filter(), map() returns the direct value returned by our function.
 ```Python
 ## Example 1
 my_tuple = (1,2,3,4,5)
@@ -800,12 +832,7 @@ output = list(map(my_func, my_tuple)) # [1, 4, 9, 16, 25]
 for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
 ```
-* ord(): Converts value to Unicode value.
-* chr(): Takes Unicode value and convert it back to a normal value.  
-```Python
-print(ord("c")) # 99
-print(chr(ord("c"))) # c
-```
+
 ## 4. Flow Control and Exception Handling
 Unlike using brackets in c/c++/java, indentations are used for any Flow Control, Exception Handling, Functions/Classes definition in python. Any statements or even comments should follow the indentation rule.
 ### if...else
