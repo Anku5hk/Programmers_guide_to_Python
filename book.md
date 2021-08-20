@@ -40,7 +40,7 @@ a = 4.0
 a = "I am string"
 a = [1,2,3,4]
 ```
-* Operators: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in any other programming languages. Other Logical, Identity, Membership operators I'll explain going through later on.
+* Operators: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are also very straight forward, I'll explain going through later on.
 ```Python
 ## Operators in python(comma separated)
 ## Arithmetic operators
@@ -126,12 +126,9 @@ print(my_complex) # (4.22+20j)
 print(max(30, 20)) # 30
 # returns minimum from n numbers(n > 2)
 print(min(30, 20)) # 20
-# returns absolute value
+# returns absolute value of a number
 print(abs(-50)) # 50
-# returns object id of a variable
-# object id can differ on your machine
-print(id(my_float)) # 1875526208176
-# returns a rounded to decimal value
+# returns a rounded to decimal value of a number
 print(round(my_float)) # 3
 # returns the power of a number, similar to using '**' operator, eg "10**2" 
 print(pow(10, 2)) # 100
@@ -149,7 +146,7 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### String
-Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object which is a collection of character data. They are immutable i.e items/values (here characters) cannot be changed/deleted, only inserted. 
+Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object(similar to 'string' in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use 'replace()' method of string to alter and 'strip()' to remove specific sub-string.
 ```Python
 ## assigning strings
 text = 'strings can be single quoted'
@@ -237,15 +234,17 @@ my_bool = False
 my_bool = my_bool + 4 # stays 4
 
 ## type conversion
-# int/float to bool, anything not 0 is True
+# int/float to bool, anything not 0 is True, also None is False
 print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
 ### Special 
-None: None is similar to 'null' in java.
+None: None is similar to 'null' in java. Python docs "None is frequently used to represent the absence of a value, as when default arguments are not passed to a function." 
 ```Python
 n = None
+print(type(None)) # <class 'NoneType'>
+
 ## to check whether an object is not None
 if n: # same as "if n != None:"
   print('will not enter this condition')
@@ -267,7 +266,7 @@ class MyDataType:
     
   # this function is totally optional  
   def __str__(self):
-    """Define this 'magic function' to enable print functionality for this object, it should return a string."""
+    """Define this 'magic method' to enable print functionality for this object, it should return a string."""
     return f"{self.x} {self.y}"
 
 my_dt = MyDataType(10, "Hello")
@@ -288,7 +287,7 @@ my_dt.x = "THis can also become a string"
 ## Example 2
 class MyDataType:
   def __init__(self, x, y):
-    """__init__ is antoher magic function, which enables usage of construtor in python, more on this later."""
+    """__init__ is antoher 'magic method', which enables usage of construtor in python, more on this later."""
     # initialize here
     if not isinstance(x, int) or not isinstance(y, str):
       raise TypeError() # raise error if type does not match
@@ -309,7 +308,7 @@ class MyDataType:
         raise TypeError("Should be a String")
         
   def __str__(self):
-    """Define this 'magic function' to enable print functionality for this object, it should return a string."""
+    """Define this 'magic method' to enable print functionality for this object, it should return a string."""
     return f"{self.x} {self.y}"
 
 # create our data type
@@ -338,13 +337,19 @@ print(isinstance(a, int)) # True
 print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
+* id() function, PARAMETERS => [object], RETURNS => int: Returns object id of a object.
+```Python
+my_float = 50.0
+# object id wil differ each time with program
+print(id(my_float)) # 1875526208176
+```
 * Logical and Identity operators in python.
 ```Python
 ### Logical operators: not,and,or
-## not: to negate the underlying condition, reverses the condition
+## not: to negate the underlying condition (it reverses the condition)
 a = 30
 # here the underlying condition is the isinstance() function, which return True/False 
-# normally 'if' executes when a underlying condition is 'True' right, by applying 'not' to it
+# normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
 # the 'if' condition is satisfied when the output is 'False'
 if not isinstance(a, int):
   print('not printed')
@@ -398,81 +403,85 @@ if not a is b:
   print("printed") 
 ```
 ## 3. Data Structures
-Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/don't need to declare the size of a data structure, it is scaled automatically in background.
+Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/don't need to declare the size of the default data structures beforehand, it is scaled/released automatically in background.
 ### List
-They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects. They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
+They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
 ## create list
 my_list = [1,2,3,'a','this way','cab',1.0,2.0]
 
-## add, remove
+## add/remove values
 my_var = 1
 my_list.append(my_var)
+# remove 
 my_list.remove(my_var) # or del my_list[index] or my_list.pop(index)
 # using 'del' statement
 del my_list[0] # or even with slicing like, del my_list[2:4]
-# del can also be used to delete a variable/data-structure
+# del can also be used to delete any other object
 
 ## join two lists
 # using '+' operator
 my_list1 = [2,4,5,6] + [34,7,4,2]
 # using extend() method
-my_list1.extend([3,6,2])
+my_list1.extend([3,6,2]) # my_list1 becomes [2,4,5,6,34,7,4,2,3,6,2]
 
 ## accessing/altering elements
 var_1 = my_list1[0]
 var_2 = my_list1[1]
 print(var_1, var_2) # 2,4
 # iterating with loop
-for var in my_list:
-  print(var) # [2,4,5,6,34,7,4,2,3,6,2]  
+for var in my_list1:
+  print(var) # [2, 4, 5, 6, 34, 7, 4, 2, 3, 6, 2]
 # altering values in list
 my_list1[0] = 100
 my_list1[1] = 200
-print(my_list) # [100,200,5,6,34,7,4,2,3,6,2]  
+print(my_list1) # [100, 200, 5, 6, 34, 7, 4, 2, 3, 6, 2] 
 # checking if some value is present in list
 if 20 in my_list1: # similar to "if some_var in my_list1:" where "some_var = 20"
   print('not printed')
 if 200 in my_list1:
   print('printed')
-  
+
 ## slicing list
-print(my_list[3:5]) # ['a','this way']
-print(my_list[5:]) # ['cab',1.0,2.0]
-print(my_list[:3]) # [1,2,3]
-print(my_list[:5:2]) # [1, 3, 'this way']
+print(my_list[3:5]) # ['cab', 1.0]
+print(my_list[5:]) # [2.0, 1]
+print(my_list[:3]) # [3, 'a', 'this way']
+print(my_list[:5:2]) # [3, 'this way', 1.0]
 # this is negative index which begins from end of list from 1
-print(my_list[:-4]) # [1, 2, 3, 'a']
+print(my_list[:-4]) # [3, 'a', 'this way']
 # reverse a list
-print(my_list[::-1]) # [2.0, 1.0, 'cab', 'this way', 'a', 3, 2, 1]
+print(my_list[::-1]) # [1, 2.0, 1.0, 'cab', 'this way', 'a', 3]
 # or my_list.copy() to create a copy, which does not stays the same reference
-print(my_list[:]) 
+print(my_list[:]) # [3, 'a', 'this way', 'cab', 1.0, 2.0, 1]
 
 ## list comprehension
-my_list = [x for x in range(10)] # without condition
-my_list = [[y for y in range(x)] for x in range(1, 4)] # which also can be nested
-my_list = [x for x in range(10) if x > 5] # if condition
-my_list = [True if x > 5 else False for x in range(10)] # if with else condition
+my_list2 = [x for x in range(10)] # without condition
+my_list2 = [[y for y in range(x)] for x in range(1, 4)] # which also can be nested
+my_list2 = [x for x in range(10) if x > 5] # if condition
+my_list2 = [True if x > 5 else False for x in range(10)] # if with else condition
 
 ## Some functions on list
-# returns sorted list of items in ascending order by default, sorting is O(nLogn)
-print(sorted(my_list, reverse=True)) 
+# returns sorted list of items in ascending order by default, 
+# sorting is O(nLogn), for reversing pass 'reverse=True'
+print(sorted(my_list1)) # [2, 2, 3, 4, 5, 6, 6, 7, 34, 100, 200]
 # return length of list
-print(len(my_list))
+print(len(my_list1)) # 11
 # sum of variables
+print(sum(my_list1)) # 369
 print(sum([10, 20])) # 30
 
 ## Some methods of list
-my_list.append(9) # adds value to the list 
-my_list.reverse() # reverses list inplace
-my_list.sort() # sorts list inplace
-my_list.clear() # empty's list
+my_list1.append(9) # adds value to the list 
+my_list1.reverse() # reverses list inplace
+my_list1.sort() # sorts list inplace
+my_list.clear() # emptys list
+print(my_list) # []
 # returns index of first arrival of value passed 
-print(my_list.index(3)) # 2 
-# removes value from a list given index
-print(my_list.pop(0)) # 1
+print(my_list1.index(3)) # 2 
 # removes value from a list given value
-my_list.remove(2) 
+my_list1.remove(2) 
+# removes value from a list given index, also returns the value
+print(my_list1.pop(5)) # 6
 
 ## type conversion
 my_list = list((1,2,3,4,5)) # tuple to list
@@ -482,7 +491,7 @@ my_list = list({1,2,3,4,5}) # set to list
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Tuple
-Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(values cannot be changed), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). They are used to store different data type items, unlike list which are mostly used for sorting similar items, but either way is also valid. 
+Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
@@ -494,36 +503,37 @@ my_tuple[0] = my_var # not okay because Immutable, raises TypeError
 for var in my_tuple:
   print(var) # (1,2,3,'we','are','one',5.0)
 # checking if some value is present in tuple
-if 5.0 in tuple:
+if 5.0 in my_tuple:
   print('printed')
 
-## only add elements, can't remove elements from tuple
-my_tuple += (5,) # adding another element as tuple
-# the target tuple should have ',' if single element is being added
+## also can't add/remove element in tuple, there is no append()/remove(), can't use 'del' like in list
+# so to add a element join two tuples, and assign it to the previous/new variable
+my_tuple += (5,) # adding another element as tuple, its basically joining two tuples
+# Notice: the target tuple should have ',' if single element is being added
 
 ## join two tuples
-my_tuple = (34,65,23) + (34,34)
+my_tuple1 = (34,65,23) + (34,34)
 
 ## slicing tuple
 print(my_tuple[3:5]) # ('we','are')
-print(my_tuple[5:]) # ('one',5.0)
+print(my_tuple[5:]) # ('one',5.0,5)
 print(my_tuple[:3]) # (1,2,3)
-print(my_tuple[:5:2]) # (1, 3, 'are')
+print(my_tuple[:5:2]) # (1,3,'are')
 # this is negative index which begins from end of tuple from 1
-print(my_tuple[:-4]) # (1, 2, 3) 
+print(my_tuple[:-4]) # (1,2,3,'we') 
 # reverse a tuple
-print(my_tuple[::-1]) # (5.0, 'one', 'are', 'we', 3, 2, 1)
+print(my_tuple[::-1]) # (5, 5.0, 'one', 'are', 'we', 3, 2, 1)
 
-## unpacking tuple
+## unpacking tuple(more on unpacking later on)
 a,b,c = (1,2,3) # unpacking values into a,b,c
 # even this does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c 
 # same is true when returning comma separated values from a function 
-a,b,c = 1,2,3 
+a,b,c = 1,2,3 # same as (1,2,3)
 # this behaviour further aids in swapping without using extra variable
 a,b = b,a 
 
 ## Some functions on tuple
-# returns sorted list of items in ascending order by default, sorting is O(nLogn)
+# returns sorted list of items in ascending order by default
 my_tuple = (3,6,1,8,2,3)
 print(sorted(my_tuple, reverse=True)) # [8, 6, 3, 3, 2, 1]
 # returns length of tuple
@@ -531,7 +541,7 @@ print(len(my_tuple)) # 6
  
 ## Some methods of tuple
 # Returns number of occurrences of value.
-print(my_tuple.count(5.0)) # 0
+print(my_tuple1.count(34)) # 3
 # Returns first index of value.
 print(my_tuple.index(3)) # 0
 
@@ -543,22 +553,21 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
-Are unordered collection of non repeating sequence of items. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
+Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable, which means its hash value must never changes during its lifetime, literals & immutable objects are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
 ## create set
-my_set = set() 
-# or dict like parenthesis but without keys, it becomes set eg. {1,2,3,4,5}
-# here my_list is mutable, but set() function unpacks the items from my_list
-my_list = [1,2,3,4,5]
-my_set = set(my_list) 
-# but if my_list contained list inside it, TypeError: unhashable type: 'list' is raised.
+my_set = set() # create a empty set
+# create a non empty set
+my_set = {9,1,5,2,20} # Notice: dict like parenthesis but without keys
+# items order don't matter, so while printing order might differ
+print(my_set) # {1, 2, 20, 5, 9}
 
 ## add, remove
 my_var = 4
 my_set.add(my_var) # if repeated value, it will not be added again 
 my_set.remove(my_var) # removes a member, raises KeyError if not found
 
-## join two sets
+## join two sets, '+' operator is not supported for set
 a = {54,23,67}
 b = {34,65,55.6}
 a.update(b) 
@@ -568,33 +577,36 @@ print(a) # {65, 34, 67, 55.6, 54, 23}
 my_set[0] # not allowed, TypeError: 'set' object is not subscriptable.
 # iterating over a set
 for var in my_set:
-   print(var)
+   print(var) # {1, 2, 20, 5, 9}
 # check if my_var is inside my_set   
 if my_var in my_set: 
-  print('printed')
+  print('not printed')
   
 ## Some methods of sets
 my_set1 = {3,5,7,1,8}
 my_set2 = {1,2,3,4,5}
-# find intersection, or my_set1 & my_set2     
+# find intersection, or similar to 'my_set1 & my_set2'     
 print(my_set1.intersection(my_set2)) # {1, 3, 5}
-# to find union, or my_set1 | my_set2   
+# to find union, or similar to 'my_set1 | my_set2'   
 print(my_set1.union(my_set2)) # {1, 2, 3, 4, 5, 7, 8}
 my_copy = my_set1.copy() # returns a copy of a set
-my_set1.clear() # removes all members of set
+my_copy.clear() # removes all members of set
 # checks if my_set2 is a subset of my_set1
 print(my_set1.issubset(my_set2)) # False
 # checks if my_set2 is a superset of my_set1
 print(my_set1.issuperset(my_set2)) # False
 
 ## type conversion
-my_set = set([1,2,3,4,5]) # list to set
+my_list = [1,2,3,4,5]
+# here my_list is mutable, but set() function unpacks the items from my_list
+my_set = {my_list} # this raises TypeError
+my_set = set(my_list) # this unpacks items from list to set
+# also if my_list contained a list inside it, TypeError: unhashable type: 'list' is raised
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
-* Time Complexity: Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when 'hash collision' occurs O(n). But the trick is sets are ordered collection of items, so for sorting best time complexity there exist is O(nLogn).</br>
+* Time Complexity: Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when 'hash collision' occurs O(n).</br>
 adding, checking(with 'in' operator) and removing are O(1).</br>
 iterating is O(n).</br>
-printing should be O(nLogn).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
 ### Dict
