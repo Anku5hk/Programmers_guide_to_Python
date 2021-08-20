@@ -60,7 +60,7 @@ in,not in
 # chaining operators operation Eg.
 if x <= y < z: # is similar to "if x<=y and y<z:"
 ```
-* Expressions: Are a part of statement(as in expression statement), a expression is something that returns value/sequence by doing some operation(arithmetic/conditional/lambda function).
+* Expressions: Are a part of statement (as in expression statement), a expression is something that returns value/sequence by doing some operation (arithmetic/conditional/lambda function).
 ```Python
 # some examples
 "Yes"+"this"
@@ -97,11 +97,11 @@ multiline comment
 * Time Complexity: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
 **Common Time Complexities in ascending order of their growing time.** 
   1. O(1): Constant time. time does not increase at all.
-  2. O(logN): Logarithmic time. when time is increasing logarithmically(grows at inversely proportional rate of N).
+  2. O(logN): Logarithmic time. when time is increasing logarithmically (grows at inversely proportional rate of N).
   3. O(N): Linear time. time increases linearly with the input size.
   4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
-  5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K(constant) times.
-  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N(input) times.</br>
+  5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K (constant) times.
+  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N (input) times.</br>
 **Note**: Explaining all time complexities would consume lots of space for this book, so I have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
@@ -146,7 +146,7 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### String
-Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object(similar to 'string' in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use 'replace()' method of string to alter and 'strip()' to remove specific sub-string.
+Are sequence of characters in python. Unlike Java, python does not have 'char' for character/character array, it has 'str' object (similar to 'string' in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use 'replace()' method of string to alter and 'strip()' to remove specific sub-string.
 ```Python
 ## assigning strings
 text = 'strings can be single quoted'
@@ -474,7 +474,7 @@ print(sum([10, 20])) # 30
 my_list1.append(9) # adds value to the list 
 my_list1.reverse() # reverses list inplace
 my_list1.sort() # sorts list inplace
-my_list.clear() # emptys list
+my_list.clear() # list becomes empty
 print(my_list) # []
 # returns index of first arrival of value passed 
 print(my_list1.index(3)) # 2 
@@ -491,7 +491,7 @@ my_list = list({1,2,3,4,5}) # set to list
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Tuple
-Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
+Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable (items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension (it becomes a generator). They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
@@ -553,7 +553,7 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
-Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable(must have a \_\_hash\_\_() method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
+Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable (must have a \_\_hash\_\_() method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
 ## create set
 my_set = set() # create a empty set
@@ -605,12 +605,12 @@ my_set = set(my_list) # this unpacks items from list to set
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
 * Time Complexity: Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when 'hash collision' occurs O(n).</br>
-adding, checking(with 'in' operator) and removing are O(1).</br>
+adding, checking (with 'in' operator) and removing are O(1).</br>
 iterating is O(n).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
 ### Dict
-Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
+Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable (similar to sets), values have no restriction(can be any object). They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 ```Python
 ## create empty dict
 my_dict = dict() # or "my_dict = {}"
@@ -677,41 +677,41 @@ iteration is O(n).
 * Stack: can be easily implemented using lists.
 ```Python
 my_stack = []
-# add/remove operation
+## add/remove operation
 my_stack.append(20) # append at top
 my_stack.pop() # remove at top
 ```
 * Queue: similarly can be easily implemented using lists.
 ```Python
 my_queue = []
-# add/remove operation
+## add/remove operation
 my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 ### Extras
-* range(): Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
+* range() function, PARAMETERS => [start_index=0, end_index, step=1], RETURNS => range: Returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
-# syntax range(start_index:optional, end_index, step:optional)
+## examples
 print(range(20)) # [0:20] 
 print(range(5,20)) # [5:20] 
 print(range(6,20,2)) # [6, 8, 10, 12, 14, 16, 18] 
-# indexing a range
+## indexing a range
 print(range(20)[0]) # 0
 # also slicing but its not preferred/recommended
 print(range(20)[0:10]) 
 # makes range sequence a list sequence
-print(list(range(5,20))) [5:20] 
+print(list(range(5,20))) # [5:20] 
 
-# looping range object
-for var in range(20): # 0 to 19 var loop
-  # do something with var
-  
+## looping range object
+for var in range(20): 
+  print(var) # [0:19]
 # reversing the order
-for var in range(20, -1, -1): # 19 to 0 var loop
-  # do something with var     
+for var in range(20, -1, -1): 
+  print(var) # [19:0]
 ```
-* enumerate(): Returns a iterable object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate() function returns a enumerate object which is iterable but Indexing/slicing is not supported.
+* enumerate() function, PARAMETERS => [iterable], RETURNS => tuple: Returns a enumerate object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate object is iterable but Indexing/slicing is not supported.
 ```Python
+## examples
 my_list = [100,200,500,100]
 # returns a iterable object
 print(type(enumerate(my_list))) # <class 'enumerate'>
@@ -720,50 +720,84 @@ print(list(enumerate(my_list))[0]) # (0,100)
 
 # looping over enumerate object
 for i, val in enumerate(my_list):
-  # i values are 0,1,2,3
-  # val values are 100,200,500,100
+  print(i) # 0,1,2,3
+  print(val) # 100,200,500,100
 ```
-* zip():
-* sorted(): Returns a sorted list given list/tuple as input. Sorting is O(nLogn). Also has 'reverse' parameter, which is used to do reverse sorting if it is set to True.
+* zip() function, PARAMETERS => [\*iterable], RETURNS => zip: Returns a zip object given multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned 'zip' object is the smallest iterable's length. zip() is commonly used to unpack values from multiple iterables simultaneously.  
 ```Python
-my_list = [2,5,1,3]
-my_tuple = (2,5,1,3)
+## examples
+a = ['This','is','something']
+b = (14, 3, 6)
+c = {34,7} 
+print(type(zip(a))) # <class 'zip'>
+# convert to list
+# the length of zip is 2 because smallest is c and its length is 2
+# so remaining values in a,c are ignored
+print(len(list(zip(a, b, c)))) # 2
+print(list(zip(a, b, c))) # [('This', 14, 7), ('is', 3, 34)]
+# loop over the values
+for v in zip(a, b, c):
+  # v is a tuple with 3 values, so we can index them
+  print(v[0], v[1], v[2]) # [('This', 14, 7), ('is', 3, 34)]
+# or unpack them into named variables
+for var1, var2 in zip(a,b):
+  print(var1, var2) # [('This','is','something'), (14, 3, 6)]
+```
+* sorted() function, PARAMETERS => [iterable, key=None, reverse=False], RETURNS => list: Returns a sorted list given a iterable object. Sorting is O(nLogn). key parameter takes function which is then used to extract the elements, helpful when input iterable is . Also has 'reverse' parameter, which is used to do reverse sorting if it is set to 'True'.
+```Python
+## examples
+my_tuple = (14, 3, 6)
+my_set = {34,7,1}
+my_string = "ererer"
+my_list = [[10,20,56,23,12],[200], [2,7,23]]
 
-print(sorted(my_list)) # [1,2,3,5]
-print(sorted(my_tuple, reverse=True)) # [5, 3, 2, 1]
+def my_fun(a):
+  # return element you want iterable to be sorted by
+  # here we are returning length of each element(sub-list)
+  return len(a)
+
+print(sorted(my_string)) # ['e', 'e', 'e', 'r', 'r', 'r']
+print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
+# sort list by the length of sub-list
+print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 ```
-* filter(): Takes a function & a list and applies that function on every item of that list. filter() returns a filter object which iterable but Indexing/slicing is not supported. 
+* filter() function, PARAMETERS => [function, iterable], RETURNS => filter: Takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. filter() returns only if 'True' condition is met, if 'False' is met nothing is returned, also if no condition is met nothing is returned. filter() as the name suggests, is used to filter out not required values from a iterable object. filter() returns a filter object which iterable but indexing/slicing is not supported.
 ```Python
+## Example 1
+my_list = [101,100,501,200]
 def my_func(var):
-  # do something
-  return var+2  # return something
+  # returns True if number is divisible by 10
+  if var % 10 == 0:
+    # value is returned
+    return True 
+  # value is not returned   
+  return False
   
-print(type(filter(my_func, [100,200,500,100]))) # <class 'filter'>
-print(list(filter(my_func, [100,200,500,100]))) # [102,202,502,102]
+my_filter = filter(my_func, ())  
+print(type(my_filter)) # <class 'filter'>
 
-# looping through filter object
-for val in filter(my_func, [100,200,500,100]):
-  # do something to val
+## Example 2
+# only filter elements which are divisible by 10
+output = list(filter(my_func, my_list)) # [100, 200]
+# or looping through filter object
+for val in filter(my_func, my_list):
+  print(val) # [100, 200]
 ```
-* map(): Takes a function & a list and applies that function on every list item. The difference is map() returns None if some condition is not met(or nothing can be returned), whereas filter returns only if some return condition is met, else nothing is returned.
+* map() function, PARAMETERS => [function, iterable], RETURNS => map: Takes a function & a iterable and applies that function on every item of that iterable. As name suggests, a function is mapped to each element of an iterable. So unlike filter(), map() returns the direct value returned by our function.
 ```Python
+## Example 1
+my_tuple = (1,2,3,4,5)
 def my_func(var):
-  # do something
-  return var+2  # return something
-  
-map(my_func, [100,200,500,100]) # <class 'map'>
-list(map(my_func, [100,200,500,100])) # [102,202,502,102]
+  # returns square of a number
+  return var**2
+print(type(map(my_func, ()))) # <class 'map'>
 
-# looping through map object
-for val in map(my_func, [100,200,500,100]):
-  # do something to val
-
-# the difference between map and filter
-def myfun(val):
-    if val == 2:
-        return val+2
-print(list(map(myfun, [1,2,3,4]))) # [None, 4, None, None] 
-print(list(filter(myfun, [1,2,3,4]))) # [4] 
+## Example 2
+# return square of each element in a list
+output = list(map(my_func, my_tuple)) # [1, 4, 9, 16, 25]
+# or looping through map object
+for val in map(my_func, my_tuple):
+  print(val) # [1, 4, 9, 16, 25]
 ```
 * ord(): Converts value to Unicode value.
 * chr(): Takes Unicode value and convert it back to a normal value.  
