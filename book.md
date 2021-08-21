@@ -19,17 +19,17 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
-* Literals: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
+* **Literals**: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
 ```
-* Keywords: Are reserved words which are defined by python, so they can't be used as operands.
+* **Keywords**: Are reserved words which are defined by python, so they can't be used as operands.
 ```Python
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* Operands/Variable: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -40,7 +40,7 @@ a = 4.0
 a = "I am string"
 a = [1,2,3,4]
 ```
-* Operators: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are also very straight forward, I'll explain going through later on.
+* **Operators**: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are also very straight forward, I'll explain going through later on.
 ```Python
 ## Operators in python(comma separated)
 ## Arithmetic operators
@@ -60,7 +60,7 @@ in,not in
 # chaining operators operation Eg.
 if x <= y < z: # is similar to "if x<=y and y<z:"
 ```
-* Expressions: Are a part of statement (as in expression statement), a expression is something that returns value/sequence by doing some operation (arithmetic/conditional/lambda function).
+* **Expressions**: Are a part of statement (as in expression statement), a expression is something that returns value/sequence by doing some operation (arithmetic/conditional/lambda function).
 ```Python
 # some examples
 "Yes"+"this"
@@ -70,7 +70,7 @@ a or b
 2 and 3
 lambda x:x**2
 ```
-* Statements: Are basically every instruction/line of code that python interpreter executes. There are two types, simple and compound statements. 
+* **Statements**: Are basically every instruction/line of code that python interpreter executes. There are two types, simple and compound statements. 
 ```Python
 ## simple statements
 # expressions we saw earlier
@@ -86,7 +86,32 @@ yield, del, return, pass, raise, break, continue
 if, while, for, try, with 
 ```
 ### Extras
-* Comments
+* **Indentations**
+Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Unindented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
+```Python
+## example 1
+# Notice: the colon at the end of 'if' condition
+if 10 > 5:
+print('printed') # IndentationError
+
+## example 2
+if 10 > 5:
+  # preferred indentation
+  print('printed')
+print('block code ends')
+# also valid indentation
+if 10 > 5:
+      print('printed')
+      print('also printed')
+# continue other code
+
+## example 3
+class MyClass:
+some_var = 10 # IndentationError
+  def my_function():
+  some_var1 = 20 # IndentationError
+```
+* **Comments**
 ```Python
 # this is a single line comment
 
@@ -94,7 +119,7 @@ if, while, for, try, with
 multiline comment
 """
 ```
-* Time Complexity: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
+* **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
 **Common Time Complexities in ascending order of their growing time.** 
   1. O(1): Constant time. time does not increase at all.
   2. O(logN): Logarithmic time. when time is increasing logarithmically (grows at inversely proportional rate of N).
@@ -106,9 +131,9 @@ multiline comment
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
 ### Three Numeric Types
-1. int (interger): Numbers that do not have decimal values.
-2. float: Numbers that do have decimal values.
-3. complex: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
+1. **int** (interger): Numbers that do not have decimal values.
+2. **float**: Numbers that do have decimal values.
+3. **complex**: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
 ## assigning values to variables 
 # here my_int is an operand, 42 is a literal and its data type is int
@@ -243,7 +268,7 @@ print(bool(-40), bool(0), bool(40)) # True False True
 print(bool(""), bool("This is string")) # False True
 ```
 ### Special 
-None: None is similar to 'null' in java. Python docs "None is frequently used to represent the absence of a value, as when default arguments are not passed to a function." 
+**None**: None is similar to 'null' in java. Python docs "None is frequently used to represent the absence of a value, as when default arguments are not passed to a function." 
 ```Python
 n = None
 print(type(None)) # <class 'NoneType'>
@@ -500,7 +525,7 @@ print(my_list1.pop(5)) # 6
 my_list = list((1,2,3,4,5)) # tuple to list
 my_list = list({1,2,3,4,5}) # set to list
 ```
-* Time Complexity:</br>
+* **Time Complexity**</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Tuple
@@ -562,7 +587,7 @@ print(my_tuple.index(3)) # 0
 my_tuple = tuple([1,2,3,4,5]) # list to tuple
 my_tuple = tuple({1,2,3,4,5}) # set to tuple
 ```
-* Time Complexity:</br>
+* **Time Complexity**</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
@@ -617,7 +642,7 @@ my_set = set(my_list) # this unpacks items from list to set
 # also if my_list contained a list inside it, TypeError: unhashable type: 'list' is raised
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
-* Time Complexity:</br> Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when 'hash collision' occurs O(n).</br>
+* **Time Complexity**</br> Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when 'hash collision' occurs O(n).</br>
 adding, checking (with 'in' operator) and removing are O(1).</br>
 iterating is O(n).</br>
 union is O(m+n).</br>
@@ -683,7 +708,7 @@ values = [2,3]
 my_dict = dict([keys, values]) # list to dict
 my_dict = dict(((1,2), (2,3))) # tuple to dict
 ```
-* Time Complexity:</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
+* **Time Complexity**</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
 insert, add, delete is O(1).</br>
 iteration is O(n).
 ### Other Data Structures
@@ -835,43 +860,43 @@ for val in map(my_func, my_tuple):
 ```
 
 ## 4. Flow Control and Exception Handling
-Unlike using brackets in c/c++/java, indentations are used for any Flow Control, Exception Handling, Functions/Classes definition in python. Any statements or even comments should follow the indentation rule.
+Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way.   
 ### if...else
 ```Python
 my_var = 20
 my_var1 = None
 if my_var == 20:
-  # indentation is required
-  # do something
+  print('Yes its 20')
 elif my_var == 30:
-  # do something else
+    print('Its 30')
 else:
-  # or just do this
+  print('Its something else')
 
 # single line condition
-my_var = 20 if 20%2 == 0 else 10
+my_var = True if 20%2 == 0 else False
+# here is True is the output when 'if' condition is satisfied, else False is the output
 
-# using only if after some variable/sequence to check if it is not None
+# using only 'if' after some variable/sequence to check if it is not 'None'
 if my_var:
-  # my_var is not 'None', so will print 
-  print(my_var)
+  # similar to "if my_var != None"
+  print("printed")
 if my_var1:
   # will not execute, my_var1 is 'None'
-  print(my_var1)
+  print("not printed")
   
 # negate the condition using 'not'
 if not my_var:
-  # my_var is not 'None', so will not print 
-  print(my_var)
+  # similar to "if my_var == None"
+  print("not printed")
 if not my_var1:
   # my_var1 is 'None', so will print 
-  print(my_var1)  
+  print("printed") 
 ```
 ### for loop
 ```Python
 my_list = [10,20,30,40,50]
 # regular looping by indexes
-for i in range(len(my_list)):
+for i in range(len(my_list)): # [0:4]
   print(my_list[i])
 
 # pythonic loops
@@ -883,19 +908,18 @@ for a in [10,20,30,40,50]:
 ```
 ### while loop
 ```Python
-# while loops are similar like in c/c++/java
 i=0
 my_list = [10,20,30,40,50]
-while i<len(my_list):
+while i < len(my_list):
   print(my_list[i])
-  i+=1 # (this is shorthand for i=i+1) i++ is not supported
+  i+=1 # similar to 'i=i+1', 'i++' is not supported
 ```
 ### Exception Handling
 ```Python
-# use traceback module for printing traceback
+# use traceback module for printing Tracebacks
 import traceback
-# catch keyword is replaced with except, rest is the same
-# catch specific errors
+# 'catch' keyword is replaced with 'except', rest is the same
+## catching specific errors
 try:
   a=10
   a = "this"+a
@@ -904,7 +928,7 @@ except (TypeError, ZeroDivisionError):
   # print traceback
   traceback.print_exc()
   
-# catch any exception with Exception class, which is base class of all exceptions
+## catch any exception with 'Exception' class, it is base class of all exceptions
 # lets cause stackoverflow/RecursionError in python
 def my_fun():
   try:
@@ -916,18 +940,18 @@ def my_fun():
     print(e) # maximum recursion depth exceeded
 my_fun()
 
-# manually throw(raise) exception
+## manually throw(raise) exception
 def my_fun(a):
   try:
     if a == 20:
       raise ValueError("I don't want number 20") 
-      # or not a specific exception like, raise Exception("my message")
+      # or not specifying specific exception like, "raise Exception('my message')"
     return a+100
   except ValueError as v:
     print(v)
 number = my_fun(20) # I don't want number 20
       
-# finally and else condition    
+## finally and else condition    
 try:
  a = 20/0
  a=20
@@ -935,35 +959,36 @@ except Exception as e:
   print(e.__class__) # <class 'ZeroDivisionError'>
   print(e) # division by zero
 else:
-    print('Executes if no exception was raised, comment first line under try.')  
+    print("This executes if no exception was raised.")  
 finally:
     print("Finally, its finally, which always executes.")      
 ```
 ### Extras
-* break: breaks from loop. 
-* continue: continue to next iteration in loops.
-* pass: move down to next statement.
+* **break**: breaks from loop. 
+* **continue**: continue to next iteration in loops.
+* **pass**: move down to next statement.
 ```Python
 ## break and continue
-i=0
+i=-1
 my_list = [10,20,30,40,50]
 while i<len(my_list):
+  i+=1
   if i == 0:
     continue
   if i == 4:
     break
-  print(my_list[i])
-  i+=1
+  print(my_list[i]) # [20,30,40]
   
 ## pass
-# pass can be used inside empty functions, just to have the function
+# pass can be used inside empty a functions, just to have that function without raising error
 # and implement the function later while coding
 def my_fun():
   pass
 ```
-* assert: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
+* **assert**: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
 ```Python
 a = 10
+assert a == 10 # No error raised
 assert a == 30 # AssertionError
 ```
 ## 5. Functions, Classes and Objects
