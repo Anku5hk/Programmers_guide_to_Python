@@ -86,8 +86,7 @@ yield, del, return, pass, raise, break, continue
 if, while, for, try, with 
 ```
 ### Extras
-* **Indentations**
-Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Unindented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
+* **Indentations**: Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Unindented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
 ```Python
 ## example 1
 # Notice: the colon at the end of 'if' condition
