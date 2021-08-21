@@ -1414,8 +1414,8 @@ for a in my_generator():
 ## 6. OOP concepts
 ### Inheritance
 * Inherit a base class to use its methods/variables inside a child class but not the other way. Multilevel and Multiple inheritance are also supported in python.
-* super() function can be used to access parent's methods/variables inside of child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
-* Method Resolution Order (MRO) is the order in which Python looks for a method in hierarchy of classes. The general order is child -> parent1 -> parent2..., when a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
+* **super()**: This function is used to access parent's methods/variables inside of child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
+* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is child -> parent1 -> parent2..., when a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 ```Python
 ## Single Inheritance
 class MyParent:
@@ -1427,7 +1427,7 @@ class MyParent:
       return num**2
   def other_method(self, num):
       return self.para1 - num
-      
+
 # inherit MyParent class  
 class MyChild(MyParent): 
   def __init__(self, arg1):
@@ -1435,26 +1435,22 @@ class MyChild(MyParent):
     # instantiate parent class inside child class
     super().__init__(arg1) 
   def my_func(self, num):
-    # call parent's method using super(), calling with self(like self.some_func()) 
-    # will result in child's method because child class has some_func()
+    # call parent's method using 'super()' function
     output1 = super().some_func(num) 
     # access base classes variables
     print(super().some_var) 
-    # self calls parent's method, as this class doesn't have other_method(), parent method is called
+    # here self calls parent's method, as this class doesn't have 'other_method()'
     output2 = self.other_method(num) 
-    return output1 + self.arg1
+    return output1 + self.arg1 + output2
   def some_func(self, num):    
     return num**3
 
 child_instance = MyChild(38)
-
 # calling my_func() returns child's method
-output = child_instance.my_func(2))
-
-# calling same named method, child's method is called as expected 
+output = child_instance.my_func(2)
+# calling same named method, returns child's method 
 output = child_instance.some_func(2)
-
-# can also call parent class's method
+# now calls parent class's method
 output = child_instance.other_method(20)
 
 
@@ -1466,7 +1462,7 @@ class MyClass1:
       return self.para1 - num
   def other_method(self, num):
       return num**2
-  
+
 class MyClass2(MyClass1):
   def __init__(self):
       self.para1 = 10
@@ -1487,8 +1483,11 @@ class MyClass3(MyClass2):
       
 # can access MyClass1 variables/methods
 parent1 = MyClass1() 
+# check MRO using 'mro()' method of class      
+print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
 # can access MyClass2, MyClass1 variables/methods
 parent2 = MyClass2() 
+print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
 # can access MyClass3, MyClass2, MyClass1 variables/methods
 child = MyClass3()
 
@@ -1515,42 +1514,38 @@ class MyParent2:
 class MyChild(MyParent1, MyParent2): 
   def __init__(self, arg1):
       self.arg1 = arg1
+      # initialize first parent using 'super()'
       super().__init__()
       print(self.para1) # 10
-      
-      # initialize MyParent2 with class name and passing MyChild(i.e self)
-      # super().__init__() initializes each parent on its own when child's instance is created, so this step is optional
-      # but this can also be done when MyParent2's is to be accessed inside MyChild's init 
-      MyParent2.__init__(self)
+      # initialize second parent by passing 'self' object to its constructor
+      MyParent2.__init__(self) 
+      # so now MyParent2's variables/methods be acessed
       print(self.para1) # 20
-      print(self.para2) # can be accessed right here 
+      print(self.para2) # 42
 
   def my_func(self, num):
-    # here MyParent1 will be called, due to MRO
+    # here MyParent1's method will be called, due to MRO
     output1 = self.other_method(num) 
     return output1
 
-parent1 = MyParent1()
-parent2 = MyParent2()
+# create child instance
 child = MyChild(30)
-# access para1 of MyParent1
-my_var = child.para1 
-# access para2 of MyParent2
-my_var = child.para2
+print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, <class '__main__.MyParent2'>, <class 'object'>]
 # same as before, calling MyParent1's method
-print(child.other_method(2)) 
+print(child.other_method(2)) # 4
 
-# to call MyParent2's same method using child instance
+# to call MyParent2's same named method using child instance
+# call with class and pass child instance
 output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
 ```
 ### Encapsulation
 * Restrict access to methods and variables inside a class using access modifier. Inside a class, use "\_" underscore for protected, and "\_\_" double underscore for private. 
-* Access modifiers: 
-  1. Public: Can be accessed anywhere in the program.
-  2. Protected: Only the current class and derived class can access them.
-  3. Private: Only the current class can access them, not even their instance can access them.
-In python, all variables are public by default, the way private/protected are implemented they don't really work as one would expect(shown below).
+* Three Types of Access modifiers 
+  1. **Public**: Can be accessed anywhere in the program.
+  2. **Protected**: Only the current class and derived class can access them.
+  3. **Private**: Only the current class can access them, not even their instance can access them.
+In python, all variables are public by default, the way private/protected are implemented they don't really work as one would expect, below are some examples.
 ```Python
 class MyClass:
   def __init__(self):
@@ -1568,22 +1563,22 @@ print(my_instance.my_var1) # can be accessed
 print(my_instance._my_var2) # can be accessed
 print(my_instance.__my_var3) # can't be accessed, private variable
 
-# access by child's instance class
+# access by child's instance
 my_instance = MyClass1()
 print(my_instance.my_var1) # can be accessed
 print(my_instance._my_var2) # can be accessed
 print(my_instance.__my_var3) # can't be accessed, private variable
 
-# __dict__ a special variable in python keeps track of variables/functions of an object/class
+# '__dict__' a special variable in python keeps track of variables/functions of an object/class
 # this process is name mangling, which uses '_CLASSNAME' prefix for private variables
 # print this to show private variables
-print(my_instance.__dict__) 
+print(my_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
 # which then further can be accessed using the naming convention
-print(my_instance._MyClass__my_var3) 
+print(my_instance._MyClass__my_var3) # 30
 ```
-* Extras: Some keywords to modify variables outside of scope.
-1. global: To modify a variable with global scope from inside a function.  
-2. nonlocal: To modify a variable of local scope from inside a nested function.
+* Some keywords to modify variables which are outside of the scope.
+1. **global**: To modify a variable with global scope from inside a function.  
+2. **nonlocal**: To modify a variable of local scope from inside a nested function.
 ```Python 
 ## global
 # my_var1 and my_var2 have global scope 
@@ -1605,18 +1600,43 @@ def some_fun():
   my_var1 = 10
   my_var2 = 20
   def some_nested_fun():
-    # declaring my_var2 as nonlocal, so now it can be modified for some_fun's scope
+    # declaring my_var2 as nonlocal, so now it can be modified for the "some_fun()" scope
     nonlocal my_var2 
     my_var1 = 30
     my_var2 = 40
+  some_nested_fun()  
   print(my_var1, my_var2) # 10, 40    
 
-some_nested_fun()
+some_fun()
+```
+### Abstraction
+Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right?. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
+```Python
+## Abstraction using module
+import math
+
+# here sqrt method is abstracted, we don't know the exact detail of working
+# code of math.sqrt() inside this current module, we just know what it does
+# similar can be said about a user defined module and running it in another module
+print(math.sqrt(16)) # 4.0
+
+## Abstraction using class
+class MyClass:
+  def __init__(self):
+    # check if '__len__()' function is implemented, if not raise NotImplementedError
+    if '__len__' not in dir(MyClass):
+      raise NotImplementedError("Implementaion of __len__ is required")
+  
+  # or the base class will raise NotImplementedErroron on call
+  def __str__(self):
+    raise NotImplementedError("Implementaion of __str__ is required")
+
+my_instance = MyClass() # NotImplementedError: Implementaion of __len__ is required
 ```
 ### Polymorphism
 * The ability of an object to take on many forms. 
-  1. Method overloading: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and are checked throughout using if..else or isinstance() function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
-  2. Method overriding: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class.
+  1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and are checked throughout using if..else or isinstance() function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+  2. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class.
 ```Python
 ## method overloading
 class MyClass:
@@ -1650,9 +1670,9 @@ b = B()
 a.return_number(10) # 100
 b.return_number(10) # 100
 ```
-* Class methods/variables that begin & end with double underscore "\_\_" are called special variables/methods(also called dunder methods) in Python. 
-* Function overriding: Changing the default functionality of a built-in function for that particular object. 
-* Operator Overloading: Make operators work for user-defined classes, when a class implements a particular operator function(which is a special function in python) and changes its functionality(does something and returns something), that functionality is applicable to that class.
+* **special variables/fucntions**: Class methods/variables that begin & end with double underscore "\_\_" are called special variables/methods(also called dunder methods) in Python. [List](http://docs.python.org/3/reference/datamodel.html#special-method-names) of special functions in python.
+* **Function overriding**: Changing the default functionality of a built-in function for that particular object. 
+* **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator function(which is a special function in python) and changes its functionality(does something and returns something), that functionality is applicable to that class.
 ```Python
 ## Function Overriding
 class MyClass:
@@ -1690,29 +1710,7 @@ my_ins1 = MyClass(10, 20, 30, 40)
 my_ins2 = MyClass(10, 20, 30, 40)
 print(my_ins1 + my_ins2) # 200 
 ```
-### Abstraction
-Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right?. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
-```Python
-## Abstraction using module
-import math
 
-# here sqrt method is abstracted, we don't know the exact detail of working
-# code of math.sqrt() inside this current module, we just know what it does
-# similar can be said about user defined module and running it in another module
-print(math.sqrt(16))
-
-
-## Abstraction using class
-class MyBaseClass:
-  def __init__(self):
-    # check if __len__() function is implemented, if not raise NotImplementedError
-    if '__len__' not in dir(MyClass):
-      raise NotImplementedError("Implementaion of __len__ is required")
-  
-  # or the base class will raise NotImplementedErroron on call
-  def __str__(self):
-    raise NotImplementedError("Implementaion of __str__ is required")
-```
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
