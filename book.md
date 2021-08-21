@@ -350,7 +350,7 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-#### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-type), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#2-isinstance), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md/#3-id).
+#### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-type), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstance), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-id).
 #### 1. type() 
  **Parameters** => [object] </br>
  **Returns** => str </br>
