@@ -998,7 +998,7 @@ assert a == 30 # AssertionError
 ### Functions
 * A function is used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something (in Python, None is returned by default if 'return' statement is not defined). 
 * Functions in python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
-* Parameters vs arguments: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
+* **Parameters vs arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
 * Functions in python support Packing and Unpacking variables into tuple/dict. Explained below.
 1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (or they'll contain all the values). 
 2. **Unpacking**: It is when a list/tuple/dict is passed, which then unpack as function parameters. Now passing tuple/list can be done with '\*' prefix followed by sequence's name, generally as '\*args'. Passing dict requires '\*\*' prefix followed by sequence's name, generally as '\*\*kwargs'.
@@ -1177,7 +1177,7 @@ print(my_instance.my_func(40)) # 75
 new_var = MyClass2.my_func(my_instance, 40)
 # the 'self' keyword ressembles the instance object, which is 'my_instance' here
 ```
-#### Type of methods in class:
+#### Three Types of methods in class:
 1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration (using '@classmethod' prefix), these methods should have class as first parameter, which unlike 'self' can be of any name, 'CLS' is preferred. This parameter further can be used to access other class variables/methods inside these methods.
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have 'self' as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
 3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using 'staticmethod' as decoration (using '@staticmethod' prefix), these methods are not required to pass class as first argument.
@@ -1258,7 +1258,10 @@ print(dir(MyClass))
 ```
 ### Extras
 #### Namespaces
-As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have 'namespace' keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. There are built-in (readily available functions without any import), global (which user defines outside of any function/class), local (which user defines inside a function/class/nested) namespaces.
+As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have 'namespace' keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. There are three types of namespaces.
+1. **built-in**: Are readily available functions without any import.
+2. **global**: Are which user defines outside of any function/class. 
+3. **local**: Are which user defines inside a function/class/nested.
 ```Python
 ## built-in namespace 
 # For example functions which do not require any imports 
