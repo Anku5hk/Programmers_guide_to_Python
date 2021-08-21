@@ -999,9 +999,9 @@ assert a == 30 # AssertionError
 * A function is used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something (in Python, None is returned by default if 'return' statement is not defined). 
 * Functions in python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
 * Parameters vs arguments: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
-* Functions in python support Packing and Unpacking variables into tuple/dict.
-1. Packing is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (or they'll contain all the values). 
-2. Unpacking is when a list/tuple/dict is passed, which then unpack as function parameters. Now passing tuple/list can be done with '\*' prefix followed by sequence's name, generally as '\*args'. Passing dict requires '\*\*' prefix followed by sequence's name, generally as '\*\*kwargs'.
+* Functions in python support Packing and Unpacking variables into tuple/dict. Explained below.
+1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (or they'll contain all the values). 
+2. **Unpacking**: It is when a list/tuple/dict is passed, which then unpack as function parameters. Now passing tuple/list can be done with '\*' prefix followed by sequence's name, generally as '\*args'. Passing dict requires '\*\*' prefix followed by sequence's name, generally as '\*\*kwargs'.
 ```Python
 ## defining functions
 # Example 1. Non-parameterize function which returns nothing 
