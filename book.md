@@ -1627,7 +1627,7 @@ del my_instance._MyClass__my_var3
 # further crashing the program
 print(my_instance._MyClass__my_var3) # AttributeError
 ```
-#### property()
+* **property()** </br>
 **Parameters** => [fget=None, fset=None, fdel=None, doc=None] </br>
 **Returns** => property </br>
 **Explaination**: It is a pythonic way to use getters and setters in encapsulation. 'property()' function simply allows assigning/altering private variable using '.' operator. 'property()' has parameters like fget(which represents getter function), fset(which represents setter function), fdel(which represents delete function) and doc(which is a string, to provide some information). For more implementation details check [Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
