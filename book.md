@@ -1,9 +1,11 @@
 # Programmer's guide to Python
-Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. This is by no means a complete python walkthrough, but should cover all important aspects of python. I hope this helps you in learning python programming. Happy Learning!!
+Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. I hope this helps you in learning python programming. Happy Learning!!
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as c/c++/Java and wants to learn python but fast. The goal is to take you through enough python, while saving you tons of time. The one who have taken a basic python course from somewhere else can also use this as to solidify their learning. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes. 
+**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently (intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning. Alright.</br>  
 
-**What's not this:** Not a traditional programming course/book, this book is structured somewhat differently(intentionally) to cover and only emphasis on what is important, although you'll miss almost nothing. Maybe somewhat not beginner friendly, you do need to have prior general programming knowledge to get what's going on. That's all.</br>  
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as c/c++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python, while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
+
+#### [Some Topics are under progress..]
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -905,7 +907,13 @@ for v in my_list:
 # or 
 for a in [10,20,30,40,50]:
   print(a)   
-```
+  
+# there's also a 'else' condition, when a 'for' loop is not executed
+# if any iterable has no elements, this 'else' condition will execute
+for v in []:
+  print("List has no elements")
+else:
+  print("So this will execute")
 #### while loop
 ```Python
 i=0
@@ -1118,7 +1126,7 @@ class MyClass:
         """This is what this method does..."""
 ```
 ### Class
-* **Class**: Is a blueprint of an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
+* **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
 * **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
 * **Methods**: Functions that are inside class are called as methods. They should have 'self' object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. 'self' resembles a instance of that class. When a instance calls a method, the calling instance gets passed automatically by python as 'self' object to that method, explained more below.
@@ -1412,304 +1420,6 @@ for a in my_generator():
 ```
 
 ## 6. OOP concepts
-### Inheritance
-* Inherit a base class to use its methods/variables inside a child class but not the other way. Multilevel and Multiple inheritance are also supported in python.
-* **super()**: This function is used to access parent's methods/variables inside of child class, it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
-* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is child -> parent1 -> parent2..., when a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
-```Python
-## Single Inheritance
-class MyParent:
-  # class variables
-  some_var = 50  
-  def __init__(self, para1):
-      self.para1 = para1
-  def some_func(self, num):
-      return num**2
-  def other_method(self, num):
-      return self.para1 - num
-
-# inherit MyParent class  
-class MyChild(MyParent): 
-  def __init__(self, arg1):
-    self.arg1 = arg1
-    # instantiate parent class inside child class
-    super().__init__(arg1) 
-  def my_func(self, num):
-    # call parent's method using 'super()' function
-    output1 = super().some_func(num) 
-    # access base classes variables
-    print(super().some_var) 
-    # here self calls parent's method, as this class doesn't have 'other_method()'
-    output2 = self.other_method(num) 
-    return output1 + self.arg1 + output2
-  def some_func(self, num):    
-    return num**3
-
-child_instance = MyChild(38)
-# calling my_func() returns child's method
-output = child_instance.my_func(2)
-# calling same named method, returns child's method 
-output = child_instance.some_func(2)
-# now calls parent class's method
-output = child_instance.other_method(20)
-
-
-## Multilevel Inheritance
-class MyClass1:
-  def __init__(self):
-      self.para1 = 5
-  def doing_something1(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**2
-
-class MyClass2(MyClass1):
-  def __init__(self):
-      self.para1 = 10
-      self.para2 = 20
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
-  
-class MyClass3(MyClass2):
-  def __init__(self):
-      self.para1 = 42
-      self.para2 = 42
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
-      
-# can access MyClass1 variables/methods
-parent1 = MyClass1() 
-# check MRO using 'mro()' method of class      
-print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
-# can access MyClass2, MyClass1 variables/methods
-parent2 = MyClass2() 
-print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
-# can access MyClass3, MyClass2, MyClass1 variables/methods
-child = MyClass3()
-
-
-## Multiple Inheritance
-class MyParent1:
-  def __init__(self):
-      self.para1 = 10
-  def doing_something1(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**2
-  
-class MyParent2:
-  def __init__(self):
-      self.para1 = 20
-      self.para2 = 42
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
-
-# inherit MyParent1 and MyParent2 classes
-class MyChild(MyParent1, MyParent2): 
-  def __init__(self, arg1):
-      self.arg1 = arg1
-      # initialize first parent using 'super()'
-      super().__init__()
-      print(self.para1) # 10
-      # initialize second parent by passing 'self' object to its constructor
-      MyParent2.__init__(self) 
-      # so now MyParent2's variables/methods be acessed
-      print(self.para1) # 20
-      print(self.para2) # 42
-
-  def my_func(self, num):
-    # here MyParent1's method will be called, due to MRO
-    output1 = self.other_method(num) 
-    return output1
-
-# create child instance
-child = MyChild(30)
-print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, <class '__main__.MyParent2'>, <class 'object'>]
-# same as before, calling MyParent1's method
-print(child.other_method(2)) # 4
-
-# to call MyParent2's same named method using child instance
-# call with class and pass child instance
-output1 = MyParent2.other_method(child, 2) # 8
-output2 = MyParent1.other_method(child, 2) # 4
-```
-### Encapsulation
-* Restrict access to methods and variables inside a class using access modifier. Inside a class, use "\_" underscore for protected, and "\_\_" double underscore for private. 
-* Three Types of Access modifiers 
-  1. **Public**: Can be accessed anywhere in the program.
-  2. **Protected**: Only the current class and derived class can access them.
-  3. **Private**: Only the current class can access them, not even their instance can access them.
-In python, all variables are public by default, the way private/protected are implemented they don't really work as one would expect, below are some examples.
-```Python
-class MyClass:
-  def __init__(self):
-      self.my_var1 = 10 # public variable
-      self._my_var2 = 20 # protected variable
-      self.__my_var3 = 30 # private variable
-
-class MyClass1(MyClass):
-  def __init__(self):
-      super().__init__()
-
-# access by parent's instance 
-my_instance = MyClass()
-print(my_instance.my_var1) # can be accessed
-print(my_instance._my_var2) # can be accessed
-print(my_instance.__my_var3) # can't be accessed, private variable
-
-# access by child's instance
-my_instance = MyClass1()
-print(my_instance.my_var1) # can be accessed
-print(my_instance._my_var2) # can be accessed
-print(my_instance.__my_var3) # can't be accessed, private variable
-
-# '__dict__' a special variable in python keeps track of variables/functions of an object/class
-# this process is name mangling, which uses '_CLASSNAME' prefix for private variables
-# print this to show private variables
-print(my_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
-# which then further can be accessed using the naming convention
-print(my_instance._MyClass__my_var3) # 30
-```
-* Some keywords to modify variables which are outside of the scope.
-1. **global**: To modify a variable with global scope from inside a function.  
-2. **nonlocal**: To modify a variable of local scope from inside a nested function.
-```Python 
-## global
-# my_var1 and my_var2 have global scope 
-my_var1 = 10 
-my_var2 = 20
-def some_fun():
-  # declaring my_var1 as global, so now it can be modified for global scope
-  global my_var1
-  my_var1 = 30 # modifying for global scope
-  my_var2 = 40 # modifying only for local scope
-  
-some_fun()
-print(my_var1, my_var2) # 30, 20
-
-
-## nonlocal 
-def some_fun():
-  # my_var1 and my_var2 have local scope 
-  my_var1 = 10
-  my_var2 = 20
-  def some_nested_fun():
-    # declaring my_var2 as nonlocal, so now it can be modified for the "some_fun()" scope
-    nonlocal my_var2 
-    my_var1 = 30
-    my_var2 = 40
-  some_nested_fun()  
-  print(my_var1, my_var2) # 10, 40    
-
-some_fun()
-```
-### Abstraction
-Hiding internal details and showing/accessing only functionality. Such as importing from a module and using that function in current module. Now without looking inside that module the code/algorithm of working would be unknown right?. Python does not have 'abstract' keyword like in java, so for class abstraction we cannot declare methods that need to be implemented. But similar can be achieved anyway.   
-```Python
-## Abstraction using module
-import math
-
-# here sqrt method is abstracted, we don't know the exact detail of working
-# code of math.sqrt() inside this current module, we just know what it does
-# similar can be said about a user defined module and running it in another module
-print(math.sqrt(16)) # 4.0
-
-## Abstraction using class
-class MyClass:
-  def __init__(self):
-    # check if '__len__()' function is implemented, if not raise NotImplementedError
-    if '__len__' not in dir(MyClass):
-      raise NotImplementedError("Implementaion of __len__ is required")
-  
-  # or the base class will raise NotImplementedErroron on call
-  def __str__(self):
-    raise NotImplementedError("Implementaion of __str__ is required")
-
-my_instance = MyClass() # NotImplementedError: Implementaion of __len__ is required
-```
-### Polymorphism
-* The ability of an object to take on many forms. 
-  1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and are checked throughout using if..else or isinstance() function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
-  2. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class.
-```Python
-## method overloading
-class MyClass:
-  def my_fun(self,a):
-    print(a)
-  def my_fun(self,a,b):
-    print(a+b)  
-my_ins = MyClass()
-my_ins.my_fun(1,2) # 3
-# calling first function, but it is overwritten by second with 2 parameters
-# so will raise error, missing argument
-# simple workaround will be to use if..else
-my_ins.my_fun(1) 
-
-
-## method overriding
-class A:
-  my_list = [10, 20, 30, 40]
-  def return_addition():
-    """Returns addition of list elements"""
-    return sum(my_list)
-    
-class B:
-  my_dict = {"key1":10, "key2":20, "key3":30, "key4":40}
-  def return_addition():
-    """Returns addition of dict elements"""
-    return sum(my_dict.values())
-
-a = A()
-b = B()
-a.return_number(10) # 100
-b.return_number(10) # 100
-```
-* **special variables/fucntions**: Class methods/variables that begin & end with double underscore "\_\_" are called special variables/methods(also called dunder methods) in Python. [List](http://docs.python.org/3/reference/datamodel.html#special-method-names) of special functions in python.
-* **Function overriding**: Changing the default functionality of a built-in function for that particular object. 
-* **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator function(which is a special function in python) and changes its functionality(does something and returns something), that functionality is applicable to that class.
-```Python
-## Function Overriding
-class MyClass:
-  def __init__(self, *args):
-    self.args = args
-
-  def __len__(self):
-    """This is a special function, defining this inside a class enables function overriding."""
-    return len(self.args)
-  
-  # Notice: this method is commented so will not execute
-  # def __str__(self):
-    # """Similarly this is for print functionality for this object."""
-    # return " ".join((str(a) for a in self.args))  
- 
-my_ins = MyClass(10, 20, 30)
-# now as the __len__ is implemented this will return the output  
-print(len(my_ins)) # 3
-# this will return address of this object by default, 
-print(my_ins) 
-# uncomment __str__() and re-run to see change in its functionality
-
-
-## Operator Overloading
-class MyClass:
-  def __init__(self, *args):
-    self.args = args
-
-  def __add__(self, my_obj):
-    """Define functionality behaviour for + operator inside this method, the input parameter can be any 
-    type as required. Just the functionality defined should support it."""
-    return sum(self.args) + sum(my_obj.args)
-    
-my_ins1 = MyClass(10, 20, 30, 40)
-my_ins2 = MyClass(10, 20, 30, 40)
-print(my_ins1 + my_ins2) # 200 
-```
 
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
