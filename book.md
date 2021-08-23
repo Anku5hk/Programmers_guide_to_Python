@@ -1132,7 +1132,8 @@ class MyClass:
 * **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
 * **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
-* **Methods**: Functions that are inside class are called as methods. They should have 'self' object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. 'self' resembles a instance of that class. When a instance calls a method, the calling instance gets passed automatically by python as 'self' object to that method, explained more below.
+* **Methods**: Functions that are inside class are called as methods. 
+* **self**: 'self' is a keyword that resembles a instance of class in class methods. Similar to Java/Javscript's 'this' keyword, it is used to access variables/methods of that instance. But in Python, a class method should have 'self' object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as 'self' object to that method, explained more below.
 ```Python
 ## class
 # define class
@@ -1294,7 +1295,7 @@ def some_fun():
         pass
 ```
 #### Modules
-Is simply a python file (with .py extension), dir() can be used to find variables/functions/class inside a module. Python looks for modules in a sequence local dir (where current .py is located) -> PYTHONPATH (provide python dir path using PYTHONPATH env variable) ->  lastly inside python installation directory. This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
+Is simply a python file (with .py extension), 'dir()' can be used to find variables/functions/class inside a module. Python looks for modules in a sequence local directory(where current .py is located) -> PYTHONPATH(provide python dir path using PYTHONPATH env variable) ->  lastly inside python installation directory. This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
 ```Python
 ## Modules
 # modules can be imported anywhere in python, there is no restriction
@@ -1357,7 +1358,7 @@ print(my_fun(10,20)) # 30
 ```
 #### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators).
 #### 1. Iterators
-Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements \_\_iter\_\_() and \_\_next\_\_() special functions. These are implemented inside a class to make it's object iterable.
+Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements '\_\_iter\_\_()' and '\_\_next\_\_()' special functions. These are implemented inside a class to make it's object iterable.
 ```Python
 ## Iterators
 # user-defined iterators
@@ -1396,7 +1397,7 @@ print(hasattr(list, '__iter__')) # True
 print(hasattr(tuple, '__iter__')) # True
 ```
 #### 2. Generators
-Generators are lazy iterators, they return value when next() function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+Generators are lazy iterators, they return value when 'next()' function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## basic generator
 def my_generator(*args):
@@ -1558,6 +1559,111 @@ print(child.other_method(2)) # 4
 # call with class and pass child instance
 output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
+```
+### 2. Encapsulation
+* Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data(of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
+* This technique is essential to protect private data to be accessed/misused form another class directly. To implement this we use **Access Modifiers**. They are used to define the access type of a variable inside a class. 
+* Three Types of Access modifiers. 
+  1. **Public**: Can be accessed anywhere in the program. All variables are public by default.
+  2. **Protected**: Only the current class and derived class can access them. Use "\_" underscore define them.
+  3. **Private**: Only the current class can access them, not even their instance can access them. Use "\_\_" underscore define them.
+* First the private data is set to 'private' type to restrict the direct access and if we want to allow these private data to be accessed/modified by outside class, public **setters()** and **getters()** methods can be used like in Java/Javascript. But python also has another way, the 'property' object.
+* In python, all variables are public by default and the way private/protected are implemented they don't really work as one would expect, below are some examples.
+```Python
+## Access modifier
+class MyClass:
+  def __init__(self):
+      self.my_var1 = 10 # public variable
+      self._my_var2 = 20 # protected variable
+      self.__my_var3 = 30 # private variable
+
+class MyClass1(MyClass):
+  def __init__(self):
+      super().__init__()
+
+## example 1
+# "can't be accessed will" raise AttributeError, to continue program execution comment/remove the line
+# access by parent's instance 
+my_instance = MyClass()
+print(my_instance.my_var1) # can be accessed
+print(my_instance._my_var2) # can be accessed
+print(my_instance.__my_var3) # can't be accessed, private variable
+
+## example 2
+# access by child's instance
+my_instance = MyClass1()
+print(my_instance.my_var1) # can be accessed
+print(my_instance._my_var2) # can be accessed
+print(my_instance.__my_var3) # can't be accessed, private variable
+
+## example 3: allow access from outside class
+# Define set() and get() methods
+class MyClass:
+  def __init__(self):
+      self.my_var1 = 10 # public variable
+      self._my_var2 = 20 # protected variable
+      self.__my_var3 = 30 # private variable
+  def getMyVar3(self):
+    return self.__my_var3
+  def getMyVar3(self, new_value):
+    self.__my_var3 = new_value  
+    
+some_instance = MyClass()
+print(some_instance.getMyVar3()) # 30
+some_instance.setMyvar3(50)
+print(some_instance.getMyVar3()) # 50
+# but still can't access directly
+print(some_instance.__my_var3) # AttributeError
+
+## Problem with python's access modifier implementation
+# '__dict__' a special variable in python keeps track of variables/functions of an object/class
+# this process is name mangling, which uses '_CLASSNAME' prefix for private variables
+# print this to show private variables
+print(my_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+# which then further can be accessed using the naming convention
+print(my_instance._MyClass__my_var3) # 30
+# also can delete the variable
+del my_instance._MyClass__my_var3 
+# further crashing the program
+print(my_instance._MyClass__my_var3) # AttributeError
+```
+* **property()**
+**Parameters** => [fget=None, fset=None, fdel=None, doc=None] </br>
+**Returns** => property </br>
+**Explaination**: It is a pythonic way to use getters and setters in encapsulation. 'property()' function simply allows assigning/altering private variable using '.' operator. 'property()' has parameters like fget(which represents getter function), fset(which represents setter function), fdel(which represents delete function) and doc(which is a string, to provide some information). For more implementation details check [Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
+```Python
+## Implement Encapsulation using python's property object
+class MyClass:
+  def __init__(self):
+      self.my_var1 = 10 # public variable
+      self._my_var2 = 20 # protected variable
+      self.__my_var3 = 30 # private variable
+
+  # Notice: the property decorator, 'my_var' can be renamed to any other name
+  @property 
+  def my_var(self):
+    print("Getter function called")
+    return self.__my_var3
+  # Notice: the <VAR_NAME> decorator  
+  @my_var.setter
+  def my_var(self, new_value):
+    print("Setter function called")
+    self.__my_var3 = new_value    
+  # Notice: the <VAR_NAME> decorator  
+  @my_var.deleter
+  def my_var(self):
+    print("Deleter function called")
+    del self.__my_var3   
+
+# here '__my_var3' is a private variable, 'my_var' is the variable that now can be
+# used to modify '__my_var3' from outside the class     
+some_instance = MyClass()
+print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+# access using the <VAR_NAME>
+print(some_instance.my_var) # 30
+some_instance.my_var = 50
+print(some_instance.my_var) # 50
+del some_instance.my_var
 ```
 
 ## References
