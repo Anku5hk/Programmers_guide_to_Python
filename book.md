@@ -914,13 +914,14 @@ for v in []:
   print("List has no elements")
 else:
   print("So this will execute")
+```
 #### while loop
 ```Python
 i=0
 my_list = [10,20,30,40,50]
 while i < len(my_list):
   print(my_list[i])
-  i+=1 # similar to 'i=i+1', 'i++' is not supported
+  i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
 ### Exception Handling
 Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way.   
@@ -973,7 +974,9 @@ finally:
     print("Finally, its finally, which always executes.")      
 ```
 ### File Handling
-
+1. txt file
+2. json file
+3. xml file
 ### Extras
 * **break**: breaks from loop. 
 * **continue**: continue to next iteration in loops.
@@ -1235,9 +1238,9 @@ print(MyClass.fun2()) # can access
 print(my_instance.fun3()) # can access
 ```
 ### Objects
-* An object contains data (can be any data-type/data-structure/object) and has its own meta-data/attributes, functions/methods.
-* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-types in python have attributes/methods, data structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
-* We saw earlier how to create a instance/object and what/how they can access variables and methods.
+* An object has its own attributes/data(can be any data-type/data-structure/object) and functions(methods).
+* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-types in python have attributes/methods, data structures have their attributes/methods, Functions(are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
+* We saw earlier how to create a instance of a class(i.e object) and what/how they can access variables and methods.
 ```Python
 ## data types are object
 a = 30
@@ -1418,8 +1421,144 @@ def my_generator():
 for a in my_generator():
   print(a) # [1,2,3]
 ```
-
 ## 6. OOP concepts
+#### What is OOP?
+Wikipedia says
+> Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
+
+Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
+#### Why OOP?
+It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to functional/structural programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
+
+**There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-inheritance), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-encapsulation), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-abstraction) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-polymorphism).**
+### 1. Inheritance
+* Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
+* We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way. Python also supports Multilevel and Multiple inheritance.
+* **super()**: This is the function to access parent's methods/variables inside of a child class, when called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
+* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
+```Python
+## Single Inheritance
+class MyParent:
+  # class variables
+  some_var = 50  
+  def __init__(self, para1):
+      self.para1 = para1
+  def some_func(self, num):
+      return num**2
+  def other_method(self, num):
+      return self.para1 - num
+
+# inherit MyParent class  
+class MyChild(MyParent): 
+  def __init__(self, arg1):
+    self.arg1 = arg1
+    # instantiate parent class inside child class
+    super().__init__(arg1) 
+  def my_func(self, num):
+    # call parent's method using 'super()' function
+    output1 = super().some_func(num) 
+    # access base classes variables
+    print(super().some_var) 
+    # here self calls parent's method, as this class doesn't have 'other_method()'
+    output2 = self.other_method(num) 
+    return output1 + self.arg1 + output2
+  def some_func(self, num):    
+    return num**3
+
+child_instance = MyChild(38)
+# calling my_func() returns child's method
+output = child_instance.my_func(2)
+# calling same named method, returns child's method 
+output = child_instance.some_func(2)
+# now calls parent class's method
+output = child_instance.other_method(20)
+
+
+## Multilevel Inheritance
+class MyClass1:
+  def __init__(self):
+      self.para1 = 5
+  def doing_something1(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**2
+
+class MyClass2(MyClass1):
+  def __init__(self):
+      self.para1 = 10
+      self.para2 = 20
+  def doing_something2(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**3
+  
+class MyClass3(MyClass2):
+  def __init__(self):
+      self.para1 = 42
+      self.para2 = 42
+  def doing_something2(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**3
+      
+# can access MyClass1 variables/methods
+parent1 = MyClass1() 
+# check MRO using 'mro()' method of class      
+print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
+# can access MyClass2, MyClass1 variables/methods
+parent2 = MyClass2() 
+print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
+# can access MyClass3, MyClass2, MyClass1 variables/methods
+child = MyClass3()
+
+
+## Multiple Inheritance
+class MyParent1:
+  def __init__(self):
+      self.para1 = 10
+  def doing_something1(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**2
+  
+class MyParent2:
+  def __init__(self):
+      self.para1 = 20
+      self.para2 = 42
+  def doing_something2(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**3
+
+# inherit MyParent1 and MyParent2 classes
+class MyChild(MyParent1, MyParent2): 
+  def __init__(self, arg1):
+      self.arg1 = arg1
+      # initialize first parent using 'super()'
+      super().__init__()
+      print(self.para1) # 10
+      # initialize second parent by passing 'self' object to its constructor
+      MyParent2.__init__(self) 
+      # so now MyParent2's variables/methods be acessed
+      print(self.para1) # 20
+      print(self.para2) # 42
+
+  def my_func(self, num):
+    # here MyParent1's method will be called, due to MRO
+    output1 = self.other_method(num) # similar to 'super().other_method(num)'
+    return output1
+
+# create child instance
+child = MyChild(30)
+print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, <class '__main__.MyParent2'>, <class 'object'>]
+# same as before, calling MyParent1's method
+print(child.other_method(2)) # 4
+
+# to call MyParent2's same named method using child instance
+# call with class and pass child instance
+output1 = MyParent2.other_method(child, 2) # 8
+output2 = MyParent1.other_method(child, 2) # 4
+```
 
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
