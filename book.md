@@ -1190,9 +1190,9 @@ new_var = MyClass2.my_func(my_instance, 40)
 # the 'self' keyword ressembles the instance object, which is 'my_instance' here
 ```
 #### Three Types of methods in class:
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration (using '@classmethod' prefix), these methods should have class as first parameter, which unlike 'self' can be of any name, 'CLS' is preferred. This parameter further can be used to access other class variables/methods inside these methods.
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration(using '@classmethod' prefix), these methods should have class as first parameter, which unlike 'self' can be of any name, 'CLS' is preferred. This parameter further can be used to access other class variables/methods inside these methods.
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have 'self' as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
-3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using 'staticmethod' as decoration (using '@staticmethod' prefix), these methods are not required to pass class as first argument.
+3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using 'staticmethod' as decoration(using '@staticmethod' prefix), these methods are not required to pass class as first argument.
 ```Python
 ## define class
 class MyClass: 
@@ -1323,7 +1323,7 @@ print(math(2)) # 4
 #### Packages
 Are defined with \_\_init\_\_().py file in that folder.
 #### Decorators
-Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
+Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, also called 'syntactic sugar'. Using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
 def my_outer_func(some_func):
@@ -1421,6 +1421,65 @@ def my_generator():
   yield 3
 for a in my_generator():
   print(a) # [1,2,3]
+```
+#### 3. Descriptors
+A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. More details on descriptors working check [this](https://docs.python.org/3/howto/descriptor.html).
+```Python
+## Descriptor example
+class MyDescriptor:
+    """ This is a simple descriptor that allows to create custom descriptor object."""
+  
+    # when class holding 'MyDescriptor' object is defined this function is called
+    # which records its name for later reference 
+    def __set_name__(self, obj, name):
+        # here obj is the 'MyClass' object and 'self' is our 'MyDescriptor' object 
+        self.private_name = "_" + name # A access/internal name, '_' to avoid name collision
+
+    # when attribute is looked up(using '.' operator), this method is called
+    def __get__(self, obj, objtype=None):
+        # fetch 'private_name' from 'MyClass' instance
+        value = getattr(obj, self.private_name)
+        print(f"{self.private_name} was accesed")
+        return value
+
+    # when attribute is altered(using '=' operator), this method is called      
+    def __set__(self, obj, value):
+        # decide what is valid value for 'my_var1'
+        if self.private_name == '_my_var1':
+            if value % 2 == 0:
+                raise AttributeError("Not a valid value, require odd number")
+        # decide what is valid value for 'my_var2'
+        elif self.private_name == '_my_var2':
+            if value % 2 != 0:
+                raise AttributeError("Not a valid value, require even number")
+        # alter 'private_name' of 'MyClass' instance
+        setattr(obj, self.private_name, value)
+        print(f"{self.private_name} was altered")
+
+class MyClass:
+    my_var1 = MyDescriptor() # initialize our descriptor object
+    my_var2 = MyDescriptor() # create another attribute
+
+    def __init__(self, var1, var2, var3, var4):
+        # calls '__set__()' method of descriptor to assign the variable
+        self.my_var1 = var1 # alter/assign descriptor object's value
+        self.my_var2 = var2 # alter/assign descriptor object's value
+        self.my_var3 = var3 # normal attributes/variables
+        self.my_var4 = var4 # normal attributes/variables 
+
+my_instance = MyClass(11, 12, 30, 40)
+print(my_instance.__dict__) # {'_my_var1': 11, '_my_var2': 12, 'my_var3': 30, 'my_var4': 40}
+
+# calls the '__get__()' method of our descriptor to get value
+print(my_instance.my_var1) # access descriptor object's value
+print(my_instance.my_var2) # access descriptor object's value
+# call normal variables
+print(my_instance.my_var3)
+print(my_instance.my_var4)
+
+# control what should be the valid input for particular var
+my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
+my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
 ```
 ## 6. OOP concepts
 #### What is OOP?
@@ -1603,15 +1662,17 @@ class MyClass:
       self.my_var1 = 10 # public variable
       self._my_var2 = 20 # protected variable
       self.__my_var3 = 30 # private variable
-  def getMyVar3(self):
+  def getMyVar(self):
     return self.__my_var3
-  def getMyVar3(self, new_value):
+  def setMyVar(self, new_value):
+    # if you want '__my_var3' 'read-only' you can raise AttributeError, uncomment the following line 
+    # raise AttributeError("Cannot change this value")
     self.__my_var3 = new_value  
     
 some_instance = MyClass()
-print(some_instance.getMyVar3()) # 30
-some_instance.setMyvar3(50)
-print(some_instance.getMyVar3()) # 50
+print(some_instance.getMyVar()) # 30
+some_instance.setMyvar(50)
+print(some_instance.getMyVar()) # 50
 # but still can't access directly
 print(some_instance.__my_var3) # AttributeError
 
@@ -1638,32 +1699,46 @@ class MyClass:
       self.my_var1 = 10 # public variable
       self._my_var2 = 20 # protected variable
       self.__my_var3 = 30 # private variable
-
+      self.__my_var4 = 40 # private variable
+  # getter method for '__my_var3'
   # Notice: the property decorator, 'my_var' can be renamed to any other name
   @property 
   def my_var(self):
     print("Getter function called")
     return self.__my_var3
+    
+  # if you dont want '__my_var3' value to be altered, don't define this 'setter' method     
+  # setter method for '__my_var3'
   # Notice: the <VAR_NAME> decorator  
   @my_var.setter
   def my_var(self, new_value):
     print("Setter function called")
     self.__my_var3 = new_value    
-  # Notice: the <VAR_NAME> decorator  
+  
+  # if you dont want '__my_var3' value to be deleted, don't define this 'deleter' method     
+  # deleter method for '__my_var3'
   @my_var.deleter
   def my_var(self):
     print("Deleter function called")
     del self.__my_var3   
+  
+  # getter method for '__my_var4'
+  @property
+  def some_var(self):
+    return self.__my_var4
 
 # here '__my_var3' is a private variable, 'my_var' is the variable that now can be
 # used to modify '__my_var3' from outside the class     
 some_instance = MyClass()
-print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30, '_MyClass__my_var4': 40}
 # access using the <VAR_NAME>
 print(some_instance.my_var) # 30
+print(some_instance.some_var) # 40
 some_instance.my_var = 50
 print(some_instance.my_var) # 50
 del some_instance.my_var
+some_instance.some_var = 90 # AttributeError
+del some_instance.some_var # AttributeError
 ```
 
 ## References
