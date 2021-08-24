@@ -1323,7 +1323,7 @@ print(math(2)) # 4
 #### Packages
 Are defined with \_\_init\_\_().py file in that folder.
 #### Decorators
-Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, also called 'syntactic sugar'. Using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
+Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also refered as 'syntactic sugar'. Using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
 def my_outer_func(some_func):
@@ -1358,7 +1358,7 @@ print(my_fun(10,20)) # 30
 ```
 #### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
 #### 1. Iterators
-Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements '\_\_iter\_\_()' and '\_\_next\_\_()' special functions. These are implemented inside a class to make it's object iterable.
+Are objects that can be iterated using loops, these aren't necessarily list. A custom iterator class has to define '\_\_iter\_\_()' and '\_\_next\_\_()' special methods. 
 ```Python
 ## Iterators
 # user-defined iterators
@@ -1397,7 +1397,7 @@ print(hasattr(list, '__iter__')) # True
 print(hasattr(tuple, '__iter__')) # True
 ```
 #### 2. Generators
-Generators are lazy iterators, they return value when 'next()' function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+Generators are "lazy iterators", they return value when 'next()' function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## basic generator
 def my_generator(*args):
@@ -1423,7 +1423,11 @@ for a in my_generator():
   print(a) # [1,2,3]
 ```
 #### 3. Descriptors
-A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. More details on descriptors working check [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
+A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. </br>
+There are two types of Descriptors:</br>
+1. data descriptors: A Descriptors class that atleast have one of '\_\_set\_\_()' or '\_\_delete\_\_()' methods defined.
+2. non-data descriptor: A Descriptors class that only has '\_\_get\_\_()' method defined.
+These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 ## Descriptor example
 class MyDescriptor:
