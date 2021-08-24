@@ -1356,7 +1356,7 @@ def my_fun(a,b):
 # now just call my_fun() normally, this will call my_outer_func()
 print(my_fun(10,20)) # 30
 ```
-#### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators).
+#### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
 #### 1. Iterators
 Are objects that can be iterated using loops, these aren't necessarily list. A iterator object implements '\_\_iter\_\_()' and '\_\_next\_\_()' special functions. These are implemented inside a class to make it's object iterable.
 ```Python
