@@ -1326,7 +1326,7 @@ print(math(2)) # 4
 #### Packages
 Are defined with \_\_init\_\_().py file in that folder.
 #### Decorators
-* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also refered as 'syntactic sugar'. Using '@' prefix a function can be decorated. 
+* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also referred as 'syntactic sugar'. Using '@' prefix a function can be decorated. 
 * This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
@@ -1360,6 +1360,7 @@ def my_fun(a,b):
 # now just call my_fun() normally, this will call my_outer_func()
 print(my_fun(10,20)) # 30
 ```
+* **special variables/functions**: Class methods/variables that begin & end with double underscore "\_\_" are called special variables/methods(also called dunder methods) in Python. [List](http://docs.python.org/3/reference/datamodel.html#special-method-names) of special methods in python.
 #### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
 #### 1. Iterators
 * Are objects that can be iterated using loops, these aren't necessarily list. A custom iterator class has to define '\_\_iter\_\_()' and '\_\_next\_\_()' special methods. 
@@ -1431,7 +1432,7 @@ for a in my_generator():
 * A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
 * Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
 * There are two types of Descriptors.
-  1. **data descriptors**: A Descriptors class that atleast have one of '\_\_set\_\_()' or '\_\_delete\_\_()' methods defined.
+  1. **data descriptors**: A Descriptors class that at least have one of '\_\_set\_\_()' or '\_\_delete\_\_()' methods defined.
   2. **non-data descriptor**: A Descriptors class that only has '\_\_get\_\_()' method defined.
 * These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
@@ -1610,7 +1611,7 @@ class MyChild(MyParent1, MyParent2):
       print(self.para1) # 10
       # initialize second parent by passing 'self' object to its constructor
       MyParent2.__init__(self) 
-      # so now MyParent2's variables/methods be acessed
+      # so now MyParent2's variables/methods be accessed
       print(self.para1) # 20
       print(self.para2) # 42
 
@@ -1631,7 +1632,7 @@ output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
 ```
 ### 2. Abstraction
-* It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, but python doesn't support interfaces and Abstract classes should be enough for pretty much doing the same.
+* It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body(they are empty methods). The abstract classes cannot be instantiated(its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
 * Python does not have 'abstract' keyword like in java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
 * The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it becomes essential to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
@@ -1811,7 +1812,112 @@ del some_instance.my_var
 some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
+### 4. Polymorphism
+* Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of "if..else" or "switch case" when same type of function needs called on different objects.     
+* Two Types of Polymorphism. 
+  1. Static: The behaviour is decided at Compile-Time, like in method/operator overloading. 
+  2. Dynamic: The behaviour is decided in Runtime, like in method/function overriding.</br>
+The Four types of Polymorphism are explained below. </br>
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and object types are checked throughout using "if..else" or "isinstance()" function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+```Python
+## Simple Method Overloading example in Python
+class MyClass:
+    def printer(self, a, b):
+        total = a + b
+        print(f"Your total is {total}")
+    # Notice: the method name is same
+    def printer(self, a, b, name):
+        total = a + b
+        print(f"{name} your total is {total}")
+      
+my_instance = MyClass() 
+# here 'printer(a,b,c)' has overwritten 'printer(a,b)'
+my_instance.printer(20, 30, "Bob") # Bob your total is 50
+my_instance.printer(20, 30) # TypeError: printer() missing 1 required positional argument
 
+## traditional way is to use single function to handle everything 
+class MyClass:
+    def printer(self, a, b, name=None):
+        total = a + b
+        if name:
+            print(f"{name} your total is {total}")
+        else:
+            print(f"Your total is {total}")
+
+my_instance = MyClass() 
+my_instance.printer(20, 30, "Bob") # Bob your total is 50
+my_instance.printer(20, 30) # Your total is 50
+```
+2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function(which is a special function in python) and changes its functionality(does something and returns something), that functionality is applicable to that class/object. Changing operator's behaviour for a specific object by overloading a operator's function.
+```Python
+## Operator Overloading, here we overload the addition and subtractor operator
+class MyClass:
+  def __init__(self, *args):
+    self.args = args
+  
+  # this is a special function to overload '+' operator
+  def __add__(self, my_obj):
+    """Define functionality behaviour for '+' operator inside this method, the input parameter can be any
+    type as required. Just the functionality defined should support it."""
+    return sum(self.args) + sum(my_obj.args)
+    
+  # similarly this is a special function to overload '-' operator
+  def __sub__(self, my_obj):
+    """Define functionality behaviour for '-' operator."""
+    return abs(sum(self.args) - sum(my_obj.args))
+    
+my_ins1 = MyClass(90, 20, 10, 42)
+my_ins2 = MyClass(10, 70, 20, 50) 
+print(my_ins1 + my_ins2) # 312
+print(my_ins1 - my_ins2) # 12
+```
+3. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class. Useful for handling the operation from a common interface/function.
+```Python
+## Method Overriding
+class ListHandler:
+  my_list = [70, 30, 80, 20]
+  def return_addition(self):
+    """Returns addition of list elements"""
+    return sum(self.my_list)
+class DictHandler:
+  my_dict = {"key1":70, "key2":90, "key3":10, "key4":60}
+  def return_addition(self):
+    """Returns addition of dict elements"""
+    return sum(self.my_dict.values())
+
+# a common interface to handle same operation
+def perform_addition(obj):
+  output = obj.return_addition()
+  print(output)
+  
+handler_l = ListHandler()
+handler_d = DictHandler()
+perform_addition(handler_l) # 200
+perform_addition(handler_d) # 230
+```
+4. **Function overriding**: Changing the default functionality of a built-in function for that particular object, essentially to add some behaviour for a custom object. 
+```Python
+## Function Overriding
+class MyClass:
+  def __init__(self, *args):
+    self.args = args
+  # this special method represents the 'len()' built-in function
+  def __len__(self):
+    """Defining behaviour here enables function overriding."""
+    return len(self.args)
+
+  # Notice: this method is commented so will not execute
+  # def __str__(self):
+    # """Similarly this is for print functionality for this object."""
+    # return " ".join((str(a) for a in self.args))
+
+my_ins = MyClass(10, 20, 30, 40, 50)
+# now as the' __len__()' is implemented this will return the output
+print(len(my_ins)) # 5
+# this will return address of this object by default,
+print(my_ins)
+# uncomment '__str__()' and re-run to see change in its functionality
+```
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
