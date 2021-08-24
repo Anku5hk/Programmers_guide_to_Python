@@ -1423,7 +1423,7 @@ for a in my_generator():
   print(a) # [1,2,3]
 ```
 #### 3. Descriptors
-A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. More details on descriptors working check [this](https://docs.python.org/3/howto/descriptor.html).
+A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. More details on descriptors working check [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 ## Descriptor example
 class MyDescriptor:
@@ -1691,7 +1691,7 @@ print(my_instance._MyClass__my_var3) # AttributeError
 * **property()** </br>
 **Parameters** => [fget=None, fset=None, fdel=None, doc=None] </br>
 **Returns** => property </br>
-**Explaination**: It is a pythonic way to use getters and setters in encapsulation. 'property()' function simply allows assigning/altering private variable using '.' operator. 'property()' has parameters like fget(which represents getter function), fset(which represents setter function), fdel(which represents delete function) and doc(which is a string, to provide some information). For more implementation details check [Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
+**Explaination**: It is a pythonic way to use getters and setters in encapsulation. 'property()' function simply allows assigning/altering private variable using '.' operator. 'property()' has parameters like fget(which represents getter function), fset(which represents setter function), fdel(which represents delete function) and doc(which is a string, to provide some information). For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
 ```Python
 ## Implement Encapsulation using python's property object
 class MyClass:
@@ -1744,3 +1744,4 @@ del some_instance.some_var # AttributeError
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
+* [Python built-in functions](https://docs.python.org/3/library/functions.html)
