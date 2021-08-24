@@ -130,7 +130,7 @@ multiline comment
   6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N (input) times.</br>
 **Note**: Explaining all time complexities would consume lots of space for this book, so I have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
 ## 2. Data Types
-Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter.
+Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter. There is no 'final'(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 ### Three Numeric Types
 1. **int** (interger): Numbers that do not have decimal values.
 2. **float**: Numbers that do have decimal values.
@@ -980,7 +980,7 @@ finally:
 ### Extras
 * **break**: breaks from loop. 
 * **continue**: continue to next iteration in loops.
-* **pass**: move down to next statement.
+* **pass**: To just declare a function/method which has empty body.
 ```Python
 ## break and continue
 i=-1
@@ -1190,13 +1190,13 @@ new_var = MyClass2.my_func(my_instance, 40)
 # the 'self' keyword ressembles the instance object, which is 'my_instance' here
 ```
 #### Three Types of methods in class:
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. They are defined using 'classmethod' as decoration(using '@classmethod' prefix), these methods should have class as first parameter, which unlike 'self' can be of any name, 'CLS' is preferred. This parameter further can be used to access other class variables/methods inside these methods.
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no 'static' keyword, they are defined using 'classmethod' as decoration(using '@classmethod' prefix). These methods should have class as first parameter, which unlike 'self' can be of any name, 'CLS' is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have 'self' as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
 3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using 'staticmethod' as decoration(using '@staticmethod' prefix), these methods are not required to pass class as first argument.
 ```Python
 ## define class
 class MyClass: 
-  # class variables
+  # class variables: they not inside of any method 
   my_var1 = 20
   my_var2 = 10
   
@@ -1270,10 +1270,11 @@ print(dir(MyClass))
 ```
 ### Extras
 #### Namespaces
-As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have 'namespace' keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. There are three types of namespaces.
-1. **built-in**: Are readily available functions without any import.
-2. **global**: Are which user defines outside of any function/class. 
-3. **local**: Are which user defines inside a function/class/nested.
+* As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have 'namespace' keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. 
+* There are three types of namespaces.
+  1. **built-in**: Are readily available functions without any import.
+  2. **global**: Are which user defines outside of any function/class. 
+  3. **local**: Are which user defines inside a function/class/nested.
 ```Python
 ## built-in namespace 
 # For example functions which do not require any imports 
@@ -1295,7 +1296,9 @@ def some_fun():
         pass
 ```
 #### Modules
-Is simply a python file (with .py extension), 'dir()' can be used to find variables/functions/class inside a module. Python looks for modules in a sequence local directory(where current .py is located) -> PYTHONPATH(provide python dir path using PYTHONPATH env variable) ->  lastly inside python installation directory. This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
+* Is simply a python file (with .py extension), 'dir()' can be used to find variables/functions/class inside a module. 
+* Python looks for modules in a sequence local directory(where current .py is located) -> PYTHONPATH(provide python dir path using PYTHONPATH env variable) ->  lastly inside python installation directory. 
+* This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
 ```Python
 ## Modules
 # modules can be imported anywhere in python, there is no restriction
@@ -1323,7 +1326,8 @@ print(math(2)) # 4
 #### Packages
 Are defined with \_\_init\_\_().py file in that folder.
 #### Decorators
-Are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also refered as 'syntactic sugar'. Using '@' prefix a function can be decorated. This functionality is utilized using functions being first class in python.
+* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also refered as 'syntactic sugar'. Using '@' prefix a function can be decorated. 
+* This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
 def my_outer_func(some_func):
@@ -1358,7 +1362,7 @@ print(my_fun(10,20)) # 30
 ```
 #### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
 #### 1. Iterators
-Are objects that can be iterated using loops, these aren't necessarily list. A custom iterator class has to define '\_\_iter\_\_()' and '\_\_next\_\_()' special methods. 
+* Are objects that can be iterated using loops, these aren't necessarily list. A custom iterator class has to define '\_\_iter\_\_()' and '\_\_next\_\_()' special methods. 
 ```Python
 ## Iterators
 # user-defined iterators
@@ -1397,7 +1401,8 @@ print(hasattr(list, '__iter__')) # True
 print(hasattr(tuple, '__iter__')) # True
 ```
 #### 2. Generators
-Generators are "lazy iterators", they return value when 'next()' function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+* Generators are "lazy iterators", they return value when 'next()' function is called upon. They might have or not have loops in them. 'yield' statement makes a function iterable with/without loops. 'yield' saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. 
+* For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## basic generator
 def my_generator(*args):
@@ -1423,11 +1428,12 @@ for a in my_generator():
   print(a) # [1,2,3]
 ```
 #### 3. Descriptors
-A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. </br>
-There are two types of Descriptors:</br>
-1. data descriptors: A Descriptors class that atleast have one of '\_\_set\_\_()' or '\_\_delete\_\_()' methods defined.
-2. non-data descriptor: A Descriptors class that only has '\_\_get\_\_()' method defined.
-These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
+* A Descriptors is simply a object that defines at least one of '\_\_get\_\_()', '\_\_set\_\_()' or '\_\_delete\_\_()' methods and optionally '\_\_set_name\_\_()' method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
+* Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
+* There are two types of Descriptors.
+  1. **data descriptors**: A Descriptors class that atleast have one of '\_\_set\_\_()' or '\_\_delete\_\_()' methods defined.
+  2. **non-data descriptor**: A Descriptors class that only has '\_\_get\_\_()' method defined.
+* These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 ## Descriptor example
 class MyDescriptor:
@@ -1487,7 +1493,7 @@ my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even numbe
 ```
 ## 6. OOP concepts
 #### What is OOP?
-Wikipedia says
+Wikipedia suggests
 > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
 
 Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
@@ -1500,6 +1506,7 @@ It helps in reducing code complexities & redundancy by promoting better software
 * We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way. Python also supports Multilevel and Multiple inheritance.
 * **super()**: This is the function to access parent's methods/variables inside of a child class, when called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
+* Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language. 
 ```Python
 ## Single Inheritance
 class MyParent:
@@ -1623,7 +1630,67 @@ print(child.other_method(2)) # 4
 output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
 ```
-### 2. Encapsulation
+### 2. Abstraction
+* It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, but python doesn't support interfaces, but Abstract classes should be enough for doing the same.
+* Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body(they are empty methods). The abstract classes cannot be instantiated(its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
+* Python does not have 'abstract' keyword like in java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
+* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it becomes essential to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
+```Python
+### Abstract class example
+from abc import ABC, abstractmethod
+## create a abstract class by instantiating 'ABC' class
+class MyBase(ABC):
+    # define abstract methods
+    @abstractmethod
+    def get_vars():
+        pass
+    @abstractmethod
+    def change_values(self, a, b):
+        pass
+    # define combination of method types   
+    # Notice: 'abstractmethod' should always follow later 
+    @staticmethod
+    @abstractmethod
+    def some_info():
+        print("this method is both static and abstract")
+    def mydefault_fun():
+        print("This is normal function")
+
+## create concrete classes using 'MyBase' class as parent class
+class MyConcrete1(MyBase):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def change_values(self, a, b):
+        self.a = a
+        self.b = b
+    def get_vars(self):
+        return self.a, self.b
+    def some_info(self):
+        print(f"This is MyConcrete1")
+
+class MyConcrete2(MyBase):
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+    def get_vars(self):
+        return self.a, self.b, self.c
+
+# create a instance to ensure everything is correct
+my_concrete1 = MyConcrete1(10, 20)    
+print(my_concrete1.get_vars()) # 10, 20
+my_concrete1.some_info() # This is MyConcrete1
+
+# 'MyConcrete2' will raise TypeError due to not implementing abstract methods 
+# TypeError: Can't instantiate abstract class MyConcrete2 with abstract methods change_values, some_info
+my_concrete2 = MyConcrete2(10, 20, 30) 
+print(my_concrete2.get_vars()) # 10, 20, 30
+
+# try to create object of 'MyBase' class
+my_base = MyBase() # TypeError: Can't instantiate abstract class
+```
+### 3. Encapsulation
 * Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data(of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
 * This technique is essential to protect private data to be accessed/misused form another class directly. To implement this we use **Access Modifiers**. They are used to define the access type of a variable inside a class. 
 * Three Types of Access modifiers. 
