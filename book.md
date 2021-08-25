@@ -369,7 +369,7 @@ print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
 #### 3. id(object) => int
-**Explaination**: This function returns object id of a object.
+**Explaination**: This function returns the object identity which is the object’s address in memory.
 ```Python
 my_float = 50.0
 # object id wil differ each time with program
@@ -1341,7 +1341,39 @@ def my_fun(a,b):
 # now just call my_fun() normally, this will call my_outer_func()
 print(my_fun(10,20)) # 30
 ```
-* **special variables/functions**: Class methods/variables that begin & end with double underscore "\_\_" are called special variables/methods(also called dunder methods) in Python. [List](http://docs.python.org/3/reference/datamodel.html#special-method-names) of special methods in python.
+* **special methods**: These methods begin & end with double underscore "\_\_" and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+* Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
+```Python
+## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
+# to add functionality behaviour to its object 
+class MyClass:
+  def __init__(self, a, b, c, d):
+    self.some_id = a
+    self.some_name = b
+    self.some_age = c
+    self.some_values = d
+  # define '__str__' to enable print functionality
+  def __str__(self):
+    """Add doc string to describe their behaviour"""
+    return f"id: {self.some_id}, name: {self.some_name}, age: {self.some_age}"
+  # define '__len__' to enable length functionality  
+  def __len__(self):
+    """Length of some_values"""
+    return len(self.some_values)    
+  # define '__getitem__' for enabling iteration of item 
+  def __getitem__(self, index):
+    """Iterate through some_values""" 
+    return self.some_values[index]
+
+my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
+# test print functionality
+print(my_instance) # id: 239034, name: Bob, age: 23
+# length fucntionality
+print(len(my_instance)) # 6
+# iterate thourgh object 
+for a in my_instance:
+  print(a) # [10,45,32,67,32,655]
+```
 #### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
 #### 1. Iterators
 * Are objects that can be iterated using loops, these aren't necessarily list. A custom iterator class has to define '\_\_iter\_\_()' and '\_\_next\_\_()' special methods. 
@@ -1489,7 +1521,7 @@ It helps in reducing code complexities & redundancy by promoting better software
 * **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to 'super' keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
-* Four types of Inheritance.
+* Four types of Inheritance are shown below.
 1. **Single**: A Child/sub class only inherits a single Parent/Super Class.
 ```Python
 class MyParent:
