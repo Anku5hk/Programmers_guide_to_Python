@@ -351,7 +351,7 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-#### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-type), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstance), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-id).
+#### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int).
 #### 1. type(object) => str
 **Explaination**: This function returns the class_name of an object.
 ```Python
@@ -368,9 +368,7 @@ print(isinstance(a, int)) # True
 print(isinstance(a, float)) # False
 print(isinstance(a, str)) # False
 ```
-#### 3. id() 
-**Parameters** => [object] </br>
-**Returns** => int </br>
+#### 3. id(object) => int
 **Explaination**: This function returns object id of a object.
 ```Python
 my_float = 50.0
@@ -725,7 +723,7 @@ my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 ### Extras
-#### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerate), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sorted), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-map).
+#### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Explaination**: This function returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
