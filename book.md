@@ -15,7 +15,6 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-functions-classes-and-objects)
 6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-oop-concepts)
 
-
 ## 1. Basics
 ### Introduction
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020.      
@@ -353,9 +352,7 @@ my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
 #### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-type), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstance), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-id).
-#### 1. type() 
- **Parameters** => [object] </br>
- **Returns** => str </br>
+#### 1. type(object) => str
 **Explaination**: This function returns the class_name of an object.
 ```Python
 a = "What?"
@@ -363,9 +360,7 @@ print(type(a)) # str
 b = 5.0
 print(type(b)) # float
 ```
-#### 2. isinstance() 
-**Parameters** => [object, class] </br>
-**Returns** => bool </br>
+#### 2. isinstance(object, class) => bool
 **Explaination**: This function checks if a object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
@@ -731,9 +726,7 @@ my_queue.pop(0) # remove at front
 ```
 ### Extras
 #### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerate), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sorted), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-map).
-#### 1. range()
-**Parameters** => [start_index=0, end_index, step=1] </br>
-**Returns** => range </br>
+#### 1. range(start_index=0, end_index, step=1) => range
 **Explaination**: This function returns a sequence of length start_index(0 by default) to end_index(is a required argument). range() function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
 ```Python
 ## examples
@@ -754,9 +747,7 @@ for var in range(20):
 for var in range(20, -1, -1): 
   print(var) # [19:0]
 ```
-#### 2. enumerate()
-**Parameters** => [iterable] </br>
-**Returns** => tuple </br>
+#### 2. enumerate(iterable) => tuple
 **Explaination**: This function returns a enumerate object given a list, each item is a tuple and has (index, value) per item. Index is in range from 0-length of the list and value is item from the list. enumerate object is iterable but Indexing/slicing is not supported.
 ```Python
 ## examples
@@ -771,9 +762,7 @@ for i, val in enumerate(my_list):
   print(i) # 0,1,2,3
   print(val) # 100,200,500,100
 ```
-#### 3. zip() 
-**Parameters** => [\*iterable] </br>
-**Returns** => zip </br>
+#### 3. zip(\*iterable) => zip
 **Explaination**: This function returns a zip object given multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned 'zip' object is the smallest iterable's length. zip() is commonly used to unpack values from multiple iterables simultaneously.  
 ```Python
 ## examples
@@ -794,9 +783,7 @@ for v in zip(a, b, c):
 for var1, var2 in zip(a,b):
   print(var1, var2) # [('This','is','something'), (14, 3, 6)]
 ```
-#### 4. sorted()
-**Parameters** => [iterable, key=None, reverse=False] </br>
-**Returns** => list </br>
+#### 4. sorted(iterable, key=None, reverse=False) => list
 **Explaination**: This function returns a sorted list given a iterable object. Sorting is O(nLogn). key parameter takes function which is then used to extract the elements, helpful when input iterable is . Also has 'reverse' parameter, which is used to do reverse sorting if it is set to 'True'.
 ```Python
 ## examples
@@ -815,9 +802,7 @@ print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
 # sort list by the length of sub-list
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 ```
-#### 5. filter()
-**Parameters** => [function, iterable] </br>
-**Returns** => filter </br>
+#### 5. filter(function, iterable) => filter
 **Explaination**: This function takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. filter() returns only if 'True' condition is met, if 'False' is met nothing is returned, also if no condition is met nothing is returned. filter() as the name suggests, is used to filter out not required values from a iterable object. filter() returns a filter object which iterable but indexing/slicing is not supported.
 ```Python
 ## Example 1
@@ -840,9 +825,7 @@ output = list(filter(my_func, my_list)) # [100, 200]
 for val in filter(my_func, my_list):
   print(val) # [100, 200]
 ```
-#### 6. map()
-**Parameters** => [function, iterable] </br>
-**Returns** => map </br>
+#### 6. map(function, iterable) => map
 **Explaination**: This function takes a function & a iterable and applies that function on every item of that iterable. As name suggests, a function is mapped to each element of an iterable. So unlike filter(), map() returns the direct value returned by our function.
 ```Python
 ## Example 1
@@ -1760,9 +1743,7 @@ del my_instance._MyClass__my_var3
 # further crashing the program
 print(my_instance._MyClass__my_var3) # AttributeError
 ```
-* **property()** </br>
-**Parameters** => [fget=None, fset=None, fdel=None, doc=None] </br>
-**Returns** => property </br>
+* **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Explaination**: It is a pythonic way to use getters and setters in encapsulation. 'property()' function simply allows assigning/altering private variable using '.' operator. 'property()' has parameters like fget(which represents getter function), fset(which represents setter function), fdel(which represents delete function) and doc(which is a string, to provide some information). For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
 ```Python
 ## Implement Encapsulation using python's property object
@@ -1815,9 +1796,9 @@ del some_instance.some_var # AttributeError
 ### 4. Polymorphism
 * Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of "if..else" or "switch case" when same type of function needs called on different objects.     
 * Two Types of Polymorphism. 
-  1. Static: The behaviour is decided at Compile-Time, like in method/operator overloading. 
-  2. Dynamic: The behaviour is decided in Runtime, like in method/function overriding.</br>
-The Four types of Polymorphism are explained below. </br>
+  1. **Static**: The behaviour is decided at Compile-Time, like in method/operator overloading. 
+  2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
+* The Four types of Polymorphism are explained below.
 1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and object types are checked throughout using "if..else" or "isinstance()" function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
