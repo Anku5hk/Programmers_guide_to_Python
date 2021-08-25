@@ -1485,12 +1485,13 @@ It helps in reducing code complexities & redundancy by promoting better software
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-inheritance), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-encapsulation), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-abstraction) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-polymorphism).**
 ### 1. Inheritance
 * Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
-* We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way. Python also supports Multilevel and Multiple inheritance.
-* **super()**: This is the function to access parent's methods/variables inside of a child class, when called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
+* We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way.
+* **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to 'super' keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
-* Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language. 
+* Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
+* Four types of Inheritance.
+1. **Single**: A Child/sub class only inherits a single Parent/Super Class.
 ```Python
-## Single Inheritance
 class MyParent:
   # class variables
   some_var = 50  
@@ -1525,47 +1526,9 @@ output = child_instance.my_func(2)
 output = child_instance.some_func(2)
 # now calls parent class's method
 output = child_instance.other_method(20)
-
-
-## Multilevel Inheritance
-class MyClass1:
-  def __init__(self):
-      self.para1 = 5
-  def doing_something1(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**2
-
-class MyClass2(MyClass1):
-  def __init__(self):
-      self.para1 = 10
-      self.para2 = 20
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
-  
-class MyClass3(MyClass2):
-  def __init__(self):
-      self.para1 = 42
-      self.para2 = 42
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
-      
-# can access MyClass1 variables/methods
-parent1 = MyClass1() 
-# check MRO using 'mro()' method of class      
-print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
-# can access MyClass2, MyClass1 variables/methods
-parent2 = MyClass2() 
-print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
-# can access MyClass3, MyClass2, MyClass1 variables/methods
-child = MyClass3()
-
-
-## Multiple Inheritance
+```
+2. **Multiple**: A Child/sub class inherits multiple Parent/Super Classes.
+```Python
 class MyParent1:
   def __init__(self):
       self.para1 = 10
@@ -1611,6 +1574,62 @@ print(child.other_method(2)) # 4
 # call with class and pass child instance
 output1 = MyParent2.other_method(child, 2) # 8
 output2 = MyParent1.other_method(child, 2) # 4
+```
+3. **Multilevel**: In multi-level a child class inherits a parent class and is also a parent class to other class.
+```Python
+class MyClass1:
+  def __init__(self):
+      self.para1 = 5
+  def doing_something1(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**2
+
+class MyClass2(MyClass1):
+  def __init__(self):
+      self.para1 = 10
+      self.para2 = 20
+  def doing_something2(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**3
+  
+class MyClass3(MyClass2):
+  def __init__(self):
+      self.para1 = 42
+      self.para2 = 42
+  def doing_something2(self, num):
+      return self.para1 - num
+  def other_method(self, num):
+      return num**3
+      
+# can access MyClass1 variables/methods
+parent1 = MyClass1() 
+# check MRO using 'mro()' method of class      
+print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
+# can access MyClass2, MyClass1 variables/methods
+parent2 = MyClass2() 
+print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
+# can access MyClass3, MyClass2, MyClass1 variables/methods
+child = MyClass3()
+```
+4. **Hierarchical**: A Parent/Super class is inherited by more than one Child/sub class. 
+```Python
+class MyParent:
+    args = [22,59,81,34,73,12,35]
+# child class 1 inheriting 'MyParent'
+class MyChild1(MyParent):
+  def max_finder(self):
+    return max(self.args)
+# child class 2 also inheriting 'MyParent'
+class MyChild2(MyParent):
+  def min_finder(self):
+    return min(self.args)
+
+my_instance1 = MyChild1()
+my_instance2 = MyChild2()
+print(my_instance1.max_finder()) # 81
+print(my_instance2.min_finder()) # 12
 ```
 ### 2. Abstraction
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
