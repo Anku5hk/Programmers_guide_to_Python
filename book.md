@@ -11,7 +11,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
 2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-data-types)
 3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures)
-4. [Flow Control, File & Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-and-exception-handling)
+4. [Flow Control, Exception Handling and File I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-and-exception-handling)
 5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-functions-classes-and-objects)
 6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-oop-concepts)
 
@@ -841,7 +841,7 @@ for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
 ```
 
-## 4. Flow Control and Exception Handling
+## 4. Flow Control, Exception Handling and File I/O
 ### Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except 'switch'. 
 #### if...else
@@ -954,10 +954,39 @@ else:
 finally:
     print("Finally, its finally, which always executes.")      
 ```
-### File Handling
-1. txt file
-2. json file
-3. xml file
+### File I/O
+#### Basic I/O
+Basic I/O operations are to take input the from user and send output to the user's screen.</br>
+The two I/O functions are shown below.</br></br>
+**1. input(prompt) => None**</br></br>
+Parameters:</br>
+  * *prompt*: Your message to the screen.
+#####
+Explanation: Read input from standard output and take it as string.
+```Python
+## Take input from user
+v = input() # or "input('Your message here ')"
+print(type(v)) # <class 'str'>
+```
+**2. print(\*values, file, sep, end, flush) => None**</br></br>
+Parameters:</br>
+  * *values*: Takes the object to be printed, '/*' indicates more than one object. 
+  * *file*: A file-like object (stream), default is "sys.stdout" i.e screen.
+  * *sep*: A separator between multiple values, default is ' '.
+  * *end*: The last print value, default is '\n'.
+  * *flush*: Whether to forcibly flush the stream, default is False.
+##### 
+Explanation: Prints the given object to a standard output device, usually screen.
+```Python
+## Print output to the screen
+print("This is output") # This is output
+print("multiple", "objects", "to print") # multiple objects to print
+print("This", "is", "a", "String" , sep="_") # This_is_a_String
+print("This", end="\t") 
+print("is not new lined") # This    is not new lined
+```
+#### File Handling
+
 ### Extras
 * **break**: breaks from loop. 
 * **continue**: continue to next iteration in loops.
