@@ -1341,7 +1341,8 @@ def my_fun(a,b):
 # now just call my_fun() normally, this will call my_outer_func()
 print(my_fun(10,20)) # 30
 ```
-* **special methods**: These methods begin & end with double underscore "\_\_" and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+#### Special methods
+* These methods begin & end with double underscore "\_\_" and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. * This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
 ```Python
 ## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
