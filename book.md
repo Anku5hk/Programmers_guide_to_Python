@@ -1794,12 +1794,12 @@ some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
 ### 4. Polymorphism
-* Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of "if..else" or "switch case" when same type of function needs called on different objects.     
+* Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of "if..else" or "switch case" when same type of function needs to be called on different objects.     
 * Two Types of Polymorphism. 
   1. **Static**: The behaviour is decided at Compile-Time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
 * The Four types of Polymorphism are explained below.
-1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and object types are checked throughout using "if..else" or "isinstance()" function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using "if..else" or "isinstance()" function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
 class MyClass:
