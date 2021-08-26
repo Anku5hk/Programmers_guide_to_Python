@@ -17,7 +17,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 ## 1. Basics
 ### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As wikipedia suggests "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
 * **Literals**: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
@@ -56,10 +56,6 @@ not,and,or
 is,is not
 ## Membership Operators
 in,not in
-
-## extra operations
-# chaining operators operation Eg.
-if x <= y < z: # is similar to "if x<=y and y<z:"
 ```
 * **Expressions**: Are a part of statement (as in expression statement), a expression is something that returns value/sequence by doing some operation (arithmetic/conditional/lambda function).
 ```Python
@@ -128,6 +124,28 @@ multiline comment
   5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K (constant) times.
   6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N (input) times.</br>
 **Note**: Explaining all time complexities would consume lots of space for this book, so I have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
+* Some **Pythonic Sugar** expressions.
+```Python
+## Multiple Target assignment
+a = b = c = 10
+# lets check the outputs
+print(a,b,c) # 10,10,10
+a = 20
+b = 30
+# lets check again
+print(a,b,c) # 20,30,10
+# This "a = b = c = 10" is similar to
+some_var = 10
+a = some_var
+b = some_var
+c = some_var
+# so when we change a/b/c we are changing value for themselves only and not others
+
+## Chaining operators
+# is similar to "if x<=y and y<z:"
+if 10 <= 20 < 30:
+  print("okay got it")
+```
 ## 2. Data Types
 Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 ### Three Numeric Types
@@ -252,7 +270,7 @@ print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
 ```
 ### Boolean
-Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4.
+Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4. 
 ```Python
 ## assigning bool
 my_bool = True
@@ -261,8 +279,8 @@ my_bool = my_bool + 4 # becomes 5
 my_bool = False
 my_bool = my_bool + 4 # stays 4
 
-## type conversion
-# int/float to bool, anything not 0 is True, also None is False
+## type conversion/truth value testing
+# number to bool, anything not 0 is True
 print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
@@ -464,8 +482,12 @@ del my_list[0] # or even with slicing like, del my_list[2:4]
 ## join two lists
 # using '+' operator
 my_list1 = [2,4,5,6] + [34,7,4,2]
-# using extend() method
+# using 'extend()' method
 my_list1.extend([3,6,2]) # my_list1 becomes [2,4,5,6,34,7,4,2,3,6,2]
+
+## Using '*' operator on a list
+my_list = ['This',30]
+print(my_list*3) # ['This', 30, 'This', 30, 'This', 30]
 
 ## accessing/altering elements
 var_1 = my_list1[0]
@@ -880,6 +902,7 @@ for val in map(my_func, my_tuple):
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
 #### if...else
 ```Python
+## simple if..else condition
 my_var = 20
 my_var1 = None
 if my_var == 20:
@@ -889,19 +912,36 @@ elif my_var == 30:
 else:
   print('Its something else')
 
-# single line condition
+## Ternary Operator: SYNTAX => [on_true] if [expression] else [on_false] 
 my_var = True if 20%2 == 0 else False
-# here is True is the output when 'if' condition is satisfied, else False is the output
+# here is 'True' is the output when 'if' condition is satisfied, else 'False' is the output
+print(my_var) # True
 
-# using only 'if' after some variable/sequence to check if it is not 'None'
-if my_var:
-  # similar to "if my_var != None"
+## Truth value testing: Check whether a object is a Truthy and Falsy, given below(comma separated)
+# Falsy(False values): 0,0.0,0j,None,False,[],{},(),"",range(0).
+# Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty Data-structures/sequences.
+# By default user-defined object is also Truthy, you can manipulate using '__bool__()' special method
+# can also use 'bool()' built-in function to check the Truth value
+## Some Examples
+# my_var is a non-zero number 
+if my_var: 
   print("printed")
-if my_var1:
-  # will not execute, my_var1 is 'None'
+# my_var1 is 'None'  
+if my_var1: 
   print("not printed")
-  
-# negate the condition using 'not'
+# check a empty tuple
+if ():
+  print("not printed")
+# check a non-empty tuple
+if (23,45,34):
+  print("printed")
+# using the 'bool()' function  
+print(bool(42)) # True
+print(bool("This?")) # True
+print(bool(None)) # False
+# Explore the rest!
+
+## negate the condition using 'not'
 if not my_var:
   # similar to "if my_var == None"
   print("not printed")
@@ -912,11 +952,11 @@ if not my_var1:
 #### for
 ```Python
 my_list = [10,20,30,40,50]
-# regular looping by indexes
+## regular looping by indexes
 for i in range(len(my_list)): # [0:4]
   print(my_list[i])
 
-# pythonic loops
+## pythonic loops
 for v in my_list:
   print(v)
 # or 
@@ -1125,7 +1165,7 @@ class MyDBManager:
     self.some_db['id'] = []
     self.some_db['name'] = []
 
-  # dummy fucntions to add values
+  # dummy functions to add values
   def add(self, my_id, name):
     self.some_db['id'].append(my_id)
     self.some_db['name'].append(name)
@@ -1437,14 +1477,14 @@ print(dir(MyClass))
 ```
 ### Extras
 #### Namespaces
-* As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have *namespace* keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. 
+* As seen in c++ namespaces are collection of names of variables/functions, but unlike in c++, python does not have *namespace* keyword, so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
 * **There are three types of namespaces**.
   1. **built-in**: Are readily available functions without any import.
   2. **global**: Are which user defines outside of any function/class. 
   3. **local**: Are which user defines inside a function/class/nested.
 ```Python
 ## built-in namespace 
-# For example functions which do not require any imports 
+# For example some functions which do not require any import 
 print(), len(), map(), range(), list(), set(), str()
 
 ## global namespace
@@ -1493,7 +1533,7 @@ print(math(2)) # 4
 #### Packages
 Are defined with *\_\_init\_\_().py* file in that folder.
 #### Decorators
-* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are also referred as "syntactic sugar". Using '@' prefix a function can be decorated. 
+* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
 * This functionality is utilized using functions being first class in python.
 ```Python
 # my_outer_func() is just a container function
@@ -1524,11 +1564,12 @@ print(my_decorated_fun(10, 20)) # 30
 def my_fun(a,b):
   return a+b
 
-# now just call my_fun() normally, this will call my_outer_func()
+# now just call 'my_fun()' normally, this will automatically call/invoke my_outer_func()
 print(my_fun(10,20)) # 30
 ```
 #### Special methods
-* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. * This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called “magic” methods because these methods are invoked indirectly, we do not need to invoke them directly.
+* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
 ```Python
 ## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
@@ -1553,9 +1594,9 @@ class MyClass:
     return self.some_values[index]
 
 my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
-# test print functionality
+# test print functionality, '__str__()' is invoked when 'print()' is called 
 print(my_instance) # id: 239034, name: Bob, age: 23
-# length fucntionality
+# length functionality
 print(len(my_instance)) # 6
 # iterate thourgh object 
 for a in my_instance:
@@ -1774,7 +1815,7 @@ class MyChild(MyParent1, MyParent2):
       print(self.para1) # 10
       # initialize second parent by passing 'self' object to its constructor
       MyParent2.__init__(self) 
-      # so now MyParent2's variables/methods be accessed
+      # so now MyParent2's variables/methods can be accessed
       print(self.para1) # 20
       print(self.para2) # 42
 
@@ -1788,11 +1829,12 @@ child = MyChild(30)
 print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, <class '__main__.MyParent2'>, <class 'object'>]
 # same as before, calling MyParent1's method
 print(child.other_method(2)) # 4
+print(child.my_func(2)) # 4
 
 # to call MyParent2's same named method using child instance
 # call with class and pass child instance
-output1 = MyParent2.other_method(child, 2) # 8
-output2 = MyParent1.other_method(child, 2) # 4
+print(MyParent2.other_method(child, 2)) # 8
+print(MyParent1.other_method(child, 2)) # 4
 ```
 3. **Multilevel**: In multi-level a child class inherits a parent class and is also a parent class to other class.
 ```Python
