@@ -991,24 +991,24 @@ finally:
 ### File I/O
 Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
 #### 1. input(prompt) => None
-Parameters:</br>
+**Parameters**:</br>
   * *prompt* Any: Your message to the screen.
 #####
-Explanation: Read input from standard output and take it input as string.
+**Explanation**: Read input from standard output and take it input as string.
 ```Python
 ## Take input from user
 v = input() # or "input('Your message here ')"
 print(type(v)) # <class 'str'>
 ```
 #### 2. print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) => None
-Parameters:</br>
+**Parameters**:</br>
   * *values* object: Takes the object to be printed, '/*' indicates more than one object. 
   * *sep* Optional[Text]: A separator between multiple values.
   * *end* Optional[Text]: The last print value.
   * *file* Optional[_Writer]: A file-like object (stream), default is screen.
   * *flush* bool: Whether to forcibly flush the stream.
 ##### 
-Explanation: Prints the given object to a standard output device, usually screen.
+**Explanation**: Prints the given object to a standard output device, usually screen.
 ```Python
 ## Print output to the screen
 print("This is output") # This is output
@@ -1018,7 +1018,7 @@ print("This", end="\t")
 print("is not new lined") # This    is not new lined
 ```
 #### 3. open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None) => file
-Parameters:</br>
+**Parameters**:</br>
   * *filename* Union[str, bytes, int]: path-like object or a string.
   * *mode* str: Opening file mode.
   * *buffering* int: For specifying buffering policy.
@@ -1028,7 +1028,7 @@ Parameters:</br>
   * *closefd* bool: If False, the underlying file descriptor will be kept open even when the file is closed.  
   * *opener* Optional[Callable[[str, int], int]]: A custom file opener, should return a file descriptor.
 #####
-Explanation: This built-in function is used to open a file. This method returns a file object(also called handle), this object is further used to perform operations such as read/write/append. For different operations there are different modes one can utilize according to their needs, default is r(reading). 
+**Explanation**: This built-in function is used to open a file. This method returns a file object(also called handle), this object is further used to perform operations such as read/write/append. For different operations there are different modes one can utilize according to their needs, default is r(reading). 
 * Various file modes are shown below.
   1. **r**: For opening a file in read-only mode.
   2. **w**: In write mode if the file already exist and has some previous content it is completely overwritten. Else new file is created and content is written.
