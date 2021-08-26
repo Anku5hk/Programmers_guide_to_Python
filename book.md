@@ -1080,7 +1080,7 @@ file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
-#### *with* Statement
+#### *with*
 This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
@@ -1438,7 +1438,7 @@ print(dir(MyClass))
 ### Extras
 #### Namespaces
 * As seen in c++ are collection of names of variables/functions, but unlike in c++, python does not have *namespace* keyword, so no user defined namespaces. Python maintains its namespaces in a dictionary. They are maintained according to their scopes automatically, just like in any programming language. 
-* There are three types of namespaces.
+* **There are three types of namespaces**.
   1. **built-in**: Are readily available functions without any import.
   2. **global**: Are which user defines outside of any function/class. 
   3. **local**: Are which user defines inside a function/class/nested.
@@ -1528,7 +1528,7 @@ def my_fun(a,b):
 print(my_fun(10,20)) # 30
 ```
 #### Special methods
-* These methods begin & end with double underscore *\_\_* and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. * This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. * This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
 ```Python
 ## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
@@ -1631,7 +1631,7 @@ for a in my_generator():
 #### 3. Descriptors
 * A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
 * Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
-* There are two types of Descriptors.
+* **There are two types of Descriptors**.
   1. **data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
   2. **non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
 * These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
@@ -1708,7 +1708,7 @@ It helps in reducing code complexities & redundancy by promoting better software
 * **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to 'super' keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
-* Four types of Inheritance are shown below.
+#### Four types of Inheritance are shown below.
 1. **Single**: A Child/sub class only inherits a single Parent/Super Class.
 ```Python
 class MyParent:
@@ -1979,7 +1979,7 @@ del my_instance._MyClass__my_var3
 # further crashing the program
 print(my_instance._MyClass__my_var3) # AttributeError
 ```
-* **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
+#### **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
   * *fget* Optional[Callable]: The getter function.  
   * *fset* Optional[Callable]: The setter function.  
@@ -2039,12 +2039,12 @@ some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
 ### 4. Polymorphism
-* Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of "if..else" or "switch case" when same type of function needs to be called on different objects.     
+* Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of *if..else* or *switch* case when same type of function needs to be called on different objects.     
 * Two Types of Polymorphism. 
   1. **Static**: The behaviour is decided at Compile-Time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
 #### The Four types of Polymorphism are explained below.
-1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using "if..else" or "isinstance()" function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using "if..else" or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
 class MyClass:
