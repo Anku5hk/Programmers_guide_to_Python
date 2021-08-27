@@ -504,8 +504,8 @@ if not a is b:
 * Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. 
 * **Composite Data Type, Abstract Data Type and Data Structures difference.** 
   1. Composite Data Types are data structures but not all data structures are composite types.
-  2. Abstract Data Type define only the mathematical model of the implementation of a data type.
-  3. Data structure are the coded/coding implementation of a data type.
+  2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
+  3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
 * In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
 * Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
