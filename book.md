@@ -20,7 +20,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
-* **Literals**: Are raw data given to a variable, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal. 
+* **Literal constant**: Are raw data, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal constant. 
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
@@ -148,19 +148,20 @@ if 10 <= 20 < 30:
   print("okay got it")
 ```
 ## 2. Data Types
-* Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. 
+* Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type.
+* Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. 
 * There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
-* **Three general Data types in porgramming.**
-  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python).
-  2. **Composite/Derived**: Are data types which are constructed using primitive and/or composite data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Pointers(not present in Python). 
-  3. **Abstract/User-defined**: Are data types that are defined by the users, Eg. User-defined data-types. </br>
-* **Python further generalizes data types in two types.**
+* **Three types of Data Types in programming.**
+  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python) etc.
+  2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(not present in Python), Structures(not present in Python) etc.
+  3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of the functions, Eg. Linked-List, Stack, Queue, Deque, Tree, Graphs etc.        
+* **Mutable and Immutable types inside Python.**
   1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
 * Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#stringstr), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#booleanbool), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
-1. **int** (interger): Numbers that do not have decimal values.
-2. **float**: Numbers that do have decimal values. Is a double precision floating point number in Python. 
+1. **int** (interger): Numbers that do not have decimal values. *int* is also a *long*, it can be of any size. 
+2. **float**: Numbers that do have decimal values. *float* is also a *double*, it is a double precision floating point number in Python. 
 3. **complex**: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
 ## assigning values to variables 
@@ -206,16 +207,25 @@ print(str(my_float)) # 3.0
 ### String(str)
 * Are sequence of characters in python. Unlike Java, python does not have *char* for character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string.
 ```Python
-## assigning strings
+## Creating strings
+# Single Quote: contains string value 
 text = 'strings can be single quoted'
-text = "strings can be double quoted"
+# Double Quote: can be useful for escaping single inverted comma(') rest there is no difference
+text = "strings can be double quoted" 
+# Triple Quote: used for multi-line text, can be used with single/double inverted commas
 text = """This is a long text.
         And want to use multiple lines."""
-        
+
+## escaping sequences: use '\' at the end of the line to continue a string on another line
+text = "This is text 1." \
+"This is text 2"
+print(text) # This is text 1.This is text 2
+
 ## String types
 print("normal str,\t escaping characters") # normal str, escaping characters
 print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
-# String formatting, used to pass python expression/variable inside a string
+
+## String formatting, used to pass python expression/variable inside a string
 n = 1
 text = f"This is a String number {n}" # f-string to pass variable
 text = f"This is a String number {20-19}" # or even to pass expression
@@ -490,7 +500,12 @@ if not a is b:
 ```
 
 ## 3. Data Structures
-* Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. 
+* Wikipedia "In computer science, a data structure is a data organization, management and storage format that enables efficient access and modification." Simply put they are used to organize data in a way that it can be stored/retrieved efficiently. Data can be data types or even other data structures.
+* Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. 
+* **Composite Data Type, Abstract Data Type and Data Structures difference.** 
+  1. Composite Data Types are data structures but not all data structures are composite types.
+  2. Abstract Data Type define only the mathematical model of the implementation of a data type.
+  3. Data structure are the coded/coding implementation of a data type.
 * In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
 * Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
