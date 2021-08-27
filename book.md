@@ -154,7 +154,7 @@ if 10 <= 20 < 30:
 * **Three types of Data Types in programming.**
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python) etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(not present in Python), Structures(not present in Python) etc.
-  3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of the functions, Eg. Linked-List, Stack, Queue, Deque, Tree, Graphs etc.        
+  3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of the functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
 * **Mutable and Immutable types inside Python.**
   1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
