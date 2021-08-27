@@ -1,9 +1,9 @@
 # Programmer's guide to Python
 Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. I hope this helps you in learning python programming. Happy Learning!!
 
-**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently (intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
+**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently(intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as c/c++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python, while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as c/c++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python(and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
 
 #### [Some Topics are under progress..]
 
@@ -30,7 +30,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, just assign values to them. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existance when they are assigned something. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -116,7 +116,8 @@ multiline comment
 """
 ```
 * **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
-**Common Time Complexities in ascending order of their growing time.** 
+
+  **Common Time Complexities in ascending order of their growing time.** 
   1. O(1): Constant time. time does not increase at all.
   2. O(logN): Logarithmic time. when time is increasing logarithmically (grows at inversely proportional rate of N).
   3. O(N): Linear time. time increases linearly with the input size.
@@ -147,10 +148,19 @@ if 10 <= 20 < 30:
   print("okay got it")
 ```
 ## 2. Data Types
-Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java (as variables are just pointers). Any variable can be assigned any data type, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+* Are used to define the type of data a variable holds. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. 
+* There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+* **Three general Data types in porgramming.**
+  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python).
+  2. **Composite/Derived**: Are data types which are constructed using primitive and/or composite data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Pointers(not present in Python). 
+  3. **Abstract/User-defined**: Are data types that are defined by the users, Eg. User-defined data-types. </br>
+* **Python further generalizes data types in two types.**
+  1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
+  2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
+* Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types),[str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#string-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-types). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
 1. **int** (interger): Numbers that do not have decimal values.
-2. **float**: Numbers that do have decimal values.
+2. **float**: Numbers that do have decimal values. Is a double precision floating point number in Python. 
 3. **complex**: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
 ## assigning values to variables 
@@ -178,6 +188,8 @@ print(pow(10, 2)) # 100
 print(ord("c")) # 99
 # returns normal value back given the unicode value
 print(chr(ord("c"))) # c
+# returns quotient and remainder of integer division
+print(divmod(6, 4)) # (1, 2)
 
 ## type conversion
 my_int = 42
@@ -191,8 +203,8 @@ print(int(my_float)) # 3
 # float to str
 print(str(my_float)) # 3.0
 ```
-### String
-Are sequence of characters in python. Unlike Java, python does not have *char* for character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string.
+### String(str)
+* Are sequence of characters in python. Unlike Java, python does not have *char* for character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string.
 ```Python
 ## assigning strings
 text = 'strings can be single quoted'
@@ -269,8 +281,8 @@ print(int(my_string1)) # 20
 print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
 ```
-### Boolean
-Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4. 
+### Boolean(bool)
+* Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as "Truthy" & "Falsey" values when evaluating.
 ```Python
 ## assigning bool
 my_bool = True
@@ -279,14 +291,15 @@ my_bool = my_bool + 4 # becomes 5
 my_bool = False
 my_bool = my_bool + 4 # stays 4
 
-## type conversion/truth value testing
+## type conversion/truth value testing with boolean values
 # number to bool, anything not 0 is True
 print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
-### Special 
-**None**: None is similar to *null* in java. Python docs "None is frequently used to represent the absence of a value, as when default arguments are not passed to a function." 
+### None 
+* *None* is similar to *null* in java/c/c++ but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
 ```Python
 n = None
 print(type(None)) # <class 'NoneType'>
@@ -299,7 +312,7 @@ if n: # same as "if n != None:"
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
-### Custom Data Type
+### User-defined Data Type
 User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
 ```Python
 ## Example 1
@@ -369,7 +382,7 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
-#### Some functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int).
+#### Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int).
 #### 1. type(object) => str
 **Parameters**:</br>
   * *object* object: Any object.
@@ -397,11 +410,24 @@ print(isinstance(a, str)) # False
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explaination**: This function returns the object identity which is the object’s address in memory.
+**Explaination**: This function returns the object identity which is the object’s address in memory. The returned object id varies across programs/systems, so will not be the same anytime. 
 ```Python
 my_float = 50.0
 # object id wil differ each time with program
 print(id(my_float)) # 1875526208176
+```
+#### 4. dir(object) => list
+**Parameters**:</br>
+  * *object* object: Any object.
+#####
+**Explaination**: Returns a list of names in current local scope or a list of object attributes.
+```Python
+## names under current local scope
+print(dir())
+
+## list of object's attributes
+print(dir(int))
+print(dir(my_obj))
 ```
 #### Logical and Identity operators.
 ```Python
@@ -462,8 +488,11 @@ print(id(b)) # 2055638580288
 if not a is b:
   print("printed") 
 ```
+
 ## 3. Data Structures
-Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. Python has built-in 4 data structures. In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background.
+* Data Structure is a way to store and organize data so that it can be used efficiently. They are used to store/retrieve data from. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. 
+* In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
+* Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
@@ -617,7 +646,7 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
-Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable (must have a *\_\_hash\_\_()* method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are mostly used to maintain unique variables and to quickly check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
+Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable (must have a *\_\_hash\_\_()* method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are used to maintain unique values and in "membership testing" i.e check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
 ## create set
 my_set = set() # create a empty set
@@ -653,6 +682,8 @@ my_set2 = {1,2,3,4,5}
 print(my_set1.intersection(my_set2)) # {1, 3, 5}
 # to find union, or similar to 'my_set1 | my_set2'   
 print(my_set1.union(my_set2)) # {1, 2, 3, 4, 5, 7, 8}
+# find difference in my_set1 and my_set2
+print(my_set1.difference(my_set2)) # {8,7}
 my_copy = my_set1.copy() # returns a copy of a set
 my_copy.clear() # removes all members of set
 # checks if my_set2 is a subset of my_set1
@@ -753,6 +784,36 @@ my_queue = []
 ## add/remove operation
 my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
+```
+#### 3. FrozenSet
+Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
+```Python
+## create a frozenset
+# using a list
+my_fset = frozenset([10,65,65,2,7,94,34,42,21])
+# or any other iterable
+my_fset = frozenset((10,65,65,2,7,94,34,42,21))
+print(type(my_fset)) # <class 'frozenset'>
+print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
+
+## immutable 
+# my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
+# my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
+
+## some frozenset methods
+my_fset1 = frozenset({3,5,7,1,8})
+my_fset2 = frozenset({1,2,3,4,5})
+# intersection 
+print(my_fset1.intersection(my_fset2)) # frozenset({1, 3, 5})
+# union
+print(my_fset1.union(my_fset2)) # frozenset({1, 2, 3, 4, 5, 7, 8})
+# difference
+print(my_fset1.difference(my_fset2)) # frozenset({8, 7})
+my_copy = my_fset1.copy() # returns a copy of a set
+# checks if my_fset2 is a subset of my_fset1
+print(my_fset1.issubset(my_fset2)) # False
+# checks if my_fset2 is a superset of my_fset1
+print(my_fset1.issuperset(my_fset2)) # False
 ```
 ### Extras
 #### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
@@ -1477,7 +1538,7 @@ print(dir(MyClass))
 ```
 ### Extras
 #### Namespaces
-* As seen in c++ namespaces are collection of names of variables/functions, but unlike in c++, python does not have *namespace* keyword, so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
+* As seen in c++ namespaces are collection of names of variables/functions, but unlike c++, python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
 * **There are three types of namespaces**.
   1. **built-in**: Are readily available functions without any import.
   2. **global**: Are which user defines outside of any function/class. 
@@ -1679,8 +1740,6 @@ for a in my_generator():
 ```Python
 ## Descriptor example
 class MyDescriptor:
-    """ This is a simple descriptor that allows to create custom descriptor object."""
-  
     # when class holding 'MyDescriptor' object is defined this function is called
     # which records its name for later reference 
     def __set_name__(self, obj, name):
@@ -1995,31 +2054,33 @@ class MyClass:
       self.my_var1 = 10 # public variable
       self._my_var2 = 20 # protected variable
       self.__my_var3 = 30 # private variable
-  def getMyVar(self):
+  def get_my_var(self):
     return self.__my_var3
-  def setMyVar(self, new_value):
+  def set_my_var(self, new_value):
     # if you want '__my_var3' 'read-only' you can raise AttributeError, uncomment the following line 
     # raise AttributeError("Cannot change this value")
     self.__my_var3 = new_value  
     
 some_instance = MyClass()
-print(some_instance.getMyVar()) # 30
-some_instance.setMyvar(50)
-print(some_instance.getMyVar()) # 50
+print(some_instance.get_my_var()) # 30
+some_instance.set_my_var(50)
+print(some_instance.get_my_var()) # 50
 # but still can't access directly
 print(some_instance.__my_var3) # AttributeError
 
 ## Problem with python's access modifier implementation
-# '__dict__' a special variable in python keeps track of variables/functions of an object/class
+# '__dict__' a special variable in python keeps track of attributes of module/class/object
 # this process is name mangling, which uses '_CLASSNAME' prefix for private variables
 # print this to show private variables
-print(my_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+# or use 'vars()' to return the '__dict__' variable
+print(vars(some_instance)) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
 # which then further can be accessed using the naming convention
-print(my_instance._MyClass__my_var3) # 30
+print(some_instance._MyClass__my_var3) # 30
 # also can delete the variable
-del my_instance._MyClass__my_var3 
+del some_instance._MyClass__my_var3 
 # further crashing the program
-print(my_instance._MyClass__my_var3) # AttributeError
+print(some_instance._MyClass__my_var3) # AttributeError
 ```
 #### **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
@@ -2028,7 +2089,8 @@ print(my_instance._MyClass__my_var3) # AttributeError
   * *fdel* Optional[Callable]: The deleter function.  
   * *doc* Optional[str]: Provide some information about the particular property.
 #####
-**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using '.' operator without really exposing the real(private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property* can also be used as decorator for further convenience. Although there might be limited use cases for *property*, it is still a powerful way to solve a particular problem. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
+**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real(private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br>
+**Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are just descriptors, they are a implementation of descriptors. Although one drawback using descriptor is for hooking a single variable a whole class has to be dedicated, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
 ```Python
 ## Implement Encapsulation using python's property object
 class MyClass:
@@ -2059,7 +2121,7 @@ class MyClass:
     print("Deleter function called")
     del self.__my_var3   
   
-  # getter method for '__my_var4'
+  # getter method for '__my_var4', this is the second variable(we talked about in property vs descriptors)
   @property
   def some_var(self):
     return self.__my_var4
