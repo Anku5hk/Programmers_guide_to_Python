@@ -797,8 +797,8 @@ print(type(my_fset)) # <class 'frozenset'>
 print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
 
 ## immutable 
-# my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
-# my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
+my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
+my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
 
 ## some frozenset methods
 my_fset1 = frozenset({3,5,7,1,8})
