@@ -17,8 +17,8 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 ## 1. Basics
 ### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathemetical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
 * **Literal constant**: Are raw data, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal constant. 
 ```Python
@@ -30,7 +30,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existance when they are assigned something. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -83,7 +83,7 @@ yield, del, return, pass, raise, break, continue
 if, while, for, try, with 
 ```
 ### Extras
-* **Indentations**: Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Unindented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
+* **Indentations**: Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
 ```Python
 ## example 1
 # Notice: the colon at the end of 'if' condition
@@ -148,7 +148,7 @@ if 10 <= 20 < 30:
   print("okay got it")
 ```
 ## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type.Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python) etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(not present in Python), Structures(not present in Python) etc.
@@ -158,8 +158,8 @@ Defines a particular kind/domain of data item, they define the type of data a va
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
 #### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#stringstr), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#booleanbool), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
-1. **int** (interger): Numbers that do not have decimal values. *int* is also a *long*, it can be of any size. 
-2. **float**: Numbers that do have decimal values. *float* is also a *double*, it is a double precision floating point number in Python. 
+1. **int** (interger): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
+2. **float**: Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
 3. **complex**: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
 ## assigning values to variables 
@@ -321,7 +321,7 @@ if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
 ### User-defined Data Type
-User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
+* User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
 ```Python
 ## Example 1
 # create object of a data type
@@ -354,7 +354,7 @@ my_dt.x = "THis can also become a string"
 ## Example 2
 class MyDataType:
   def __init__(self, x, y):
-    """__init__ is antoher 'magic method', which enables usage of construtor in python, more on this later."""
+    """__init__ is antoher 'magic method', which enables usage of constructor in python, more on this later."""
     # initialize here
     if not isinstance(x, int) or not isinstance(y, str):
       raise TypeError() # raise error if type does not match
@@ -395,7 +395,7 @@ my_dt.insert(y=20) # TypeError: Should be a String
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explaination**: This function returns the class_name of an object.
+**Explanation**: This function returns the class_name of an object.
 ```Python
 a = "What?"
 print(type(a)) # str
@@ -407,7 +407,7 @@ print(type(b)) # float
   * *object* object: Any object.
   * *class* class: Any class.
 #####
-**Explaination**: This function checks if a object is an instance of a particular class. Returns True/False.
+**Explanation**: This function checks if a object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
 print(isinstance(a, int)) # True
@@ -418,17 +418,17 @@ print(isinstance(a, str)) # False
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explaination**: This function returns the object identity which is the object’s address in memory. The returned object id varies across programs/systems, so will not be the same anytime. 
+**Explanation**: This function returns the object identity which is the object’s address in memory. The returned object id varies across programs/systems, so will not be the same anytime. 
 ```Python
 my_float = 50.0
-# object id wil differ each time with program
+# object id will differ each time with program
 print(id(my_float)) # 1875526208176
 ```
 #### 4. dir(object) => list
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explaination**: Returns a list of names in current local scope or a list of object attributes.
+**Explanation**: Returns a list of names in current local scope or a list of object attributes.
 ```Python
 ## names under current local scope
 print(dir())
@@ -1335,7 +1335,7 @@ def cube_num(n):
 # assigning a function to a variable, it is not same as calling a function
 # Notice: no rounded brackets on the function
 my_var = cube_num 
-print(my_var) # <function my_funtion at 0x000001C1FDFAF0D0>
+print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
 # 'my_var' now points to the 'cube_num()', so calling 'my_var' is calling 'cube_num'
 print(my_var(2)) # 8
 
@@ -1406,7 +1406,7 @@ print(my_function(1,1)) # 2
 Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition.
 ```Python 
 class MyClass:
-    """This is a docString"""
+    """This is a docstring"""
     def my_fun():
         """This is what this method does..."""
 ```
@@ -1469,7 +1469,7 @@ print(my_instance.my_func(40)) # 75
 # in python the invocation of the instance method is operated via the class calling a method 
 # by passing the instance as an argument, so this is same as above instance calling method
 new_var = MyClass2.my_func(my_instance, 40)
-# the 'self' keyword ressembles the instance object, which is 'my_instance' here
+# the 'self' keyword resembles the instance object, which is 'my_instance' here
 ```
 #### Three Types of methods in class:
 1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which unlike *self* can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
@@ -2120,7 +2120,7 @@ class MyClass:
     print("Getter function called")
     return self.__my_var3
     
-  # if you dont want '__my_var3' value to be altered, don't define this 'setter' method     
+  # if you don't want '__my_var3' value to be altered, don't define this 'setter' method     
   # setter method for '__my_var3'
   # Notice: the <VAR_NAME> decorator  
   @my_var.setter
@@ -2128,7 +2128,7 @@ class MyClass:
     print("Setter function called")
     self.__my_var3 = new_value    
   
-  # if you dont want '__my_var3' value to be deleted, don't define this 'deleter' method     
+  # if you don't want '__my_var3' value to be deleted, don't define this 'deleter' method     
   # deleter method for '__my_var3'
   @my_var.deleter
   def my_var(self):
