@@ -148,17 +148,15 @@ if 10 <= 20 < 30:
   print("okay got it")
 ```
 ## 2. Data Types
-* Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type.
-* Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. 
-* There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
-* **Three types of Data Types in programming.**
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type.Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+#### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python) etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(not present in Python), Structures(not present in Python) etc.
   3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of those functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
-* **Mutable and Immutable types inside Python.**
+#### Mutable and Immutable types inside Python.
   1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
-* Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#stringstr), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#booleanbool), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
+#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#stringstr), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#booleanbool), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
 1. **int** (interger): Numbers that do not have decimal values. *int* is also a *long*, it can be of any size. 
 2. **float**: Numbers that do have decimal values. *float* is also a *double*, it is a double precision floating point number in Python. 
@@ -500,14 +498,15 @@ if not a is b:
 ```
 
 ## 3. Data Structures
-* Wikipedia "In computer science, a data structure is a data organization, management and storage format that enables efficient access and modification." Simply put they are used to organize data in a way that it can be stored/retrieved efficiently. Data can be data types or even other data structures.
-* Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. 
-* **Composite Data Type, Abstract Data Type and Data Structures difference.** 
+#### Wikipedia suggests </br>
+  > In computer science, a data structure is a data organization, management and storage format that enables efficient access and modification.
+
+Simply put they are used to organize data in a way that it can be stored/retrieved efficiently. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
+#### Composite Data Type, Abstract Data Type and Data Structures difference.
   1. Composite Data Types are data structures but not all data structures are composite types.
   2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
-* In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
-* Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
+#### Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
@@ -1810,9 +1809,9 @@ my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even numbe
 ## 6. OOP concepts
 #### What is OOP?
 Wikipedia suggests
-> Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
+  > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
 
-Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
+  Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
 #### Why OOP?
 It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to functional/structural programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
 
@@ -2104,7 +2103,7 @@ print(some_instance._MyClass__my_var3) # AttributeError
   * *fdel* Optional[Callable]: The deleter function.  
   * *doc* Optional[str]: Provide some information about the particular property.
 #####
-**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real(private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br>
+**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real(private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br></br>
 **Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are just descriptors, they are a implementation of descriptors. Although one drawback using descriptor is for hooking a single variable a whole class has to be dedicated, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
 ```Python
 ## Implement Encapsulation using python's property object
