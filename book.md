@@ -1616,8 +1616,8 @@ def some_fun():
 * Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
 * As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
 * Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
-* A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
-Example: Save this module as *sample.py* or anything you prefer but change the name if so the under next module.
+* A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.</br>
+Example: Save this module as *sample.py* or anything you prefer(but change the name if so the in the next module).
 ```Python
 a = 42
 def my_fun():
