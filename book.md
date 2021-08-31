@@ -146,6 +146,16 @@ c = some_var
 # is similar to "if x<=y and y<z:"
 if 10 <= 20 < 30:
   print("okay got it")
+
+## continuations
+# Example 1: Using backslash
+# use '\' at the end of the line to continue on another line
+text = "This is text 1." \
+"This is text 2"
+# Example 2: Using parens (...)  
+output = something 
+         .some_fun()
+         .calling_other_fun()
 ```
 ## 2. Data Types
 Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
@@ -213,11 +223,6 @@ text = "strings can be double quoted"
 # Triple Quote: used for multi-line text, can be used with single/double inverted commas
 text = """This is a long text.
         And want to use multiple lines."""
-
-## escaping sequences: use '\' at the end of the line to continue a string on another line
-text = "This is text 1." \
-"This is text 2"
-print(text) # This is text 1.This is text 2
 
 ## String types
 print("normal str,\t escaping characters") # normal str, escaping characters
@@ -1085,7 +1090,7 @@ Exception handling helps to continue the program execution while handling the Er
 ```Python
 ## use traceback module for printing Tracebacks
 import traceback
-# 'catch' keyword is replaced with 'except', rest is the same
+# 'catch' keyword is replaced with 'except', 'throw' is replaced with 'raise', rest is the same
 ## catching specific errors
 try:
   a=10
@@ -1433,7 +1438,7 @@ print(my_function(1,1)) # 2
 Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition.
 ```Python 
 class MyClass:
-    """This is a docstring"""
+    """This is a docstring."""
     def my_fun():
         """This is what this method does..."""
 ```
@@ -2002,7 +2007,7 @@ print(my_instance2.min_finder()) # 12
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body(they are empty methods). The abstract classes cannot be instantiated(its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
 * Python does not have 'abstract' keyword like in java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
-* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it becomes essential to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
+* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
 ```Python
 ### Abstract class example
 from abc import ABC, abstractmethod
