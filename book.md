@@ -41,15 +41,17 @@ a = 4.0
 a = "I am string"
 a = [1,2,3,4]
 ```
-* **Operators**: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are also very straight forward, I'll explain going through later on.
+* **Operators**: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are python specific and are also very straight forward, I'll explain going through later on.
 ```Python
 ## Operators in python(comma separated)
-## Arithmetic operators
+## Arithmetic operators(follows PEMDAS rule)
 +,-,\*,/,%,\*\*,//
 ## Assignment operators
 =,+=,-=,/*=,/=,%=,//=,\*\*=,&=,|=,^=,>>=,<<=
 ## Comparison operators
 ==,!=,>,<,>=,<=
+## Bitwise Operators
+&,|,^,~,<<,>>
 ## Logical Operators
 not,and,or
 ## Identity Operators
@@ -57,7 +59,7 @@ is,is not
 ## Membership Operators
 in,not in
 ```
-* **Expressions**: Are a part of statement (as in expression statement), a expression is something that returns value/sequence by doing some operation (arithmetic/conditional/lambda function).
+* **Expressions**: A expression is something that is evaluated by the interpreter value/sequence by doing some operation(arithmetic/conditional/lambda function). They are a part of statements(as in expression statement).
 ```Python
 # some examples
 "Yes"+"this"
@@ -67,7 +69,7 @@ a or b
 2 and 3
 lambda x:x**2
 ```
-* **Statements**: Are basically every instruction/line of code that python interpreter executes. There are two types, simple and compound statements. 
+* **Statements**: Are basically every line/block of code that python interpreter executes. There are two types, simple and compound statements. 
 ```Python
 ## simple statements
 # expressions we saw earlier
@@ -1086,11 +1088,11 @@ while i < len(my_list):
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
 ### Exception Handling
-Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way.   
+Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way. Exception handling is used to handle Runtime errors. In Python, *catch* keyword is replaced with *except* and *throw* is replaced with *raise* rest are the same.    
 ```Python
 ## use traceback module for printing Tracebacks
 import traceback
-# 'catch' keyword is replaced with 'except', 'throw' is replaced with 'raise', rest is the same
+
 ## catching specific errors
 try:
   a=10
@@ -1319,7 +1321,7 @@ assert a == 30 # AssertionError
 
 ## 5. Functions, Classes and Objects
 ### Functions
-* A function is used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something (in Python, None is returned by default if *return* statement is not defined). Functions are callable objects in Python.
+* A function is a block of code used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, None is returned by default if *return* statement is not defined). Functions are the callable objects in Python.
 * Functions in python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
 * **Parameters vs arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
 * Functions in python support Packing and Unpacking variables into tuple/dict. Explained below.
@@ -1610,19 +1612,34 @@ def some_fun():
         pass
 ```
 #### Modules
-* Is simply a file containing Python definitions and statements saved with *.py* extension. 
+* Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. 
 * Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
 * As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
-* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules are objects too. A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
+* A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
+Example: Save this module as *sample.py* or anything you prefer but change the name if so the under next module.
+```Python
+a = 42
+def my_fun():
+  print("This function was called")
+
+# check if module is a running module
+if __name__ == "__main__":
+  # do something here
+  print("sample module was ran")
+  my_fun()
+```
+Save this module as *my_module.py* and run this module.
 ```Python
 ## Modules
 # modules can be imported anywhere in python, there is no restriction
 # but for readability they are imported at the beginning
 # Eg. math is built-in module, import it using the 'import' keyword
+# the 'import' statement creates a module object
 import math 
 
-## accessing a function from math
-# any functions/classes/variables of math module can be accessed using '.' operator
+## accessing a function from math object
+# any functions/classes/variables of math module now can be accessed using '.' operator
 my_var = math.sqrt(8) 
 
 ## import specific from the module using 'from' keyword
@@ -1642,6 +1659,20 @@ print(math(2)) # 4
 
 ## Check functions/classes/variables of a module using dir()
 print(dir(math))
+
+## __main__ in Python
+# Notice: Now importing my_module in this module will not call my_fun() 
+# as my_fun() is only called if __name__ equals '__main__'
+# which is only when running from that module i.e running my_module.py script
+import sample
+print(dir(sample)) # ['__builtins__', '__name__',...]
+print(sample.__name__) # sample
+# check __name__ variable of this module 
+print(__name__) # __main__
+
+# now try doing otherwise, run sample.py check the if this print method is called
+if __name__ == "__main__":
+  print("my_module was ran")
 ```
 #### Packages
 Are defined with *\_\_init\_\_().py* file in that folder.
@@ -1852,7 +1883,6 @@ Wikipedia suggests
   Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
 #### Why OOP?
 It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
-
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-inheritance), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-encapsulation), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-abstraction) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-polymorphism).**
 ### 1. Inheritance
 * Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
@@ -2253,7 +2283,7 @@ my_ins2 = MyClass(10, 70, 20, 50)
 print(my_ins1 + my_ins2) # 312
 print(my_ins1 - my_ins2) # 12
 ```
-3. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class. Useful for handling the operation from a common interface/function.
+3. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred as "Duck Typing". It is a feature of "dynamic languages", it means directly(by not caring about exceptions) calling methods on objects without checking their types.  
 ```Python
 ## Method Overriding
 class ListHandler:
