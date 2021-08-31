@@ -17,7 +17,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 ## 1. Basics
 ### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. "Python is also dynamically-typed and garbage-collected". Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
 * **Literal constant**: Are raw data, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal constant. 
@@ -222,6 +222,7 @@ print(text) # This is text 1.This is text 2
 ## String types
 print("normal str,\t escaping characters") # normal str, escaping characters
 print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
+print(u"a unicode string, it represents english and non-english characters")
 
 ## String formatting, used to pass python expression/variable inside a string
 n = 1
@@ -428,7 +429,7 @@ print(id(my_float)) # 1875526208176
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explanation**: Returns a list of names in current local scope or a list of object attributes.
+**Explanation**: Returns a list containing names of variables/functions/classs in a object. This function also works on modules, as modules are also objects.
 ```Python
 ## names under current local scope
 print(dir())
@@ -502,7 +503,7 @@ if not a is b:
   > In computer science, a data structure is a data organization, management and storage format that enables efficient access and modification.
 
 Simply put they are used to organize data in a way that it can be stored/retrieved efficiently. Data can be data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. In python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
-#### Composite Data Type, Abstract Data Type and Data Structures difference.
+#### Composite Data Type, Abstract Data Type and Data Structures differences.
   1. Composite Data Types are data structures but not all data structures are composite types.
   2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
@@ -510,6 +511,24 @@ Simply put they are used to organize data in a way that it can be stored/retriev
 ### List
 They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
+# from pathlib import Path
+# print(type(Path("sample.txt")))
+# f= open(Path("sample.txt"))
+
+# import argparse
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-i", "--image", type=str, required=True,
+# 	help="path to the input image")
+# ap.add_argument("-m", "--model", type=str, default="frcnn-resnet",
+# 	choices=["frcnn-resnet", "frcnn-mobilenet", "retinanet"],
+# 	help="name of the object detection model")
+# ap.add_argument("-l", "--labels", type=str, default="coco_classes.pickle",
+# 	help="path to file containing list of categories in COCO dataset")
+# ap.add_argument("-c", "--confidence", type=float, default=0.5,
+# 	help="minimum probability to filter weak detections")
+# args = vars(ap.parse_args())
+
+
 ## create list
 my_list = [1,2,3,'a','this way','cab',1.0,2.0]
 
@@ -529,11 +548,11 @@ my_list1 = [2,4,5,6] + [34,7,4,2]
 my_list1.extend([3,6,2]) # my_list1 becomes [2,4,5,6,34,7,4,2,3,6,2]
 
 ## Using '*' operator on a list
-my_list = ['This',30]
-print(my_list*3) # ['This', 30, 'This', 30, 'This', 30]
+eg_list = ['This',30]
+print(eg_list*3) # ['This', 30, 'This', 30, 'This', 30]
 
-## accessing/altering elements
-var_1 = my_list1[0]
+## Indexing for accessing/altering elements
+var_1 = my_list1[0] # as usual 0 is the first element
 var_2 = my_list1[1]
 print(var_1, var_2) # 2,4
 # iterating with loop
@@ -558,8 +577,16 @@ print(my_list[:5:2]) # [3, 'this way', 1.0]
 print(my_list[:-4]) # [3, 'a', 'this way']
 # reverse a list
 print(my_list[::-1]) # [1, 2.0, 1.0, 'cab', 'this way', 'a', 3]
-# or my_list.copy() to create a copy, which does not stays the same reference
-print(my_list[:]) # [3, 'a', 'this way', 'cab', 1.0, 2.0, 1]
+
+## copy a list and dynamically typed example
+new_copy = my_list
+del new_copy[0]
+print(my_list, new_copy) # ['a', 'this way', 'cab', 1.0, 2.0, 1] ['a', 'this way', 'cab', 1.0, 2.0, 1]
+# Create a copy using "my_list[:]" or "my_list.copy()"
+new_copy = my_list[:]
+del new_copy[0]
+# now they do not refer to the same object 
+print(my_list, new_copy) # ['a', 'this way', 'cab', 1.0, 2.0, 1] ['this way', 'cab', 1.0, 2.0, 1]
 
 ## list comprehension
 my_list2 = [x for x in range(10)] # without condition
@@ -602,7 +629,7 @@ Are ordered collection of sequence of items similar to lists. But unlike list th
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
-## accessing element
+## Indexing for accessing element
 my_var = 10
 my_var = my_tuple[0] # okay
 my_tuple[0] = my_var # not okay because Immutable, raises TypeError
@@ -1415,7 +1442,7 @@ class MyClass:
 * **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
 * **Methods**: Functions that are inside class are called as methods. 
-* **self**: *self* is a keyword that resembles a instance of class in class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as *self* object to that method, explained more below.
+* **self**: *self* resembles a instance of class in class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it highly recommended to use *self* as a common practice for code readability. 
 ```Python
 ## class
 # define class
@@ -1468,11 +1495,11 @@ print(my_instance.my_func(40)) # 75
 
 # in python the invocation of the instance method is operated via the class calling a method 
 # by passing the instance as an argument, so this is same as above instance calling method
-new_var = MyClass2.my_func(my_instance, 40)
-# the 'self' keyword resembles the instance object, which is 'my_instance' here
+print(MyClass2.my_func(my_instance, 40)) # 75
+# the 'self' resembles the instance object, which is 'my_instance' here
 ```
 #### Three Types of methods in class:
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which unlike *self* can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
 3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration(using *@staticmethod* prefix), these methods are not required to pass class as first argument.
 ```Python
@@ -1522,7 +1549,7 @@ print(my_instance.fun3()) # can access
 ```
 ### Objects
 * An object has its own attributes/data(can be any data-type/data-structure/object) and functions(methods).
-* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-types in python have attributes/methods, data structures have their attributes/methods, Functions(are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
+* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in python have attributes/methods, Data Structures have their attributes/methods, Functions(are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
 * We saw earlier how to create a instance of a class(i.e object) and what/how they can access variables and methods.
 ```Python
 ## data types are object
@@ -1578,24 +1605,27 @@ def some_fun():
         pass
 ```
 #### Modules
-* Is simply a python file (with .py extension), *dir()* can be used to find variables/functions/class inside a module. 
-* Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(provide python dir path using PYTHONPATH env variable) ->  lastly inside *python installation directory*. 
-* This does means any module with repeating name will be given priority according to this sequence. [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
+* Is simply a file containing Python definitions and statements saved with *.py* extension. 
+* Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
+* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules are objects too. A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.
 ```Python
 ## Modules
 # modules can be imported anywhere in python, there is no restriction
 # but for readability they are imported at the beginning
-# math is built-in module, now the name 'math' refers to module math
+# Eg. math is built-in module, import it using the 'import' keyword
 import math 
+
+## accessing a function from math
 # any functions/classes/variables of math module can be accessed using '.' operator
-# accessing function from math
 my_var = math.sqrt(8) 
 
-# import specific functions/classes/variables from the module using 'from' keyword
+## import specific from the module using 'from' keyword
 from math import sqrt
+# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions.
 my_var = sqrt(16)
 
-# import with a different access name in order to avoid names collision
+## import with a different access name in order to avoid names collision
 def math(num):
   return pow(num, 2)
 
@@ -1604,6 +1634,9 @@ import math as maths
 print(maths.sqrt(4)) # 2.0
 # this 'math' does something else
 print(math(2)) # 4
+
+## Check functions/classes/variables of a module using dir()
+print(dir(math))
 ```
 #### Packages
 Are defined with *\_\_init\_\_().py* file in that folder.
@@ -1813,7 +1846,7 @@ Wikipedia suggests
 
   Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
 #### Why OOP?
-It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to functional/structural programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
+It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
 
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-inheritance), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-encapsulation), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-abstraction) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-polymorphism).**
 ### 1. Inheritance
@@ -2265,4 +2298,5 @@ print(my_ins)
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
+* [Python built-in modules](https://docs.python.org/3/py-modindex.html)
 * [Python built-in functions](https://docs.python.org/3/library/functions.html)
