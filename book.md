@@ -11,9 +11,10 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
 2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-data-types)
 3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures)
-4. [Flow Control, Exception Handling and File I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-exception-handling-and-file-io)
-5. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-functions-classes-and-objects)
-6. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-oop-concepts)
+4. [Flow Control and Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-and-exception-handling)
+5. [File I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-file-io)
+6. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-functions-classes-and-objects)
+7. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#7-oop-concepts)
 
 ## 1. Basics
 ### Introduction
@@ -621,6 +622,8 @@ deleting, poping, inserting, iteration are O(n).
 ```Python
 ## create tuple
 my_tuple = (1,2,3,'we','are','one',5.0)
+# this is also valid but using the parenthesis is cleaner 
+my_tuple = 1,2,3,'we','are','one',5.0
 
 ## Indexing for accessing element
 my_var = 10
@@ -633,7 +636,7 @@ for var in my_tuple:
 if 5.0 in my_tuple:
   print('printed')
 
-## also can't add/remove element in tuple, there is no append()/remove(), can't use 'del' like in list
+## Immutable: can't add/remove element in tuple, there is no append()/remove(), can't use 'del' like in list
 # so to add a element join two tuples, and assign it to the previous/new variable
 my_tuple += (5,) # adding another element as tuple, its basically joining two tuples
 # Notice: the target tuple should have ',' if single element is being added
@@ -995,7 +998,7 @@ for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
 ```
 
-## 4. Flow Control, Exception Handling and File I/O
+## 4. Flow Control and Exception Handling 
 ### Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
 #### if...else
@@ -1126,7 +1129,37 @@ else:
 finally:
     print("Finally, its finally, which always executes.")      
 ```
-### File I/O
+### Extras
+We'll check **break**, **continue**, **pass** and **assert** statement.
+* **break**: Use to break from iteration/loop. 
+* **continue**: Use to continue to next iteration in loops.
+* **pass**: To just declare a function/method with a empty body.
+```Python
+## break and continue
+i=-1
+my_list = [10,20,30,40,50]
+while i<len(my_list):
+  i+=1
+  if i == 0:
+    continue
+  if i == 4:
+    break
+  print(my_list[i]) # [20,30,40]
+  
+## pass
+# pass can be used inside empty a functions, just to have that function without raising error
+# and implement the function later while coding
+def my_fun():
+  pass
+```
+* **assert**: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
+```Python
+a = 10
+assert a == 10 # No error raised
+assert a == 30 # AssertionError
+```
+
+## 5. File I/O
 Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
 #### 1. input(prompt) => None
 **Parameters**:</br>
@@ -1279,37 +1312,8 @@ with MyDBManager() as db_handler:
 # now clear the db    
 print(db_handler.some_db) # {'id': [], 'name': []}
 ```
-### Extras
-We'll check **break**, **continue**, **pass** and **assert** statement.
-* **break**: Use to break from iteration/loop. 
-* **continue**: Use to continue to next iteration in loops.
-* **pass**: To just declare a function/method with a empty body.
-```Python
-## break and continue
-i=-1
-my_list = [10,20,30,40,50]
-while i<len(my_list):
-  i+=1
-  if i == 0:
-    continue
-  if i == 4:
-    break
-  print(my_list[i]) # [20,30,40]
-  
-## pass
-# pass can be used inside empty a functions, just to have that function without raising error
-# and implement the function later while coding
-def my_fun():
-  pass
-```
-* **assert**: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
-```Python
-a = 10
-assert a == 10 # No error raised
-assert a == 30 # AssertionError
-```
 
-## 5. Functions, Classes and Objects
+## 6. Functions, Classes and Objects
 ### Functions
 * A function is a block of code(group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
 * Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
@@ -1368,10 +1372,11 @@ print(square_num(2, my_var)) # 8
 #### Packing and Unpacking
 Functions in python support Packing and Unpacking variables into *tuple/dict*. Explained below.
 1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function(or they'll contain all the values). 
-2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' prefix followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' prefix followed by sequence's name, generally as *\*\*kwargs*.
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
 ```Python
 ## packing in functions 
 # packing variables into tuple and dict
+# Notice: the * operator and ** operator before args and kwargs 
 def my_test(*args, **kwargs):
   print(type(args)) # tuple
   print(type(kwargs)) # dict
@@ -1903,7 +1908,7 @@ print(my_instance.my_var4)
 my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
 my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
 ```
-## 6. OOP concepts
+## 7. OOP concepts
 #### What is OOP?
 Wikipedia suggests
   > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
