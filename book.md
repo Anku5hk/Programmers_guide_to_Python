@@ -630,7 +630,6 @@ my_tuple = 1,2,3,'we','are','one',5.0
 some_tuple = () # or using tuple() function
 
 ## Indexing for accessing element
-my_var = 10
 my_var = my_tuple[0] # okay
 my_tuple[0] = my_var # not okay because Immutable, raises TypeError
 # iterating over a tuple  
@@ -643,7 +642,9 @@ if 5.0 in my_tuple:
 ## Immutable: can't add/remove element in tuple, there is no append()/remove(), can't use 'del' like in list
 # so to add a element join two tuples, and assign it to the previous/new variable
 my_tuple += (5,) # adding another element as tuple, its basically joining two tuples
-# Notice: the target tuple should have ',' if single element is being added
+# Notice: The target tuple should have ',' if single element is being added
+some_tuple = (5) # this will give the type of variable inside parenthesis and not tuple, here 'int'
+print(type(some_tuple)) # <class 'int'>
 
 ## join two tuples
 my_tuple1 = (34,65,23) + (34,34)
