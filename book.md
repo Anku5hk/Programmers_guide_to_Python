@@ -112,6 +112,7 @@ some_var = 10 # IndentationError
 * **Comments**
 ```Python
 # this is a single line comment
+# TODO: this is a todo commment, useful in IDEs like Visual Code/Pycharm
 
 """this is a 
 multiline comment
@@ -1321,12 +1322,9 @@ assert a == 30 # AssertionError
 
 ## 5. Functions, Classes and Objects
 ### Functions
-* A function is a block of code used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, None is returned by default if *return* statement is not defined). Functions are the callable objects in Python.
-* Functions in python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
-* **Parameters vs arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
-* Functions in python support Packing and Unpacking variables into tuple/dict. Explained below.
-1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (or they'll contain all the values). 
-2. **Unpacking**: It is when a list/tuple/dict is passed, which then unpack as function parameters. Now passing tuple/list can be done with '\*' prefix followed by sequence's name, generally as *\*args*. Passing dict requires '\*\*' prefix followed by sequence's name, generally as *\*\*kwargs*.
+* A function is a block of code(group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
+* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
+* **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
 ```Python
 ## defining functions
 # Example 1. Non-parameterize function which returns nothing 
@@ -1377,7 +1375,12 @@ print(my_var(2)) # 8
 print(square_num(2)) # 4 
 # pass function as argument
 print(square_num(2, my_var)) # 8
-
+```
+#### Packing and Unpacking
+Functions in python support Packing and Unpacking variables into *tuple/dict*. Explained below.
+1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function(or they'll contain all the values). 
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' prefix followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' prefix followed by sequence's name, generally as *\*\*kwargs*.
+```Python
 ## packing in functions 
 # packing variables into tuple and dict
 def my_test(*args, **kwargs):
@@ -1424,6 +1427,36 @@ print(my_fun1(*my_list)) # 10
 # passing from dict
 print(my_fun1(**my_dict)) # 10 
 ```
+#### Recursion
+* Is when a function calls itself. Wikipedia "It is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem". It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
+* Recursion uses system stack to maintain the memory of ongoing recursive calls, this usually leads to higher memory usage compared to iteration.    
+* It is required to handle the StackOverFlow, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
+* There are certain advantages such as it reduces the size of code when a iterative solution is lengthy/complex and some solutions are easier/better implemented with recursion. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
+* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. 
+```Python
+## Example 1: Sum of n given number.
+# using iteration
+def iter_sum(n):
+    total = 0
+    for i in range(n+1):
+        total += i
+    return total
+# using recursion    
+def recur_sum(n, total) :
+    if n == 0:
+        return total
+    else:    
+        total += n
+    total = recur_sum(n-1, total)
+    return total
+print(iter_sum(5)) # 15
+print(recur_sum(5, 0)) # 15
+# here iterative solution seems understandable
+
+## Example 2: 
+
+```
+* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
 #### Anonymous functions
 Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
 ```Python
@@ -1437,7 +1470,7 @@ my_function = lambda a,b: a+b
 print(my_function(1,1)) # 2 
 ```    
 #### Docstrings
-Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition.
+Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
 ```Python 
 class MyClass:
     """This is a docstring."""
