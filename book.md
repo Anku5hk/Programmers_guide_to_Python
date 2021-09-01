@@ -517,7 +517,8 @@ Simply put they are used to organize data in a way that it can be stored/retriev
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
 #### Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
-They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
+* They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). 
+* They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
 # from pathlib import Path
 # print(type(Path("sample.txt")))
@@ -633,7 +634,8 @@ my_list = list({1,2,3,4,5}) # set to list
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Tuple
-Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable (items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension (it becomes a generator). They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
+* Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). 
+* They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
@@ -695,7 +697,9 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
 ### Set
-Are unordered collection of non repeating sequence of items. Sets are mutable. Items/Members inside a set should be hashable (must have a *\_\_hash\_\_()* method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. Sets are used to maintain unique values and in "membership testing" i.e check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
+* Are unordered collection of non repeating sequence of items. Sets are mutable. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. 
+* Items/Members inside a set should be hashable (must have a *\_\_hash\_\_()* method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. 
+* Sets are used to maintain unique values and in "membership testing" i.e check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
 ```Python
 ## create set
 my_set = set() # create a empty set
@@ -754,7 +758,8 @@ iterating is O(n).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
 ### Dict
-Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable (similar to sets), values have no restriction(can be any object). They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
+* Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). 
+* They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 ```Python
 ## create empty dict
 my_dict = dict() # or "my_dict = {}"
@@ -819,7 +824,7 @@ insert, add, delete is O(1).</br>
 iteration is O(n).
 ### Other Data Structures
 #### 1. Stack
-can be easily implemented using lists.
+Stack can be easily implemented using lists.
 ```Python
 my_stack = []
 ## add/remove operation
@@ -827,7 +832,7 @@ my_stack.append(20) # append at top
 my_stack.pop() # remove at top
 ```
 #### 2. Queue
-similarly can be easily implemented using lists.
+Similarly Queue can also be easily implemented using lists.
 ```Python
 my_queue = []
 ## add/remove operation
@@ -835,7 +840,7 @@ my_queue.append(20) # append at rear
 my_queue.pop(0) # remove at front
 ```
 #### 3. FrozenSet
-Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
+* Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
 ```Python
 ## create a frozenset
 # using a list
@@ -1089,7 +1094,7 @@ while i < len(my_list):
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
 ### Exception Handling
-Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way. Exception handling is used to handle Runtime errors. In Python, *catch* keyword is replaced with *except* and *throw* is replaced with *raise* rest are the same.    
+* Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way. Exception handling is used to handle Runtime errors. In Python, *catch* keyword is replaced with *except* and *throw* is replaced with *raise* rest are the same.    
 ```Python
 ## use traceback module for printing Tracebacks
 import traceback
@@ -1231,7 +1236,7 @@ file.writelines(["This is a text.", "This is also some text"])
 file.close()
 ```
 #### *with*
-This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
+* This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
 file = open("sample.txt")
@@ -1261,7 +1266,8 @@ finally:
   file.close()
 ```
 #### Context Manager 
-It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods and that object will function as a context manager. Context managers are usually used in Database management and to handle Thread locks. Also there's a built-in module [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
+* It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods and that object will function as a context manager. Context managers are usually used in Database management and to handle Thread locks. 
+* Also there's a built-in module [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
 ## Simple db example with context manager
 class MyDBManager:
@@ -1464,7 +1470,7 @@ print(recur_sum(5)) # 15
 ```
 * Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
 #### Anonymous functions
-Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
+* Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
 ```Python
 ## example 1
 # function to return sum of 2 numbers 
@@ -1476,7 +1482,7 @@ my_function = lambda a,b: a+b
 print(my_function(1,1)) # 2 
 ```    
 #### Docstrings
-Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
+* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
 ```Python 
 class MyClass:
     """This is a docstring."""
@@ -1714,7 +1720,7 @@ if __name__ == "__main__":
   print("my_module was ran")
 ```
 #### Packages
-Are defined with *\_\_init\_\_().py* file in that folder.
+* Are defined with *\_\_init\_\_().py* file in that folder.
 #### Decorators
 * They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
 * This functionality is utilized using functions being first class in python.
