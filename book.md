@@ -1144,7 +1144,7 @@ Basic I/O operations are to take input the from user and send output to the user
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
 #####
-**Explanation**: Read input from standard output and take it input as string.
+**Explanation**: Reads input from standard input device(such as keyboard) and take it input as string.
 ```Python
 ## Take input from user
 v = input() # or "input('Your message here ')"
@@ -1434,7 +1434,7 @@ print(my_fun1(**my_dict)) # 10
 * There are certain advantages such as it reduces the size of code when a iterative solution is lengthy/complex and some solutions are easier/better implemented with recursion. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
 * To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. 
 ```Python
-## Example 1: Sum of n given number.
+## Example 1: Sum of n given number
 # using iteration
 def iter_sum(n):
     total = 0
@@ -1442,21 +1442,27 @@ def iter_sum(n):
         total += i
     return total
 # using recursion    
-def recur_sum(n, total) :
+def recur_sum(n):
     if n == 0:
-        return total
-    else:    
-        total += n
-    total = recur_sum(n-1, total)
-    return total
+        return 0
+    else:
+        return n + recur_sum(n-1)   
+        
 print(iter_sum(5)) # 15
-print(recur_sum(5, 0)) # 15
-# here iterative solution seems understandable
+print(recur_sum(5)) # 15
+# here iterative solution seems easy/understandable, but the recursive solution is much concise
 
-## Example 2: 
-
+## stack calls over recursion
+'''
+# in our recursion function recursive calls are made till n is 0, so here we begin from the last line
+5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
+4 + recur_sum(3) -> 6 = 10 # same thing here
+3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
+2 + recur_sum(1) -> 1 = 3 # the result 1 is returned here from previous call and added with 2
+1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the returns are made
+'''
 ```
-* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
+* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
 #### Anonymous functions
 Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
 ```Python
