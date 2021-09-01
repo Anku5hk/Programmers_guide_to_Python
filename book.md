@@ -523,6 +523,8 @@ Simply put they are used to organize data in a way that it can be stored/retriev
 ```Python
 ## create list
 my_list = [1,2,3,'a','this way','cab',1.0,2.0]
+# create empty list
+some_list = [] # using list() function
 
 ## add/remove values
 my_var = 1
@@ -624,6 +626,8 @@ deleting, poping, inserting, iteration are O(n).
 my_tuple = (1,2,3,'we','are','one',5.0)
 # this is also valid but using the parenthesis is cleaner 
 my_tuple = 1,2,3,'we','are','one',5.0
+# create empty tuple
+some_tuple = () # or using tuple() function
 
 ## Indexing for accessing element
 my_var = 10
@@ -748,7 +752,7 @@ intersection is O(min(m,n)), worst is O(m\*n).
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 ```Python
 ## create empty dict
-my_dict = dict() # or "my_dict = {}"
+my_dict = {} # or using dict() function
 # create non empty dict
 my_dict = {'e':23, 'w':65, 'q':52}
 
