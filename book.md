@@ -520,24 +520,6 @@ Simply put they are used to organize data in a way that it can be stored/retriev
 * They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). 
 * They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
-# from pathlib import Path
-# print(type(Path("sample.txt")))
-# f= open(Path("sample.txt"))
-
-# import argparse
-# ap = argparse.ArgumentParser()
-# ap.add_argument("-i", "--image", type=str, required=True,
-# 	help="path to the input image")
-# ap.add_argument("-m", "--model", type=str, default="frcnn-resnet",
-# 	choices=["frcnn-resnet", "frcnn-mobilenet", "retinanet"],
-# 	help="name of the object detection model")
-# ap.add_argument("-l", "--labels", type=str, default="coco_classes.pickle",
-# 	help="path to file containing list of categories in COCO dataset")
-# ap.add_argument("-c", "--confidence", type=float, default=0.5,
-# 	help="minimum probability to filter weak detections")
-# args = vars(ap.parse_args())
-
-
 ## create list
 my_list = [1,2,3,'a','this way','cab',1.0,2.0]
 
@@ -637,6 +619,7 @@ deleting, poping, inserting, iteration are O(n).
 * Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). 
 * They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
+## create tuple
 my_tuple = (1,2,3,'we','are','one',5.0)
 
 ## Indexing for accessing element
