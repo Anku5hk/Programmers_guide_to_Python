@@ -21,10 +21,12 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
-* **Literal constant**: Are raw data, literals are constant fix values eg 4, there is no other value replacement for 4, so its a integer literal. A raw value by itself is a literal constant. 
+* **Literal constant**: Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
+# here 4 has no other value replacement, so its a integer literal
+# similarly 'something' is also a string literal
 ```
 * **Keywords**: Are reserved words which are defined by python, so they can't be used as operands.
 ```Python
@@ -128,7 +130,7 @@ multiline comment
   4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
   5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K (constant) times.
   6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N (input) times.</br>
-**Note**: Explaining all time complexities would consume lots of space for this book, so I have linked a explanation from the internet [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
+**Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/) and with some examples [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
 * Some **Pythonic Sugar** expressions.
 ```Python
 ## Multiple Target assignment
@@ -161,20 +163,21 @@ output = something
          .some_fun()
          .calling_other_fun()
 ```
+
 ## 2. Data Types
 Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
-  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool, None(only in Python) etc.
-  2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(not present in Python), Structures(not present in Python) etc.
+  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool etc.
+  2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(n/a in Python), Structures(n/a in Python) etc.
   3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of those functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
 #### Mutable and Immutable types inside Python.
   1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
-#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#stringstr), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#booleanbool), [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#none) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
+#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#binary-type-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
-1. **int** (interger): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
-2. **float**: Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
-3. **complex**: Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
+1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
+2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
+3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
 ```Python
 ## assigning values to variables 
 # here my_int is an operand, 42 is a literal and its data type is int
@@ -216,8 +219,8 @@ print(int(my_float)) # 3
 # float to str
 print(str(my_float)) # 3.0
 ```
-### String(str)
-* Are sequence of characters in python. Unlike Java, python does not have *char* for character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string.
+### Text Type (str)
+* Are sequence of characters in python. Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
 ```Python
 ## Creating strings
 # Single Quote: contains string value 
@@ -231,9 +234,9 @@ text = """This is a long text.
 ## String types
 print("normal str,\t escaping characters") # normal str, escaping characters
 print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
-print(u"a unicode string, it represents english and non-english characters")
-
-## String formatting, used to pass python expression/variable inside a string
+# unicode type, it represents english and non-english characters
+print(u"This is unicode") # This is unicode
+# formatting type, used to pass python expression/variable inside a string
 n = 1
 text = f"This is a String number {n}" # f-string to pass variable
 text = f"This is a String number {20-19}" # or even to pass expression
@@ -283,7 +286,9 @@ print(".".join(['hey','is','this','it?'])) # hey.is.this.it?
 
 ## Some functions on string
 # Returns the length of a string
-print(len(my_string)) 
+print(len(my_string)) # 11
+# Returns the string representation of any object, for str object returns a string with no escaping characters
+print(repr("This \t should have escaped.")) # 'This \t should have escaped.'
 # Returns a Unicode of a character
 print(ord("c")) # 99 
 # Returns Converted the Unicode to a character
@@ -298,8 +303,10 @@ print(int(my_string1)) # 20
 # str to float
 print(float(my_string)) # ValueError
 print(float(my_string1)) # 20.0
+# str to bytes
+print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
-### Boolean(bool)
+### Boolean Type (bool)
 * Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as "Truthy" & "Falsey" values when evaluating.
 ```Python
 ## assigning bool
@@ -315,21 +322,7 @@ print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
-### None 
-* *None* is similar to *null* in java/c/c++ but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
-* It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
-```Python
-n = None
-print(type(None)) # <class 'NoneType'>
-
-## to check whether an object is not None
-if n: # same as "if n != None:"
-  print('will not enter this condition')
-
-## not is used to negate the condition
-if not n: # same as "if n == None:"
-  print('will enter this condition, as n is None')
-```
+### Binary Types (byte)
 ### User-defined Data Type
 * User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
 ```Python
@@ -447,7 +440,22 @@ print(dir())
 print(dir(int))
 print(dir(my_obj))
 ```
-#### Logical and Identity operators.
+#### None Object
+* *None* is similar to *null* in java/c/c++ it indicates "no value" but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
+```Python
+n = None
+print(type(None)) # <class 'NoneType'>
+
+## to check whether an object is not None
+if n: # same as "if n != None:"
+  print('will not enter this condition')
+
+## not is used to negate the condition
+if not n: # same as "if n == None:"
+  print('will enter this condition, as n is None')
+```
+#### Logical and Identity Operators
 ```Python
 ### Logical operators: not,and,or
 ## not: to negate the underlying condition (it reverses the condition)
@@ -479,8 +487,8 @@ if some_var1 is some_var2:
 # check with id  
 print(id(some_var1)) # 2587096149584
 print(id(some_var2)) # 2587096149584
+# this is also true, here values are checked
 if some_var1 == some_var2:
-  # this is also true, here values are checked
   print('printed')
 
 # another example
@@ -1006,7 +1014,7 @@ for val in map(my_func, my_tuple):
 ## 4. Flow Control and Exception Handling 
 ### Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
-#### if...else
+#### if...else statement
 ```Python
 ## simple if..else condition
 my_var = 20
@@ -1055,7 +1063,7 @@ if not my_var1:
   # my_var1 is 'None', so will print 
   print("printed") 
 ```
-#### for
+#### for statement
 ```Python
 my_list = [10,20,30,40,50]
 ## regular looping by indexes
@@ -1076,7 +1084,7 @@ for v in []:
 else:
   print("So this will execute")
 ```
-#### while
+#### while statement
 ```Python
 i=0
 my_list = [10,20,30,40,50]
@@ -1135,7 +1143,7 @@ finally:
     print("Finally, its finally, which always executes.")      
 ```
 ### Extras
-We'll check **break**, **continue**, **pass** and **assert** statement.
+We'll check **break**, **continue**, **pass** and **assert** statements.
 * **break**: Use to break from iteration/loop. 
 * **continue**: Use to continue to next iteration in loops.
 * **pass**: To just declare a function/method with a empty body.
@@ -1213,12 +1221,12 @@ print("is not new lined") # This    is not new lined
   5. **t**: Opening a file in text format, basically reading a file with strings, this is the default format.
   6. **b**: Opening a file in binary format, when reading in this format bytes are returned, basically to handle non-text files like images/database/documents.
 ```Python
-## read from a file
+## read from a file, FileNotFoundError is raised if file is not found 
 file = open("sample.txt", mode="r") # or  open("sample.txt")
 print(file.read())
 file.close()
 
-## write to a file
+## write to a file, PermissionError is raised if you don't have the permission
 file = open("sample.txt", mode="w")
 file.write("This is some text written to the")
 file.close()
@@ -1256,7 +1264,7 @@ file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
-#### *with*
+#### *with* statement
 * This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
@@ -1314,7 +1322,7 @@ with MyDBManager() as db_handler:
   db_handler.add(3253, "job")
   print(db_handler.some_db) # {'id': [3251, 3252, 3253], 'name': ['bob', 'rob', 'job']}
 
-# now clear the db    
+# now to clear the db just get out of the indentaion    
 print(db_handler.some_db) # {'id': [], 'name': []}
 ```
 
@@ -1570,6 +1578,7 @@ class MyClass:
     print("This is class method")
     # access class variable
     print(CLS.my_var1)
+    # CLS.other_var1 will raise AttributeError
  
   # static method
   @staticmethod
@@ -1591,9 +1600,23 @@ print(MyClass.other_var1) # can't access
 print(MyClass.fun1()) # can't access
 print(MyClass.fun2()) # can access
 print(my_instance.fun3()) # can access
+
+## some functions for objects
+# check if a object has some attribute
+print(hasattr(my_instance, 'x')) # False
+# get value of object's attribute, similar to accessing with '.' operator 
+# though one benefit is if attribute is not found, the default value is returned
+print(getattr(my_instance, 'x', 90)) # 90
+# set value of object's attribute, similar to assigning with '=' operator 
+# though one benefit is if attribute is not found, it creates one and assigns value to it 
+setattr(my_instance, 'my_new_var', 'Hello')
+print(my_instance.my_new_var) # Hello
+# delete object's attribute returns nothing, raises AttributeError if not found
+delattr(my_instance, 'other_var1')
+print(my_instance.other_var1) # AttributeError
 ```
 ### Objects
-* An object has its own attributes/data(can be any data-type/data-structure/object) and functions(methods).
+* An object has its own attributes/variable(can be any data-type/data-structure/object) and functions(methods).
 * **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in python have attributes/methods, Data Structures have their attributes/methods, Functions(are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
 * We saw earlier how to create a instance of a class(i.e object) and what/how they can access variables and methods.
 ```Python
@@ -1650,7 +1673,7 @@ def some_fun():
         pass
 ```
 #### Modules
-* Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. 
+* Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
 * Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
 * As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
 * Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
@@ -1673,7 +1696,8 @@ Save this module as *my_module.py* and run this module.
 # modules can be imported anywhere in python, there is no restriction
 # but for readability they are imported at the beginning
 # Eg. math is built-in module, import it using the 'import' keyword
-# the 'import' statement creates a module object
+# the 'import' statement creates a module object 
+# any module is only imported once a program is ran, re-importing has no effect
 import math 
 
 ## accessing a function from math object
