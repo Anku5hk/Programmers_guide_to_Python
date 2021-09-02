@@ -171,8 +171,8 @@ Defines a particular kind/domain of data item, they define the type of data a va
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(n/a in Python), Structures(n/a in Python) etc.
   3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of those functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
 #### Mutable and Immutable types inside Python.
-  1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
-  2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
+  1. **Immutable**: Values cannot be altered/added/removed once created, read-only types, Eg. int, float, complex, bool, None, str, tuple, frozenset.
+  2. **Mutable**: Values can be altered/added/removed, Eg. list, dict, set.
 #### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
 1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
@@ -220,7 +220,7 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### Text Type (str)
-* Are sequence of characters in python. Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. They are immutable i.e items/values (here characters) cannot be altered/deleted once inserted. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
+* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. String hold sequence of characters and are also called as string literals. They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
 ```Python
 ## Creating strings
 # Single Quote: contains string value 
@@ -323,6 +323,50 @@ print(bool(-40), bool(0), bool(40)) # True False True
 print(bool(""), bool("This is string")) # False True
 ```
 ### Binary Types (byte)
+#### Little bit about Computer Memory
+A computer stores data in its memory in binary(0's and 1's) format only. A bit(binary digit) is the smallest possible unit of data in a computer. A group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0(00000000) to 255(11111111), so 256(2^8) bits in total, similarly a Kilo Byte(KB) is 1024 bytes, a Mega Bytes(MB) is 1024 KB and so on. So to store Characters in a computer, Encoding schemes are used. It is simply a way to represent Character(human readable data) in Binary format(computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set(such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages/keyboard. Alright, now you know where bytes are used.
+#### **Two functions to convert string to bytes.**
+#### 1. bytes(source, encoding, errors) => bytes
+**Parameters**:</br>
+  * *source* object: Any object.
+  * *encoding* str: Provide encoding if source is string.
+  * *errors* str: Way to handle errors, if the source is a string.
+#####
+**Explanation**: This function creates a immutable object consisting of Unicode(character set containing all major languages characters) 0-256 characters.
+```Python
+## create a bytes object
+data = bytes("This is bytes data", 'UTF-8')
+print(data) # b'This is bytes data'
+# or can use b prefix on string like syntax
+print((b'42')) # b'42'
+print(type(data)) # <class 'bytes'>
+
+## initialize bytes object with 0's by providing size in int
+my_bytes = bytes(4)
+print(my_bytes) # b'\x00\x00\x00\x00'
+
+## create bytes object using a iterable objects
+print(bytes([1,2,3])) # b'\x01\x02\x03'
+print(bytes((80,50,60))) # b'P2<'
+```
+#### 2. bytearray(source, encoding, errors) => bytearray
+**Parameters**:</br>
+  * *source* object: Any object.
+  * *encoding* str: Provide encoding if source is string.
+  * *errors* str: Way to handle errors, if the source is a string.
+#####
+**Explanation**: This function returns a mutable version of bytes object.
+```Python
+## create bytearray
+output = bytearray(4)
+print(output) # bytearray(b'\x00\x00\x00\x00')
+print(bytes("Something", 'UTF-8')) # b'Something'
+print(type(output)) # <class 'bytearray'>
+
+## bytearray is mutable so
+output[0] = 30
+print(output) # bytearray(b'\x1e\x00\x00\x00')
+```
 ### User-defined Data Type
 * User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
 ```Python
