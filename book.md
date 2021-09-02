@@ -173,7 +173,7 @@ Defines a particular kind/domain of data item, they define the type of data a va
 #### Mutable and Immutable types inside Python.
   1. **Immutable**: Values cannot be altered/added/removed, Eg. int,float,complex,bool,None,str,tuple,frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list,dict,set.
-#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#binary-type-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
+#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
 ### Three Numeric Types
 1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
 2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
@@ -393,6 +393,21 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
+#### None Object
+* *None* is similar to *null* in java/c/c++ it indicates "no value" but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
+```Python
+n = None
+print(type(None)) # <class 'NoneType'>
+
+## to check whether an object is not None
+if n: # same as "if n != None:"
+  print('will not enter this condition')
+
+## not is used to negate the condition
+if not n: # same as "if n == None:"
+  print('will enter this condition, as n is None')
+```
 #### Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int).
 #### 1. type(object) => str
 **Parameters**:</br>
@@ -439,21 +454,6 @@ print(dir())
 ## list of object's attributes
 print(dir(int))
 print(dir(my_obj))
-```
-#### None Object
-* *None* is similar to *null* in java/c/c++ it indicates "no value" but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
-* It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
-```Python
-n = None
-print(type(None)) # <class 'NoneType'>
-
-## to check whether an object is not None
-if n: # same as "if n != None:"
-  print('will not enter this condition')
-
-## not is used to negate the condition
-if not n: # same as "if n == None:"
-  print('will enter this condition, as n is None')
 ```
 #### Logical and Identity Operators
 ```Python
