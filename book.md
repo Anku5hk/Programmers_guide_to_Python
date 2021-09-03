@@ -324,13 +324,14 @@ print(bool(""), bool("This is string")) # False True
 ```
 ### Binary Types (byte)
 #### Little bit about Computer Memory
-A computer stores data in its memory in binary(0's and 1's) format only. A bit(binary digit) is the smallest possible unit of data in a computer. A group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0(00000000) to 255(11111111), so 256(2^8) bits in total, similarly a Kilo Byte(KB) is 1024 bytes, a Mega Bytes(MB) is 1024 KB and so on. So to store Characters in a computer, Encoding schemes are used. It is simply a way to represent Character(human readable data) in Binary format(computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set(such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages/keyboard. Alright, now you know where bytes are used.
+A computer stores data in its memory in binary(0's and 1's) format only. A bit(binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0(00000000) to 255(11111111), so 256(2^8) bits in total, similarly a Kilo Byte(KB) is 1024 bytes, a Mega Bytes(MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains characters data and Binary files contain binary data, example images, documents, executables, & compressed files, compiled programs, etc are binary files. Now to store characters in a computer, Encoding schemes are used. It is simply a way to represent Character(human readable data) in Binary format(computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set(such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages or on keyboards.
+
 #### **Two functions to convert string to bytes.**
 #### 1. bytes(source, encoding, errors) => bytes
 **Parameters**:</br>
   * *source* object: Any object.
-  * *encoding* str: Provide encoding if source is string.
-  * *errors* str: Way to handle errors, if the source is a string.
+  * *encoding* str: Provide encoding for the source string.
+  * *errors* str: Way to handle errors for source data.
 #####
 **Explanation**: This function creates a immutable object consisting of Unicode(character set containing all major languages characters) 0-256 characters.
 ```Python
@@ -452,7 +453,7 @@ if n: # same as "if n != None:"
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
-#### Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int).
+#### Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
 #### 1. type(object) => str
 **Parameters**:</br>
   * *object* object: Any object.
