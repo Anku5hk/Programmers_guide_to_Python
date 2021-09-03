@@ -3,7 +3,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 **What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently(intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as c/c++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python(and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python(and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
 
 #### [Some Topics are under progress..]
 
@@ -19,7 +19,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 ## 1. Basics
 ### Introduction
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be python's successor such as GO Lang, Rust and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
 ### Fundamentals
 * **Literal constant**: Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
 ```Python
@@ -33,7 +33,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike c/c++/Java "python is dynamically-typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike C/C++/Java "Python is Dynamically-Typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -88,7 +88,7 @@ yield, del, return, pass, raise, break, continue
 if, while, for, try, with 
 ```
 ### Extras
-* **Indentations**: Unlike using brackets in c/c++/java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
+* **Indentations**: Unlike using brackets in C/C++/Java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
 ```Python
 ## example 1
 # Notice: the colon at the end of 'if' condition
@@ -165,7 +165,7 @@ output = something
 ```
 
 ## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in c/c++/java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(n/a in Python), Structures(n/a in Python) etc.
@@ -439,7 +439,7 @@ my_dt.insert(y=20) # TypeError: Should be a String
 ```
 ### Extras
 #### None Object
-* *None* is similar to *null* in java/c/c++ it indicates "no value" but there are some differences. In java/c/c++ *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* *None* is similar to *null* in C/C++/Java it indicates "no value" but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
 * It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
 ```Python
 n = None
@@ -513,13 +513,13 @@ if not isinstance(a, int):
 if not isinstance(a, str):
   print('printed')
 
-## 'and' is similar to '&&' in c/c++/java: both conditions should be satisfied
+## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied
 a=20
 b=30
 if a > 10 and b < 50:
   print('printed')
   
-## 'or' is similar to '||' in c/c++/java: either of conditions should be satisfied
+## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
 if a > 10 or b < 10:
   print('printed')
   
@@ -921,7 +921,7 @@ print(my_fset1.issuperset(my_fset2)) # False
   * *end_index* int: The stopping index for iteration.
   * *step* int: A skipping index in iteraton.
 #####
-**Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in c/c++/java.
+**Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
 ```Python
 ## examples
 print(range(20)) # [0:20] 
@@ -2143,7 +2143,7 @@ print(my_instance2.min_finder()) # 12
 ### 2. Abstraction
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body(they are empty methods). The abstract classes cannot be instantiated(its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
-* Python does not have 'abstract' keyword like in java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
+* Python does not have 'abstract' keyword like in Java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
 * The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
 ```Python
 ### Abstract class example
