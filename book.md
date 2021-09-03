@@ -1374,8 +1374,10 @@ print(db_handler.some_db) # {'id': [], 'name': []}
 ## 6. Functions, Classes and Objects
 ### Functions
 * A function is a block of code(group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
-* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
 * **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
+* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions. Unlike objects, functions do not have a internal state. So the output does not changes as a function cannot be modified once defined. 
+* Python like C++ is multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state, previous output cannot be re-gained given different input, they are just meant to perform some operation on some data and return the output. A function is pure(without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, function nesting, making programs more modular and requiring less debugging overall.
+* It totally depends on the problem at hand, whether to go with a functional or object-oriented approach. 
 ```Python
 ## defining functions
 # Example 1. Non-parameterize function which returns nothing 
@@ -1415,14 +1417,14 @@ def square_num(number, some_fun=None):
 def cube_num(n):
   return n**3
 
-# assigning a function to a variable, it is not same as calling a function
+# assigning a function to a variable/data structure, it is not same as calling a function
 # Notice: no rounded brackets on the function
 my_var = cube_num 
 print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
 # 'my_var' now points to the 'cube_num()', so calling 'my_var' is calling 'cube_num'
 print(my_var(2)) # 8
 
-## passing a function as argument to another function
+# passing a function as argument to another function
 print(square_num(2)) # 4 
 # pass function as argument
 print(square_num(2, my_var)) # 8
@@ -1537,7 +1539,7 @@ class MyClass:
 ```
 ### Class
 * **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
-* **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state, so modifying some variables will only reflect changes for that particular instance only.  
+* **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and is also mutable, so modifying some variables will only reflect changes for that particular instance only.  
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
 * **Methods**: Functions that are inside class are called as methods. 
 * **self**: *self* resembles a instance of class in class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it highly recommended to use *self* as a common practice for code readability. 
@@ -1578,12 +1580,13 @@ class MyClass2:
   def my_func(self, var1): 
     return var1 + max(self.para1, self.para2)
 
-## instance
-# use '.' dot operator to access methods/variables of an object
+## Instance
 some_instance = MyClass1()
-# access variables
+# use '.' dot operator to access methods/variables of an object
 print(some_instance.other_var) # 10
-# access methods
+# if attribute is not found, AttributeError is returned
+print(some_instance.other_var_42) # AttributeError
+# same goes for method, only with the rounded brackets
 print(some_instance.return_my_var()) # 30
 
 # create new instance, pass arguments for parameterized constructor
