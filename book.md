@@ -85,7 +85,7 @@ yield, del, return, pass, raise, break, continue
 ## compound statements
 # like function and class definitions which we will covered later on 
 # and also keywords like 
-if, while, for, try, with 
+if, else, elif, while, for, try, with 
 ```
 ### Extras
 * **Indentations**: Unlike using brackets in C/C++/Java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
@@ -121,7 +121,7 @@ some_var = 10 # IndentationError
 multiline comment
 """
 ```
-* **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
+* **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
 
   **Common Time Complexities in ascending order of their growing time.** 
   1. O(1): Constant time. time does not increase at all.
@@ -1138,9 +1138,67 @@ while i < len(my_list):
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
 ### Exception Handling
-* Exception handling helps to continue the program execution while handling the Errors/Exceptions on the way. Exception handling is used to handle Runtime errors. In Python, *catch* keyword is replaced with *except* and *throw* is replaced with *raise* rest are the same.    
+As human while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot the types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and might take huge amount of debugging. In Python errors are called Exceptions, it is python was of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise*(throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
+#### Three Types of Errors/Exceptions.
+#### 1. Compile Time Errors
+* These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program. 
+* The interpreter raises a *SyntaxError*/*IndentationError* and also indicate the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
 ```Python
-## use traceback module for printing Tracebacks
+## Example 1: wrong indentation in condition
+a = 30
+if a == 30:
+    print("Execute this")
+     print("This will raise a Indentation error") # IndentationError
+
+## Example 2: missing closing brackets in list and string  
+data = [232,54,65 # SyntaxError
+data = "this string is not complete # SyntaxError
+
+## Example 3: missing colon in function 
+def myfun() # SyntaxError
+    print("my function")
+```
+#### 2. Runtime Error
+* Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, interpreter starts to execute and if a exception is raised it is a runtime error. The program to the part of runtime error line is executed, rest of the execution is stopped. Along with the Exception type interpreter also prints appropriate message on the screen. A user at this point can fix the error or can bypass and continue rest of the execution by using Exception Handling. 
+* **Some common runtime errors in Python.**
+  1. **AttributeError**: Raised when an attribute reference or assignment fails.
+  2. **ValueError**: Raised when an operation or function receives an argument that has the right type but an inappropriate value.
+  3. **TypeError**: Raised when an operation or function is applied to an object of inappropriate type.
+  4. **RecursionError**: Raised when the maximum recursion depth is exceeded.
+  5. **IndexError**: Raised when a sequence subscript is out of range.
+  6. **KeyError**: Raised when a mapping (dictionary) key is not found in the set of existing keys.
+* For more exceptions check the exception hierarchy on [python doc](https://docs.python.org/3/library/exceptions.html#exception-hierarchy). 
+* Python also has a *Warning* sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
+```Python
+## Example 1: indexing error
+a = [34,56,32,87]
+print(a[6]) # IndexError
+
+## Example 2: dividing by zero
+print(34/0) # ZeroDivisionError
+
+## Example 3: accessing unknown attribute 
+import math
+math.square # AttributeError
+```
+#### 3. Logical Error
+* Are not raised, but the program output is not an expected behaviour. They usually get difficult to fix as the program grows. They occur when the program logic is incorrect. Common examples such as using wrong variable/operator, calling wrong function/method instead, sub-classing a wrong class etc.  
+* To avoid theses error it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into a application.</br>
+```Python
+## Example 1: accessing wrong index
+my_list = [82,92,38,42,54,23,64,87]
+# printing last 3 values
+print(my_list[-2:]) # [64, 87]
+# here program has no error, but instead of printing 3
+# its only printing 2 numbers, because we provided wrong index
+# this example is not hard to fix, but in larger programs it consumes a lot of time to find
+# which object/variable/function must have caused the wrong result 
+```
+#### Handling the Exceptions
+* Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the condition.
+* Python has the *try* block to try the suspicious code, *except*(catch in C/C++/Java) block to add behaviour when some error occurs. Optionally Python has a *else* block which executes only if no exception was occurred. Then there is a *finally* block which executes if/not an error is occurred.  
+```Python
+## use traceback built-in module for printing Tracebacks
 import traceback
 
 ## catching specific errors
@@ -1164,7 +1222,21 @@ def my_fun():
     print(e) # maximum recursion depth exceeded
 my_fun()
 
-## manually throw(raise) exception
+## finally and else condition    
+try:
+ a = 20/0
+ a=20
+except Exception as e:
+  print(e.__class__) # <class 'ZeroDivisionError'>
+  print(e) # division by zero
+else:
+    print("This optional block executes if no exception was raised.")  
+finally:
+    print("Finally, its finally, which always executes.")    
+```
+* Raising(throw in C++/Java) built-in exceptions. *raise* statement is used to raise exceptions. Most commonly ValueError and AttributeError are raised.
+```Python
+## manually raising exception
 def my_fun(a):
   try:
     if a == 20:
@@ -1174,18 +1246,6 @@ def my_fun(a):
   except ValueError as v:
     print(v)
 number = my_fun(20) # I don't want number 20
-      
-## finally and else condition    
-try:
- a = 20/0
- a=20
-except Exception as e:
-  print(e.__class__) # <class 'ZeroDivisionError'>
-  print(e) # division by zero
-else:
-    print("This executes if no exception was raised.")  
-finally:
-    print("Finally, its finally, which always executes.")      
 ```
 ### Extras
 We'll check **break**, **continue**, **pass** and **assert** statements.
