@@ -670,7 +670,7 @@ my_list = list({1,2,3,4,5}) # set to list
 ```
 * **Time Complexity**</br>
 indexing, appending and get_length are O(1).</br>
-deleting, poping, inserting, iteration are O(n).
+deleting, poping, inserting, iteration are O(n).</br>
 * Using list's available methods it is very straightforward to implement Stack and Queue like Data Structures in Python. Although this isn't their exact implementation but only the main operations. You can implement them completely using classes. I won't be going deep into their inner working, just the basics. Let's check it out.    
 #### 1. Stack
 Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. 
@@ -817,9 +817,9 @@ my_set = set((1,2,3,4,5)) # tuple to set
 adding, checking (with *in* operator) and removing are O(1).</br>
 iterating is O(n).</br>
 union is O(m+n).</br>
-intersection is O(min(m,n)), worst is O(m\*n).
+intersection is O(min(m,n)), worst is O(m\*n).<br/>
 * There is another version of *set* which is mutable, let's check it out. 
-* **FrozenSet**
+#### **FrozenSet**
 * Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
 ```Python
 ## create a frozenset
