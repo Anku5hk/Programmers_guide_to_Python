@@ -124,12 +124,12 @@ multiline comment
 * **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
 
   **Common Time Complexities in ascending order of their growing time.** 
-  1. O(1): Constant time. time does not increase at all.
-  2. O(logN): Logarithmic time. when time is increasing logarithmically (grows at inversely proportional rate of N).
-  3. O(N): Linear time. time increases linearly with the input size.
-  4. O(NLogN): Log-Linear time, Logarithmic and Linear time together.
-  5. O(N\*\*K): Polynomial time. when time increases at N(input) to the power K (constant) times.
-  6. O(K\*\*N): Exponential time. when time increases at K(constant) to the power N (input) times.</br>
+  1. **O(1)**: Constant time. Time does not increase at all.
+  2. **O(logN)**: Logarithmic time. When time is increasing logarithmically (grows at inversely proportional rate of N).
+  3. **O(N)**: Linear time. Time increases linearly with the input size.
+  4. **O(NLogN)**: Linearithmic time. Logarithmic and Linear time together.
+  5. **O(N\*\*K)**: Polynomial time. When time increases at N(input) to the power K (constant) times.
+  6. **O(K\*\*N)**: Exponential time. When time increases at K(constant) to the power N (input) times.</br>
 **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/) and with some examples [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
 * Some **Pythonic Sugar** expressions.
 ```Python
@@ -571,7 +571,7 @@ Simply put they are used to organize data in a way that it can be stored/retriev
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
 #### Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
 ### List
-* They are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). 
+* By the name it may seem a LinkedList data structure but its not, they are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). 
 * They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
 ## create list
@@ -671,6 +671,23 @@ my_list = list({1,2,3,4,5}) # set to list
 * **Time Complexity**</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
+* Using list's available methods it is very straightforward to implement Stack and Queue like Data Structures in Python. Although this isn't their exact implementation but only the main operations. You can implement them completely using classes. I won't be going deep into their inner working, just the basics. Let's check it out.    
+#### 1. Stack
+Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. 
+```Python
+my_stack = []
+## add/remove operation
+my_stack.append(20) # push: append at top
+my_stack.pop() # pop: remove at top
+```
+#### 2. Queue
+Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. Variants of Queue are Circular Queue, Priority Queue and Dequeue. 
+```Python
+my_queue = []
+## add/remove operation
+my_queue.append(20) # enqueue: append at rear
+my_queue.pop(0) # dequeue: remove at front
+```
 ### Tuple
 * Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). 
 * They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
@@ -801,6 +818,37 @@ adding, checking (with *in* operator) and removing are O(1).</br>
 iterating is O(n).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).
+* There is another version of *set* which is mutable, let's check it out. 
+* **FrozenSet**
+* Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
+```Python
+## create a frozenset
+# using a list
+my_fset = frozenset([10,65,65,2,7,94,34,42,21])
+# or any other iterable
+my_fset = frozenset((10,65,65,2,7,94,34,42,21))
+print(type(my_fset)) # <class 'frozenset'>
+print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
+
+## immutable 
+my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
+my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
+
+## some frozenset methods
+my_fset1 = frozenset({3,5,7,1,8})
+my_fset2 = frozenset({1,2,3,4,5})
+# intersection 
+print(my_fset1.intersection(my_fset2)) # frozenset({1, 3, 5})
+# union
+print(my_fset1.union(my_fset2)) # frozenset({1, 2, 3, 4, 5, 7, 8})
+# difference
+print(my_fset1.difference(my_fset2)) # frozenset({8, 7})
+my_copy = my_fset1.copy() # returns a copy of a set
+# checks if my_fset2 is a subset of my_fset1
+print(my_fset1.issubset(my_fset2)) # False
+# checks if my_fset2 is a superset of my_fset1
+print(my_fset1.issuperset(my_fset2)) # False
+```
 ### Dict
 * Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). 
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
@@ -866,53 +914,7 @@ my_dict = dict(((1,2), (2,3))) # tuple to dict
 * **Time Complexity**</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
 insert, add, delete is O(1).</br>
 iteration is O(n).
-### Other Data Structures
-#### 1. Stack
-Stack can be easily implemented using lists.
-```Python
-my_stack = []
-## add/remove operation
-my_stack.append(20) # append at top
-my_stack.pop() # remove at top
-```
-#### 2. Queue
-Similarly Queue can also be easily implemented using lists.
-```Python
-my_queue = []
-## add/remove operation
-my_queue.append(20) # append at rear
-my_queue.pop(0) # remove at front
-```
-#### 3. FrozenSet
-* Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
-```Python
-## create a frozenset
-# using a list
-my_fset = frozenset([10,65,65,2,7,94,34,42,21])
-# or any other iterable
-my_fset = frozenset((10,65,65,2,7,94,34,42,21))
-print(type(my_fset)) # <class 'frozenset'>
-print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
 
-## immutable 
-my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
-my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
-
-## some frozenset methods
-my_fset1 = frozenset({3,5,7,1,8})
-my_fset2 = frozenset({1,2,3,4,5})
-# intersection 
-print(my_fset1.intersection(my_fset2)) # frozenset({1, 3, 5})
-# union
-print(my_fset1.union(my_fset2)) # frozenset({1, 2, 3, 4, 5, 7, 8})
-# difference
-print(my_fset1.difference(my_fset2)) # frozenset({8, 7})
-my_copy = my_fset1.copy() # returns a copy of a set
-# checks if my_fset2 is a subset of my_fset1
-print(my_fset1.issubset(my_fset2)) # False
-# checks if my_fset2 is a superset of my_fset1
-print(my_fset1.issuperset(my_fset2)) # False
-```
 ### Extras
 #### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
@@ -1056,8 +1058,7 @@ for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
 ```
 
-## 4. Flow Control and Exception Handling 
-### Flow Control
+## 4. Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
 #### if...else statement
 ```Python
@@ -1137,7 +1138,28 @@ while i < len(my_list):
   print(my_list[i])
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
-### Exception Handling
+* **break**: Use to break from iteration/loop. 
+* **continue**: Use to continue to next iteration in loops.
+* **pass**: To just declare a function/method with a empty body.
+```Python
+## break and continue
+i=-1
+my_list = [10,20,30,40,50]
+while i<len(my_list):
+  i+=1
+  if i == 0:
+    continue
+  if i == 4:
+    break
+  print(my_list[i]) # [20,30,40]
+  
+## pass
+# pass can be used inside empty a functions, just to have that function without raising error
+# and implement the function later while coding
+def my_fun():
+  pass
+```
+## 5. Exception Handling
 As human while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot the types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and might take huge amount of debugging. In Python errors are called Exceptions, it is python was of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise*(throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
 #### Three Types of Errors/Exceptions.
 #### 1. Compile Time Errors
@@ -1246,29 +1268,6 @@ def my_fun(a):
   except ValueError as v:
     print(v)
 number = my_fun(20) # I don't want number 20
-```
-### Extras
-We'll check **break**, **continue**, **pass** and **assert** statements.
-* **break**: Use to break from iteration/loop. 
-* **continue**: Use to continue to next iteration in loops.
-* **pass**: To just declare a function/method with a empty body.
-```Python
-## break and continue
-i=-1
-my_list = [10,20,30,40,50]
-while i<len(my_list):
-  i+=1
-  if i == 0:
-    continue
-  if i == 4:
-    break
-  print(my_list[i]) # [20,30,40]
-  
-## pass
-# pass can be used inside empty a functions, just to have that function without raising error
-# and implement the function later while coding
-def my_fun():
-  pass
 ```
 * **assert**: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
 ```Python
