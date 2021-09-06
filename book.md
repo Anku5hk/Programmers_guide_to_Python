@@ -1,5 +1,5 @@
 # Programmer's guide to Python
-#### Note: This book is not finalized yet and is under works.
+#### Note: This book is not finalized yet and is currently under works.
 
 Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. I hope this helps you in learning python programming. Happy Learning!!
 
