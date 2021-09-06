@@ -1,39 +1,44 @@
 # Programmer's guide to Python
+#### Note: This book is not finalized yet and is under works.
+
 Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. I hope this helps you in learning python programming. Happy Learning!!
 
-**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently(intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
+**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently (intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough python(and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
-
-#### [Some Topics are under progress..]
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough Python (and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
 2. [Data Types](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-data-types)
 3. [Data structures](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures)
-4. [Flow Control and Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control-and-exception-handling)
-5. [File I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-file-io)
-6. [Functions, Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-functions-classes-and-objects)
-7. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#7-oop-concepts)
+4. [Flow Control](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control)
+5. [Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-exception-handling)
+6. [Functions](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-functions)
+7. [Classes, Objects and Modules](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#7-classes-objects-and-modules)
+8. [Files and I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#8-files-and-io)
+9. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#9-oop-concepts)
 
 ## 1. Basics
-### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language([Cython](https://github.com/python/cpython)) which is the default/standard, but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace python, at least at some tasks in coming time, but it is yet to be seen.  
-### Fundamentals
-* **Literal constant**: Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
+### 1.1 Introduction
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language called [Cython](https://github.com/python/cpython), it is the default/standard but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is python3 which was released in 2008 and is still relevant(as of 2021), as python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace Python, at least in some domains in coming time, but it is yet to be seen.  
+### 1.2 Fundamentals
+#### 1.2.1 Literal constant
+Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
 # here 4 has no other value replacement, so its a integer literal
 # similarly 'something' is also a string literal
 ```
-* **Keywords**: Are reserved words which are defined by python, so they can't be used as operands.
+#### 1.2.2 Keywords
+Are reserved words which are defined by python, so they can't be used as operands.
 ```Python
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-* **Operands/Variable**: Are objects that hold values, it has a user-defined name, a name should not begin with a underscore(because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike C/C++/Java "Python is Dynamically-Typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+#### 1.2.3 Operands/Variable
+Are objects that hold values, it has a user-defined name, a name should not begin with a underscore (because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike C/C++/Java "Python is Dynamically-Typed", python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -44,10 +49,12 @@ a = 4.0
 a = "I am string"
 a = [1,2,3,4]
 ```
-* **Operators**: Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript. Other Logical, Identity, Membership operators are python specific and are also very straight forward, I'll explain going through later on.
+#### 1.2.4 Operators 
+Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript, so I will not explain their working. Other Logical, Identity, Membership operators are Python specific, that we'll take a look at.
 ```Python
-## Operators in python(comma separated)
-## Arithmetic operators(follows PEMDAS rule)
+### Seven Types of Operators (comma separated) in Python
+"""
+## Arithmetic operators (follows PEMDAS rule)
 +,-,\*,/,%,\*\*,//
 ## Assignment operators
 =,+=,-=,/*=,/=,%=,//=,\*\*=,&=,|=,^=,>>=,<<=
@@ -61,8 +68,68 @@ not,and,or
 is,is not
 ## Membership Operators
 in,not in
+"""
+
+### Logical operators: not,and,or
+## not: to negate the underlying condition (it reverses the condition)
+a = 30
+# here the underlying condition is the isinstance() function, which return True/False 
+# normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
+# the 'if' condition is satisfied when the output is 'False'
+if not isinstance(a, int):
+  print('not printed')
+if not isinstance(a, str):
+  print('printed')
+
+## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied
+a=20
+b=30
+if a > 10 and b < 50:
+  print('printed')
+  
+## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
+if a > 10 or b < 10:
+  print('printed')
+
+
+### Identity operator: is,is not
+## is: checks if 2 objects are referring to the same object. 
+some_var1 = 42
+some_var2 = 42
+if some_var1 is some_var2:
+  print('printed')
+# check with id  
+print(id(some_var1)) # 2587096149584
+print(id(some_var2)) # 2587096149584
+# this is also true, here values are checked
+if some_var1 == some_var2:
+  print('printed')
+
+# another example
+a = 42
+b = 42.0
+print(id(a)) # 2753953689168
+print(id(b)) # 2753956924080
+if a is int(b):
+  # true due to dynamic typing i.e as 42 == int(42.0) are the same, check the id
+  print(id(int(b))) # 2753953689168
+  
+# but then where's the difference  
+a = [20, 30]
+b = [20, 30]
+if a is b:
+  # even though their values are same, they are different object so not True
+  print('not printed')
+print(id(a)) # 2055633338880
+print(id(b)) # 2055638580288
+
+## is not: negate the 'is' condition, working is similar as we saw above
+# Notice: 'not' should be applied after 'if' and not after 'is'
+if not a is b:
+  print("printed") 
 ```
-* **Expressions**: A expression is something that is evaluated by the interpreter value/sequence by doing some operation(arithmetic/conditional/lambda function). They are a part of statements(as in expression statement).
+#### 1.2.5 Expressions
+A expression is something that is evaluated by the interpreter value/sequence by doing some operation (arithmetic/conditional/lambda function). They are a part of statements (as in expression statement).
 ```Python
 # some examples
 "Yes"+"this"
@@ -72,67 +139,10 @@ a or b
 2 and 3
 lambda x:x**2
 ```
-* **Statements**: Are basically every line/block of code that python interpreter executes. There are two types, simple and compound statements. 
+#### 1.2.6 Pythonic Sugar expressions
+Are optionally available to write some expressions in a short way.   
 ```Python
-## simple statements
-# expressions we saw earlier
-# assignments like
-a = 40
-t = "Time"
-# and also keywords like
-yield, del, return, pass, raise, break, continue
-
-## compound statements
-# like function and class definitions which we will covered later on 
-# and also keywords like 
-if, else, elif, while, for, try, with 
-```
-### Extras
-* **Indentations**: Unlike using brackets in C/C++/Java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
-```Python
-## example 1
-# Notice: the colon at the end of 'if' condition
-if 10 > 5:
-print('printed') # IndentationError
-
-## example 2
-if 10 > 5:
-  # preferred indentation
-  print('printed')
-print('block code ends')
-# also valid indentation
-if 10 > 5:
-      print('printed')
-      print('also printed')
-# continue other code
-
-## example 3
-class MyClass:
-some_var = 10 # IndentationError
-  def my_function():
-  some_var1 = 20 # IndentationError
-```
-* **Comments**
-```Python
-# this is a single line comment
-# TODO: this is a todo commment, useful in IDEs like Visual Code/Pycharm
-
-"""this is a 
-multiline comment
-"""
-```
-* **Time Complexity**: It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br>
-
-  **Common Time Complexities in ascending order of their growing time.** 
-  1. **O(1)**: Constant time. Time does not increase at all.
-  2. **O(logN)**: Logarithmic time. When time is increasing logarithmically (grows at inversely proportional rate of N).
-  3. **O(N)**: Linear time. Time increases linearly with the input size.
-  4. **O(NLogN)**: Linearithmic time. Logarithmic and Linear time together.
-  5. **O(N\*\*K)**: Polynomial time. When time increases at N(input) to the power K (constant) times.
-  6. **O(K\*\*N)**: Exponential time. When time increases at K(constant) to the power N (input) times.</br>
-**Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/) and with some examples [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
-* Some **Pythonic Sugar** expressions.
-```Python
+## Some examples
 ## Multiple Target assignment
 a = b = c = 10
 # lets check the outputs
@@ -157,24 +167,115 @@ if 10 <= 20 < 30:
 # Example 1: Using backslash
 # use '\' at the end of the line to continue on another line
 text = "This is text 1." \
-"This is text 2"
+"This is text 2" \
+"And I can also continue here in the next line."
 # Example 2: Using parens (...)  
 output = something 
          .some_fun()
          .calling_other_fun()
 ```
+#### 1.2.7 Statements
+Are basically every line/block of code that python interpreter executes. There are two types, simple and compound statements. 
+```Python
+## simple statements
+# expressions we saw earlier
+# assignments like
+a = 40
+t = "Time"
+# and also keywords like
+yield, del, return, pass, raise, break, continue
+
+## compound statements
+# like function and class definitions which we will covered later on 
+# and also keywords like 
+if, else, elif, while, for, try, with 
+```
+#### 1.2.8 Comments
+```Python
+# this is a single line comment
+# TODO: this is a todo commment, useful in IDEs like Visual Code/Pycharm
+
+"""this is a 
+multiline comment
+"""
+```
+#### 1.2.9 Indentations 
+Unlike using brackets in C/C++/Java, indentations are used for a code block in python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in python, else IndentationError is raised. Any statements or even comments should follow the indentation rule.
+```Python
+## example 1
+# Notice: the colon at the end of 'if' condition
+if 10 > 5:
+print('printed') # IndentationError
+
+## example 2
+if 10 > 5:
+  # preferred indentation
+  print('printed')
+print('block code ends')
+# also valid indentation
+if 10 > 5:
+      print('printed')
+      print('also printed')
+# continue other code
+
+## example 3
+class MyClass:
+some_var = 10 # IndentationError
+  def my_function():
+  some_var1 = 20 # IndentationError
+```
+#### 1.2.10 Namespaces
+* As seen in c++ namespaces are collection of names of variables/functions, but unlike c++, python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
+* **There are three types of namespaces**.
+  1. **built-in**: Are readily available functions without any import.
+  2. **global**: Are which user defines outside of any function/class. 
+  3. **local**: Are which user defines inside a function/class/nested.
+```Python
+## built-in namespace 
+# For example some functions which do not require any import 
+print(), len(), map(), range(), list(), set(), str()
+
+## global namespace
+# importing any modules adds them global namespace
+import time 
+# variables and functions
+my_var = 10
+def my_fun():
+    pass
+
+## local namespace
+def some_fun():
+    # variables and functions defined here
+    my_var = 10
+    def my_fun():
+        pass
+```
+#### 1.2.11 Time Complexity 
+It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
+  **Common Time Complexities in ascending order of their growing time.** 
+  #####
+  1. **O(1)**: Constant time. Time does not increase at all.
+  2. **O(logN)**: Logarithmic time. When time is increasing logarithmically (grows at inversely proportional rate of N).
+  3. **O(N)**: Linear time. Time increases linearly with the input size.
+  4. **O(NLogN)**: Linearithmic time. Logarithmic and Linear time together.
+  5. **O(N\*\*K)**: Polynomial time. When time increases at N (input) to the power K (constant) times.
+  6. **O(K\*\*N)**: Exponential time. When time increases at K (constant) to the power N (input) times.
+  #####
+  **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/) and with some examples [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
+
 
 ## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java(as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final*(used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module(we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
-  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double(n/a in Python), char(n/a in Python), bool etc.
-  2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array(list in Python), Record(tuple in Python), Union(dict in Python), Strings(str in Python), Functions, Pointers(n/a in Python), Structures(n/a in Python) etc.
+  1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double (n/a in Python), char (n/a in Python), bool etc.
+  2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array (list in Python), Record (tuple in Python), Union (dict in Python), Strings (str in Python), Functions, Pointers (n/a in Python), Structures (n/a in Python) etc.
   3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of those functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
 #### Mutable and Immutable types inside Python.
   1. **Immutable**: Values cannot be altered/added/removed once created, read-only types, Eg. int, float, complex, bool, None, str, tuple, frozenset.
   2. **Mutable**: Values can be altered/added/removed, Eg. list, dict, set.
-#### Some data types explained here are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#user-defined-data-type). Rest of them are in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section.
-### Three Numeric Types
+####  
+Data types explained below are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-1-three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-1-three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-1-three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-2-text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-3-boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-4-binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-5-user-defined-data-type). For simplicity I've arranged rest of them in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section. Later we'll take a look at the [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-6-none-object) object and some built-in functions.
+### 2.1 Three Numeric Types
 1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
 2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
 3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
@@ -219,7 +320,7 @@ print(int(my_float)) # 3
 # float to str
 print(str(my_float)) # 3.0
 ```
-### Text Type (str)
+### 2.2 Text Type (str)
 * Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in c++) which is a collection of character data. String hold sequence of characters and are also called as string literals. They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
 ```Python
 ## Creating strings
@@ -306,7 +407,7 @@ print(float(my_string1)) # 20.0
 # str to bytes
 print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
-### Boolean Type (bool)
+### 2.3 Boolean Type (bool)
 * Has only 2 values *True* and *False*. *True* is also 1, so 4 + True is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as "Truthy" & "Falsey" values when evaluating.
 ```Python
 ## assigning bool
@@ -322,18 +423,18 @@ print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
-### Binary Types (byte)
+### 2.4 Binary Types (byte)
 #### Little bit about Computer Memory
-A computer stores data in its memory in binary(0's and 1's) format only. A bit(binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0(00000000) to 255(11111111), so 256(2^8) bits in total, similarly a Kilo Byte(KB) is 1024 bytes, a Mega Bytes(MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains characters data and Binary files contain binary data, example images, documents, executables, & compressed files, compiled programs, etc are binary files. Now to store characters in a computer, Encoding schemes are used. It is simply a way to represent Character(human readable data) in Binary format(computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set(such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages or on keyboards.
+A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a Kilo Byte (KB) is 1024 bytes, a Mega Bytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two t ypes of file, a Text file and Binary file. Text file contains characters data and Binary files contain binary data, example images, documents, executables, & compressed files, compiled programs, etc are binary files. Now to store characters in a computer, Encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set(such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages or on keyboards.
 
-#### **Two functions to convert string to bytes.**
+#### **Two functions to convert a string to bytes.**
 #### 1. bytes(source, encoding, errors) => bytes
 **Parameters**:</br>
   * *source* object: Any object.
   * *encoding* str: Provide encoding for the source string.
   * *errors* str: Way to handle errors for source data.
 #####
-**Explanation**: This function creates a immutable object consisting of Unicode(character set containing all major languages characters) 0-256 characters.
+**Explanation**: This function creates a immutable object consisting of Unicode (character set containing all major languages characters) 0-256 characters.
 ```Python
 ## create a bytes object
 data = bytes("This is bytes data", 'UTF-8')
@@ -368,7 +469,7 @@ print(type(output)) # <class 'bytearray'>
 output[0] = 30
 print(output) # bytearray(b'\x1e\x00\x00\x00')
 ```
-### User-defined Data Type
+### 2.5 User-defined Data Type
 * User defined data type, which are used to create a new data type by combining the built-in data types. Unlike in C/C++ python doesn't have *struct*, but what it does has is objects, which can be utilized to do the same.
 ```Python
 ## Example 1
@@ -437,9 +538,8 @@ print(my_dt) # 20 Bar
 # raising type error if data type is not what we expected
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
-### Extras
-#### None Object
-* *None* is similar to *null* in C/C++/Java it indicates "no value" but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+#### 2.6 *None* Object
+* *None* is similar to *null* in C/C++/Java it indicates "no value" but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also "0", not in Python. In Python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
 * It is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
 ```Python
 n = None
@@ -453,12 +553,12 @@ if n: # same as "if n != None:"
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
-#### Some built-in functions explained below: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
+#### 2.7 Some built-in functions: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
 #### 1. type(object) => str
 **Parameters**:</br>
   * *object* object: Any object.
 #####
-**Explanation**: This function returns the class_name of an object.
+**Explanation**: This function is used for type checking, it returns the class name of an object.
 ```Python
 a = "What?"
 print(type(a)) # str
@@ -500,65 +600,6 @@ print(dir())
 print(dir(int))
 print(dir(my_obj))
 ```
-#### Logical and Identity Operators
-```Python
-### Logical operators: not,and,or
-## not: to negate the underlying condition (it reverses the condition)
-a = 30
-# here the underlying condition is the isinstance() function, which return True/False 
-# normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
-# the 'if' condition is satisfied when the output is 'False'
-if not isinstance(a, int):
-  print('not printed')
-if not isinstance(a, str):
-  print('printed')
-
-## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied
-a=20
-b=30
-if a > 10 and b < 50:
-  print('printed')
-  
-## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
-if a > 10 or b < 10:
-  print('printed')
-  
-### Identity operator: is,is not
-## is: checks if 2 objects are referring to the same object. 
-some_var1 = 42
-some_var2 = 42
-if some_var1 is some_var2:
-  print('printed')
-# check with id  
-print(id(some_var1)) # 2587096149584
-print(id(some_var2)) # 2587096149584
-# this is also true, here values are checked
-if some_var1 == some_var2:
-  print('printed')
-
-# another example
-a = 42
-b = 42.0
-print(id(a)) # 2753953689168
-print(id(b)) # 2753956924080
-if a is int(b):
-  # true due to dynamic typing i.e as 42 == int(42.0) are the same, check the id
-  print(id(int(b))) # 2753953689168
-  
-# but then where's the difference  
-a = [20, 30]
-b = [20, 30]
-if a is b:
-  # even though their values are same, they are different object so not True
-  print('not printed')
-print(id(a)) # 2055633338880
-print(id(b)) # 2055638580288
-
-## is not: negate the 'is' condition, working is similar as we saw above
-# Notice: 'not' should be applied after 'if' and not after 'is'
-if not a is b:
-  print("printed") 
-```
 
 ## 3. Data Structures
 #### Wikipedia suggests </br>
@@ -569,8 +610,9 @@ Simply put they are used to organize data in a way that it can be stored/retriev
   1. Composite Data Types are data structures but not all data structures are composite types.
   2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
-#### Some of the Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#dict), [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#set), [stack](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-stack), [queue](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-queue) and [frozenset](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-frozenset).
-### List
+#### 
+Built-in Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-1-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-2-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-3-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-4-set). Later we'll take a look at some more built-in functions.
+### 3.1 List
 * By the name it may seem a LinkedList data structure but its not, they are array like implementation in python. They are ordered collection of sequence of items, which can be of any data type or object. They are Mutable(values can be changed). Indexing, Slicing is supported and they are iterable objects(more on this later). 
 * They are preferred in most use cases. Where indexing, looping over some items is required lists are used.
 ```Python
@@ -688,7 +730,7 @@ my_queue = []
 my_queue.append(20) # enqueue: append at rear
 my_queue.pop(0) # dequeue: remove at front
 ```
-### Tuple
+### 3.2 Tuple
 * Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable(items cannot be altered/deleted), so they are preferred when data should not be changed and so iterating is slightly faster than list. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension(it becomes a generator). 
 * They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
@@ -757,7 +799,72 @@ my_tuple = tuple({1,2,3,4,5}) # set to tuple
 * **Time Complexity**</br>
 indexing, appending and get_length are O(1).</br>
 deleting, poping, inserting, iteration are O(n).
-### Set
+### 3.3 Dict
+* Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). 
+* They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
+```Python
+## create empty dict
+my_dict = {} # or using dict() function
+# create non empty dict
+my_dict = {'e':23, 'w':65, 'q':52}
+
+## add, remove
+my_var = 20
+key = 10
+tuple_key = (20,)
+my_dict[key] = my_var # add item at key
+my_dict[tuple_key] = 45
+print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 10: 20, (20,): 45}
+del my_dict[tuple_key] # remove the item
+
+## join two dicts
+my_dict1 = {'z':5, 'y':3, 'x':4}
+my_dict.update(my_dict1)
+print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
+
+## accessing element
+key = 'a'
+my_var = my_dict[key] # can raise KeyError if not present
+# use get() method to avoid KeyError, None is default, can be set to anything else
+print(my_dict.get(key, None)) # None
+# traverse all items
+for k,v in my_dict.items(): 
+  print(k, v) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
+# check if key is inside my_dict   
+if 'w' in my_dict:
+  print('printed')
+   
+## dict comprehension 
+my_dict = {x:x*x for x in range(6)} # stand alone, generating keys and values
+print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+# another way
+my_keys = ['a', 'b', 'c']
+my_values = [1,2,3]
+my_dict = {k:v for k,v in zip(my_keys, my_values)}
+
+## Some methods of dicts
+my_dict1 = {'a':1, 'b':2, 'c':3}
+my_dict2 = {'z':50, 'y':40, 'x':30}
+# returns a dict_keys object, it contains dict's keys, it is iterable, you can also convert it to list
+print(my_dict1.keys()) # dict_keys(['a', 'b', 'c'])
+# returns a dict_values object, it contains dict's values, it is iterable, you can also convert it to list
+print(my_dict1.values()) # dict_values([1, 2, 3])
+# returns a dict_items object, has keys & values, is also iterable and you know the rest
+print(my_dict1.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
+# removes item(key,value) given key, which is 'a' here and returns value
+print(my_dict1.pop("a")) # 1 
+my_dict1.clear() # removes all items of dict
+
+## type conversion
+keys = [1,2]
+values = [2,3]
+my_dict = dict([keys, values]) # list to dict
+my_dict = dict(((1,2), (2,3))) # tuple to dict
+```
+* **Time Complexity**</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
+insert, add, delete is O(1).</br>
+iteration is O(n).
+### 3.4 Set
 * Are unordered collection of non repeating sequence of items. Sets are mutable. Sets are iterable, but Indexing/Slicing doesn't work as their order don't matter. 
 * Items/Members inside a set should be hashable (must have a *\_\_hash\_\_()* method), which means its hash value must never changes during its lifetime. Numbers, strings & tuple(with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. 
 * Sets are used to maintain unique values and in "membership testing" i.e check if the variable is already present in the set. Like in BFS/DFS algorithms for checking visited nodes.
@@ -849,74 +956,7 @@ print(my_fset1.issubset(my_fset2)) # False
 # checks if my_fset2 is a superset of my_fset1
 print(my_fset1.issuperset(my_fset2)) # False
 ```
-### Dict
-* Longform Dictionary in python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable(similar to sets), values have no restriction(can be any object). 
-* They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
-```Python
-## create empty dict
-my_dict = {} # or using dict() function
-# create non empty dict
-my_dict = {'e':23, 'w':65, 'q':52}
-
-## add, remove
-my_var = 20
-key = 10
-tuple_key = (20,)
-my_dict[key] = my_var # add item at key
-my_dict[tuple_key] = 45
-print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 10: 20, (20,): 45}
-del my_dict[tuple_key] # remove the item
-
-## join two dicts
-my_dict1 = {'z':5, 'y':3, 'x':4}
-my_dict.update(my_dict1)
-print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
-
-## accessing element
-key = 'a'
-my_var = my_dict[key] # can raise KeyError if not present
-# use get() method to avoid KeyError, None is default, can be set to anything else
-print(my_dict.get(key, None)) # None
-# traverse all items
-for k,v in my_dict.items(): 
-  print(k, v) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
-# check if key is inside my_dict   
-if 'w' in my_dict:
-  print('printed')
-   
-## dict comprehension 
-my_dict = {x:x*x for x in range(6)} # stand alone, generating keys and values
-print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
-# another way
-my_keys = ['a', 'b', 'c']
-my_values = [1,2,3]
-my_dict = {k:v for k,v in zip(my_keys, my_values)}
-
-## Some methods of dicts
-my_dict1 = {'a':1, 'b':2, 'c':3}
-my_dict2 = {'z':50, 'y':40, 'x':30}
-# returns a dict_keys object, it contains dict's keys, it is iterable, you can also convert it to list
-print(my_dict1.keys()) # dict_keys(['a', 'b', 'c'])
-# returns a dict_values object, it contains dict's values, it is iterable, you can also convert it to list
-print(my_dict1.values()) # dict_values([1, 2, 3])
-# returns a dict_items object, has keys & values, is also iterable and you know the rest
-print(my_dict1.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
-# removes item(key,value) given key, which is 'a' here and returns value
-print(my_dict1.pop("a")) # 1 
-my_dict1.clear() # removes all items of dict
-
-## type conversion
-keys = [1,2]
-values = [2,3]
-my_dict = dict([keys, values]) # list to dict
-my_dict = dict(((1,2), (2,3))) # tuple to dict
-```
-* **Time Complexity**</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
-insert, add, delete is O(1).</br>
-iteration is O(n).
-
-### Extras
-#### Some functions explained below: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter), [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
+### 3.5 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
   * *start_index* int: The start index for iteration.
@@ -1060,7 +1100,7 @@ for val in map(my_func, my_tuple):
 
 ## 4. Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
-#### if...else statement
+#### 4.1 *if...else* statement
 ```Python
 ## simple if..else condition
 my_var = 20
@@ -1109,7 +1149,7 @@ if not my_var1:
   # my_var1 is 'None', so will print 
   print("printed") 
 ```
-#### for statement
+#### 4.2 *for* statement
 ```Python
 my_list = [10,20,30,40,50]
 ## regular looping by indexes
@@ -1130,7 +1170,7 @@ for v in []:
 else:
   print("So this will execute")
 ```
-#### while statement
+#### 4.3 *while* statement
 ```Python
 i=0
 my_list = [10,20,30,40,50]
@@ -1138,9 +1178,9 @@ while i < len(my_list):
   print(my_list[i])
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
 ```
+#### 4.4 *break* and *continue* statements
 * **break**: Use to break from iteration/loop. 
 * **continue**: Use to continue to next iteration in loops.
-* **pass**: To just declare a function/method with a empty body.
 ```Python
 ## break and continue
 i=-1
@@ -1152,16 +1192,11 @@ while i<len(my_list):
   if i == 4:
     break
   print(my_list[i]) # [20,30,40]
-  
-## pass
-# pass can be used inside empty a functions, just to have that function without raising error
-# and implement the function later while coding
-def my_fun():
-  pass
 ```
+
 ## 5. Exception Handling
 As human while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot the types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and might take huge amount of debugging. In Python errors are called Exceptions, it is python was of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise*(throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
-#### Three Types of Errors/Exceptions.
+#### 5.1 Three Types of Errors/Exceptions.
 #### 1. Compile Time Errors
 * These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program. 
 * The interpreter raises a *SyntaxError*/*IndentationError* and also indicate the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
@@ -1216,7 +1251,7 @@ print(my_list[-2:]) # [64, 87]
 # this example is not hard to fix, but in larger programs it consumes a lot of time to find
 # which object/variable/function must have caused the wrong result 
 ```
-#### Handling the Exceptions
+#### 5.2 Handling the Exceptions
 * Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the condition.
 * Python has the *try* block to try the suspicious code, *except*(catch in C/C++/Java) block to add behaviour when some error occurs. Optionally Python has a *else* block which executes only if no exception was occurred. Then there is a *finally* block which executes if/not an error is occurred.  
 ```Python
@@ -1256,6 +1291,7 @@ else:
 finally:
     print("Finally, its finally, which always executes.")    
 ```
+#### 5.3 Raising the exceptions
 * Raising(throw in C++/Java) built-in exceptions. *raise* statement is used to raise exceptions. Most commonly ValueError and AttributeError are raised.
 ```Python
 ## manually raising exception
@@ -1269,15 +1305,618 @@ def my_fun(a):
     print(v)
 number = my_fun(20) # I don't want number 20
 ```
-* **assert**: Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
+#### 5.4 **assert** statement
+Helps in debugging, it is used to check if certain condition is true, else raise a AssertionError.
 ```Python
 a = 10
 assert a == 10 # No error raised
 assert a == 30 # AssertionError
 ```
 
-## 5. File I/O
+## 6. Functions
+### 6.1 Function Basics
+* A function is a block of code (group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something (in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
+* **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
+* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions. Unlike objects, functions do not have a internal state. So the output does not changes as a function cannot be modified once defined. 
+```Python
+## defining functions
+# Example 1. Non-parameterize function which returns nothing 
+def my_function1():
+  # do something
+  pass # to ensure the program runs this empty function   
+  # if the function is not empty 'pass' is not required at all
+  
+# Example 2. function with parameter which returns nothing
+def my_function2(var1, var2):
+  pass
+# alternative way is to describe the input/return type hints
+# As they are just hints, it does not matter what is send/returned
+def my_function2(var1: int, var2: int) -> None: 
+  pass
+  
+# Example 3. default parameters should always follow later
+def my_function3(var1, var2, var3, do_something=False): 
+  if do_something:
+    # did something
+    return var1 + var2 + var3
+
+## calling a function without a return statement, returns None by default
+print(my_function1()) # None
+print(my_function3(30, 20, 10, do_something=True)) # 60
+# check if it is a function
+print(callable(my_function1))
+
+## first class functions behaviour
+def square_num(number, some_fun=None):
+  if some_fun:
+    output = some_fun(number)
+  else:
+    output=number**2  
+  return output
+
+def cube_num(n):
+  return n**3
+
+# assigning a function to a variable/data structure, it is not same as calling a function
+# Notice: no rounded brackets on the function
+my_var = cube_num 
+print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
+# 'my_var' now points to the 'cube_num()', so calling 'my_var' is calling 'cube_num'
+print(my_var(2)) # 8
+
+# passing a function as argument to another function
+print(square_num(2)) # 4 
+# pass function as argument
+print(square_num(2, my_var)) # 8
+```
+### 6.2 Functional Programming
+* Python like C++ is multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state, previous output cannot be re-gained given different input, they are just meant to perform some operation on some data and return the output. A function is pure (without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, function nesting, making programs more modular and requiring less debugging overall.
+* It totally depends on the problem at hand, whether to go with a functional or a object-oriented approach. 
+### 6.3 *pass* statement
+To just declare a function/method with a empty body.  
+```Python
+## pass
+# pass can be used inside empty a functions, just to have that function without raising error
+# and implement the function later while coding
+def my_fun():
+  pass
+```
+### 6.4 Packing and Unpacking
+* Functions in python support Packing and Unpacking variables into *tuple/dict*. Explained below.
+1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function(or they'll contain all the values). 
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
+```Python
+## packing in functions 
+# packing variables into tuple and dict
+# Notice: the * operator and ** operator before args and kwargs 
+def my_test(*args, **kwargs):
+  print(type(args)) # tuple
+  print(type(kwargs)) # dict
+
+# packing args example
+def sum_nums(a,b, *args):
+  total = a+b
+  if args:
+    for n in args:
+      total+=n
+  return total
+
+# passing only 2 arguments
+sum_nums(2,3) # 5   
+# passing more than 2 arguments
+sum_nums(2,3,3,4,2,1,1,4) # 20
+
+# packing kwargs example
+def my_fun2(x,y,**kwargs):
+  total = x+y
+  if kwargs:  
+    for k,v in kwargs.items():
+        # here we're allowing only specific keys
+        if k in 'abd': 
+            total+=v
+  return total
+  
+# passing only 2 arguments
+print(my_fun2(2,3)) # 5   
+# passing more than 2 arguments, however arguments should have some unique name
+print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5000, my_var=8000)) # 15
+
+## unpacking in functions
+# unpacking variables from tuple/dict
+def my_fun1(a,b,c,d):
+  return a+b+c+d
+
+my_list = [1,2,3,4]
+my_dict = {'a':1,'d':4,'b':2,'c':3}
+# passing from list/tuple, list here
+print(my_fun1(*my_list)) # 10
+# passing from dict
+print(my_fun1(**my_dict)) # 10 
+```
+### 6.5 Recursion
+* Is when a function calls itself. Wikipedia "It is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem". It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
+* Recursion uses system stack to maintain the memory of ongoing recursive calls, this usually leads to higher memory usage compared to iteration.    
+* It is required to handle the StackOverFlow, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
+* There are certain advantages such as it reduces the size of code when a iterative solution is lengthy/complex and some solutions are easier/better implemented with recursion. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
+* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. 
+```Python
+## Example 1: Sum of n given number
+# using iteration
+def iter_sum(n):
+    total = 0
+    for i in range(n+1):
+        total += i
+    return total
+# using recursion    
+def recur_sum(n):
+    if n == 0:
+        return 0
+    else:
+        return n + recur_sum(n-1)   
+        
+print(iter_sum(5)) # 15
+print(recur_sum(5)) # 15
+# here iterative solution seems easy/understandable, but the recursive solution is much concise
+
+## stack calls over recursion
+'''
+# in our recursion function recursive calls are made till n is 0, so here we begin from the last line
+5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
+4 + recur_sum(3) -> 6 = 10 # same thing here
+3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
+2 + recur_sum(1) -> 1 = 3 # the result 1 is returned here from previous call and added with 2
+1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the returns are made
+'''
+```
+* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
+### 6.6 Anonymous functions
+* Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
+```Python
+## example 1
+# function to return sum of 2 numbers 
+# syntax => lambda arguments : expression
+my_function = lambda a,b: a+b  
+# Notice: 'a+b' is also the return statement without using 'return' keyword 
+
+## calling the function
+print(my_function(1,1)) # 2 
+```    
+### 6.7 Decorators
+* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
+* This functionality is utilized using functions being first class in python.
+```Python
+# my_outer_func() is just a container function
+def my_outer_func(some_func):
+  # wrapper function here
+  # my_wrapper_func() does something before/after calling some_func() 
+  def my_wrapper_func(some_func_para1, some_func_para2): 
+    # do something of my_wrapper_func()
+    print("Wrapper function was called")
+    # call some_func(), do something in it and return something if required
+    output = some_func(some_func_para1, some_func_para2) 
+    # do something extra
+    # return nothing if not required
+    return output 
+    
+  # but need to return my_wrapper_func()   
+  return my_wrapper_func 
+
+## without using decorators
+def my_fun(a,b):
+  return a+b
+
+my_decorated_fun = my_outer_func(my_fun) 
+print(my_decorated_fun(10, 20)) # 30
+
+## now using decorators
+@my_outer_func
+def my_fun(a,b):
+  return a+b
+
+# now just call 'my_fun()' normally, this will automatically call/invoke my_outer_func()
+print(my_fun(10,20)) # 30
+```
+
+
+## 7. Classes, Objects and Modules
+### 7.1 Class
+* **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
+* **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and is also mutable, so modifying some variables will only reflect changes for that particular instance only.  
+* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
+* **Methods**: Functions that are inside class are called as methods. 
+* **self**: *self* resembles a instance of class in class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it highly recommended to use *self* as a common practice for code readability. 
+```Python
+## class
+# define class
+# python defines empty constructor automatically in background, if not provided
+class MyClass: 
+  # class method
+  def myfunction(self):
+    # do something  
+    pass
+
+# class with default constructor
+class MyClass1:
+  # default constructor
+  def __init__(self):
+    # instance's variables are created with 'self.' prefix
+    self.my_var = 30
+    self.other_var = 10
+    
+  # instance methods
+  def my_fun1(self):
+    # access instance variables using 'self' object
+    print(self.my_var) 
+    # change/define new variables inside any instance method using 'self' object
+    self.my_var = 42 
+
+  def return_my_var(self):
+    return self.my_var 
+    
+class MyClass2:
+  # parameterized constructor, passing parameters and saving them as instance variables
+  def __init__(self, para1, para2, para3=None): 
+    self.para1 = para1
+    self.para2 = para2
+  # here var1 is a method parameter
+  def my_func(self, var1): 
+    return var1 + max(self.para1, self.para2)
+
+## Instance
+some_instance = MyClass1()
+# use '.' dot operator to access methods/variables of an object
+print(some_instance.other_var) # 10
+# if attribute is not found, AttributeError is returned
+print(some_instance.other_var_42) # AttributeError
+# same goes for method, only with the rounded brackets
+print(some_instance.return_my_var()) # 30
+
+# create new instance, pass arguments for parameterized constructor
+my_instance = MyClass2(22,35) 
+# calling my_func() of my_instance
+print(my_instance.my_func(40)) # 75
+
+# in python the invocation of the instance method is operated via the class calling a method 
+# by passing the instance as an argument, so this is same as above instance calling method
+print(MyClass2.my_func(my_instance, 40)) # 75
+# the 'self' resembles the instance object, which is 'my_instance' here
+```
+#### 7.1.1 Three Types of methods in class
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
+2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
+3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration(using *@staticmethod* prefix), these methods are not required to pass class as first argument.
+```Python
+## define class
+class MyClass: 
+  # class variables: they not inside of any method 
+  my_var1 = 20
+  my_var2 = 10
+  
+  # instance methods
+  def __init__(self):
+    # instance variables
+    self.other_var1 = 30 
+    self.other_var2 = 40
+    # can also access class variable
+    print(self.my_var1)
+  def fun1(self):
+    print("This is a instance method")
+  
+  # class method
+  @classmethod
+  def fun2(CLS):
+    print("This is class method")
+    # access class variable
+    print(CLS.my_var1)
+    # CLS.other_var1 will raise AttributeError
+ 
+  # static method
+  @staticmethod
+  def fun3():
+    # can't access instance/class variable/methods, but can do its own task
+    print("This is static method")
+ 
+## access using instance    
+my_instance = MyClass()
+print(my_instance.my_var1) # can access
+print(my_instance.other_var1) # can access
+print(my_instance.fun1()) # can access
+print(my_instance.fun2()) # can access
+print(my_instance.fun3()) # can access
+ 
+## access using class
+print(MyClass.my_var1) # can access
+print(MyClass.other_var1) # can't access
+print(MyClass.fun1()) # can't access
+print(MyClass.fun2()) # can access
+print(my_instance.fun3()) # can access
+
+## some functions for objects
+# check if a object has some attribute
+print(hasattr(my_instance, 'x')) # False
+# get value of object's attribute, similar to accessing with '.' operator 
+# though one benefit is if attribute is not found, the default value is returned
+print(getattr(my_instance, 'x', 90)) # 90
+# set value of object's attribute, similar to assigning with '=' operator 
+# though one benefit is if attribute is not found, it creates one and assigns value to it 
+setattr(my_instance, 'my_new_var', 'Hello')
+print(my_instance.my_new_var) # Hello
+# delete object's attribute returns nothing, raises AttributeError if not found
+delattr(my_instance, 'other_var1')
+print(my_instance.other_var1) # AttributeError
+```
+#### 7.1.2 Special methods
+* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called “magic” methods because these methods are invoked indirectly, we do not need to invoke them directly.
+* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+* Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
+```Python
+## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
+# to add functionality behaviour to its object 
+class MyClass:
+  def __init__(self, a, b, c, d):
+    self.some_id = a
+    self.some_name = b
+    self.some_age = c
+    self.some_values = d
+  # define '__str__' to enable print functionality
+  def __str__(self):
+    """Add doc string to describe their behaviour"""
+    return f"id: {self.some_id}, name: {self.some_name}, age: {self.some_age}"
+  # define '__len__' to enable length functionality  
+  def __len__(self):
+    """Length of some_values"""
+    return len(self.some_values)    
+  # define '__getitem__' for enabling iteration of item 
+  def __getitem__(self, index):
+    """Iterate through some_values""" 
+    return self.some_values[index]
+
+my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
+# test print functionality, '__str__()' is invoked when 'print()' is called 
+print(my_instance) # id: 239034, name: Bob, age: 23
+# length functionality
+print(len(my_instance)) # 6
+# iterate thourgh object 
+for a in my_instance:
+  print(a) # [10,45,32,67,32,655]
+```
+#### 7.1.3 Docstrings
+* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
+```Python 
+class MyClass:
+    """This is a docstring."""
+    def my_fun():
+        """This is what this method does..."""
+```
+### 7.2 Objects
+* An object has its own attributes/variable (can be any data-type/data-structure/object) and functions (methods).
+* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in python have attributes/methods, Data Structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
+* We saw earlier how to create a instance of a class (i.e object) and what/how they can access variables and methods.
+```Python
+## data types are object
+a = 30
+print(type(a)) # <class 'int'>
+# print attributes/methods of class int
+print(dir(a)) 
+
+## data structures are object
+a = [30, 10, 20]
+print(type(a)) # <class 'list'>
+# print attributes/methods of class list
+print(dir(a)) 
+
+## functions are objects
+def my_fun():
+  pass
+print(my_fun) # <class 'function'>
+print(dir(my_fun))
+
+## classes are objects
+class MyClass: 
+  def __init__(self):
+    pass    
+print(MyClass) # <class '__main__.MyClass'>
+print(dir(MyClass))
+```
+#### 7.2.1 Iterators
+* Are objects that can be iterated using loops, these aren't necessarily list. A class needs to define *\_\_iter\_\_()* and *\_\_next\_\_()* special methods and it'll function as a iterator. 
+```Python
+## Iterators
+# user-defined iterators
+class SquareIterator:
+  """SquareIterator takes items and returns item's square upon call"""
+  def __init__(self, *args):
+    self.args = args
+    self.iter_len = len(args)-1
+  def __iter__(self):
+    """This method is used to initialize a iterator, it returns an iterator object."""
+    self.idx = -1 # we initialize index
+    return self
+  def __next__(self):
+    """This method is used to fetch next value, it can be called or loops do call it automatically."""
+    self.idx += 1  
+    if self.idx > self.iter_len:
+      raise StopIteration
+    return self.args[self.idx]**2
+
+my_iter = SquareIterator(10,20,30,40,50)  
+# initialize iterator
+my_iter = iter(my_iter) 
+# iterate values using next
+print(next(my_iter)) # 100
+# same as next(my_iter)
+print(my_iter.__next__()) # 400
+
+## iterating a iterator object
+# for loop calls '__iter__()' and '__next__()' functions on a iterable
+for v in my_iter:
+  print(v) # [100,400,900,1600,2500]
+  
+## use hasattr to check if some object has some particular function 
+print(hasattr(my_iter, "__iter__")) # True
+print(hasattr(list, '__iter__')) # True
+print(hasattr(tuple, '__iter__')) # True
+```
+#### 7.2.2 Generators
+* Generators are "lazy iterators", they return value when *next()* function is called upon. They might have or not have loops in them. *yield* statement makes a function iterable with/without loops. *yield* saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. 
+* For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+```Python
+## basic generator
+def my_generator(*args):
+  for a in args:
+    yield a   
+generator = my_generator(10,20,30,40,50)
+
+# or using comprehension
+generator = (a for a in [10,20,30,40,50])
+print(type(generator)) # <class 'generator'>
+print(next(generator)) # 10
+
+## iterate a generator
+for a in generator:
+  print(a) # [10,20,30,40,50]
+
+## create a generator without loop
+def my_generator():
+  yield 1
+  yield 2
+  yield 3
+for a in my_generator():
+  print(a) # [1,2,3]
+```
+#### 7.2.3 Descriptors
+* A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
+* Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
+* **There are two types of Descriptors**.
+  1. **data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
+  2. **non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
+* These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
+```Python
+## Descriptor example
+class MyDescriptor:
+    # when class holding 'MyDescriptor' object is defined this function is called
+    # which records its name for later reference 
+    def __set_name__(self, obj, name):
+        # here obj is the 'MyClass' object and 'self' is our 'MyDescriptor' object 
+        self.private_name = "_" + name # A access/internal name, '_' to avoid name collision
+
+    # when attribute is looked up(using '.' operator), this method is called
+    def __get__(self, obj, objtype=None):
+        # fetch 'private_name' from 'MyClass' instance
+        value = getattr(obj, self.private_name)
+        print(f"{self.private_name} was accesed")
+        return value
+
+    # when attribute is altered(using '=' operator), this method is called      
+    def __set__(self, obj, value):
+        # decide what is valid value for 'my_var1'
+        if self.private_name == '_my_var1':
+            if value % 2 == 0:
+                raise AttributeError("Not a valid value, require odd number")
+        # decide what is valid value for 'my_var2'
+        elif self.private_name == '_my_var2':
+            if value % 2 != 0:
+                raise AttributeError("Not a valid value, require even number")
+        # alter 'private_name' of 'MyClass' instance
+        setattr(obj, self.private_name, value)
+        print(f"{self.private_name} was altered")
+
+class MyClass:
+    my_var1 = MyDescriptor() # initialize our descriptor object
+    my_var2 = MyDescriptor() # create another attribute
+
+    def __init__(self, var1, var2, var3, var4):
+        # calls '__set__()' method of descriptor to assign the variable
+        self.my_var1 = var1 # alter/assign descriptor object's value
+        self.my_var2 = var2 # alter/assign descriptor object's value
+        self.my_var3 = var3 # normal attributes/variables
+        self.my_var4 = var4 # normal attributes/variables 
+
+my_instance = MyClass(11, 12, 30, 40)
+print(my_instance.__dict__) # {'_my_var1': 11, '_my_var2': 12, 'my_var3': 30, 'my_var4': 40}
+
+# calls the '__get__()' method of our descriptor to get value
+print(my_instance.my_var1) # access descriptor object's value
+print(my_instance.my_var2) # access descriptor object's value
+# call normal variables
+print(my_instance.my_var3)
+print(my_instance.my_var4)
+
+# control what should be the valid input for particular var
+my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
+my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
+```
+### 7.3 Modules
+* Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
+* Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
+* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
+* A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.</br>
+Example: Save this module as *sample.py* or anything you prefer(but change the name if so the in the next module).
+```Python
+a = 42
+def my_fun():
+  print("This function was called")
+
+# check if module is a running module
+if __name__ == "__main__":
+  # do something here
+  print("sample module was ran")
+  my_fun()
+```
+Save this module as *my_module.py* and run this module.
+```Python
+## Modules
+# modules can be imported anywhere in python, there is no restriction
+# but for readability they are imported at the beginning
+# Eg. math is built-in module, import it using the 'import' keyword
+# the 'import' statement creates a module object 
+# any module is only imported once a program is ran, re-importing has no effect
+import math 
+
+## accessing a function from math object
+# any functions/classes/variables of math module now can be accessed using '.' operator
+my_var = math.sqrt(8) 
+
+## import specific from the module using 'from' keyword
+from math import sqrt
+# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions.
+my_var = sqrt(16)
+
+## import with a different access name in order to avoid names collision
+def math(num):
+  return pow(num, 2)
+
+import math as maths 
+# accessing function from 'math' module
+print(maths.sqrt(4)) # 2.0
+# this 'math' does something else
+print(math(2)) # 4
+
+## Check functions/classes/variables of a module using dir()
+print(dir(math))
+
+## __main__ in Python
+# Notice: Now importing my_module in this module will not call my_fun() 
+# as my_fun() is only called if __name__ equals '__main__'
+# which is only when running from that module i.e running my_module.py script
+import sample
+print(dir(sample)) # ['__builtins__', '__name__',...]
+print(sample.__name__) # sample
+# check __name__ variable of this module 
+print(__name__) # __main__
+
+# now try doing otherwise, run sample.py check the if this print method is called
+if __name__ == "__main__":
+  print("my_module was ran")
+```
+#### 7.3.1 Packages
+* Are defined with *\_\_init\_\_().py* file in that folder.
+
+
+## 8. Files and I/O
 Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
+### 8.1 Three built-in functions for I/O handling.
 #### 1. input(prompt) => None
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
@@ -1368,7 +2007,7 @@ file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
-#### *with* statement
+### 8.2 *with* statement
 * This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
@@ -1398,7 +2037,7 @@ except Exception as e:
 finally:
   file.close()
 ```
-#### Context Manager 
+### 8.3 Context Manager 
 * It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods and that object will function as a context manager. Context managers are usually used in Database management and to handle Thread locks. 
 * Also there's a built-in module [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
@@ -1430,621 +2069,7 @@ with MyDBManager() as db_handler:
 print(db_handler.some_db) # {'id': [], 'name': []}
 ```
 
-## 6. Functions, Classes and Objects
-### Functions
-* A function is a block of code(group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something(in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
-* **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
-* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions. Unlike objects, functions do not have a internal state. So the output does not changes as a function cannot be modified once defined. 
-* Python like C++ is multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state, previous output cannot be re-gained given different input, they are just meant to perform some operation on some data and return the output. A function is pure(without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, function nesting, making programs more modular and requiring less debugging overall.
-* It totally depends on the problem at hand, whether to go with a functional or object-oriented approach. 
-```Python
-## defining functions
-# Example 1. Non-parameterize function which returns nothing 
-def my_function1():
-  # do something
-  pass # to ensure the program runs this empty function   
-  # if the function is not empty 'pass' is not required at all
-  
-# Example 2. function with parameter which returns nothing
-def my_function2(var1, var2):
-  pass
-# alternative way is to describe the input/return type hints
-# As they are just hints, it does not matter what is send/returned
-def my_function2(var1: int, var2: int) -> None: 
-  pass
-  
-# Example 3. default parameters should always follow later
-def my_function3(var1, var2, var3, do_something=False): 
-  if do_something:
-    # did something
-    return var1 + var2 + var3
-
-## calling a function without a return statement, returns None by default
-print(my_function1()) # None
-print(my_function3(30, 20, 10, do_something=True)) # 60
-# check if it is a function
-print(callable(my_function1))
-
-## first class functions behaviour
-def square_num(number, some_fun=None):
-  if some_fun:
-    output = some_fun(number)
-  else:
-    output=number**2  
-  return output
-
-def cube_num(n):
-  return n**3
-
-# assigning a function to a variable/data structure, it is not same as calling a function
-# Notice: no rounded brackets on the function
-my_var = cube_num 
-print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
-# 'my_var' now points to the 'cube_num()', so calling 'my_var' is calling 'cube_num'
-print(my_var(2)) # 8
-
-# passing a function as argument to another function
-print(square_num(2)) # 4 
-# pass function as argument
-print(square_num(2, my_var)) # 8
-```
-#### Packing and Unpacking
-Functions in python support Packing and Unpacking variables into *tuple/dict*. Explained below.
-1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function(or they'll contain all the values). 
-2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
-```Python
-## packing in functions 
-# packing variables into tuple and dict
-# Notice: the * operator and ** operator before args and kwargs 
-def my_test(*args, **kwargs):
-  print(type(args)) # tuple
-  print(type(kwargs)) # dict
-
-# packing args example
-def sum_nums(a,b, *args):
-  total = a+b
-  if args:
-    for n in args:
-      total+=n
-  return total
-
-# passing only 2 arguments
-sum_nums(2,3) # 5   
-# passing more than 2 arguments
-sum_nums(2,3,3,4,2,1,1,4) # 20
-
-# packing kwargs example
-def my_fun2(x,y,**kwargs):
-  total = x+y
-  if kwargs:  
-    for k,v in kwargs.items():
-        # here we're allowing only specific keys
-        if k in 'abd': 
-            total+=v
-  return total
-  
-# passing only 2 arguments
-print(my_fun2(2,3)) # 5   
-# passing more than 2 arguments, however arguments should have some unique name
-print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5000, my_var=8000)) # 15
-
-## unpacking in functions
-# unpacking variables from tuple/dict
-def my_fun1(a,b,c,d):
-  return a+b+c+d
-
-my_list = [1,2,3,4]
-my_dict = {'a':1,'d':4,'b':2,'c':3}
-# passing from list/tuple, list here
-print(my_fun1(*my_list)) # 10
-# passing from dict
-print(my_fun1(**my_dict)) # 10 
-```
-#### Recursion
-* Is when a function calls itself. Wikipedia "It is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem". It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
-* Recursion uses system stack to maintain the memory of ongoing recursive calls, this usually leads to higher memory usage compared to iteration.    
-* It is required to handle the StackOverFlow, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
-* There are certain advantages such as it reduces the size of code when a iterative solution is lengthy/complex and some solutions are easier/better implemented with recursion. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
-* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. 
-```Python
-## Example 1: Sum of n given number
-# using iteration
-def iter_sum(n):
-    total = 0
-    for i in range(n+1):
-        total += i
-    return total
-# using recursion    
-def recur_sum(n):
-    if n == 0:
-        return 0
-    else:
-        return n + recur_sum(n-1)   
-        
-print(iter_sum(5)) # 15
-print(recur_sum(5)) # 15
-# here iterative solution seems easy/understandable, but the recursive solution is much concise
-
-## stack calls over recursion
-'''
-# in our recursion function recursive calls are made till n is 0, so here we begin from the last line
-5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
-4 + recur_sum(3) -> 6 = 10 # same thing here
-3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
-2 + recur_sum(1) -> 1 = 3 # the result 1 is returned here from previous call and added with 2
-1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the returns are made
-'''
-```
-* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
-#### Anonymous functions
-* Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
-```Python
-## example 1
-# function to return sum of 2 numbers 
-# syntax => lambda arguments : expression
-my_function = lambda a,b: a+b  
-# Notice: 'a+b' is also the return statement without using 'return' keyword 
-
-## calling the function
-print(my_function(1,1)) # 2 
-```    
-#### Docstrings
-* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
-```Python 
-class MyClass:
-    """This is a docstring."""
-    def my_fun():
-        """This is what this method does..."""
-```
-### Class
-* **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
-* **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and is also mutable, so modifying some variables will only reflect changes for that particular instance only.  
-* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
-* **Methods**: Functions that are inside class are called as methods. 
-* **self**: *self* resembles a instance of class in class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by python as *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it highly recommended to use *self* as a common practice for code readability. 
-```Python
-## class
-# define class
-# python defines empty constructor automatically in background, if not provided
-class MyClass: 
-  # class method
-  def myfunction(self):
-    # do something  
-    pass
-
-# class with default constructor
-class MyClass1:
-  # default constructor
-  def __init__(self):
-    # instance's variables are created with 'self.' prefix
-    self.my_var = 30
-    self.other_var = 10
-    
-  # instance methods
-  def my_fun1(self):
-    # access instance variables using 'self' object
-    print(self.my_var) 
-    # change/define new variables inside any instance method using 'self' object
-    self.my_var = 42 
-
-  def return_my_var(self):
-    return self.my_var 
-    
-class MyClass2:
-  # parameterized constructor, passing parameters and saving them as instance variables
-  def __init__(self, para1, para2, para3=None): 
-    self.para1 = para1
-    self.para2 = para2
-  # here var1 is a method parameter
-  def my_func(self, var1): 
-    return var1 + max(self.para1, self.para2)
-
-## Instance
-some_instance = MyClass1()
-# use '.' dot operator to access methods/variables of an object
-print(some_instance.other_var) # 10
-# if attribute is not found, AttributeError is returned
-print(some_instance.other_var_42) # AttributeError
-# same goes for method, only with the rounded brackets
-print(some_instance.return_my_var()) # 30
-
-# create new instance, pass arguments for parameterized constructor
-my_instance = MyClass2(22,35) 
-# calling my_func() of my_instance
-print(my_instance.my_func(40)) # 75
-
-# in python the invocation of the instance method is operated via the class calling a method 
-# by passing the instance as an argument, so this is same as above instance calling method
-print(MyClass2.my_func(my_instance, 40)) # 75
-# the 'self' resembles the instance object, which is 'my_instance' here
-```
-#### Three Types of methods in class:
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
-2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
-3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration(using *@staticmethod* prefix), these methods are not required to pass class as first argument.
-```Python
-## define class
-class MyClass: 
-  # class variables: they not inside of any method 
-  my_var1 = 20
-  my_var2 = 10
-  
-  # instance methods
-  def __init__(self):
-    # instance variables
-    self.other_var1 = 30 
-    self.other_var2 = 40
-    # can also access class variable
-    print(self.my_var1)
-  def fun1(self):
-    print("This is a instance method")
-  
-  # class method
-  @classmethod
-  def fun2(CLS):
-    print("This is class method")
-    # access class variable
-    print(CLS.my_var1)
-    # CLS.other_var1 will raise AttributeError
- 
-  # static method
-  @staticmethod
-  def fun3():
-    # can't access instance/class variable/methods, but can do its own task
-    print("This is static method")
- 
-## access using instance    
-my_instance = MyClass()
-print(my_instance.my_var1) # can access
-print(my_instance.other_var1) # can access
-print(my_instance.fun1()) # can access
-print(my_instance.fun2()) # can access
-print(my_instance.fun3()) # can access
- 
-## access using class
-print(MyClass.my_var1) # can access
-print(MyClass.other_var1) # can't access
-print(MyClass.fun1()) # can't access
-print(MyClass.fun2()) # can access
-print(my_instance.fun3()) # can access
-
-## some functions for objects
-# check if a object has some attribute
-print(hasattr(my_instance, 'x')) # False
-# get value of object's attribute, similar to accessing with '.' operator 
-# though one benefit is if attribute is not found, the default value is returned
-print(getattr(my_instance, 'x', 90)) # 90
-# set value of object's attribute, similar to assigning with '=' operator 
-# though one benefit is if attribute is not found, it creates one and assigns value to it 
-setattr(my_instance, 'my_new_var', 'Hello')
-print(my_instance.my_new_var) # Hello
-# delete object's attribute returns nothing, raises AttributeError if not found
-delattr(my_instance, 'other_var1')
-print(my_instance.other_var1) # AttributeError
-```
-### Objects
-* An object has its own attributes/variable(can be any data-type/data-structure/object) and functions(methods).
-* **"Everything in python is an object"**, in python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in python have attributes/methods, Data Structures have their attributes/methods, Functions(are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
-* We saw earlier how to create a instance of a class(i.e object) and what/how they can access variables and methods.
-```Python
-## data types are object
-a = 30
-print(type(a)) # <class 'int'>
-# print attributes/methods of class int
-print(dir(a)) 
-
-## data structures are object
-a = [30, 10, 20]
-print(type(a)) # <class 'list'>
-# print attributes/methods of class list
-print(dir(a)) 
-
-## functions are objects
-def my_fun():
-  pass
-print(my_fun) # <class 'function'>
-print(dir(my_fun))
-
-## classes are objects
-class MyClass: 
-  def __init__(self):
-    pass    
-print(MyClass) # <class '__main__.MyClass'>
-print(dir(MyClass))
-```
-### Extras
-#### Namespaces
-* As seen in c++ namespaces are collection of names of variables/functions, but unlike c++, python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
-* **There are three types of namespaces**.
-  1. **built-in**: Are readily available functions without any import.
-  2. **global**: Are which user defines outside of any function/class. 
-  3. **local**: Are which user defines inside a function/class/nested.
-```Python
-## built-in namespace 
-# For example some functions which do not require any import 
-print(), len(), map(), range(), list(), set(), str()
-
-## global namespace
-# importing any modules adds them global namespace
-import time 
-# variables and functions
-my_var = 10
-def my_fun():
-    pass
-
-## local namespace
-def some_fun():
-    # variables and functions defined here
-    my_var = 10
-    def my_fun():
-        pass
-```
-#### Modules
-* Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
-* Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
-* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
-* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
-* A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.</br>
-Example: Save this module as *sample.py* or anything you prefer(but change the name if so the in the next module).
-```Python
-a = 42
-def my_fun():
-  print("This function was called")
-
-# check if module is a running module
-if __name__ == "__main__":
-  # do something here
-  print("sample module was ran")
-  my_fun()
-```
-Save this module as *my_module.py* and run this module.
-```Python
-## Modules
-# modules can be imported anywhere in python, there is no restriction
-# but for readability they are imported at the beginning
-# Eg. math is built-in module, import it using the 'import' keyword
-# the 'import' statement creates a module object 
-# any module is only imported once a program is ran, re-importing has no effect
-import math 
-
-## accessing a function from math object
-# any functions/classes/variables of math module now can be accessed using '.' operator
-my_var = math.sqrt(8) 
-
-## import specific from the module using 'from' keyword
-from math import sqrt
-# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions.
-my_var = sqrt(16)
-
-## import with a different access name in order to avoid names collision
-def math(num):
-  return pow(num, 2)
-
-import math as maths 
-# accessing function from 'math' module
-print(maths.sqrt(4)) # 2.0
-# this 'math' does something else
-print(math(2)) # 4
-
-## Check functions/classes/variables of a module using dir()
-print(dir(math))
-
-## __main__ in Python
-# Notice: Now importing my_module in this module will not call my_fun() 
-# as my_fun() is only called if __name__ equals '__main__'
-# which is only when running from that module i.e running my_module.py script
-import sample
-print(dir(sample)) # ['__builtins__', '__name__',...]
-print(sample.__name__) # sample
-# check __name__ variable of this module 
-print(__name__) # __main__
-
-# now try doing otherwise, run sample.py check the if this print method is called
-if __name__ == "__main__":
-  print("my_module was ran")
-```
-#### Packages
-* Are defined with *\_\_init\_\_().py* file in that folder.
-#### Decorators
-* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
-* This functionality is utilized using functions being first class in python.
-```Python
-# my_outer_func() is just a container function
-def my_outer_func(some_func):
-  # wrapper function here
-  # my_wrapper_func() does something before/after calling some_func() 
-  def my_wrapper_func(some_func_para1, some_func_para2): 
-    # do something of my_wrapper_func()
-    print("Wrapper function was called")
-    # call some_func(), do something in it and return something if required
-    output = some_func(some_func_para1, some_func_para2) 
-    # do something extra
-    # return nothing if not required
-    return output 
-    
-  # but need to return my_wrapper_func()   
-  return my_wrapper_func 
-
-## without using decorators
-def my_fun(a,b):
-  return a+b
-
-my_decorated_fun = my_outer_func(my_fun) 
-print(my_decorated_fun(10, 20)) # 30
-
-## now using decorators
-@my_outer_func
-def my_fun(a,b):
-  return a+b
-
-# now just call 'my_fun()' normally, this will automatically call/invoke my_outer_func()
-print(my_fun(10,20)) # 30
-```
-#### Special methods
-* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called “magic” methods because these methods are invoked indirectly, we do not need to invoke them directly.
-* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
-* Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
-```Python
-## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
-# to add functionality behaviour to its object 
-class MyClass:
-  def __init__(self, a, b, c, d):
-    self.some_id = a
-    self.some_name = b
-    self.some_age = c
-    self.some_values = d
-  # define '__str__' to enable print functionality
-  def __str__(self):
-    """Add doc string to describe their behaviour"""
-    return f"id: {self.some_id}, name: {self.some_name}, age: {self.some_age}"
-  # define '__len__' to enable length functionality  
-  def __len__(self):
-    """Length of some_values"""
-    return len(self.some_values)    
-  # define '__getitem__' for enabling iteration of item 
-  def __getitem__(self, index):
-    """Iterate through some_values""" 
-    return self.some_values[index]
-
-my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
-# test print functionality, '__str__()' is invoked when 'print()' is called 
-print(my_instance) # id: 239034, name: Bob, age: 23
-# length functionality
-print(len(my_instance)) # 6
-# iterate thourgh object 
-for a in my_instance:
-  print(a) # [10,45,32,67,32,655]
-```
-#### Some objects explained below: [Iterators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-iterators), [Generators](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-generators) and [Descriptors](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-descriptors). 
-#### 1. Iterators
-* Are objects that can be iterated using loops, these aren't necessarily list. A class needs to define *\_\_iter\_\_()* and *\_\_next\_\_()* special methods and it'll function as a iterator. 
-```Python
-## Iterators
-# user-defined iterators
-class SquareIterator:
-  """SquareIterator takes items and returns item's square upon call"""
-  def __init__(self, *args):
-    self.args = args
-    self.iter_len = len(args)-1
-  def __iter__(self):
-    """This method is used to initialize a iterator, it returns an iterator object."""
-    self.idx = -1 # we initialize index
-    return self
-  def __next__(self):
-    """This method is used to fetch next value, it can be called or loops do call it automatically."""
-    self.idx += 1  
-    if self.idx > self.iter_len:
-      raise StopIteration
-    return self.args[self.idx]**2
-
-my_iter = SquareIterator(10,20,30,40,50)  
-# initialize iterator
-my_iter = iter(my_iter) 
-# iterate values using next
-print(next(my_iter)) # 100
-# same as next(my_iter)
-print(my_iter.__next__()) # 400
-
-## iterating a iterator object
-# for loop calls '__iter__()' and '__next__()' functions on a iterable
-for v in my_iter:
-  print(v) # [100,400,900,1600,2500]
-  
-## use hasattr to check if some object has some particular function 
-print(hasattr(my_iter, "__iter__")) # True
-print(hasattr(list, '__iter__')) # True
-print(hasattr(tuple, '__iter__')) # True
-```
-#### 2. Generators
-* Generators are "lazy iterators", they return value when *next()* function is called upon. They might have or not have loops in them. *yield* statement makes a function iterable with/without loops. *yield* saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. 
-* For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
-```Python
-## basic generator
-def my_generator(*args):
-  for a in args:
-    yield a   
-generator = my_generator(10,20,30,40,50)
-
-# or using comprehension
-generator = (a for a in [10,20,30,40,50])
-print(type(generator)) # <class 'generator'>
-print(next(generator)) # 10
-
-## iterate a generator
-for a in generator:
-  print(a) # [10,20,30,40,50]
-
-## create a generator without loop
-def my_generator():
-  yield 1
-  yield 2
-  yield 3
-for a in my_generator():
-  print(a) # [1,2,3]
-```
-#### 3. Descriptors
-* A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
-* Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
-* **There are two types of Descriptors**.
-  1. **data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
-  2. **non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
-* These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
-```Python
-## Descriptor example
-class MyDescriptor:
-    # when class holding 'MyDescriptor' object is defined this function is called
-    # which records its name for later reference 
-    def __set_name__(self, obj, name):
-        # here obj is the 'MyClass' object and 'self' is our 'MyDescriptor' object 
-        self.private_name = "_" + name # A access/internal name, '_' to avoid name collision
-
-    # when attribute is looked up(using '.' operator), this method is called
-    def __get__(self, obj, objtype=None):
-        # fetch 'private_name' from 'MyClass' instance
-        value = getattr(obj, self.private_name)
-        print(f"{self.private_name} was accesed")
-        return value
-
-    # when attribute is altered(using '=' operator), this method is called      
-    def __set__(self, obj, value):
-        # decide what is valid value for 'my_var1'
-        if self.private_name == '_my_var1':
-            if value % 2 == 0:
-                raise AttributeError("Not a valid value, require odd number")
-        # decide what is valid value for 'my_var2'
-        elif self.private_name == '_my_var2':
-            if value % 2 != 0:
-                raise AttributeError("Not a valid value, require even number")
-        # alter 'private_name' of 'MyClass' instance
-        setattr(obj, self.private_name, value)
-        print(f"{self.private_name} was altered")
-
-class MyClass:
-    my_var1 = MyDescriptor() # initialize our descriptor object
-    my_var2 = MyDescriptor() # create another attribute
-
-    def __init__(self, var1, var2, var3, var4):
-        # calls '__set__()' method of descriptor to assign the variable
-        self.my_var1 = var1 # alter/assign descriptor object's value
-        self.my_var2 = var2 # alter/assign descriptor object's value
-        self.my_var3 = var3 # normal attributes/variables
-        self.my_var4 = var4 # normal attributes/variables 
-
-my_instance = MyClass(11, 12, 30, 40)
-print(my_instance.__dict__) # {'_my_var1': 11, '_my_var2': 12, 'my_var3': 30, 'my_var4': 40}
-
-# calls the '__get__()' method of our descriptor to get value
-print(my_instance.my_var1) # access descriptor object's value
-print(my_instance.my_var2) # access descriptor object's value
-# call normal variables
-print(my_instance.my_var3)
-print(my_instance.my_var4)
-
-# control what should be the valid input for particular var
-my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
-my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
-```
-## 7. OOP concepts
+## 9. OOP concepts
 #### What is OOP?
 Wikipedia suggests
   > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
@@ -2053,13 +2078,13 @@ Wikipedia suggests
 #### Why OOP?
 It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-polymorphism).**
-### 1. Inheritance
+### 9.1 Inheritance
 * Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
 * We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way.
 * **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to 'super' keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
-#### Four types of Inheritance are shown below.
+#### 9.1.1 Four types of Inheritance are shown below.
 1. **Single**: A Child/sub class only inherits a single Parent/Super Class.
 ```Python
 class MyParent:
@@ -2202,10 +2227,10 @@ my_instance2 = MyChild2()
 print(my_instance1.max_finder()) # 81
 print(my_instance2.min_finder()) # 12
 ```
-### 2. Abstraction
+### 9.2 Abstraction
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
-* Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body(they are empty methods). The abstract classes cannot be instantiated(its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
-* Python does not have 'abstract' keyword like in Java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes(ABC) which act about the same. 
+* Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body (they are empty methods). The abstract classes cannot be instantiated (its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
+* Python does not have 'abstract' keyword like in Java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes (ABC) which act about the same. 
 * The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
 ```Python
 ### Abstract class example
@@ -2262,10 +2287,10 @@ print(my_concrete2.get_vars()) # 10, 20, 30
 # try to create object of 'MyBase' class
 my_base = MyBase() # TypeError: Can't instantiate abstract class
 ```
-### 3. Encapsulation
-* Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data(of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
+### 9.3 Encapsulation
+* Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data (of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
 * This technique is essential to protect private data to be accessed/misused form another class directly. To implement this we use **Access Modifiers**. They are used to define the access type of a variable inside a class. 
-* Three Types of Access modifiers. 
+* **Three Types of Access modifiers.** 
   1. **Public**: Can be accessed anywhere in the program. All variables are public by default.
   2. **Protected**: Only the current class and derived class can access them. Use "\_" underscore define them.
   3. **Private**: Only the current class can access them, not even their instance can access them. Use "\_\_" underscore define them.
@@ -2333,14 +2358,14 @@ del some_instance._MyClass__my_var3
 # further crashing the program
 print(some_instance._MyClass__my_var3) # AttributeError
 ```
-#### **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
+#### 9.3.1 **property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
   * *fget* Optional[Callable]: The getter function.  
   * *fset* Optional[Callable]: The setter function.  
   * *fdel* Optional[Callable]: The deleter function.  
   * *doc* Optional[str]: Provide some information about the particular property.
 #####
-**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real(private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br></br>
+**Explanation**: It is a pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real (private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br></br>
 **Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are just descriptors, they are a implementation of descriptors. Although one drawback using descriptor is for hooking a single variable a whole class has to be dedicated, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
 ```Python
 ## Implement Encapsulation using python's property object
@@ -2393,12 +2418,12 @@ del some_instance.my_var
 some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
-### 4. Polymorphism
+### 9.4 Polymorphism
 * Polymorphism means "many forms". It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of *if..else* or *switch* case when same type of function needs to be called on different objects.     
-* Two Types of Polymorphism. 
+* **Two Types of Polymorphism.**
   1. **Static**: The behaviour is decided at Compile-Time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
-#### The Four types of Polymorphism are explained below.
+#### 9.4.1 The Four types of Polymorphism.
 1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using "if..else" or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
@@ -2429,7 +2454,7 @@ my_instance = MyClass()
 my_instance.printer(20, 30, "Bob") # Bob your total is 50
 my_instance.printer(20, 30) # Your total is 50
 ```
-2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function(which is a special function in python) and changes its functionality(does something and returns something), that functionality is applicable to that class/object. Changing operator's behaviour for a specific object by overloading a operator's function.
+2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function (which is a special function in python) and changes its functionality (does something and returns something), that functionality is applicable to that class/object. Changing operator's behaviour for a specific object by overloading a operator's function.
 ```Python
 ## Operator Overloading, here we overload the addition and subtractor operator
 class MyClass:
@@ -2452,7 +2477,7 @@ my_ins2 = MyClass(10, 70, 20, 50)
 print(my_ins1 + my_ins2) # 312
 print(my_ins1 - my_ins2) # 12
 ```
-3. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred as "Duck Typing". It is a feature of "dynamic languages", it means directly(by not caring about exceptions) calling methods on objects without checking their types.  
+3. **Method overriding**: Use same named functions but inside different classes. Two classes can have same named functions, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred as "Duck Typing". It is a feature of "dynamic languages", it means directly (by not caring about exceptions) calling methods on objects without checking their types.  
 ```Python
 ## Method Overriding
 class ListHandler:
