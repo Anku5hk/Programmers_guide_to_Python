@@ -1473,7 +1473,7 @@ print(recur_sum(5)) # 15
 ```
 * Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
 ### 6.6 Anonymous functions
-Is a function that is defined without a name(without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
+Is a function that is defined without a name (without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
 ```Python
 ## example 1
 # function to return sum of 2 numbers 
@@ -1483,8 +1483,53 @@ my_function = lambda a,b: a+b
 
 ## calling the function
 print(my_function(1,1)) # 2 
-```    
-### 6.7 Decorators
+```
+### 6.7 global and nonlocal
+1. ***global***: To modify a variable with global scope from inside a function.
+2. ***nonlocal***: To modify a variable of local scope from inside a nested function.
+```Python
+## global
+# here my_var1 and my_var2 have global scope 
+my_var1 = 10 
+my_var2 = 20
+my_var3 = 30
+def some_fun():
+  # declaring my_var1 as global, so now it can be modified for global scope
+  global my_var1
+  # accessing a global scope variable, works fine
+  print(my_var3) # 30
+  # accessing a global scope variable defined as global, works fine
+  print(my_var1) # 10
+  # same thing with my_var2 doesn't work (comment below line to execute the program further) 
+  print(my_var2) # UnboundLocalError
+  # Its because in Python you don't declare the variable's scope  
+  # Python tries to figure out the scope by watching if a variable has some assignment in a function
+  # if it does that variable is considered a local variable, my_var2 has assignment below so its a local
+  # variable which we can't access before assignment     
+
+  my_var1 = 30 # modifying for global scope
+  my_var2 = 40 # modifying only for local scope
+
+some_fun()
+print(my_var1, my_var2) # 30, 20
+# Notice: my_var1 is now changed but my_var2 is not
+
+## nonlocal 
+def some_fun():
+  # my_var1 and my_var2 have local scope 
+  my_var1 = 10
+  my_var2 = 20
+  def some_nested_fun():
+    # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope
+    nonlocal my_var2 
+    my_var1 = 30
+    my_var2 = 40
+  some_nested_fun()  
+  print(my_var1, my_var2) # 10, 40    
+  # Notice: my_var2 is now changed but my_var1 is not
+some_fun()
+```
+### 6.8 Decorators
 * They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
 * This functionality is utilized using functions being first class in python.
 ```Python
@@ -1523,7 +1568,7 @@ print(my_fun(10,20)) # 30
 
 ## 7. Classes, Objects and Modules
 ### 7.1 Class
-* **Class**: Is a blueprint/template of/for an object. Which defines what the object holds(which variables/data types), what methods/operations can be performed on that object. 
+* **Class**: Is a blueprint/template of/for an object. Which defines what the object holds (which variables/data types), what methods/operations can be performed on that object. 
 * **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and is also mutable, so modifying some variables will only reflect changes for that particular instance only.  
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does.
 * **Methods**: Functions that are inside class are called as methods. 
@@ -1585,9 +1630,9 @@ print(MyClass2.my_func(my_instance, 40)) # 75
 # the 'self' resembles the instance object, which is 'my_instance' here
 ```
 #### **7.1.1 Three Types of methods in class**
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration(using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
-3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration(using *@staticmethod* prefix), these methods are not required to pass class as first argument.
+3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument.
 ```Python
 ## define class
 class MyClass: 
@@ -1650,7 +1695,7 @@ print(my_instance.other_var1) # AttributeError
 ```
 #### **7.1.2 Special methods**
 * These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called “magic” methods because these methods are invoked indirectly, we do not need to invoke them directly.
-* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document(add docstrings) their usage where required to avoid break in some functionality.   
+* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality.   
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
 ```Python
 ## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
@@ -1762,7 +1807,7 @@ print(hasattr(tuple, '__iter__')) # True
 ```
 #### **7.2.2 Generators**
 * Generators are "lazy iterators", they return value when *next()* function is called upon. They might have or not have loops in them. *yield* statement makes a function iterable with/without loops. *yield* saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. 
-* For longer iteration(larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+* For longer iteration (larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## basic generator
 def my_generator(*args):
@@ -1793,7 +1838,7 @@ for a in my_generator():
 * **There are two types of Descriptors**.
   1. **data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
   2. **non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
-* These two types are not that different but this affects the '.' operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
+* These two types are not that different but this affects the *.* operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 ## Descriptor example
 class MyDescriptor:
@@ -1851,9 +1896,9 @@ my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even numbe
 ```
 ### 7.3 Modules
 * Is simply a file containing Python definitions and statements saved with *.py* extension, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
-* Python looks for modules in a sequence *local directory*(where current .py is located) -> *PYTHONPATH*(is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
-* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc*(byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
-* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in c/c++ language.
+* Python looks for modules in a sequence *local directory* (where current .py is located) -> *PYTHONPATH* (is a environment variable that contains python directory path provided through command line) ->  lastly inside *python installation directory*. This does means any module with repeating name will be given priority according to this sequence. 
+* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory. So next time python can directly access the *.pyc* instead of re-compiling. Also, these *byte-compiled* files are platform-independent.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named "\_\_name\_\_" which is set to module name. But the current module which is ran by the user has "\_\_name\_\_" variable set to "\_\_main\_\_". This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to "main()" function's behaviour in C/C++ language.
 * A [List](https://docs.python.org/3/py-modindex.html) of built-in modules in python.</br>
 Example: Save this module as *sample.py* or anything you prefer(but change the name if so the in the next module).
 ```Python
@@ -1924,7 +1969,7 @@ Basic I/O operations are to take input the from user and send output to the user
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
 #####
-**Explanation**: Reads input from standard input device(such as keyboard) and take it input as string.
+**Explanation**: Reads input from standard input device (such as keyboard) and take it input as string.
 ```Python
 ## Take input from user
 v = input() # or "input('Your message here ')"
@@ -1958,7 +2003,7 @@ print("is not new lined") # This    is not new lined
   * *closefd* bool: If False, the underlying file descriptor will be kept open even when the file is closed.  
   * *opener* Optional[Callable[[str, int], int]]: A custom file opener, should return a file descriptor.
 #####
-**Explanation**: This built-in function is used to open a file. This method returns a file object(also called handle), this object is further used to perform operations such as read/write/append. For different operations there are different modes one can utilize according to their needs, default is r(reading). 
+**Explanation**: This built-in function is used to open a file. This method returns a file object(also called handle), this object is further used to perform operations such as read/write/append. For different operations there are different modes one can utilize according to their needs, default is r (reading). 
 * Various file modes are shown below.
   1. **r**: For opening a file in read-only mode.
   2. **w**: In write mode if the file already exist and has some previous content it is completely overwritten. Else new file is created and content is written.
@@ -2026,7 +2071,7 @@ try:
 finally:
   file.close()
 
-## Example 3: Now doing same as above using "with" statement
+## Example 3: Now doing same as above example using "with" statement
 with open("sample.txt") as f:
   print(f.read())
 # Notice: no need to call close() method, "with" has you covered
@@ -2056,7 +2101,7 @@ class MyDBManager:
     self.some_db['id'] = []
     self.some_db['name'] = []
 
-  # dummy functions to add values
+  # simple function to add values
   def add(self, my_id, name):
     self.some_db['id'].append(my_id)
     self.some_db['name'].append(name)
@@ -2070,21 +2115,22 @@ with MyDBManager() as db_handler:
 
 # now to clear the db just get out of the indentaion    
 print(db_handler.some_db) # {'id': [], 'name': []}
+# as soon as we were out of the indentation "__exit__()" was called automatically
 ```
 
 ## 9. OOP concepts
 #### What is OOP?
 Wikipedia suggests
-  > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of "objects".
+  > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of objects.
 
   Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
 #### Why OOP?
-It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called "objects". OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
+It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called objects. OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#91-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#92-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#93-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#94-polymorphism).**
 ### 9.1 Inheritance
 * Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
 * We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way.
-* **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to 'super' keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
+* **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to *super* keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
 #### **9.1.1 Four types of Inheritance.**
@@ -2233,7 +2279,7 @@ print(my_instance2.min_finder()) # 12
 ### 9.2 Abstraction
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body (they are empty methods). The abstract classes cannot be instantiated (its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
-* Python does not have 'abstract' keyword like in Java and also does not directly supports abstract classes. But Python provides a module named 'abc', it can be used to define Abstract Base classes (ABC) which act about the same. 
+* Python does not have *abstract* keyword like in Java and also does not directly supports abstract classes. But Python provides a module named *abc*, it can be used to define Abstract Base classes (ABC) which act about the same. 
 * The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
 ```Python
 ### Abstract class example
@@ -2297,7 +2343,7 @@ my_base = MyBase() # TypeError: Can't instantiate abstract class
   1. **Public**: Can be accessed anywhere in the program. All variables are public by default.
   2. **Protected**: Only the current class and derived class can access them. Use "\_" underscore define them.
   3. **Private**: Only the current class can access them, not even their instance can access them. Use "\_\_" underscore define them.
-* First the private data is set to 'private' type to restrict the direct access and if we want to allow these private data to be accessed/modified by outside class, public **setters()** and **getters()** methods can be used like in Java/Javascript. But python also has another way, the 'property' object.
+* First the private data is set to *private* type to restrict the direct access and if we want to allow these private data to be accessed/modified by outside class, public **setters()** and **getters()** methods can be used like in Java/Javascript. But python also has another way, the *property* object.
 * In python, all variables are public by default and the way private/protected are implemented they don't really work as one would expect, below are some examples.
 ```Python
 ## Access modifier
@@ -2427,7 +2473,7 @@ del some_instance.some_var # AttributeError
   1. **Static**: The behaviour is decided at Compile-Time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
 #### **9.4.1 The Four types of Polymorphism.**
-1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using "if..else" or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
 class MyClass:
