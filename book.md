@@ -1484,7 +1484,7 @@ my_function = lambda a,b: a+b
 ## calling the function
 print(my_function(1,1)) # 2 
 ```
-### 6.7 global and nonlocal
+### 6.7 global and nonlocal keywords
 1. ***global***: To modify a variable with global scope from inside a function.
 2. ***nonlocal***: To modify a variable of local scope from inside a nested function.
 ```Python
@@ -1494,7 +1494,7 @@ my_var1 = 10
 my_var2 = 20
 my_var3 = 30
 def some_fun():
-  # declaring my_var1 as global, so now it can be modified for global scope
+  # declaring my_var1 as global, so now my_var1 is not a local variable, it can accessed/modified for global scope
   global my_var1
   # accessing a global scope variable, works fine
   print(my_var3) # 30
@@ -1522,9 +1522,10 @@ def some_fun():
   def some_nested_fun():
     # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope
     nonlocal my_var2 
-    my_var1 = 30
-    my_var2 = 40
+    my_var1 = 30 # modifying for local scope
+    my_var2 = 40 # modifying only for nested scope
   some_nested_fun()  
+  # similar to global keyword now my_var1 is not modified and my_var2 is
   print(my_var1, my_var2) # 10, 40    
   # Notice: my_var2 is now changed but my_var1 is not
 some_fun()
@@ -1766,78 +1767,172 @@ class MyClass:
 print(MyClass) # <class '__main__.MyClass'>
 print(dir(MyClass))
 ```
-#### **7.2.1 Iterators**
-* Are objects that can be iterated using loops, these aren't necessarily list. A class needs to define *\_\_iter\_\_()* and *\_\_next\_\_()* special methods and it'll function as a iterator. 
+#### **7.2.1 Iterables and Iterators**
+* Iterables are objects that can be iterated using loops. Object having a special method *\_\iter\_\_()* are considered iterable objects. They can be iterated as many times as required.
+* Built-in sequences type such as *list*, *tuple* and *str* are iterable. Also non-sequence types such as *dict*, *set* and *file* objects are iterables.
+* A custom class can implement *\_\iter\_\_()* (which should return a iterator object) or *\_\_get\_\_()* (which is special method for enabling indexing) to make its object iterable. They can be subscriptable/indexable if implementing *\_\_get\_\_()* method. Example of non-indexable are *dict* or *set*.
+* Iterables can be used in *for* loops and in built-in functions like *map()*, *zip()*, *filter()* etc.
+```Python
+## built-in iterables
+# check if list is a iterable, check if it has a __iter__() method
+print(dir([34,32,55,34,56]))
+# or using hasattr
+print(hasattr([34,32,55,34,56], '__iter__')) # True
+# check tuple
+print(hasattr((34,32,55), '__iter__')) # True
+# check if set have __iter__ method
+print(hasattr(set, '__iter__')) # True
+
+
+## iterables can be used in for loops
+for a in (34,32,55,34,56):
+    print(a) # [34,32,55,34,56]
+
+
+## Example: create a simple iterable object that returns multiplier of 10 by index
+class TenMultiplier:
+    def __init__(self):
+        self.max_range = 10
+
+    # implement __getitem__() or __iter__() method to enable iteration     
+    # by implementing __getitem__() our object is also indexable
+    def __getitem__(self, index):
+        if index > self.max_range:
+            raise StopIteration
+        return index * 10    
+
+my_object = TenMultiplier()
+# indexing
+print(my_object[2]) # 20
+# looping over iterable
+for a in my_object:
+    print(a) # [10,20,30,...100]      
+```
+* Iterator objects can also be iterated using loops. They are also a iterable object, but the difference is they must have both *\_\_iter\_\_()* and *\_\next\_\_()* special methods implemented. The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\next\_\_()* method here is to fetch the next element from the iterator object.
+* A *iterator* object represents a stream of data, when called upon *\_\next\_\_()* special method (or using built-in function *next()*) it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
+* One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as Iterator object returns itself when passed to iter()), which is not the case with a *iterable* object (a new iterator object is created every time iter() is called).
+* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example a *list*) object does, *iterator* loads data when it is called upon.
+* Limitations of *iterator* are that values can be iterated only once and in one direction only, can't access previous values and need to be re-created once exhausted.
 ```Python
 ## Iterators
-# user-defined iterators
+## Example 1: create a simple iterator from a iterable
+# iter() function takes a iterable/iterator object and returns a iterator object
+my_iterable = iter([12,34,2,65,21,65])
+# iterate to next values using next()
+print(next(my_iterable)) # 12
+# or calling the special method from a instance
+print(my_iterable.__next__()) # 34
+for a in my_iterable:
+    print(a) # [2,65,21,65]
+    # Notice: loop started from index 2, because we already called next() twice
+# now as my_iterable is exhausted calling next() again will raise StopIteration
+print(next(my_iterable)) # StopIteration
+# calling loop will print no value
+for a in my_iterable:
+    print(a)
+
+
+## Example 2: create a iterator object which returns a square of values
 class SquareIterator:
-  """SquareIterator takes items and returns item's square upon call"""
+  """SquareIterator takes items and returns item's square upon called"""
   def __init__(self, *args):
     self.args = args
-    self.iter_len = len(args)-1
+    self.iter_len = len(args)-1 # iterating limit
+    self.idx = -1 # initialize index and keep track of it
   def __iter__(self):
-    """This method is used to initialize a iterator, it returns an iterator object."""
-    self.idx = -1 # we initialize index
+    """This method returns an iterator object, which is itself. This is called by for loop."""
     return self
   def __next__(self):
-    """This method is used to fetch next value, it can be called or loops do call it automatically."""
+    """This method is used to fetch next value, so it should return some value."""
     self.idx += 1  
     if self.idx > self.iter_len:
       raise StopIteration
     return self.args[self.idx]**2
 
-my_iter = SquareIterator(10,20,30,40,50)  
-# initialize iterator
-my_iter = iter(my_iter) 
-# iterate values using next
-print(next(my_iter)) # 100
-# same as next(my_iter)
-print(my_iter.__next__()) # 400
-
-## iterating a iterator object
-# for loop calls '__iter__()' and '__next__()' functions on a iterable
+my_iter = SquareIterator(2,3,4,8,9,12)  
+# iterate values using next()
+print(next(my_iter)) # 4
+# iterating a iterator object
+# for loop calls '__iter__()' and later '__next__()' functions on a iterable/iterator automatically
+# we'll see more on the working of for loops
 for v in my_iter:
-  print(v) # [100,400,900,1600,2500]
-  
-## use hasattr to check if some object has some particular function 
-print(hasattr(my_iter, "__iter__")) # True
-print(hasattr(list, '__iter__')) # True
-print(hasattr(tuple, '__iter__')) # True
+  print(v) # [9,16,64,81,144]
+  # Notice: This time loop started from index 1 now, because we called next() only once
+# now like earlier next() will raise error
+print(next(my_iter)) # StopIteration
+
+# create a new SquareIterator to reset its index
+my_iter = SquareIterator(2,3,4,8,9,12)  
+for a in my_iter:
+    print(a) # [4,9,16,64,81,144]
+```
+* Inside a *for* loop the iterables objects are first converted into a *iterator* object and then these objects are traversed using *\_\next\_\_()* till *StopIteration* is raised. *for* temporary creates a *iterator* object every time when called and removes the object when iteration is finished/interrupted. We'll check a example of the working below.
+```Python
+## Internal working of for loops
+def for_loop(my_iterable):
+  """A function to simulate a for loop"""
+  # create a temp object each time starting a loop
+  temp_object = iter(my_iterable)
+  while True:
+      try:
+          # call next() funtion
+          value = next(temp_object)
+          print(value) # 34,32,55,34,56
+      except StopIteration:
+          break  # stop the iteration
+
+# create a iterable object, but can also pass a iterator object
+my_iterable = [34,32,55,34,56]
+for_loop(my_iterable)
+
+# Now doing the same thing with a for loop
+for a in my_iterable:
+    print(a) # 34,32,55,34,56
 ```
 #### **7.2.2 Generators**
-* Generators are "lazy iterators", they return value when *next()* function is called upon. They might have or not have loops in them. *yield* statement makes a function iterable with/without loops. *yield* saves the state, which helps in iterating value changes over the generator's lifetime, so unlike regular loops which removes loop state as soon as execution is finished/interrupted, it can be interrupted and resumed whenever inside a program. 
-* For longer iteration (larger data) generators are preferred because they are memory efficient, in a sense they can be utilized to generate data required in time and not before time. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+* Generators are "lazy", they return value when *next()* function is called upon. Generators are iterators objects but not vice versa, there are some differences. A Generator object is created using a function that has one or more *yield* statements in it. They might have or not have loops in them. A *yield* statement makes a function iterable with/without loops. 
+* Similar to *iterator* object, *yield* in Generators saves the state (or maintain current index like in our SquareIterator class), so Generators can be interrupted and resumed whenever inside a program. And once exhausted they stop returning values, at this point they need to be created again.
+* For longer iteration (larger data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoidingthe machine to run out of memory. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
-## basic generator
-def my_generator(*args):
+## Example 1: create a generator function similar to our SquareIterator class
+def my_square_generator(*args):
   for a in args:
-    yield a   
-generator = my_generator(10,20,30,40,50)
+    yield a**2
+    # Notice: using "yield" instead of "return" makes this function "lazy" and hence a generator
+generator = my_square_generator(2,3,4,5)
 
-# or using comprehension
-generator = (a for a in [10,20,30,40,50])
+# or same using comprehension
+generator = (a**2 for a in [2,3,4,5])
 print(type(generator)) # <class 'generator'>
-print(next(generator)) # 10
+print(hasattr(generator, '__next__')) # True
 
 ## iterate a generator
 for a in generator:
-  print(a) # [10,20,30,40,50]
+  print(a) # [4,9,16,25]
+  # Notice: now that we didn't call "next()" this time all values are iterated
+# however now it is exhausted, so will raise error 
+print(next(generator)) # StopIteration
 
-## create a generator without loop
+## Example 2: create a generator without a loop
 def my_generator():
   yield 1
   yield 2
   yield 3
+# calling my_generator() returns a generator object  
 for a in my_generator():
   print(a) # [1,2,3]
 ```
+* So just to summarize the difference between **Iterables**, **Iterators** and **Generators**.
+* **Iterators**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement *\_\_iter\_\_()* method.
+* **Iterators**: Are also iterables but are "lazy" and can be iterated only once, they need to be created again to iterate once more. They need to implement *\_\_iter\_\_()* and *\_\next\_\_()* methods. They are used when required to implement inside a complex class (with other functionalities).
+* **Generators**: Are Iterators and Iterables. Generators a easy way to create a Iterator object. They are created using a function with a "yield" statement in it or using Generator Comprehension. They are preferred when only iterator objects are needed.
+
 #### **7.2.3 Descriptors**
 * A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
 * Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
 * **There are two types of Descriptors**.
-  1. **data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
-  2. **non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
+  1. **Data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
+  2. **Non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
 * These two types are not that different but this affects the *.* operator's "lookup chain" i.e the "data descriptors" have more precedence over "non-data descriptor". I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 ## Descriptor example
