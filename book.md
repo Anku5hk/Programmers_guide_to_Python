@@ -451,6 +451,9 @@ print(my_bytes) # b'\x00\x00\x00\x00'
 ## create bytes object using a iterable objects
 print(bytes([1,2,3])) # b'\x01\x02\x03'
 print(bytes((80,50,60))) # b'P2<'
+
+## indexing a bytes object returns a Unicode of a character
+print(data[0], chr(data[0])) # 84 T
 ```
 #### 2. bytearray(source, encoding, errors) => bytearray
 **Parameters**:</br>
@@ -1051,6 +1054,7 @@ print(sorted(my_string)) # ['e', 'e', 'e', 'r', 'r', 'r']
 print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
 # sort list by the length of sub-list
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
+# Notice: "my_fun" is passed not called, we'll learn about this in function's section.
 ```
 #### 5. filter(function, iterable) => filter
 **Parameters**:</br>
@@ -1059,8 +1063,7 @@ print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 #####
 **Explanation**: This function takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from a iterable object. *filter()* returns a filter object which iterable but indexing/slicing is not supported.
 ```Python
-## Example 1
-my_list = [101,100,501,200]
+## Example 1: create simple filter object
 def my_func(var):
   # returns True if number is divisible by 10
   if var % 10 == 0:
@@ -1072,9 +1075,9 @@ def my_func(var):
 my_filter = filter(my_func, ())  
 print(type(my_filter)) # <class 'filter'>
 
-## Example 2
-# only filter elements which are divisible by 10
-output = list(filter(my_func, my_list)) # [100, 200]
+## Example 2: only filter elements which are divisible by 10
+my_list = [101,100,501,200]
+output = list(filter(my_func, my_list))
 # or looping through filter object
 for val in filter(my_func, my_list):
   print(val) # [100, 200]
@@ -1084,7 +1087,7 @@ for val in filter(my_func, my_list):
   * *function* function: Your function to apply on items.
   * *iterable* iterable: Iterable object containing items.
 #####
-**Explanation**: This function takes a function & a iterable and applies that function on every item of that iterable. As name suggests, a function is mapped to each element of an iterable. So unlike *filter()*, *map()* returns the direct value returned by our function.
+**Explanation**: This function takes a *function* & a *iterable* object and applies that *function* on every item of that *iterable*. As name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our *function*.
 ```Python
 ## Example 1
 my_tuple = (1,2,3,4,5)
@@ -1768,9 +1771,9 @@ print(MyClass) # <class '__main__.MyClass'>
 print(dir(MyClass))
 ```
 #### **7.2.1 Iterables and Iterators**
-* Iterables are objects that can be iterated using loops. Object having a special method *\_\iter\_\_()* are considered iterable objects. They can be iterated as many times as required.
-* Built-in sequences type such as *list*, *tuple* and *str* are iterable. Also non-sequence types such as *dict*, *set* and *file* objects are iterables.
-* A custom class can implement *\_\iter\_\_()* (which should return a iterator object) or *\_\_get\_\_()* (which is special method for enabling indexing) to make its object iterable. They can be subscriptable/indexable if implementing *\_\_get\_\_()* method. Example of non-indexable are *dict* or *set*.
+* Iterables are objects that can be iterated using loops. Object having a special method *\_\_iter\_\_()* are considered iterable objects. They can be iterated as many times as required.
+* Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as *dict*, *set* and others such as *file*, *range* objects.
+* A custom class can implement *\_\_iter\_\_()* (which should return a iterator object) or *\_\_get\_\_()* (which is special method for enabling indexing) to make its object iterable. They can be subscriptable/indexable if implementing *\_\_get\_\_()* method. Example of non-indexable are *dict* or *set*.
 * Iterables can be used in *for* loops and in built-in functions like *map()*, *zip()*, *filter()* etc.
 ```Python
 ## built-in iterables
@@ -1808,10 +1811,10 @@ print(my_object[2]) # 20
 for a in my_object:
     print(a) # [10,20,30,...100]      
 ```
-* Iterator objects can also be iterated using loops. They are also a iterable object, but the difference is they must have both *\_\_iter\_\_()* and *\_\next\_\_()* special methods implemented. The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\next\_\_()* method here is to fetch the next element from the iterator object.
-* A *iterator* object represents a stream of data, when called upon *\_\next\_\_()* special method (or using built-in function *next()*) it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
+* Iterator objects can also be iterated using loops. They are also a iterable object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\_next\_\_()* method here is to fetch the next element from the iterator object.
+* A *iterator* object represents a stream of data, when called upon *\_\_next\_\_()* special method (or using built-in function *next()*) it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
 * One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as Iterator object returns itself when passed to iter()), which is not the case with a *iterable* object (a new iterator object is created every time iter() is called).
-* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example a *list*) object does, *iterator* loads data when it is called upon.
+* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example a *list*) object does, *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc.
 * Limitations of *iterator* are that values can be iterated only once and in one direction only, can't access previous values and need to be re-created once exhausted.
 ```Python
 ## Iterators
@@ -1840,7 +1843,7 @@ class SquareIterator:
     self.iter_len = len(args)-1 # iterating limit
     self.idx = -1 # initialize index and keep track of it
   def __iter__(self):
-    """This method returns an iterator object, which is itself. This is called by for loop."""
+    """This method returns an iterator object, which is itself."""
     return self
   def __next__(self):
     """This method is used to fetch next value, so it should return some value."""
@@ -1866,12 +1869,12 @@ my_iter = SquareIterator(2,3,4,8,9,12)
 for a in my_iter:
     print(a) # [4,9,16,64,81,144]
 ```
-* Inside a *for* loop the iterables objects are first converted into a *iterator* object and then these objects are traversed using *\_\next\_\_()* till *StopIteration* is raised. *for* temporary creates a *iterator* object every time when called and removes the object when iteration is finished/interrupted. We'll check a example of the working below.
+* When iterating with a *for* loop, the iterable input object is first converted to a temporary *iterator* object and then these object is traversed using *\_\_next\_\_()* till *StopIteration* is raised. So everytime a *for* is called a new temporary *iterator* object is created and removed when iteration is finished/interrupted. In case of iterating a *iterator* object, the object itself is returned (as we saw in our SquareIterator's *\_\_iter\_\_()* method). We'll check a example of the working below.
 ```Python
 ## Internal working of for loops
 def for_loop(my_iterable):
   """A function to simulate a for loop"""
-  # create a temp object each time starting a loop
+  # create a temp iterator object each time starting a loop
   temp_object = iter(my_iterable)
   while True:
       try:
@@ -1892,7 +1895,7 @@ for a in my_iterable:
 #### **7.2.2 Generators**
 * Generators are "lazy", they return value when *next()* function is called upon. Generators are iterators objects but not vice versa, there are some differences. A Generator object is created using a function that has one or more *yield* statements in it. They might have or not have loops in them. A *yield* statement makes a function iterable with/without loops. 
 * Similar to *iterator* object, *yield* in Generators saves the state (or maintain current index like in our SquareIterator class), so Generators can be interrupted and resumed whenever inside a program. And once exhausted they stop returning values, at this point they need to be created again.
-* For longer iteration (larger data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoidingthe machine to run out of memory. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
+* For longer iteration (larger/infinite lnegth of data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoidingthe machine to run out of memory. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## Example 1: create a generator function similar to our SquareIterator class
 def my_square_generator(*args):
@@ -1922,10 +1925,10 @@ def my_generator():
 for a in my_generator():
   print(a) # [1,2,3]
 ```
-* So just to summarize the difference between **Iterables**, **Iterators** and **Generators**.
-* **Iterators**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement *\_\_iter\_\_()* method.
-* **Iterators**: Are also iterables but are "lazy" and can be iterated only once, they need to be created again to iterate once more. They need to implement *\_\_iter\_\_()* and *\_\next\_\_()* methods. They are used when required to implement inside a complex class (with other functionalities).
-* **Generators**: Are Iterators and Iterables. Generators a easy way to create a Iterator object. They are created using a function with a "yield" statement in it or using Generator Comprehension. They are preferred when only iterator objects are needed.
+#### So just to summarize the difference between **Iterables**, **Iterators** and **Generators.**
+ 1. **Iterators**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement *\_\_iter\_\_()* method.*
+ 2. **Iterators**: Are also iterables but are "lazy" and can be iterated only once, they need to be created again to iterate once more. They need to implement *\_\_iter\_\_()* and *\_\_next\_\_()* methods. They are used when required to implement *iterator* functionality inside a complex class (with other functionalities).
+ 3. **Generators**: Are Iterators and Iterables. Generators a easy way to create a Iterator object. They can be created using a function with a *yield* statement in it or using Generator Comprehension. They are used when required a standalone iterator objects.
 
 #### **7.2.3 Descriptors**
 * A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
