@@ -3,9 +3,9 @@
 
 Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning python, but then I thought okay why not make it public for other learners, so I added some missing components and completed it as a book. I hope this helps you in learning python programming. Happy Learning!!
 
-**What's not this:** Not a traditional programming course/book, this is by no means a complete python walkthrough and is structured somewhat differently (intentionally) to cover and only emphasis on what is important. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
+**What's not this:** Not a traditional programming course/book, this is by no means a complete Python walkthrough and might be structured somewhat differently. I have tried to cover & mostly emphasis on important features and tricks inside Python. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough Python (and more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest typing & running your own programs and creating your own notes.
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn python but fast. The one who needs a python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. This book has more code than theory. To grow as a programmer its always better to practice. I would suggest copying  & running your own programs and creating your own notes.
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -172,7 +172,7 @@ text = "This is text 1." \
 # Example 2: Using parens (...)  
 output = something 
          .some_fun()
-         .calling_other_fun()
+         .calling_other_fun()        
 ```
 #### 1.2.7 Statements
 Are basically every line/block of code that python interpreter executes. There are two types, simple and compound statements. 
@@ -308,6 +308,8 @@ print(ord("c")) # 99
 print(chr(ord("c"))) # c
 # returns quotient and remainder of integer division
 print(divmod(6, 4)) # (1, 2)
+# convert a number to a hexadecimal number
+print(hex(42)) # 0x2a
 
 ## type conversion
 my_int = 42
@@ -776,12 +778,12 @@ print(my_tuple[:-4]) # (1,2,3,'we')
 # reverse a tuple
 print(my_tuple[::-1]) # (5, 5.0, 'one', 'are', 'we', 3, 2, 1)
 
-## unpacking tuple(more on unpacking later on)
+## unpacking tuple (more on unpacking later on)
 a,b,c = (1,2,3) # unpacking values into a,b,c
 # even this does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c 
 # same is true when returning comma separated values from a function 
 a,b,c = 1,2,3 # same as (1,2,3)
-# this behaviour further aids in swapping without using extra variable
+# this behaviour further aids in swapping without using extra variable, you can also do the same with more variables
 a,b = b,a 
 
 ## Some functions on tuple
@@ -824,6 +826,8 @@ del my_dict[tuple_key] # remove the item
 
 ## join two dicts
 my_dict1 = {'z':5, 'y':3, 'x':4}
+# or use "my_dict | my_dict1" 
+# or unpack them in a new dict {**my_dict, **my_dict1}
 my_dict.update(my_dict1)
 print(my_dict) # {'e': 23, 'w': 65, 'q': 52, 'z': 5, 'y': 3, 'x': 4}
 
@@ -1169,8 +1173,8 @@ for v in my_list:
 for a in [10,20,30,40,50]:
   print(a)   
   
-# there's also a 'else' condition, when a 'for' loop is not executed
-# if any iterable has no elements, this 'else' condition will execute
+# there's also a 'else' condition, when a "for" loop is not executed
+# if no statement has executed inside a "for" loop, this 'else' condition will execute
 for v in []:
   print("List has no elements")
 else:
@@ -1390,7 +1394,7 @@ def my_fun():
 ### 6.4 Packing and Unpacking
 Functions in python support Packing and Unpacking variables into *tuple/dict*. Explained below.</br>
 1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function(or they'll contain all the values). 
-2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
 ```Python
 ## packing in functions 
 # packing variables into tuple and dict
@@ -1438,6 +1442,8 @@ my_dict = {'a':1,'d':4,'b':2,'c':3}
 print(my_fun1(*my_list)) # 10
 # passing from dict
 print(my_fun1(**my_dict)) # 10 
+# same goes for built-in functions too, "print()" function unpacks the list values
+print(*my_list) # 1,2,3,4
 ```
 ### 6.5 Recursion
 * Is when a function calls itself. Wikipedia "It is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem". It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
