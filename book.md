@@ -2063,8 +2063,40 @@ if __name__ == "__main__":
   print("my_module was ran")
 ```
 #### **7.3.1 Packages**
-* Are defined with *\_\_init\_\_().py* file in that folder.
+* A folder with module named *\_\_init\_\_().py* file is a Python package. A Package can contain multiple modules (.py files) and is a way to structure the modules under a single Package's namespace. Any sub-directories containing *\_\_init\_\_().py* are also packages (we can call them sub-packages).
+* Use the <package_name>.<module_name> to import a module. You can also import package the by its name, it'll import the *\_\_init\_\_().py* module.
+* One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single Package's namespace, so you don't have to call them by following the module names like instead of <package_name>.<module_name>.<function_name> you can directly call by <package_name>.<function_name>.
+* Example Directory:
+```
+./mypackage
+  __init__.py
+  mymodule.py
+  ./myfolder
+    __init__.py
+    somemodule.py
+./somepackage
+  others.py
+    
+## Here "mypackage" folder contains __init__.py so its a package, similarly "myfolder" is also a package (or sub-package).
+## Note: From Python 3.3 and up it is optional to have __init__.py to be called package, so now "somepackage" directory is also a package.
+```
+* Importing from such directory/package is very straight forward using '.' operator. Create a test.py outside of "./mypackage" directory and try the following code. Note you also need to create .py files as shown in the above Example Directory and also define "MyClass" and "myfunction" inside "mymodule" with some code (or just define with *pass* statement).
+```Python
+## importing a module from package
+import mypackage.mymodule
+# now can use the <module_name> to call its classes/functions
+mymodule.myfunction() 
 
+## importing the package by name
+import mypackage
+# this will call ./mypackage/__init__.py module
+
+## but to import specific classes/functions from that module you need to use from...import
+# say import a class from mymodule
+from mypackage.mymodule import MyClass
+# similarly a function
+from mypackage.mymodule import myfunction
+```
 
 ## 8. Files and I/O
 Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
@@ -2323,6 +2355,41 @@ print(child.my_func(2)) # 4
 # call with class and pass child instance
 print(MyParent2.other_method(child, 2)) # 8
 print(MyParent1.other_method(child, 2)) # 4
+```
+* When it comes to Multiple Inheritance there is also one concept called *mixins*. You might spot them in some libraries code, they are named somewhat like <class_name>Mixin. They are classes that act as base classes carrying some features (i.e functions) that other classes are supposed to used. They do usually don't have instance variables (might have class variables), they are base classes which do not inherit other class (other than *object*) and are not intended to be instantiated, only sub-classed.
+* *Mixins* are a cleaner way to define some functions that other classes can use right away without defining them individually. Also this concept is not recognized by Python, so they act as a normal class.
+```Python
+class SomeMixin:
+    def printer(self):
+        print(f"a = {self.a}")
+        print(f"b = {self.b}")
+        print(f"total = {self.total}")
+    
+    # can also have other functions
+    def do_something(self):
+        pass 
+
+class Adder(SomeMixin):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def perform_op(self):
+        self.total = self.a + self.b
+
+class Subbtr(SomeMixin):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def perform_op(self):
+        self.total = self.a - self.b
+
+v = Adder(10, 20)
+v.perform_op()
+v.printer()
+
+v = Subbtr(40, 10)
+v.perform_op()
+v.printer()
 ```
 3. **Multilevel**: In multi-level a child class inherits a parent class and is also a parent class to other class.
 ```Python
