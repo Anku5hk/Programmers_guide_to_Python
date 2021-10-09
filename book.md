@@ -1076,9 +1076,9 @@ print(sys.getsizeof(my_list)) # 152
 * Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue use priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
 * Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which are the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property and which is nothing but the max/min criteria for getting elements. 
 * A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for basically sorting. Three main operations are *add*, *delete* and *peek*:
-1. *add*: First traverse to last (leaf) empty position, add the element there and heapify the tree.
-2. *delete*: Select the index to be deleted, replace with last element (rightest leaf), remove the last element and heapify the tree.
-3. *peek*: Traverse to the rightest leaf position, return the element.
+  1. *add*: First traverse to last (leaf) empty position, add the element there and heapify the tree.
+  2. *delete*: Select the index to be deleted, replace with last element (rightest leaf), remove the last element and heapify the tree.
+  3. *peek*: Traverse to the rightest leaf position, return the element.
 * A Priority Queues are useful in tasks such as prioritizing, scheduling, load balancing etc. Other implementation of Priority Queue is in *queue* module, named *PriorityQueue*, you can also use normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
 ```Python
 import heapq
@@ -1114,6 +1114,7 @@ my_pq = [34,6,23,67,23,78]
 heapq.heapify(my_pq)
 print(my_pq) # [6, 23, 23, 67, 34, 78]
 ```
+* Apart from the above Data Structures there are some more that I haven't mentionaed, you can find them in the [collections](https://docs.python.org/3/library/collections.html) module. 
 ### 3.6 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
