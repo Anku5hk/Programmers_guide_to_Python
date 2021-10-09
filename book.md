@@ -1114,7 +1114,7 @@ my_pq = [34,6,23,67,23,78]
 heapq.heapify(my_pq)
 print(my_pq) # [6, 23, 23, 67, 34, 78]
 ```
-* Apart from the above Data Structures there are some more that I haven't mentionaed, you can find them in the [collections](https://docs.python.org/3/library/collections.html) module. 
+* Apart from the above Data Structures there are some more that I haven't mentioned, you can find them in the [collections](https://docs.python.org/3/library/collections.html) module. 
 ### 3.6 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
