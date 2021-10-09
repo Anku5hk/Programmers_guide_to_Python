@@ -617,7 +617,7 @@ Simply put they are used to organize data in a way that it can be stored/retriev
   2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
   3. Data structure are the coded/coding implementation of a data type i.e they are implemented a programming language's code.
 #### 
-Built-in Data structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Later we'll take a look at some more built-in functions.
+The built-in Data Structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Additionally we'll also take a look at aome of their alternatives. Later we'll check out some more built-in functions which provide additional useful objects.
 ### 3.1 List
 * By the name it may seem a LinkedList data structure but its not, they are array (Dynamic Array) like implementation in Python. They are ordered collection of sequence of items, which can be of any data type or objects. 
 * They are Mutable (values can be changed). Indexing, Slicing is supported and they are iterable objects (more on this later). 
@@ -718,29 +718,11 @@ my_list = list((1,2,3,4,5)) # tuple to list
 my_list = list({1,2,3,4,5}) # set to list
 ```
 * **Time Complexity**</br>
-indexing, appending and get_length are O(1).</br>
-deleting, poping, inserting, iteration are O(n).</br>
-####
-Using list's available methods it is very straightforward to implement Stack and Queue like Data Structures in Python. Although this isn't their exact implementation but only the main operations. For full functionality you can implement them seperately using classes.
-#### 3.1.1 Stack
-Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. 
-```Python
-my_stack = []
-## add/remove operation
-my_stack.append(20) # push: append at top
-my_stack.pop() # pop: remove at top
-```
-#### 3.1.2 Queue
-Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
-```Python
-my_queue = []
-## add/remove operation
-my_queue.append(20) # enqueue: append at rear
-my_queue.pop(0) # dequeue: remove at front
-```
-#### 3.1.3 Array
+indexing, appending (to the end) and get_length are O(1).</br>
+deleting, poping, inserting (at position), iteration are O(n).</br>
+#### 3.1.1 Array
 * *list* allows to hold data of any data-type/object which is great, but this means the data is usually less tightly coupled, so they end up taking more storage. To hold large amount of data efficiently one can utilize the *array* types.
-* Similar to list they are mutable, iterables, they support indexing, slicing, they even share almost all *list* operations. The difference is they allow storing data of limited types only such as characters, integers or floating point numbers. It has to be one of in C language's Data-Types (like in *signed int*/*unsigned float*). This makes *array* data efficient and goto choice for data efficiency.
+* Similar to list they are mutable, iterables, they support indexing, slicing, they even share almost all *list* operations. The difference is they allow storing data of limited types only such as characters, integers or floating point numbers. It has to be one of in C language's Data-Types (eg. *signed int*/*unsigned float*). This makes *array* data efficient and a goto choice for data efficiency.
 * They are not part of the core Python, so they need to be imported from the *array* module and are required to be declared first. When declaring we need to define the type of data the *array* can contain, it can be one of types mentioned in the table shown [here](https://docs.python.org/3/library/array.html#module-array). 
 ```Python
 import sys
@@ -783,7 +765,7 @@ print(my_array) # array('i', [54, 32, 65, 65, 32, 67, 87])
 ```
 ### 3.2 Tuple
 * Are ordered collection of sequence of items similar to lists. But unlike list they are Immutable (items cannot be altered/deleted), so they are preferred when data should not be changed. They are data efficient than *list* and are slightly faster than *list*. Indexing, Slicing is supported and they are iterable objects just like lists, but no tuple comprehension (it becomes a generator). 
-* They are used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
+* They are mostly used to store different data type items, unlike list which are mostly used for storing similar items, but either way is also valid. 
 ```Python
 ## create tuple
 my_tuple = (1,2,3,'we','are','one',5.0)
@@ -848,13 +830,13 @@ my_tuple = tuple([1,2,3,4,5]) # list to tuple
 my_tuple = tuple({1,2,3,4,5}) # set to tuple
 ```
 * **Time Complexity**</br>
-indexing, appending and get_length are O(1).</br>
-deleting, poping, inserting, iteration are O(n).
+indexing, appending (to the end) and get_length are O(1).</br>
+deleting, poping, inserting (at position), iteration are O(n).
 #### 3.2.1 NamedTuple
-* As the name suggest, they are named *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing class variables). 
-* They are sub-class of *tuple*. When instantiated they return a new *tuple* sub-class named <typename>. This new sub-class can be used to create tuple-like objects which are also immutables, iterables, indexable and are as data efficient as regular *tuple*.  
+* As the name suggest, they are named *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing the class variables). 
+* They are sub-class of *tuple*. When instantiated they return a new *tuple* sub-class named \<typename\>. This new sub-class can be used to create tuple-like objects which are also immutables, iterables, indexable and are as data efficient as regular *tuple*.  
 * They are not part of core Python and need to be imported from the *collections* module. They provide more readable, self-documenting code over the regular *tuple* where they are intended. 
-* So why not use custom class right away? If you're okay with immutable type, *nametuple* save you most of the hustle to write the code for operations (like iterable, indexing). *namedtuple* can used when you want immutable type with convenience naming access. 
+* So why not use custom class anyway? If you're okay with immutable type, *nametuple* save you most of the hustle to write the code for operations (like iterable, indexing). *namedtuple* can used when you want immutable type with convenience naming access. 
 ```Python
 from collections import namedtuple
 import sys
@@ -897,7 +879,7 @@ print(name_tup1._replace(a=32)) # mynamedtuple(a=32, b=65)
 name_tup1[0] = 32 # TypeError
 ```
 ### 3.3 Dict
-* Longform Dictionary in Python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in dict should be hashable (similar to sets), values have no restriction (can be any object). 
+* Longform Dictionary in Python, use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, keys are used to access values. This behaviour help hashmap do almost all operations in O(1) making them very efficient for storing and retrieval operations. Keys in *dict* should be hashable (similar to sets), values have no restriction (can be any object). 
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 ```Python
 ## create empty dict
@@ -1024,10 +1006,8 @@ adding, checking (with *in* operator) and removing are O(1).</br>
 iterating is O(n).</br>
 union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).<br/>
-####
-There is another version of *set* which is mutable, let's check it out. 
-#### **FrozenSet**
-* Are *set* but only they are immutable. So once a *frozenset* is created elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing. They can be created using any iterable object.
+#### 3.4.1 FrozenSet
+* They are *set* but only difference is they are immutable. So once a *frozenset* is created the elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing is supported. They can be created using any iterable object.
 ```Python
 ## create a frozenset
 # using a list
@@ -1056,7 +1036,85 @@ print(my_fset1.issubset(my_fset2)) # False
 # checks if my_fset2 is a superset of my_fset1
 print(my_fset1.issuperset(my_fset2)) # False
 ```
-### 3.5 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
+### 3.5 Extras
+#### 3.5.1 Stack
+* Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc.
+* The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), *list* are good enough for Stacks.
+```Python
+my_stack = []
+## add/remove operation
+my_stack.append(20) # push: append at top
+my_stack.pop() # pop: remove at top
+```
+#### 3.5.2 Queue
+* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
+```Python
+my_queue = []
+## add/remove operation
+my_queue.append(20) # enqueue: append at rear
+my_queue.pop(0) # dequeue: remove at front
+```
+* Python also has *dequeue* (double ended queue) Data Structure which can be used as a normal Queue. As *dequeue* support adding and removing from both sides (front & end) they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. They are implemented as doubly linked list. 
+* For Queues we only need append at the end and pop/remove at the front, both of which are O(1) for *dequeue*.
+```Python
+from collections import deque
+import sys
+my_list = [23,45,12,67,132,67]
+
+# create a deque using any iterable
+dq = deque(my_list)
+
+## Queue operations
+dq.append(20) # # push: append at top
+dq.popleft() # pop: remove at top
+
+# but then they are data inefficient than list
+print(sys.getsizeof(dq)) # 624
+print(sys.getsizeof(my_list)) # 152
+```
+#### 3.5.3 Priority Queue
+* Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue use priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
+* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which are the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property and which is nothing but the max/min criteria for getting elements. 
+* A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for basically sorting. Three main operations are *add*, *delete* and *peek*:
+1. *add*: First traverse to last (leaf) empty position, add the element there and heapify the tree.
+2. *delete*: Select the index to be deleted, replace with last element (rightest leaf), remove the last element and heapify the tree.
+3. *peek*: Traverse to the rightest leaf position, return the element.
+* A Priority Queues are useful in tasks such as prioritizing, scheduling, load balancing etc. Other implementation of Priority Queue is in *queue* module, named *PriorityQueue*, you can also use normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
+```Python
+import heapq
+
+# create a priority queue, initialize with a empty list
+my_pq = []
+
+## now use the heappush function to add elements, syntax (container, item)
+# here container is our list my_pq
+heapq.heappush(my_pq, 3)
+heapq.heappush(my_pq, 2)
+heapq.heappush(my_pq, 0)
+
+## now to get elements from the list use the heappop function
+print(heapq.heappop(my_pq)) # 0
+# smallest element is taken out
+print(my_pq) # [2, 3]
+# when element is inserted it is put in right sorted position
+# so [0] is always the smallest and pop position
+
+# elements should be comparable, to once int is inserted other elements should be int only
+# or TypeError will be raised
+heapq.heappush(my_pq, (2, "task1")) # TypeError
+
+my_pq = []
+# the items can be tuple, so we can provide some name  
+heapq.heappush(my_pq, (1, "task2"))
+heapq.heappush(my_pq, (5, "task3"))
+print(heapq.heappop(my_pq)) # (1, 'task2')
+
+# use heapify function to convert a list to priority queue
+my_pq = [34,6,23,67,23,78]
+heapq.heapify(my_pq)
+print(my_pq) # [6, 23, 23, 67, 34, 78]
+```
+### 3.6 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
   * *start_index* int: The start index for iteration.
