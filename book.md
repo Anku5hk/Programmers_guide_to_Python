@@ -38,16 +38,27 @@ Are reserved words which are defined by Python, so they can't be used as operand
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
 #### 1.2.3 Operands/Variable
-Are objects that hold values, it has a user-defined name, a name should not begin with a underscore (because it is reserved for something else), other naming rules are similar to other languages. Variables do not need to be declared, they come to existence when they are assigned something. Unlike C/C++/Java, Python is Dynamically-Typed. Python's variable does not actually hold the value itself but a pointer to the storage where the value is stored. This means the variables can point to any type of object. This allows for example, a variable assigned string be changed to any int, float, data structure, custom object.
+* Are objects that hold values, it has a user-defined name, a name should not begin with a underscore (because it is reserved for something else), other naming rules are similar to other languages. 
+* Unlike C/C++/Java, Python is Dynamically-Typed. It is when the type checking happens at run-time (and not at compile-time). Type checking is to ensure "type-safe", say a *int* doesn't get assigned to a *float*. Also Dynamically-Typed allows a type of variable to be changed to any other type in a program's lifetime.
+* In Python there is no "variable declaration", you do not need to declare a variable, they come to existence when they are assigned something. When assigning something, the value on the left is the name assigned to the object and on the right is the object itself. This name is just pointing to the object of some type and not actually holding value, which then can be changed to point any other type.   
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
 
-## dynamically typed
+## Dynamically type feature
+# the type is checked only at run-time
+if False:
+  30 + "some string"
+# Above statement should return a TypeError but it will not, 
+# because that condition is never executed, if it did it will raise the exception
+
+## Dynamically typed: Assigning a name (variable) to the object
 a = 34
 a = 4.0
 a = "I am string"
 a = [1,2,3,4]
+# Assigning name to 34, then changing it to point a string, then a list. 
+# All of them are valid
 ```
 #### 1.2.4 Operators 
 Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript, so I will not explain their working. Other Logical, Identity, Membership operators are Python specific, that we'll take a look at.
@@ -200,7 +211,8 @@ multiline comment
 """
 ```
 #### 1.2.9 Indentations 
-Unlike using brackets in C/C++/Java, indentations are used for a code block in Python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. They are used in Flow Control, Exception Handling, Functions/Classes definitions in Python, else *IndentationError* is raised. Any statements or even comments should follow the indentation rule.
+* Unlike using brackets in C/C++/Java, indentations are used for a code block in Python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. 
+* They are used in Flow Control, Exception Handling, Functions/Classes definitions in Python, else *IndentationError* is raised. Any statements or even comments should follow the indentation rule.
 ```Python
 ## example 1
 # Notice: the colon at the end of 'if' condition
