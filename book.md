@@ -1541,8 +1541,9 @@ print(square_num(2)) # 4
 print(square_num(2, my_var)) # 8
 ```
 ### 6.2 Functional Programming
-* Python like C++ is multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state, previous output cannot be re-gained given different input, they are just meant to perform some operation on some data and return the output. A function is pure (without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, function nesting, making programs more modular and requiring less debugging overall.
-* It totally depends on the problem at hand, whether to go with a functional or a object-oriented approach. 
+* Python like C++ is a multi-paradigm and supports functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, previous output cannot be re-gained given different input (as in state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
+* A function is pure (without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, testing, making programs more modular and requiring less debugging overall.
+* When designing systems, usually depending on the scenario specific apporaches are preferred, some computational part is written with functional programming & GUI parts are designed with OOP in mind.
 ### 6.3 *pass* statement
 To just declare a function/method with a empty body.  
 ```Python
@@ -1800,7 +1801,7 @@ print(my_instance.my_func(40)) # 75
 print(MyClass2.my_func(my_instance, 40)) # 75
 # the 'self' resembles the instance object, which is 'my_instance' here
 ```
-#### **7.1.1 Three Types of methods in class**
+#### 7.1.1 Three Types of methods in class
 1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, so they can access class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instance and class. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
 2. **Instance**: Instance methods are bound to instances. They have access to both instance and class state, which allows access to class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
 3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. So they can't access/modify any variables beside its local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument.
@@ -1864,7 +1865,7 @@ print(my_instance.my_new_var) # Hello
 delattr(my_instance, 'other_var1')
 print(my_instance.other_var1) # AttributeError
 ```
-#### **7.1.2 Special methods**
+#### 7.1.2 Special methods
 * These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called "magic" methods because these methods are invoked indirectly, we do not need to invoke them directly.
 * This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality.   
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in python.
@@ -1899,7 +1900,7 @@ print(len(my_instance)) # 6
 for a in my_instance:
   print(a) # [10,45,32,67,32,655]
 ```
-#### **7.1.3 Docstrings**
+#### 7.1.3 Docstrings
 Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours.
 ```Python 
 class MyClass:
@@ -1937,7 +1938,7 @@ class MyClass:
 print(MyClass) # <class '__main__.MyClass'>
 print(dir(MyClass))
 ```
-#### **7.2.1 Iterables and Iterators**
+#### 7.2.1 Iterables and Iterators
 * Iterables are objects that can be iterated using loops. Object having a special method *\_\_iter\_\_()* are considered iterable objects. They can be iterated as many times as required.
 * Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as *dict*, *set* and others such as *file*, *range* objects.
 * A custom class can implement *\_\_iter\_\_()* (which should return a iterator object) or *\_\_get\_\_()* (which is special method for enabling indexing) to make its object iterable. They can be subscriptable/indexable if implementing *\_\_get\_\_()* method. Example of non-indexable are *dict* or *set*.
@@ -2059,9 +2060,9 @@ for_loop(my_iterable)
 for a in my_iterable:
     print(a) # 34,32,55,34,56
 ```
-#### **7.2.2 Generators**
-* Generators are "lazy", they return value when *next()* function is called upon. Generators are iterators objects but not vice versa, there are some differences. A Generator object is created using a function that has one or more *yield* statements in it. They might have or not have loops in them. A *yield* statement makes a function iterable with/without loops. 
-* Similar to *iterator* object, *yield* in Generators saves the state (or maintain current index like in our SquareIterator class), so Generators can be interrupted and resumed whenever inside a program. And once exhausted they stop returning values, at this point they need to be created again.
+#### 7.2.2 Generators
+* Generators are "lazy", they return value when *next()* function is called upon. Generators are iterators objects but not vice versa, there are some differences. A Generator object is created using a function that has one or more *yield* statements in it. They might have or not have loops in them. A *yield* statement makes a function iterable with/without loops. *yield* can also be used to pass values to a generator.
+* Similar to *iterator* object, *yield* in Generators saves the state (or maintain current index like in our SquareIterator class), so Generators can be interrupted and resumed whenever inside a program. And once exhausted they stop returning values, at this point they need to be created again. 
 * For longer iteration (larger/infinite length of data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoiding the machine to run out of memory. Generators can also be created using similar to list comprehension's syntax, but using rounded brackets.
 ```Python
 ## Example 1: create a generator function similar to our SquareIterator class
@@ -2091,6 +2092,38 @@ def my_generator():
 # calling my_generator() returns a generator object  
 for a in my_generator():
   print(a) # [1,2,3]
+  
+## Example 3: passing value to a generator
+# it is recommended to use parenthesis around yield like this (yield <variable>) in some operation
+# it is okay write general assignment without parenthesis
+def some_function():
+    v = 10
+    # parenthesis required
+    r1 = (yield v) + 10
+    print('value passed')
+    while True: 
+        # okay to not use parenthesis case
+        r2 = yield v
+        if r2:
+            r1 = r1 - r2
+        print(f"r1 is {r1} ad r2 is {r2}")
+
+gen = some_function()
+next(gen) # will go till first yield
+# calling next() will raise TypeError, as None is passed by default to yield when calling next() 
+# and adding 10 with None will raise Exception
+next(gen) # TypeError
+# to pass a value to generator use send() method 
+gen.send(10) 
+# now calling next will set r2 to None, the if condition doesn't execute
+next(gen) # r1 is 20 ad r2 is None
+# try again now passing a value
+gen.send(10) # r1 is 10 ad r2 is 10
+# now the if condition executes and r1,r2 become 10,10
+# now to terminate the generator use close() method
+# this raises GeneratorExit exception inside the generator to terminate the iteration
+gen.close() 
+next(gen) # StopIteration
 ```
 #### So just to summarize the difference between **Iterables**, **Iterators** and **Generators.**
  1. **Iterators**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement *\_\_iter\_\_()* method.
