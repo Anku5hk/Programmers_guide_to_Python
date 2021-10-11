@@ -1954,11 +1954,9 @@ print(hasattr((34,32,55), '__iter__')) # True
 # check if set have __iter__ method
 print(hasattr(set, '__iter__')) # True
 
-
 ## iterables can be used in for loops
 for a in (34,32,55,34,56):
     print(a) # [34,32,55,34,56]
-
 
 ## Example: create a simple iterable object that returns multiplier of 10 by index
 class TenMultiplier:
@@ -1982,7 +1980,7 @@ for a in my_object:
 * Iterator objects can also be iterated using loops. They are also a iterable object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\_next\_\_()* method here is to fetch the next element from the iterator object.
 * A *iterator* object represents a stream of data, when called upon *\_\_next\_\_()* special method (or using built-in function *next()*) it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
 * One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as Iterator object returns itself when passed to *iter()*), which is not the case with a *iterable* object (a new iterator object is created every time *iter()* is called).
-* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example a *list*) object does, *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc.
+* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example like *list* object does), *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc. The (*itertools*)[https://docs.python.org/3/library/itertools.html#module-itertools] module included in standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
 * Limitations of *iterator* are that values can be iterated only once and in one direction only, can't access previous values and need to be re-created once exhausted.
 ```Python
 ## Iterators
@@ -2262,10 +2260,11 @@ if __name__ == "__main__":
   print("my_module was ran")
 ```
 #### **7.3.1 Packages**
-* A folder with module named *\_\_init\_\_().py* file is a Python package. A Package can contain multiple modules (.py files) and is a way to structure the modules under a single package's namespace. Any sub-directories containing *\_\_init\_\_().py* are also packages (we can call them sub-packages).
-* Use the <package_name>.<module_name> to import a module. You can also import package the by its name, it'll import the *\_\_init\_\_().py* module.
+* A folder with module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use <package_name>.<module_name> signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
 * One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single package's namespace, so you don't have to call them by following the module names like instead of <package_name>.<module_name>.<function_name> you can directly call by <package_name>.<function_name>.
-* Example Directory:
+* You can find all popular open-source Python packages on Python Package Index ((PyPI)[https://pypi.org/]), it is a official third-party software repository for Python. You can install a package simply by "*pip install <package-name>*" command in the command prompt. 
+ * Note: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
+* You can also create your own package, create the following given below example directory structure.
 ```
 ./mypackage
   __init__.py
@@ -2280,7 +2279,7 @@ if __name__ == "__main__":
 ## Note: From Python 3.3 and up it is optional to have __init__.py to be called package, 
 so now "somepackage" directory is also a package.
 ```
-* Importing from such directory/package is very straight forward using '.' operator. Create a test.py outside of "./mypackage" directory and try the following code. Note you also need to create .py files as shown in the above Example Directory and also define "MyClass" and "myfunction" inside "mymodule" with some code (or just define with *pass* statement).
+* Importing from such directory/package is very straight forward using '.' operator. Create a test.py outside of "./mypackage" directory and try the following code. Note you also need to create .py files as shown in the above example directory and also define "MyClass" and "myfunction" inside "mymodule" with some code (or just define with *pass* statement).
 ```Python
 ## importing a module from package
 import mypackage.mymodule
