@@ -14,9 +14,10 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 4. [Flow Control](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-flow-control)
 5. [Exception Handling](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-exception-handling)
 6. [Functions](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-functions)
-7. [Classes, Objects and Modules](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#7-classes-objects-and-modules)
-8. [Files and I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#8-files-and-io)
-9. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#9-oop-concepts)
+7. [Classes and Objects](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#7-classes-and-objects)
+8. [Modules and Packages](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#8-modules-and-packages)
+9. [Files and I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#9-files-and-io)
+10. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#10-oop-concepts)
 
 ## 1. Basics
 ### 1.1 Introduction
@@ -1738,7 +1739,7 @@ print(my_fun(10,20)) # 30
 ```
 
 
-## 7. Classes, Objects and Modules
+## 7. Classes and Objects
 ### 7.1 Class
 * **Class**: Is a blueprint/template of/for an object. Which defines what the object holds (which variables/data types), what methods/operations can be performed on that object. 
 * **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and is also mutable, so modifying some variables will only reflect changes for that particular instance only.  
@@ -1980,7 +1981,7 @@ for a in my_object:
 * Iterator objects can also be iterated using loops. They are also a iterable object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\_next\_\_()* method here is to fetch the next element from the iterator object.
 * A *iterator* object represents a stream of data, when called upon *\_\_next\_\_()* special method (or using built-in function *next()*) it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
 * One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as Iterator object returns itself when passed to *iter()*), which is not the case with a *iterable* object (a new iterator object is created every time *iter()* is called).
-* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example like *list* object does), *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc. The (*itertools*)[https://docs.python.org/3/library/itertools.html#module-itertools] module included in standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
+* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example like *list* object does), *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc. The [*itertools*](https://docs.python.org/3/library/itertools.html#module-itertools) module included in standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
 * Limitations of *iterator* are that values can be iterated only once and in one direction only, can't access previous values and need to be re-created once exhausted.
 ```Python
 ## Iterators
@@ -2190,13 +2191,15 @@ print(my_instance.my_var4)
 my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
 my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
 ```
-### 7.3 Modules
+
+## 8. Modules and Packages
+### 8.1 Modules
 * Is a file with *.py* extension containing Python code, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
 * Python looks for modules in a sequence geiven below:
-1. Local Directory: It is where the current *.py* file is located.
-2. PYTHONPATH: It is a environment variable that can be used to set additional directory path which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir". 
-3. Python Installation Directory: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.
-This does means any module with repeating name will be given priority according to this sequence. 
+  1. Local Directory: It is where the current *.py* file is located.
+  2. PYTHONPATH: It is a environment variable that can be used to set additional directory path which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir". 
+  3. Python Installation Directory: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.
+  This does means any module with repeating name will be given priority according to this sequence. 
 * As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the "\_\_pycache\_\_" folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. Also, these *byte-compiled* files are platform-independent.
 * Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named *\_\_name\_\_* which is set to module name. But the current module which is ran by the user has *\_\_name\_\_* variable set to *\_\_main\_\_*. This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to *main()* function's behaviour in C/C++ language.
 * Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules in Python.</br>
@@ -2259,11 +2262,11 @@ if __name__ == "__main__":
   # add code here which you don't want to be invoked unless this script is ran
   print("my_module was ran")
 ```
-#### **7.3.1 Packages**
+### 8.2 Packages
 * A folder with module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use <package_name>.<module_name> signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
 * One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single package's namespace, so you don't have to call them by following the module names like instead of <package_name>.<module_name>.<function_name> you can directly call by <package_name>.<function_name>.
-* You can find all popular open-source Python packages on Python Package Index ((PyPI)[https://pypi.org/]), it is a official third-party software repository for Python. You can install a package simply by "*pip install <package-name>*" command in the command prompt. 
- * Note: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
+* You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is a official third-party software repository for Python. You can install a package simply by "*pip install <package-name>*" command in the command prompt.</br> 
+Note: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
 * You can also create your own package, create the following given below example directory structure.
 ```
 ./mypackage
@@ -2297,10 +2300,10 @@ from mypackage.mymodule import MyClass
 from mypackage.mymodule import myfunction
 ```
 
-## 8. Files and I/O
+## 9. Files and I/O
 Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
-### 8.1 Three built-in functions for I/O handling.
-#### 1. input(prompt) => None
+### 9.1 Three built-in functions for I/O handling.
+#### 9.1.1 input(prompt) => None
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
 #####
@@ -2310,7 +2313,7 @@ Basic I/O operations are to take input the from user and send output to the user
 v = input() # or "input('Your message here ')"
 print(type(v)) # <class 'str'>
 ```
-#### 2. print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) => None
+#### 9.1.2 print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) => None
 **Parameters**:</br>
   * *values* object: Takes the object to be printed, '/*' indicates more than one object. 
   * *sep* Optional[Text]: A separator between multiple values.
@@ -2327,7 +2330,7 @@ print("This", "is", "a", "String" , sep="_") # This_is_a_String
 print("This", end="\t") 
 print("is not new lined") # This    is not new lined
 ```
-#### 3. open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None) => file
+#### 9.1.3 open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None) => file
 **Parameters**:</br>
   * *filename* Union[str, bytes, int]: path-like object or a string.
   * *mode* str: Opening file mode.
@@ -2390,7 +2393,7 @@ file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
-### 8.2 *with* statement
+### 9.2 *with* statement
 This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
@@ -2420,7 +2423,7 @@ except Exception as e:
 finally:
   file.close()
 ```
-### 8.3 Context Manager 
+### 9.3 Context Manager 
 * It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods and that object will function as a context manager. Context managers are usually used in Database management and to handle Thread locks. 
 * Also there's a built-in module [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
@@ -2453,7 +2456,7 @@ print(db_handler.some_db) # {'id': [], 'name': []}
 # as soon as we were out of the indentation "__exit__()" was called automatically
 ```
 
-## 9. OOP concepts
+## 10. OOP concepts
 #### What is OOP?
 Wikipedia suggests
   > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of objects.
@@ -2461,14 +2464,14 @@ Wikipedia suggests
   Classes and Objects are the two important aspects of OOP. And as we saw earlier an Object is a instance of class and it has its own attributes & methods which are defined under its represented class.
 #### Why OOP?
 It helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called objects. OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
-**There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#91-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#92-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#93-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#94-polymorphism).**
-### 9.1 Inheritance
+**There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#101-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#102-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#103-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#104-polymorphism).**
+### 10.1 Inheritance
 * Instead of re-writing the code for all similar classes like in functional programming, we re-use the methods/variables of a class inside another class in OOP. This concept is Inheritance. So basically inheritance helps to eliminate the redundant code.
 * We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way.
 * **super()**: This is a built-in function used access any child's/parent's methods/variables inside of a child class, it is very similar to *super* keyword in Java. When called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
 * **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
-#### **9.1.1 Four types of Inheritance.**
+#### **10.1.1 Four types of Inheritance.**
 1. **Single**: A Child/sub class only inherits a single Parent/Super Class.
 ```Python
 class MyParent:
@@ -2525,7 +2528,7 @@ class MyParent2:
   def other_method(self, num):
       return num**3
 
-# inherit MyParent1 and MyParent2 classes
+## inherit MyParent1 and MyParent2 classes
 class MyChild(MyParent1, MyParent2): 
   def __init__(self, arg1):
       self.arg1 = arg1
@@ -2543,14 +2546,15 @@ class MyChild(MyParent1, MyParent2):
     output1 = self.other_method(num) # similar to 'super().other_method(num)'
     return output1
 
-# create child instance
+## create child instance
 child = MyChild(30)
-print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, <class '__main__.MyParent2'>, <class 'object'>]
+print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, \
+# <class '__main__.MyParent2'>, <class 'object'>]
 # same as before, calling MyParent1's method
 print(child.other_method(2)) # 4
 print(child.my_func(2)) # 4
 
-# to call MyParent2's same named method using child instance
+## to call MyParent2's same named method using child instance
 # call with class and pass child instance
 print(MyParent2.other_method(child, 2)) # 8
 print(MyParent1.other_method(child, 2)) # 4
@@ -2646,7 +2650,7 @@ my_instance2 = MyChild2()
 print(my_instance1.max_finder()) # 81
 print(my_instance2.min_finder()) # 12
 ```
-### 9.2 Abstraction
+### 10.2 Abstraction
 * It is a process hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods an class must contain and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although Python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body (they are empty methods). The abstract classes cannot be instantiated (its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error will be raised. The concept of abstract is not applicable to variables so they behave normally.
 * Python does not have *abstract* keyword like in Java and also does not directly supports abstract classes. But Python provides a module named *abc*, it can be used to define Abstract Base classes (ABC) which act about the same. 
@@ -2706,7 +2710,7 @@ print(my_concrete2.get_vars()) # 10, 20, 30
 # try to create object of 'MyBase' class
 my_base = MyBase() # TypeError: Can't instantiate abstract class
 ```
-### 9.3 Encapsulation
+### 10.3 Encapsulation
 * Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data (of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
 * This technique is essential to protect private data to be accessed/misused form another class directly. To implement this we use **Access Modifiers**. They are used to define the access type of a variable inside a class. 
 * **Three Types of Access modifiers.** 
@@ -2777,7 +2781,7 @@ del some_instance._MyClass__my_var3
 # further crashing the program
 print(some_instance._MyClass__my_var3) # AttributeError
 ```
-#### **9.3.1 property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
+#### **10.3.1 property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
   * *fget* Optional[Callable]: The getter function.  
   * *fset* Optional[Callable]: The setter function.  
@@ -2837,12 +2841,12 @@ del some_instance.my_var
 some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
-### 9.4 Polymorphism
+### 10.4 Polymorphism
 * Polymorphism means many forms. It is the ability to use a common interface/function to operate or perform tasks on different types of objects. It can be also thought as a way to get rid of *if..else* or *switch* case when same type of function needs to be called on different objects.     
 * **Two Types of Polymorphism.**
   1. **Static**: The behaviour is decided at Compile-time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided in Runtime, like in method/function overriding.
-#### **9.4.1 The Four types of Polymorphism.**
+#### **10.4.1 The Four types of Polymorphism.**
 1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in Python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to None and missing or object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
 ```Python
 ## Simple Method Overloading example in Python
