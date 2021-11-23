@@ -5,7 +5,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 **What's not this:** Not a traditional programming course/book, this is by no means a complete Python walkthrough and might be structured somewhat differently. I have tried to cover & mostly emphasis on important features and tricks inside Python. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. This book has more code than theory. To grow as a programmer its always better to practice. I would suggest copying  & running your own programs and creating your own notes.
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. This book has more code than theory. To grow as a programmer its always better to practice. I would suggest copying & running your own programs and creating your own notes.
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -21,11 +21,11 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 ## 1. Basics
 ### 1.1 Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language called [Cython](https://github.com/python/cpython), it is the default/standard but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/). Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is Python3 which was released in 2008 and is still relevant(as of 2021), as Python2 was discontinued at 1 Jan 2020 Python3 is the way to go.      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [blog](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace Python, at least in some domains in coming time, but it is yet to be seen.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language called [Cython](https://github.com/python/cpython), it is the default/standard but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/) for more on that. Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is Python3 which was released in 2008 and is still relevant(as of 2021), as Python2 was discontinued at 1 Jan 2020, Python3 is the way to go.      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [article](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace Python, at least in some domains in coming time, but it is yet to be seen.  
 ### 1.2 Fundamentals
 #### 1.2.1 Literal constant
-Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
+* Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
@@ -33,15 +33,16 @@ Are raw data, literals are constant fix values. A raw value by itself is a liter
 # similarly 'something' is also a string literal
 ```
 #### 1.2.2 Keywords
-Are reserved words which are defined by Python, so they can't be used as operands.
+* Are reserved words which are defined by Python, so they can't be used as operands.
 ```Python
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
 #### 1.2.3 Operands/Variable
 * Are objects that hold values, it has a user-defined name, a name should not begin with a underscore (because it is reserved for something else), other naming rules are similar to other languages. 
-* Unlike C/C++/Java, Python is Dynamically-Typed. It is when the type checking happens at run-time (and not at compile-time). Type checking is to ensure "type-safe", say a *int* doesn't get assigned to a *float*. Also Dynamically-Typed allows a type of variable to be changed to any other type in a program's lifetime.
-* In Python there is no "variable declaration", you do not need to declare a variable, they come to existence when they are assigned something. When assigning something, the value on the left is the name assigned to the object and on the right is the object itself. This name is just pointing to the object of some type and not actually holding value, which then can be changed to point any other type.   
+* Unlike C/C++/Java, Python is Dynamically-Typed. It is when the type checking happens at run-time (and not at compile-time). Type checking is to ensure "type-safe", say a *int* doesn't get assigned to a *float*.
+* In Python there is no "variable declaration", you do not need to declare a variable, they come to existence when they are assigned something. Also there is no need for "type declaration", variables are just name pointers.
+* Whenever a object is created in Python, the object/value along with it's type is assigned some memory in a storage. When that object is assigned a variable, that variable is just a name/reference to this memmory. The value on the left is the name assigned to this object and on the right is the representation of this object. As variables are just names they do not have types, they can be assigned to any type of object.
 ```python
 ## variable names example
 MyInt, some_var, my_string12, SOME_NUMBER
@@ -51,20 +52,28 @@ MyInt, some_var, my_string12, SOME_NUMBER
 if False:
   30 + "some string"
 # Above statement should return a TypeError but it will not, 
-# because that condition is never executed, if it did it will raise the exception
+# because that condition is never executed, if it did it will raise the exception, try with "if True"
 
 ## Dynamically typed: Assigning a name (variable) to the object
 a = 34
-a = 4.0
 a = "I am string"
 a = [1,2,3,4]
-# Assigning name to 34, then changing it to point a string, then a list. 
-# All of them are valid
+a = 4.0
+# Assigning a name to 34, then changing it to point to a string, then a list. 
+# All of them are valid, as variables dont have types
+
+## Variables are just reference
+a = 34
+b = a
+a = 20
+print(a, b) # 20, 34
+# Here, a was pointing to 34, we assigned a to b which is b also refers to 34 (and not a)
+# so changing a to 20 doesn't affect the b, it still points to 34
 ```
 #### 1.2.4 Operators 
-Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript, so I will not explain their working. Other Logical, Identity, Membership operators are Python specific, that we'll take a look at.
+* Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript, so I will not explain their working. Other Logical, Identity, Membership operators are Python specific, that we'll take a look at.
+* Seven Types of Operators (comma separated) in Python.
 ```Python
-### Seven Types of Operators (comma separated) in Python
 """
 ## Arithmetic operators (follows PEMDAS rule)
 +,-,\*,/,%,\*\*,//
@@ -81,13 +90,14 @@ is,is not
 ## Membership Operators
 in,not in
 """
-
-### Logical operators: not,and,or
+```
+* <b>Logical operators</b>: not,and,or.
+```Python
 ## not: to negate the underlying condition (it reverses the condition)
 a = 30
 # here the underlying condition is the isinstance() function, which return True/False 
 # normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
-# the 'if' condition is satisfied when the output is 'False'
+# the 'if' condition is satisfies only when the output is 'False'
 if not isinstance(a, int):
   print('not printed')
 if not isinstance(a, str):
@@ -102,9 +112,9 @@ if a > 10 and b < 50:
 ## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
 if a > 10 or b < 10:
   print('printed')
-
-
-### Identity operator: is,is not
+```
+* <b>Identity operator</b>: is,is not.
+```Python
 ## is: checks if 2 objects are referring to the same object. 
 some_var1 = 42
 some_var2 = 42
@@ -141,7 +151,7 @@ if not a is b:
   print("printed") 
 ```
 #### 1.2.5 Expressions
-A expression is something that is evaluated by the interpreter value/sequence by doing some operation (arithmetic/conditional/lambda function). They are a part of statements (as in expression statement).
+* A expression is something that is evaluated by the interpreter, say on a value/sequence by doing some operation (arithmetic/conditional/lambda function). They are a part of statements (as in expression statement).
 ```Python
 # some examples
 "Yes"+"this"
@@ -152,7 +162,7 @@ a or b
 lambda x:x**2
 ```
 #### 1.2.6 Pythonic Sugar expressions
-Are optionally available to write some expressions in a short way.   
+* Are optionally available to write some expressions in a short way.   
 ```Python
 ## Some examples
 ## Multiple Target assignment
@@ -168,7 +178,9 @@ some_var = 10
 a = some_var
 b = some_var
 c = some_var
-# so when we change a/b/c we are changing value for themselves only and not others
+# as we saw earlier variables are just names, when we change a/b/c 
+# we are only changing their reference, others are not affected
+# but there is some catch and we'll catch it later
 
 ## Chaining operators
 # is similar to "if x<=y and y<z:"
@@ -187,7 +199,7 @@ output = something
          .calling_other_fun()        
 ```
 #### 1.2.7 Statements
-Are basically every line/block of code that Python interpreter executes. There are two types, simple and compound statements. 
+* Are basically every line/block of code that Python interpreter executes. There are two types, simple and compound statements. 
 ```Python
 ## simple statements
 # expressions we saw earlier
@@ -203,6 +215,7 @@ yield, del, return, pass, raise, break, continue
 if, else, elif, while, for, try, with 
 ```
 #### 1.2.8 Comments
+* Hiding information/description from the interpreter to exclude.
 ```Python
 # this is a single line comment
 # TODO: this is a todo commment, useful in IDEs like Visual Code/Pycharm
@@ -222,13 +235,13 @@ print('printed') # IndentationError
 
 ## example 2
 if 10 > 5:
-  # preferred indentation
-  print('printed')
+    # preferred indentation
+    print('printed')
 print('block code ends')
 # also valid indentation
 if 10 > 5:
-      print('printed')
-      print('also printed')
+   print('printed')
+   print('also printed')
 # continue other code
 
 ## example 3
@@ -238,7 +251,7 @@ some_var = 10 # IndentationError
   some_var1 = 20 # IndentationError
 ```
 #### 1.2.10 Namespaces
-As seen in C++ namespaces are collection of names of variables/functions, but unlike C++, Python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language.</br></br> 
+* As seen in C++ namespaces are collection of names of variables/functions, but unlike C++, Python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language.</br></br> 
   **Three types of namespaces.**
   #####
   1. **built-in**: Are readily available functions without any import.
@@ -246,8 +259,10 @@ As seen in C++ namespaces are collection of names of variables/functions, but un
   3. **local**: Are which user defines inside a function/class/nested.
 ```Python
 ## built-in namespace 
+"""
 # For example some functions which do not require any import 
 print(), len(), map(), range(), list(), set(), str()
+"""
 
 ## global namespace
 # importing any modules adds them global namespace
@@ -265,7 +280,7 @@ def some_fun():
         pass
 ```
 #### 1.2.11 Time Complexity 
-It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
+* It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
   **Common Time Complexities in ascending order of their growing time.** 
   #####
   1. **O(1)**: Constant time. Time does not increase at all.
@@ -279,22 +294,22 @@ It is used to measure how runtime of a function increases with the size input. N
 
 
 ## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used.
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used. </br></br>
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double (n/a in Python), char (n/a in Python), bool etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array (list in Python), Record (tuple in Python), Union (dict in Python), Strings (str in Python), Functions, Pointers (n/a in Python), Structures (n/a in Python) etc.
-  3. **Abstract**: They define operations on values using functions but without specifying the exact implementations of those functions, Eg. Stack, Queue, Map, Tree, Graphs etc.
+  3. **Abstract**: They define operations on object using functions but without specifying the exact implementations of those functions (the underlying implementation can differ from languages but the working has to stay same), Eg. Stack, Queue, Map, Tree, Graphs etc.
 #### Mutable and Immutable types inside Python.
-  1. **Immutable**: Values cannot be altered/added/removed once created, read-only types, Eg. int, float, complex, bool, None, str, tuple, frozenset.
-  2. **Mutable**: Values can be altered/added/removed, Eg. list, dict, set.
+  1. **Immutable**: Values cannot be altered/added/removed once created or are read-only types once created, Eg. int, float, complex, bool, None, str, tuple, frozenset.
+  2. **Mutable**: Values can be altered/added/removed after creation, Eg. list, dict, set.
 ####  
 Data types explained below are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#22-text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#23-boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#24-binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#25-user-defined-data-type). For simplicity I've arranged rest of them in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section. Later we'll take a look at the [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#26-none-object) object and some built-in functions.
 ### 2.1 Three Numeric Types
-1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* as it can be of any size. 
+1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* and it can be of any size. 
 2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
-3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. 
+3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. </br>
+* Creating numeric types. 
 ```Python
-## assigning values to variables 
 # here my_int is an operand, 42 is a literal and its data type is int
 my_int = 42 # int
 print(type(my_int)) # <class 'int'>
@@ -303,8 +318,9 @@ print(type(my_float)) # <class 'float'>
 my_complex = 4.22 + 20j # complex
 my_complex = complex(4.22, 20) # alternative way
 print(my_complex) # (4.22+20j)
-
-## Some supported functions
+```
+* Some built-in supported functions.
+```Python
 # returns maximum from n numbers(n > 2)
 print(max(30, 20)) # 30
 # returns minimum from n numbers(n > 2)
@@ -315,16 +331,13 @@ print(abs(-50)) # 50
 print(round(my_float)) # 3
 # returns the power of a number, similar to using '**' operator, eg "10**2" 
 print(pow(10, 2)) # 100
-# returns the unicode value given a character
-print(ord("c")) # 99
-# returns normal value back given the unicode value
-print(chr(ord("c"))) # c
 # returns quotient and remainder of integer division
 print(divmod(6, 4)) # (1, 2)
 # convert a number to a hexadecimal number
 print(hex(42)) # 0x2a
-
-## type conversion
+```
+* Type conversion examples.
+```Python
 my_int = 42
 my_float = 3.0
 # int to str
@@ -337,9 +350,10 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### 2.2 Text Type (str)
-Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of character data. String hold sequence of characters and are also called as string literals. They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
+* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of character data. *str* (String types) hold sequence of characters and are also called as string literals. 
+* They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
+* Creating text types. 
 ```Python
-## Creating strings
 # Single Quote: contains string value 
 text = 'strings can be single quoted'
 # Double Quote: can be useful for escaping single inverted comma(') rest there is no difference
@@ -347,9 +361,10 @@ text = "strings can be double quoted"
 # Triple Quote: used for multi-line text, can be used with single/double inverted commas
 text = """This is a long text.
         And want to use multiple lines."""
-
-## String types
-print("normal str,\t escaping characters") # normal str, escaping characters
+```
+* Types of strings.
+```Python
+print("normal str,\t escaping characters") # normal str,    escaping characters
 print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
 # unicode type, it represents english and non-english characters
 print(u"This is unicode") # This is unicode
@@ -360,28 +375,37 @@ text = f"This is a String number {20-19}" # or even to pass expression
 text = "This is a String number %s" %n  # or C like formatting 
 text = "This is a String number {0}".format(n) # or format method of string
 print(text) # This is a String number 1
-
-## multiplying('*') operator on string
+```
+* Multiplying, Joining and Slicing operations on strings.
+```Python
+## multiplying: use the '*' operator on string to replicate to the count.
 string1 = "this" * 5
 print(string1) # thisthisthisthisthis
 
-## join two strings, both should be str 
+## joining: use the '+' operator to join two or more strings, they should be str. 
+# str is immutable, so a new string is created when joining. 
 string1 = "This is 1."
 string2 = "This is 2."
-print(string1 + string2) # This is 1.This is 2.
+new_string = string1 + string2
+print(new_string) # This is 1.This is 2.
 
-## slicing string syntax is [start_index:end_index:step], end_index is not considered
-print(string1[5:7]) # is
-print(string1[5:]) # is 1.
-print(string1[:4]) # This 
-print(string1[:5:2]) # Ti 
-print(string1[:-4]) # This i
+## slicing: for creating sub-strings, syntax is [start_index:end_index:step] 
+# start_index is starting index of sub-string, default is 0
+# end_index is ending index, (end_index - 1) is considered, default is last index
+# step is the gap between characters, default is 1 
+my_string = "This is some string."
+print(my_string[5:7]) # is
+print(my_string[5:]) # is some string.
+print(my_string[:4]) # This 
+print(my_string[:5:2]) # Ti 
+print(my_string[:-4]) # This is some str
 # reverse a string
-print(string1[::-1]) # .1 si sihT
-# unlike list, string does not create a copy 
-print(string1[:]) # This is 1.
-
-## Some methods of string
+print(my_string[::-1]) # .gnirts emos si sihT
+# unlike with list, string does not create a copy 
+print(my_string[:]) # This is some string
+```
+* Some methods of string.
+```Python
 my_string = "this IS it."
 # Returns Lowercases all characters of given string
 print(my_string.lower()) # this is it.
@@ -400,8 +424,9 @@ print(my_string.index("it")) # 8
 print(my_string.replace("it","not it")) # this IS not it.
 # joins a list of strings to a single string with given string key(which is '.' here)
 print(".".join(['hey','is','this','it?'])) # hey.is.this.it?
-
-## Some functions on string
+```
+* Some functions on string.
+```Python
 # Returns the length of a string
 print(len(my_string)) # 11
 # Returns the string representation of any object, for str object returns a string with no escaping characters
@@ -410,8 +435,9 @@ print(repr("This \t should have escaped.")) # 'This \t should have escaped.'
 print(ord("c")) # 99 
 # Returns Converted the Unicode to a character
 print(chr(ord("c"))) # c
-
-## type conversion
+```
+* Type conversion examples.
+```Python
 my_string = "bar"
 my_string1 = "20"
 # str to int
@@ -424,16 +450,17 @@ print(float(my_string1)) # 20.0
 print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
 ### 2.3 Boolean Type (bool)
-Has only 2 values *True* and *False*. *True* is also 1, so 4 + *True* is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as Truthy & Falsey values when evaluating.
+* Has only 2 values *True* and *False*. *True* is also 1, so 4 + *True* is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as Truthy & Falsey values when evaluating.
+* Creating text types. 
 ```Python
-## assigning bool
 my_bool = True
 print(type(my_bool)) # <class 'bool'>
 my_bool = my_bool + 4 # becomes 5
 my_bool = False
 my_bool = my_bool + 4 # stays 4
-
-## type conversion/truth value testing with boolean values
+```
+* Type conversion or truth value testing with boolean values.
+```Python
 # number to bool, anything not 0 is True
 print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
@@ -441,44 +468,48 @@ print(bool(""), bool("This is string")) # False True
 ```
 ### 2.4 Binary Types (byte)
 #### 2.4.1 Little bit about Computer Memory
-A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a Kilo Byte (KB) is 1024 bytes, a Mega Bytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains characters data and Binary files contain binary data. For example images, documents, executables & compressed files, compiled programs etc are binary files. Now to store characters in a computer, encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to letters, numbers and symbols used in languages or on keyboards.
+A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a Kilo Byte (KB) is 1024 bytes, a Mega Bytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains characters data and Binary files contain well, binary data. For example images, documents, executables & compressed files, compiled programs etc are called binary files. Now to store characters (Text files) in a computer, encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to the letters, numbers and symbols used in languages or on keyboards.
 
 #### 2.4.2 Two functions to convert a string to bytes.
 #### 1. bytes(source, encoding, errors) => bytes
 **Parameters**:</br>
   * *source* object: Any object.
-  * *encoding* str: Provide encoding for the source string.
+  * *encoding* str: Provide encoding scheme for the source string.
   * *errors* str: Way to handle errors for source data.
 #####
 **Explanation**: This function creates a immutable object consisting of Unicode (character set containing all major languages characters) 0-256 characters.
+* Creating byte types. 
 ```Python
 ## create a bytes object
 data = bytes("This is bytes data", 'UTF-8')
 print(data) # b'This is bytes data'
 # or can use b prefix on string like syntax
 print((b'42')) # b'42'
-print(type(data)) # <class 'bytes'>
+print(type(b'42')) # <class 'bytes'>
 
 ## initialize bytes object with 0's by providing size in int
 my_bytes = bytes(4)
 print(my_bytes) # b'\x00\x00\x00\x00'
 
+## indexing a bytes object returns a Unicode of a character
+print(data[0], chr(data[0])) # 84 T
+```
+* Type conversion.
+```Python
 ## create bytes object using a iterable objects
 print(bytes([1,2,3])) # b'\x01\x02\x03'
 print(bytes((80,50,60))) # b'P2<'
-
-## indexing a bytes object returns a Unicode of a character
-print(data[0], chr(data[0])) # 84 T
 ```
 #### 2. bytearray(source, encoding, errors) => bytearray
 **Parameters**:</br>
   * *source* object: Any object.
-  * *encoding* str: Provide encoding if source is string.
+  * *encoding* str: Provide encoding scheme, if source is string.
   * *errors* str: Way to handle errors, if the source is a string.
 #####
 **Explanation**: This function returns a mutable version of bytes object.
+* Creating bytearray types. 
 ```Python
-## create bytearray
+# create bytearray with 0's by providing size in int
 output = bytearray(4)
 print(output) # bytearray(b'\x00\x00\x00\x00')
 print(bytes("Something", 'UTF-8')) # b'Something'
@@ -489,10 +520,9 @@ output[0] = 30
 print(output) # bytearray(b'\x1e\x00\x00\x00')
 ```
 ### 2.5 User-defined Data Type
-User defined data type, are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does has is classes, which can be utilized to do the same.
+* User defined data type, are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does has is classes, which can be utilized to do the same.
+* Create a user defined data type.
 ```Python
-## Example 1
-# create object of a data type
 class MyDataType:
   def __init__(self, x, y):
     # initialize here
@@ -514,12 +544,13 @@ print(my_dt) # 10, Hello
 # change values
 my_dt.x = 42 
 my_dt.x = "THis can also become a string" 
-# The problem is you can't define type of data or length of an array(list) in python
-# For such situation you can create your own methods for inserting
+# The problem is you can't define type of data or length of an array(list) in Python
+# For such situations you can create your own methods for inserting
 # where you can check the type of data that is fed in
 # But will not that be a Data structure? Nope?
-
-## Example 2
+```
+* Create a slightly better data type that can check the inputs.  
+```Python
 class MyDataType:
   def __init__(self, x, y):
     """__init__ is antoher 'magic method', which enables usage of constructor in python, more on this later."""
@@ -558,17 +589,18 @@ print(my_dt) # 20 Bar
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
 #### 2.6 *None* Object
-* *None* is similar to *null* in C/C++/Java it indicates something has no value, but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also *0*, not in Python. In Python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* *None* is similar to *null* in C/C++/Java it indicates that something has no value, but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also *0*, not in Python. In Python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
 * *None* is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
+* Creating a None type.
 ```Python
 n = None
 print(type(None)) # <class 'NoneType'>
 
-## to check whether an object is not None
+## to check whether an object is not None simply use 'if <object_name>'
 if n: # same as "if n != None:"
   print('will not enter this condition')
 
-## not is used to negate the condition
+## not to negate that condition
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
