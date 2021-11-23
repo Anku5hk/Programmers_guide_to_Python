@@ -294,7 +294,7 @@ def some_fun():
 
 
 ## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used. </br></br>
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned int or float or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used. </br>
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. int, float, double (n/a in Python), char (n/a in Python), bool etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array (list in Python), Record (tuple in Python), Union (dict in Python), Strings (str in Python), Functions, Pointers (n/a in Python), Structures (n/a in Python) etc.
@@ -465,7 +465,7 @@ print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
 ### 2.3 Boolean Type (bool)
 * Has only 2 values *True* and *False*. *True* is also 1, so 4 + *True* is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as Truthy & Falsey values when evaluating.
-* Creating text types. 
+* Creating boolean types. 
 ```Python
 my_bool = True
 print(type(my_bool)) # <class 'bool'>
@@ -778,14 +778,15 @@ my_list3 = [abc for abc in range(10) if abc > 5] # if condition
 my_list4 = [True if z > 5 else False for z in range(10)] # if with else condition
 # try printing each of the list
 ```
-* Copy a *list* and dynamically typed example.
+* Copy a *list* example.
 ```Python
 my_list = [1,2,3,4,5,6]
 new_copy = my_list
 del new_copy[0] # deleting first item
 print(my_list, new_copy) # [2, 3, 4, 5, 6] [2, 3, 4, 5, 6]
 # the deletion is reflected to of the lists because they refer to same object
-# this behaviour is exclusive to mutable objects
+# this behaviour is exclusive to mutable objects, the catch from 'Multiple Target assignment'
+# modified mutable objects reflect changes to its references
 
 ## Creating a copy 
 new_copy = my_list[:] # or "my_list.copy()"
@@ -910,7 +911,7 @@ print(my_tuple) # (1, 2, 3, 4, 5)
 some_tuple = (5) # this will give the type of variable inside parenthesis and not tuple, here 'int'
 print(type(some_tuple)) # <class 'int'>
 ```
-* Joining and multiplying list.
+* Joining and multiplying *tuple*.
 ```Python
 ## Joining: join two or more tuples
 my_tuple1 = (34,65,23) + (34,34)
@@ -920,7 +921,7 @@ print(my_tuple1) # (34, 65, 23, 34, 34)
 my_tuple1 = (34,65,23) * 2
 print(my_tuple1) # (34, 65, 23, 34, 65, 23)
 ```
-* Indexing, iterating and slicing operations on tuple.
+* Indexing, iterating and slicing operations on *tuple*.
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
@@ -1018,7 +1019,7 @@ print(sys.getsizeof(name_tup1), sys.getsizeof((42, 65))) # 56, 56
 # like regular tuple immuatable
 name_tup1[0] = 32 # TypeError
 ```
-* Indexing, iterating and slicing operations on tuple.
+* Indexing, iterating and slicing operations on *namedtuple*.
 ```Python
 from collections import namedtuple
 
@@ -1218,8 +1219,8 @@ union is O(m+n).</br>
 intersection is O(min(m,n)), worst is O(m\*n).<br/>
 #### 3.4.1 FrozenSet
 * They are *set* but only difference is they are immutable. So once a *frozenset* is created the elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing is supported. They can be created using any iterable object.
+* Create a *frozenset*.
 ```Python
-## create a frozenset
 # using a list
 my_fset = frozenset([10,65,65,2,7,94,34,42,21])
 # or any other iterable
@@ -1230,8 +1231,9 @@ print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
 ## immutable 
 my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
 my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
-
-## some frozenset methods
+```
+* Some methods of *frozenset*.
+```Python  
 my_fset1 = frozenset({3,5,7,1,8})
 my_fset2 = frozenset({1,2,3,4,5})
 # intersection 
@@ -1240,7 +1242,8 @@ print(my_fset1.intersection(my_fset2)) # frozenset({1, 3, 5})
 print(my_fset1.union(my_fset2)) # frozenset({1, 2, 3, 4, 5, 7, 8})
 # difference
 print(my_fset1.difference(my_fset2)) # frozenset({8, 7})
-my_copy = my_fset1.copy() # returns a copy of a set
+# creates a copy of a set
+my_copy = my_fset1.copy() 
 # checks if my_fset2 is a subset of my_fset1
 print(my_fset1.issubset(my_fset2)) # False
 # checks if my_fset2 is a superset of my_fset1
@@ -1248,29 +1251,30 @@ print(my_fset1.issuperset(my_fset2)) # False
 ```
 ### 3.5 Extras
 #### 3.5.1 Stack
-* Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc.
+* Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations are *isEmpty*, *isFull* and *peek* etc.
 * The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), *list* are good enough for Stacks.
 ```Python
+# create a stack
 my_stack = []
 ## add/remove operation
 my_stack.append(20) # push: append at top
 my_stack.pop() # pop: remove at top
 ```
 #### 3.5.2 Queue
-* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations involve *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
+* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations are *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
 ```Python
+# create a queue
 my_queue = []
 ## add/remove operation
 my_queue.append(20) # enqueue: append at rear
 my_queue.pop(0) # dequeue: remove at front
 ```
-* Python also has *dequeue* (double ended queue) Data Structure which can be used as a normal Queue. As *dequeue* support adding and removing from both sides (front & end) they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. They are implemented as doubly linked list. 
-* For Queues we only need append at the end and pop/remove at the front, both of which are O(1) for *dequeue*.
+* Python also has *dequeue* (double ended queue) Data Structure which can also be used as a normal Queue. They are implemented as doubly linked list and support adding & removing from both sides (front & end), they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. 
+* For Queues we only need append at the end and pop/remove at the front, both of which are O(1) for *dequeue* which is good enough. They are not part of core Python and need to be imported from the *collections* module.
 ```Python
 from collections import deque
 import sys
 my_list = [23,45,12,67,132,67]
-
 # create a deque using any iterable
 dq = deque(my_list)
 
@@ -1278,48 +1282,48 @@ dq = deque(my_list)
 dq.append(20) # # push: append at top
 dq.popleft() # pop: remove at top
 
-# but then they are data inefficient than list
+# Only drawback is that they are data inefficient than list
 print(sys.getsizeof(dq)) # 624
 print(sys.getsizeof(my_list)) # 152
 ```
 #### 3.5.3 Priority Queue
 * Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue use priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
-* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which are the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property and which is nothing but the max/min criteria for getting elements. 
-* A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for basically sorting. Three main operations are *add*, *delete* and *peek*:
+* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implement the Heap Data Structure (Binary heap) which is the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property, which is nothing but the max/min criteria for getting elements out. 
+* A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for sorting. Three main operations *add*, *delete* and *peek* are explained below:
   1. *add*: First traverse to last (leaf) empty position, add the element there and heapify the tree.
   2. *delete*: Select the index to be deleted, replace with last element (rightest leaf), remove the last element and heapify the tree.
   3. *peek*: Traverse to the rightest leaf position, return the element.
-* A Priority Queues are useful in tasks such as prioritizing, scheduling, load balancing etc. Other implementation of Priority Queue is in *queue* module, named *PriorityQueue*, you can also use normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
+* A Priority Queues is useful in tasks such as prioritizing, scheduling, load balancing etc. Other implementation of Priority Queue is in *queue* module, named *PriorityQueue*, you can also use normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
 ```Python
 import heapq
 
 # create a priority queue, initialize with a empty list
 my_pq = []
 
-## now use the heappush function to add elements, syntax (container, item)
-# here container is our list my_pq
+## add: use the heappush function to add elements, syntax (container, item)
+# here container is our list 'my_pq'
 heapq.heappush(my_pq, 3)
 heapq.heappush(my_pq, 2)
 heapq.heappush(my_pq, 0)
 
-## now to get elements from the list use the heappop function
+## remove: use the heappop function to get elements from the list
 print(heapq.heappop(my_pq)) # 0
 # smallest element is taken out
 print(my_pq) # [2, 3]
-# when element is inserted it is put in right sorted position
-# so [0] is always the smallest and pop position
+# when a element is inserted it is put in right sorted position
+# so [0] is always the smallest and the pop position
 
-# elements should be comparable, to once int is inserted other elements should be int only
+# elements should be comparable, so once int is inserted other elements should be int only
 # or TypeError will be raised
-heapq.heappush(my_pq, (2, "task1")) # TypeError
+# heapq.heappush(my_pq, (2, "task1")) # TypeError
 
 my_pq = []
-# the items can be tuple, so we can provide some name  
+# the items can also be tuple, so we can provide some name  
 heapq.heappush(my_pq, (1, "task2"))
 heapq.heappush(my_pq, (5, "task3"))
-print(heapq.heappop(my_pq)) # (1, 'task2')
+print(heapq.heappop(my_pq)) # (1, 'task4')
 
-# use heapify function to convert a list to priority queue
+# use heapify function to construct a Heap DS or sort elemnts
 my_pq = [34,6,23,67,23,78]
 heapq.heapify(my_pq)
 print(my_pq) # [6, 23, 23, 67, 34, 78]
@@ -1332,37 +1336,41 @@ print(my_pq) # [6, 23, 23, 67, 34, 78]
   * *end_index* int: The stopping index for iteration.
   * *step* int: A skipping index in iteraton.
 #####
-**Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable and supports indexing but are immutable. It is used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
+**Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable, supports indexing and is immutable. It is mainly used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
 ```Python
 ## examples
-print(range(20)) # [0:20] 
-print(range(5,20)) # [5:20] 
+# create a range object length 20
+print(range(20)) # range(0,20)
+# create a range object values ranging 5 to 20
+print(range(5,20)) # range(5,20)
+# create a range object values ranging 6 to 20 with 2 steps
 print(range(6,20,2)) # [6, 8, 10, 12, 14, 16, 18] 
+
 ## indexing a range
 print(range(20)[0]) # 0
-# also slicing but its not preferred/recommended
+# supports slicing but its not preferred/recommended
 print(range(20)[0:10]) 
-# makes range sequence a list sequence
-print(list(range(5,20))) # [5:20] 
+# convert a range sequence to a list
+print(list(range(5,10))) # [5,6,7,8,9] 
 
 ## looping range object
-for var in range(20): 
-  print(var) # [0:19]
+for var in range(5): 
+  print(var) # [1,2,3,4,5]
 # reversing the order
-for var in range(20, -1, -1): 
-  print(var) # [19:0]
+for var in range(5, -1, -1): 
+  print(var) # [5,4,3,2,1]
 ```
 #### 2. enumerate(iterable) => tuple
 **Parameters**:</br>
   * *iterable* iterable: Iterable object containing items.
 #####
-**Explanation**: This function returns a enumerate object given a list, each item is a tuple and has *(index, value)* per item. Index is in range from 0-length of the list and value is item from the list. The enumerate object is iterable but indexing/slicing is not supported.
+**Explanation**: This function returns a *enumerate* object given a iterable, each item is a tuple which contains index & value. Index is in range from 0-length of the list and value is a item from the list. The *enumerate* object is iterable and indexing/slicing is not supported. Similar to *range*, *enumerate* is motly used in iteration of loops. 
 ```Python
 ## examples
 my_list = [100,200,500,100]
-# returns a iterable object
+# create a enumerate object from a list
 print(type(enumerate(my_list))) # <class 'enumerate'>
-# converts to list and indexing first value gives a tuple
+# converts to list and indexing the first value, the output tuple is index & value
 print(list(enumerate(my_list))[0]) # (0,100) 
 
 # looping over enumerate object
@@ -1374,18 +1382,22 @@ for i, val in enumerate(my_list):
 **Parameters**:</br>
   * *iterable* iterable: Iterable object containing items, '\*' denotes a function can take multiple input objects.
 #####
-**Explanation**: This function returns a zip object given multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned *zip* object is the smallest iterable's length. *zip()* is commonly used to unpack values from multiple iterables simultaneously.  
+**Explanation**: This function returns a zip object given single/multiple iterables, each item is a tuple which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned *zip* object is equal to the length of the smallest iterable. *zip()* is commonly used to unpack values from multiple iterables simultaneously in a loop.  
 ```Python
 ## examples
 a = ['This','is','something']
 b = (14, 3, 6)
 c = {34,7} 
+# create a zip object given a iterable
+my_zip = zip(a)
 print(type(zip(a))) # <class 'zip'>
-# convert to list
+
 # the length of zip is 2 because smallest is c and its length is 2
 # so remaining values in a,c are ignored
 print(len(list(zip(a, b, c)))) # 2
+# convert to list in order to print
 print(list(zip(a, b, c))) # [('This', 14, 7), ('is', 3, 34)]
+
 # loop over the values
 for v in zip(a, b, c):
   # v is a tuple with 3 values, so we can index them
@@ -1400,7 +1412,7 @@ for var1, var2 in zip(a,b):
   * *key* iterable: Optional function to fetch values from a your iterable object.
   * *reverse* bool: Whether to reverse the sorting.
 #####
-**Explanation**: This function returns a sorted list given a object. Sorting is O(nLogn). *key* parameter takes function which is then used to extract the elements, helpful when a object has some inner structure. Also has *reverse* parameter, which is used to do reverse sorting if it is set to *True*.
+**Explanation**: This function returns a sorted list given a iterable object. Sorting is O(nLogn). *key* parameter takes a function which is then used to extract the elements, helpful when a object has some inner structure. Also has *reverse* parameter, which is used to do reverse sorting if it is set to *True*.
 ```Python
 ## examples
 my_tuple = (14, 3, 6)
@@ -1413,9 +1425,11 @@ def my_fun(a):
   # here we are returning length of each element(sub-list)
   return len(a)
 
+# sort a string
 print(sorted(my_string)) # ['e', 'e', 'e', 'r', 'r', 'r']
+# sort a tuple in reverse order
 print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
-# sort list by the length of sub-list
+# sort a list by the length of sub-list
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 # Notice: "my_fun" is passed not called, we'll learn about this in function's section.
 ```
@@ -1424,9 +1438,9 @@ print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
   * *function* function: Your function for filtering.
   * *iterable* iterable: Iterable object containing items.
 #####
-**Explanation**: This function takes a function & a iterable and applies that function on every item of that iterable. The return value of filter's function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from a iterable object. *filter()* returns a filter object which iterable but indexing/slicing is not supported.
+**Explanation**: This function takes a input function & a iterable and applies that function on every item of that iterable. The return value of filter's input function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from a iterable object. *filter()* returns a filter object which iterable and indexing/slicing is not supported.
 ```Python
-## Example 1: create simple filter object
+## Example: create simple filter object that filter elements which are divisible by 10
 def my_func(var):
   # returns True if number is divisible by 10
   if var % 10 == 0:
@@ -1434,14 +1448,13 @@ def my_func(var):
     return True 
   # value is not returned   
   return False
-  
-my_filter = filter(my_func, ())  
-print(type(my_filter)) # <class 'filter'>
 
-## Example 2: only filter elements which are divisible by 10
 my_list = [101,100,501,200]
-output = list(filter(my_func, my_list))
-# or looping through filter object
+# create a filter object
+my_filter = filter(my_func, my_list)  
+print(type(my_filter)) # <class 'filter'>
+output = list(my_filter)
+# or looping through filter object 
 for val in filter(my_func, my_list):
   print(val) # [100, 200]
 ```
@@ -1450,18 +1463,18 @@ for val in filter(my_func, my_list):
   * *function* function: Your function to apply on items.
   * *iterable* iterable: Iterable object containing items.
 #####
-**Explanation**: This function takes a *function* & a *iterable* object and applies that *function* on every item of that *iterable*. As name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our *function*.
+**Explanation**: This function takes a input *function* & a *iterable* object and applies that *function* on every item of that *iterable*. As name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our input *function*.
 ```Python
-## Example 1
+## Example 1: Return square of each element in a list
 my_tuple = (1,2,3,4,5)
 def my_func(var):
   # returns square of a number
   return var**2
-print(type(map(my_func, ()))) # <class 'map'>
-
-## Example 2
-# return square of each element in a list
-output = list(map(my_func, my_tuple)) # [1, 4, 9, 16, 25]
+  
+my_mapper = map(my_func, my_tuple)   
+print(type(my_mapper)) # <class 'map'>
+# call list construtor to executes the map function
+output = list(my_mapper) # [1, 4, 9, 16, 25]
 # or looping through map object
 for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
