@@ -1643,7 +1643,7 @@ def myfun() # SyntaxError
   5. **IndexError**: Raised when a sequence subscript is out of range.
   6. **KeyError**: Raised when a mapping (dictionary) key is not found in the set of existing keys.
 * For more exceptions check the exception hierarchy on [python doc](https://docs.python.org/3/library/exceptions.html#exception-hierarchy). 
-* Python also has a [*Warning*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
+* Python also has a [*warnings*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
 ```Python
 ## Example 1: indexing error
 a = [34,56,32,87]
@@ -1657,7 +1657,7 @@ import math
 math.square # AttributeError
 
 ## Example 4: raise a warning
-import warning
+import warnings
 warnings.warn("Something is not right.")
 ```
 #### 3. Logical Error
@@ -1743,18 +1743,18 @@ assert a == 30, "Your error mesage here" # AssertionError
 
 ## 6. Functions
 ### 6.1 Function Basics
-* A function is a block of code (group of statements) used to perform some operation/task on some data/variables/sequences, it may or may not have parameters, it may or may not return something (in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
+* A function is a block of code (group of statements) used to perform some operation/task on some data/variables/sequences. A function may or may not have parameters, it may or may not return something (in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
 * **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
-* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions. Unlike objects, functions do not have a internal state. So the output does not changes as a function cannot be modified once defined. 
+* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
+* Defining and calling functions.  
 ```Python
-## defining functions
-# Example 1. Non-parameterize function which returns nothing 
+# Example 1: Non-parameterize function which returns nothing 
 def my_function1():
   # do something
   pass # to ensure the program runs this empty function   
   # if the function is not empty 'pass' is not required at all
   
-# Example 2. function with parameter which returns nothing
+# Example 2: function with parameter which returns nothing
 def my_function2(var1, var2):
   pass
 # alternative way is to describe the input/return type hints
@@ -1762,21 +1762,25 @@ def my_function2(var1, var2):
 def my_function2(var1: int, var2: int) -> None: 
   pass
   
-# Example 3. default parameters should always follow later
+# Example 3: function with default parameters and return statement
+# default parameters should always follow later
 def my_function3(var1, var2, var3, do_something=False): 
   if do_something:
     # did something
     return var1 + var2 + var3
-
-## calling a function without a return statement, returns None by default
+    
+# calling a function without a return statement, returns None by default
 print(my_function1()) # None
+# calling a function and passing the arguments
 print(my_function3(30, 20, 10, do_something=True)) # 60
-# check if it is a function
-print(callable(my_function1))
-
-## first class functions behaviour
-def square_num(number, some_fun=None):
+# check if it is a function using the built-in callable() function
+print(callable(my_function1)) # True
+```
+* First class functions behaviour.
+```Python
+def square_or_some_fun(number, some_fun=None):
   if some_fun:
+    # if some_fun is a function it can be callable 
     output = some_fun(number)
   else:
     output=number**2  
@@ -1789,78 +1793,86 @@ def cube_num(n):
 # Notice: no rounded brackets on the function
 my_var = cube_num 
 print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
-# 'my_var' now points to the 'cube_num()', so calling 'my_var' is calling 'cube_num'
+# 'my_var' points to the 'cube_num()', so calling 'my_var' is same calling 'cube_num'
 print(my_var(2)) # 8
 
-# passing a function as argument to another function
-print(square_num(2)) # 4 
-# pass function as argument
-print(square_num(2, my_var)) # 8
+# passing a argument to another function
+print(square_or_some_fun(2)) # 4 
+# pass a function as argument
+print(square_or_some_fun(2, my_var)) # 8
+# passing a list at some_fun will raise TypeError
+print(square_or_some_fun(2, [4,4])) # TypeError: 'list' object is not callable
 ```
 ### 6.2 Functional Programming
-* Python like C++ is a multi-paradigm and supports functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, previous output cannot be re-gained given different input (as in state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
+* Python like C++ is a multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, previous output cannot be re-gained given different input (as state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
 * A function is pure (without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, testing, making programs more modular and requiring less debugging overall.
-* When designing systems, usually depending on the scenario specific apporaches are preferred, some computational part is written with functional programming & GUI parts are designed with OOP in mind.
+* When designing systems, depending on the scenario specific paradigm apporaches are preferred, todays systems are usually build with multi-paradigm in mind with say some computational part written with functional programming & GUI parts designed with OOP.
 ### 6.3 *pass* statement
-To just declare a function/method with a empty body.  
+* It is to declare a function/method with a empty body without raising error and later implement the code for the function.  
 ```Python
-## pass
-# pass can be used inside empty a functions, just to have that function without raising error
-# and implement the function later while coding
+# Example 1: empty function body
 def my_fun():
   pass
 ```
 ### 6.4 Packing and Unpacking
-Functions in Python support Packing and Unpacking variables into *tuple/dict*. Explained below.</br>
-1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (or they'll contain all the values). 
-2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function parameters. Now passing *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
+* Functions in Python support Packing and Unpacking variables into *tuple/dict*. 
+* **Both are explained below.**
+  1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (else they'll contain all the values). 
+  2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing a *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
+* Examples of packing in functions. 
 ```Python
-## packing in functions 
-# packing variables into tuple and dict
-# Notice: the * operator and ** operator before args and kwargs 
-def my_test(*args, **kwargs):
-  print(type(args)) # tuple
-  print(type(kwargs)) # dict
-
-# packing args example
+## Example 1: packing args into a tuple
+# Notice: the * operator before args variable
 def sum_nums(a,b, *args):
   total = a+b
   if args:
+    print(type(args)) # <class 'tuple'>
+    # rest of the values are inside args
+    print(args) # (4, 4, 2, 1, 1, 4)
     for n in args:
       total+=n
+
   return total
 
-# passing only 2 arguments
+# passing only two arguments, so args stays empty
 sum_nums(2,3) # 5   
-# passing more than 2 arguments
-sum_nums(2,3,3,4,2,1,1,4) # 20
+# passing more than two arguments, now all values after 3 go into args 
+sum_nums(2,3,4,4,2,1,1,4) # 28
 
-# packing kwargs example
+## Example 2: packing kwargs into a dict
+# Notice: the ** operator before kwargs variable
 def my_fun2(x,y,**kwargs):
   total = x+y
   if kwargs:  
-    for k,v in kwargs.items():
-        # here we're allowing only specific keys
-        if k in 'abd': 
-            total+=v
+    print(type(kwargs)) # <class 'dict'>
+    # rest of the values are inside kwargs
+    print(kwargs) # {'a': 2, 'b': 4, 'd': 4, 'any_name': 5, 'my_var': 8}
+    # total the values
+    for v in kwargs.values():
+      total+=v
+
   return total
   
-# passing only 2 arguments
+# passing only 2 arguments, so kwargs stays empty
 print(my_fun2(2,3)) # 5   
-# passing more than 2 arguments, however arguments should have some unique name
-print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5000, my_var=8000)) # 15
-
-## unpacking in functions
-# unpacking variables from tuple/dict
+# passing more than 2 arguments, now all values after 3 go into kwargs
+# Notice: arguments should have some unique name
+print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5, my_var=8)) # 28
+```
+* Examples of unpacking in functions.
+```Python
 def my_fun1(a,b,c,d):
   return a+b+c+d
 
 my_list = [1,2,3,4]
 my_dict = {'a':1,'d':4,'b':2,'c':3}
-# passing from list/tuple, list here
+
+## Example 1: unpacking from list/tuple, list here, notice the * operator
 print(my_fun1(*my_list)) # 10
-# passing from dict
+
+## Example 2: unpacking from dict, notice the ** operator
 print(my_fun1(**my_dict)) # 10 
+
 # same goes for built-in functions too, "print()" function unpacks the list values
 print(*my_list) # 1,2,3,4
 ```
@@ -1993,7 +2005,6 @@ def my_fun(a,b):
 # now just call 'my_fun()' normally, this will automatically call/invoke my_outer_func()
 print(my_fun(10,20)) # 30
 ```
-
 
 ## 7. Classes and Objects
 ### 7.1 Class
