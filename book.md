@@ -1599,7 +1599,6 @@ while True:
 * **break**: Use to break from iteration/loop. 
 * **continue**: Use to continue to next iteration in loops.
 ```Python
-## break and continue
 i=-1
 my_list = [10,20,30,40,50]
 
@@ -1816,11 +1815,7 @@ def my_fun():
   pass
 ```
 ### 6.4 Packing and Unpacking
-* Functions in Python support Packing and Unpacking variables into *tuple/dict*. 
-* **Both are explained below.**
-  1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (else they'll contain all the values). 
-  2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing a *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
-* Examples of packing in functions. 
+1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (else they'll contain all the values). 
 ```Python
 ## Example 1: packing args into a tuple
 # Notice: the * operator before args variable
@@ -1860,7 +1855,7 @@ print(my_fun2(2,3)) # 5
 # Notice: arguments should have some unique name
 print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5, my_var=8)) # 28
 ```
-* Examples of unpacking in functions.
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing a *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
 ```Python
 def my_fun1(a,b,c,d):
   return a+b+c+d
@@ -1927,7 +1922,7 @@ my_function = lambda a,b: a+b
 print(my_function(1,1)) # 2 
 ```
 ### 6.7 global and nonlocal statements
-1. ***global***: Is used to modify a variable with global scope from inside a function.
+1. **global**: Is used to modify a variable with global scope from inside a function.
 ```Python
 # defining 3 variables in global scope
 my_var1, my_var2, my_var3 = 10, 20, 30
@@ -1954,7 +1949,7 @@ some_fun()
 print(my_var1, my_var2) # 30, 20
 # Notice: my_var1 is now changed but my_var2 is not
 ```
-2. ***nonlocal***: Is used to modify a variable of local scope from inside a nested function.
+2. **nonlocal**: Is used to modify a variable of local scope from inside a nested function.
 ```Python
 def some_fun():
   # defining my_var1 and my_var2 in local scope 
