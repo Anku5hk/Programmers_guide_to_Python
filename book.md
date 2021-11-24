@@ -5,7 +5,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 
 **What's not this:** Not a traditional programming course/book, this is by no means a complete Python walkthrough and might be structured somewhat differently. I have tried to cover & mostly emphasis on important features and tricks inside Python. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. This book has more code than theory. To grow as a programmer its always better to practice. I would suggest copying & running your own programs and creating your own notes.
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep explanations concise most of the times, so things can be gone through fast. To grow as a programmer its always better to practice. I would suggest copying & running your own programs and creating your own notes.
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -730,7 +730,7 @@ print(my_list1) # [2, 4, 5, 6, 34, 7, 4, 2, 3, 6, 2]
 eg_list = ['This',30]
 print(eg_list*3) # ['This', 30, 'This', 30, 'This', 30]
 ```
-* Indexing, iterating, slicing.
+* Indexing, iterating, slicing operations on *list*.
 ```Python
 my_list = [1,1,3,'a','cab boy',4.0]
 my_list1 = [45,23,5,6,34,6,22]
@@ -858,7 +858,7 @@ print(sys.getsizeof(my_list)) # 152
 print(sys.getsizeof(my_array)) # 88
 # we can see difference in bytes, array consumes less space compared to list
 ```
-* Indexing, iterating and slicing.
+* Indexing, iterating and slicing operations on *array*.
 ```Python
 import array
 my_array = array.array('i', [5,7,11,6,2,8,1])
@@ -1483,58 +1483,85 @@ for val in map(my_func, my_tuple):
 ## 4. Flow Control
 Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
 #### 4.1 *if...else* statement
+* *if...else* is the simplest and most general conditional statement that helps turn the program execution based on the conditions provided. An *if...else* can be extended to any length using *elif* and also can be nested as required. Like in other programming languages, the *elif* & *else* part is totally optional.
+* Creating a conditional *if...else* statement.
 ```Python
-## simple if..else condition
-my_var = 20
-my_var1 = None
+my_var = 10
+
+# check if my_var is 20, else print something else, notice the indentations
+if my_var == 20:
+  print('Yes its 20')
+else:
+  print('Its something else')
+```
+* *if...else* can be extended with single/multiple *elif*.
+```Python
+my_var = 30
+
+# same example with different value
 if my_var == 20:
   print('Yes its 20')
 elif my_var == 30:
-    print('Its 30')
+  print('Yes its 30')
 else:
   print('Its something else')
+```
+* Nesting *if...else*.
+```Python
+my_value = 18
 
+# notice the indentation here
+if my_value > 10:
+  if my_value < 20:
+    print("my_value is between 10 and 20")
+  else:
+    print("my_value is greater than 20")
+else:
+  print("my_value is smaller than 10")
+```
+* Ternary Operator to use *if...else* in a single line.
+```Python
 ## Ternary Operator: SYNTAX => [on_true] if [expression] else [on_false] 
-my_var = True if 20%2 == 0 else False
-# here is 'True' is the output when 'if' condition is satisfied, else 'False' is the output
-print(my_var) # True
+my_var = "Yes" if 20%2 == 0 else "No"
+# here is 'Yes' is the output when 'if' condition is satisfied, else 'No' is the output
+print(my_var) # "Yes"
+```
+* Truth value testing, check whether a object is a Truthy and Falsy. Thier values are given below(comma separated).
+```Python
+# Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty Data-structures/sequences
+# Falsy(False values): 0,0.0,0j,None,False,[],{},(),"",range(0)
 
-## Truth value testing: Check whether a object is a Truthy and Falsy, given below(comma separated)
-# Falsy(False values): 0,0.0,0j,None,False,[],{},(),"",range(0).
-# Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty Data-structures/sequences.
-# By default user-defined object is also Truthy, you can manipulate using '__bool__()' special method
-# can also use 'bool()' built-in function to check the Truth value
+my_var = 10
+my_var1 = None
+
 ## Some Examples
-# my_var is a non-zero number 
+# my_var is a non-zero number, which is Truthy, so 'if' will execute
 if my_var: 
-  print("printed")
-# my_var1 is 'None'  
+  print("printed") # printed
+# my_var1 is 'None', which is Falsey, so 'if' will not execute  
 if my_var1: 
   print("not printed")
 # check a empty tuple
 if ():
   print("not printed")
-# check a non-empty tuple
-if (23,45,34):
+# check a non-empty list
+if [23,45,34]:
   print("printed")
-# using the 'bool()' function  
+
+# By default user-defined object is also Truthy, you can manipulate using '__bool__()' special method
+# can also use 'bool()' built-in function to check the Truth value  
 print(bool(42)) # True
 print(bool("This?")) # True
+print(bool("")) # False
 print(bool(None)) # False
 # Explore the rest!
-
-## negate the condition using 'not'
-if not my_var:
-  # similar to "if my_var == None"
-  print("not printed")
-if not my_var1:
-  # my_var1 is 'None', so will print 
-  print("printed") 
 ```
 #### 4.2 *for* statement
+* Is used for looping purpose, to iterate a certain number of time. Python supports regular to the length looping using the *range* object or there is more pythonic way of looping. 
 ```Python
 my_list = [10,20,30,40,50]
-## regular looping by indexes
+
+## regular looping using range object
 for i in range(len(my_list)): # [0:4]
   print(my_list[i])
 
@@ -1545,7 +1572,7 @@ for v in my_list:
 for a in [10,20,30,40,50]:
   print(a)   
   
-# there's also a 'else' condition, when a "for" loop is not executed
+## there's also a 'else' condition, when a "for" loop is not executed
 # if no statement has executed inside a "for" loop, this 'else' condition will execute
 for v in []:
   print("List has no elements")
@@ -1553,12 +1580,20 @@ else:
   print("So this will execute")
 ```
 #### 4.3 *while* statement
+* A *while* loop executes till its given condition is valid and stops execution when its invalid. *while* loops are more flexible than *for* loops and they can be executed infinitely by setting the condition to *True*, something that is not possible with *for* loops.
 ```Python
 i=0
 my_list = [10,20,30,40,50]
+
+# define a while loop, till i is smaller than length of my_list
 while i < len(my_list):
   print(my_list[i])
   i+=1 # similar to 'i=i+1', since 'i++' is not supported
+  
+# infinite looping
+while True:
+  # do something
+  # but remember to stop at some point!
 ```
 #### 4.4 *break* and *continue* statements
 * **break**: Use to break from iteration/loop. 
@@ -1567,6 +1602,7 @@ while i < len(my_list):
 ## break and continue
 i=-1
 my_list = [10,20,30,40,50]
+
 while i<len(my_list):
   i+=1
   if i == 0:
@@ -1577,8 +1613,8 @@ while i<len(my_list):
 ```
 
 ## 5. Exception Handling
-As humans while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot the types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and might take huge amount of debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
-### 5.1 Three Types of Errors/Exceptions.
+As humans while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot their types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and it might take huge amount of time in debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
+### 5.1 Three Types of Errors/Exceptions
 #### 1. Compile Time Errors
 * These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program. 
 * The interpreter raises a *SyntaxError*/*IndentationError* and also indicate the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
@@ -1601,13 +1637,13 @@ def myfun() # SyntaxError
 * Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, interpreter starts to execute and if a exception is raised it is a runtime error. The program to the part of runtime error line is executed, rest of the execution is stopped. Along with the Exception type interpreter also prints appropriate message on the screen. A user at this point can fix the error or can bypass and continue rest of the execution by using Exception Handling. 
 * **Some common runtime errors in Python.**
   1. **AttributeError**: Raised when an attribute reference or assignment fails.
-  2. **ValueError**: Raised when an operation or function receives an argument that has the right type but an inappropriate value.
-  3. **TypeError**: Raised when an operation or function is applied to an object of inappropriate type.
+  2. **TypeError**: Raised when an operation or function is applied to an object of inappropriate type.
+  3. **ValueError**: Raised when an operation or function receives an argument that has the right type but an inappropriate value.
   4. **RecursionError**: Raised when the maximum recursion depth is exceeded.
   5. **IndexError**: Raised when a sequence subscript is out of range.
   6. **KeyError**: Raised when a mapping (dictionary) key is not found in the set of existing keys.
 * For more exceptions check the exception hierarchy on [python doc](https://docs.python.org/3/library/exceptions.html#exception-hierarchy). 
-* Python also has a *Warning* sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
+* Python also has a [*Warning*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
 ```Python
 ## Example 1: indexing error
 a = [34,56,32,87]
@@ -1619,10 +1655,14 @@ print(34/0) # ZeroDivisionError
 ## Example 3: accessing unknown attribute 
 import math
 math.square # AttributeError
+
+## Example 4: raise a warning
+import warning
+warnings.warn("Something is not right.")
 ```
 #### 3. Logical Error
 * Are not raised, but the program output is not an expected behaviour. They usually get difficult to fix as the program grows. They occur when the program logic is incorrect. Common examples such as using wrong variable/operator, calling wrong function/method instead, sub-classing a wrong class etc.  
-* To avoid theses error it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into a application.</br>
+* To avoid these errors it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into a application.
 ```Python
 ## Example 1: accessing wrong index
 my_list = [82,92,38,42,54,23,64,87]
@@ -1631,37 +1671,39 @@ print(my_list[-2:]) # [64, 87]
 # here program has no error, but instead of printing 3
 # its only printing 2 numbers, because we provided wrong index
 # this example is not hard to fix, but in larger programs it consumes a lot of time to find
-# which object/variable/function must have caused the wrong result 
+# which object/variable/function must have caused the wrong output 
 ```
 ### 5.2 Handling the Exceptions
-* Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the condition.
-* Python has the *try* block to try the suspicious code, *except* (catch in C/C++/Java) block to add behaviour when some error occurs. Optionally Python has a *else* block which executes only if no exception was occurred. Then there is a *finally* block which executes if/not an error is occurred.  
+* Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the Exception.
+* Python has the *try* block to try the suspicious code, *except* (catch in C/C++/Java) block to add behaviour when such error occurs. Optionally Python has a *else* block which executes only if no exception was occurred. Then there is a *finally* block which executes if/not an error is occurred.  
 ```Python
 ## use traceback built-in module for printing Tracebacks
 import traceback
 
-## catching specific errors
+## Example 1: catching specific errors
 try:
   a=10
   a = "this"+a
 except (TypeError, ZeroDivisionError):    
   print("ZeroDivisionError/TypeError occured")
-  # print traceback
+  # printing traceback
   traceback.print_exc()
   
-## catch any exception with 'Exception' class, it is base class of all exceptions
+## Example 2: catch any exception with 'Exception' class, it is base class of all exceptions
 # lets cause stackoverflow/RecursionError in python
+# below is a user defined function, we'll get into details in next chapter
 def my_fun():
   try:
     my_fun() 
   except Exception as e:
-    # print exception class
+    # printing exception class
     print(e.__class__)  # <class 'RecursionError'>
-    # print exception
+    # printing the exception
     print(e) # maximum recursion depth exceeded
 my_fun()
-
-## finally and else condition    
+```
+* *finally* and *else* statements/conditions.    
+```Python
 try:
  a = 20/0
  a=20
@@ -1674,24 +1716,28 @@ finally:
     print("Finally, its finally, which always executes.")    
 ```
 ### 5.3 Raising the exceptions
-Raising (throw in C++/Java) built-in exceptions. *raise* statement is used to raise exceptions. Most commonly *ValueError* and *AttributeError* are raised.
+* Raising (throw in C++/Java) built-in/User-defined exceptions is done using the *raise* statement. Most commonly raised are *ValueError* and *AttributeError*.
 ```Python
-## manually raising exception
+## Example 1: manually raising a exception
 def my_fun(a):
   try:
     if a == 20:
       raise ValueError("I don't want number 20") 
-      # or not specifying specific exception like, "raise Exception('my message')"
-    return a+100
+      # or not specifying a specific exception like, "raise Exception('my message')"
+    return "Okay"
   except ValueError as v:
     print(v)
-number = my_fun(20) # I don't want number 20
+my_fun(20) # I don't want number 20
 ```
 ### 5.4 **assert** statement
-Helps in debugging, it is used to check if certain condition is true, else raise a *AssertionError*.
+* *assert* helps in debugging, it is used to check if certain condition is true, else *raise* a *AssertionError*.
 ```Python
 a = 10
+
+# Example 1: check if a is 10
 assert a == 10 # No error raised
+
+# Example 2: check if a is 30
 assert a == 30, "Your error mesage here" # AssertionError
 ```
 
