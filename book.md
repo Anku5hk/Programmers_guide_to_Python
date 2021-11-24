@@ -1749,6 +1749,7 @@ assert a == 30, "Your error mesage here" # AssertionError
 * Defining and calling functions.  
 ```Python
 # Example 1: Non-parameterize function which returns nothing 
+# use the 'def' keyword to define a function
 def my_function1():
   # do something
   pass # to ensure the program runs this empty function   
@@ -1877,11 +1878,11 @@ print(my_fun1(**my_dict)) # 10
 print(*my_list) # 1,2,3,4
 ```
 ### 6.5 Recursion
-* Is when a function calls itself. Wikipedia "It is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem". It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
-* Recursion uses system stack to maintain the memory of ongoing recursive calls, this usually leads to higher memory usage compared to iteration.    
-* It is required to handle the *StackOverFlow*, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
-* There are certain advantages such as it reduces the size of code when a iterative solution is lengthy/complex and some solutions are easier/better implemented with recursion. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
-* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. 
+* Recursion is when a function calls itself. It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
+* Recursion uses system stack to maintain the memory required for the recursive calls, this usually leads to higher memory usage compared to iteration.    
+* Recursion requires to handle the *StackOverFlow*, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
+* There are certain advantages such as reduction in size of code when a iterative solution is lengthy/complex, there are situations were recursion is a easier/better solution. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
+* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a StackOverFlow error. Finally the sub-problem solution with the base case is sequenced correctly to form a recursive solution.  
 ```Python
 ## Example 1: Sum of n given number
 # using iteration
@@ -1890,8 +1891,10 @@ def iter_sum(n):
     for i in range(n+1):
         total += i
     return total
+    
 # using recursion    
 def recur_sum(n):
+    # 'n == 0' is the base case here
     if n == 0:
         return 0
     else:
@@ -1899,24 +1902,23 @@ def recur_sum(n):
         
 print(iter_sum(5)) # 15
 print(recur_sum(5)) # 15
-# here iterative solution seems easy/understandable, but the recursive solution is much concise
+# here iterative solution seems easy/understandable, but the recursive solution is much more concise
 
 ## stack calls over recursion
 '''
-# in our recursion function recursive calls are made till n is 0, so here we begin from the last line
+# In our recursion function recursive calls are made till n is 0, so here we begin from the last line
 5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
 4 + recur_sum(3) -> 6 = 10 # same thing here
 3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
 2 + recur_sum(1) -> 1 = 3 # the result 1 is returned here from previous call and added with 2
-1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the returns are made
+1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the return calls are made
 '''
 ```
 * Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
 ### 6.6 Anonymous functions
-Is a function that is defined without a name (without using *def* keyword in python). This can be created using *lambda* keyword, it is a single line function. 
+* Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using *lambda* keyword, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
 ```Python
-## example 1
-# function to return sum of 2 numbers 
+## Example 1: return sum of 2 numbers 
 # syntax => lambda arguments : expression
 my_function = lambda a,b: a+b  
 # Notice: 'a+b' is also the return statement without using 'return' keyword 
@@ -1924,17 +1926,14 @@ my_function = lambda a,b: a+b
 ## calling the function
 print(my_function(1,1)) # 2 
 ```
-### 6.7 global and nonlocal keywords
-1. ***global***: To modify a variable with global scope from inside a function.
-2. ***nonlocal***: To modify a variable of local scope from inside a nested function.
+### 6.7 global and nonlocal statements
+1. ***global***: Is used to modify a variable with global scope from inside a function.
 ```Python
-## global
-# here my_var1 and my_var2 have global scope 
-my_var1 = 10 
-my_var2 = 20
-my_var3 = 30
+# defining 3 variables in global scope
+my_var1, my_var2, my_var3 = 10, 20, 30
+
 def some_fun():
-  # declaring my_var1 as global, so now my_var1 is not a local variable, it can accessed/modified for global scope
+  # declaring my_var1 as global inside a local scope, so now my_var1 can be modified for global scope
   global my_var1
   # accessing a global scope variable, works fine
   print(my_var3) # 30
@@ -1943,9 +1942,10 @@ def some_fun():
   # same thing with my_var2 doesn't work (comment below line to execute the program further) 
   print(my_var2) # UnboundLocalError
   # Its because in Python you don't declare the variable's scope  
-  # Python tries to figure out the scope by watching if a variable has some assignment in a function
-  # if it does that variable is considered a local variable, my_var2 has assignment below so its a local
-  # variable which we can't access before assignment     
+  # Python tries to figure out the scope of a variable by watching if it has some assignment in this scope
+  # if it does that variable is considered a local variable (even if same named global variable is present)
+  # here my_var2 has assignment in below lines so its a local variable which we can't access before assignment    
+  # if you remove the assignment of my_var2 it will be considered global and you can access it like my_var3 
 
   my_var1 = 30 # modifying for global scope
   my_var2 = 40 # modifying only for local scope
@@ -1953,57 +1953,69 @@ def some_fun():
 some_fun()
 print(my_var1, my_var2) # 30, 20
 # Notice: my_var1 is now changed but my_var2 is not
-
-## nonlocal 
+```
+2. ***nonlocal***: Is used to modify a variable of local scope from inside a nested function.
+```Python
 def some_fun():
-  # my_var1 and my_var2 have local scope 
+  # defining my_var1 and my_var2 in local scope 
   my_var1 = 10
   my_var2 = 20
+  
   def some_nested_fun():
-    # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope
+    # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope too
     nonlocal my_var2 
     my_var1 = 30 # modifying for local scope
-    my_var2 = 40 # modifying only for nested scope
+    my_var2 = 40 # modifying for some_fun() scope
+    print(my_var1, my_var2) # 30, 40
+
   some_nested_fun()  
-  # similar to global keyword now my_var1 is not modified and my_var2 is
+  # similar to global keyword now my_var1 is not modified but my_var2 is
   print(my_var1, my_var2) # 10, 40    
-  # Notice: my_var2 is now changed but my_var1 is not
+
 some_fun()
 ```
 ### 6.8 Decorators
-* They are used to wrap another function to basically extend its functionality. It is simply running a function inside another function, like a nested nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. This are called decorators, they are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
+* They are used to wrap another function around to basically extend its functionality. It is simply running a function inside another function, like a nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. These decorators are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
 * This functionality is utilized using functions being first class in Python.
 ```Python
-# my_outer_func() is just a container function
+# defining the my_outer_func() which is a container function
 def my_outer_func(some_func):
-  # wrapper function here
+  # wrapper function goes here inside the container
   # my_wrapper_func() does something before/after calling some_func() 
+
   def my_wrapper_func(some_func_para1, some_func_para2): 
+    # Notice: some_func's parameter should be pass to my_wrapper_func
+    # so they can be accessed inside this scope
     # do something of my_wrapper_func()
-    print("Wrapper function was called")
-    # call some_func(), do something in it and return something if required
-    output = some_func(some_func_para1, some_func_para2) 
-    # do something extra
-    # return nothing if not required
-    return output 
+    print(f"Product of two numbers is {some_func_para1 * some_func_para2}")
+
+    # calling some_func(), do something in it and return something if required
+    some_func(some_func_para1, some_func_para2) 
+    # do something extra if want, return something if want
     
-  # but need to return my_wrapper_func()   
+  # return this my_wrapper_func 
   return my_wrapper_func 
 
-## without using decorators
 def my_fun(a,b):
-  return a+b
+  print(f"Sum of two numbers is {a+b}")
 
+# calling my_fun gets sum of two numbers
+my_fun(10, 20) # Sum of two numbers is 30
+# but then i want to extend my_fun's functionality without changing its previous code
+
+# pass the my_fun as some_func to my_outer_func
 my_decorated_fun = my_outer_func(my_fun) 
-print(my_decorated_fun(10, 20)) # 30
 
-## now using decorators
+# done, my_decorated_fun can now do both product as well as sum
+my_decorated_fun(10, 20) # Product of two numbers is 200 # Sum of two numbers is 30
+
+## now doing the same using decorators
 @my_outer_func
 def my_fun(a,b):
-  return a+b
+  print(f"Sum of two numbers is {a+b}")
 
-# now just call 'my_fun()' normally, this will automatically call/invoke my_outer_func()
-print(my_fun(10,20)) # 30
+# now calling 'my_fun()' normally, will automatically call/invoke my_outer_func()
+my_fun(10,20) # Product of two numbers is 200 # Sum of two numbers is 30
 ```
 
 ## 7. Classes and Objects
