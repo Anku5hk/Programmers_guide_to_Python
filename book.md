@@ -1909,7 +1909,7 @@ print(recur_sum(5)) # 15
 1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the return calls are made
 '''
 ```
-* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation and further you can also start practicing on online platforms like [leetcode](https://leetcode.com/tag/recursion/)/[hackerrank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=recursion).
+* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation.
 ### 6.6 Anonymous functions
 * Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using *lambda* keyword, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
 ```Python
@@ -2200,7 +2200,7 @@ class MyClass:
     """Iterate through some_values""" 
     return self.some_values[index]
 
-# create a instance to check these functionalities
+## create a instance to check these functionalities
 my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
 # testing the print functionality, '__str__()' is invoked when 'print()' is called 
 print(my_instance) # id: 239034, name: Bob, age: 23
@@ -2255,7 +2255,7 @@ print(dir(MyClass))
 * Iterables can be used in *for* loops and in built-in functions like *map()*, *zip()*, *filter()* etc.
 * Checking built-in iterables.
 ```Python
-# to check if list is a iterable, check if it has a __iter__() method using dir()
+## to check if list is a iterable, check if it has a __iter__() method using dir()
 print(dir([1,2,3]))
 # or using hasattr
 print(hasattr([1,2,3], '__iter__')) # True
@@ -2264,7 +2264,7 @@ print(hasattr((1,2,3), '__iter__')) # True
 # check if set have __iter__ method
 print(hasattr({1,2,3}, '__iter__')) # True
 
-# iterables can be used in for loops
+## iterables can be used in for loops
 for a in (34,32,55,34,56):
     print(a) # 34,32,55,34,56
 ```
@@ -2298,7 +2298,7 @@ for a in my_object:
 * Limitations of *iterator* are that values can be iterated only once and in one direction only (can't access previous values) and need to be re-created once exhausted.
 * Creating a simple iterator.
 ```Python
-## Example 1: create a simple iterator from a iterable
+## Example: create a simple iterator from a iterable
 # iter() function takes a iterable/iterator object and returns a iterator object
 my_iterator = iter([12,34,2,65,21,65])
 # iterate to next values using next()
@@ -2316,7 +2316,7 @@ for a in my_iterator:
 ```
 * Create a custom class that has iterator functionality.
 ```Python
-## Example 1: create a iterator object which returns a square of each values
+## Example: create a iterator object which returns a square of each values
 class SquareIterator:
   """SquareIterator takes items and returns item's square upon called"""
   def __init__(self, *args):
@@ -2408,41 +2408,42 @@ def my_generator():
   yield 1
   yield 2
   yield 3
-# calling my_generator() returns a generator object, which can be iterated  
+## calling my_generator() returns a generator object, which can be iterated  
 for a in my_generator():
   print(a) # [1,2,3]
 ```  
 * Passing a value to generator.
 ```Python
-# it is recommended to use parenthesis around yield like this (yield <variable>) in some operations
+## it is recommended to use parenthesis around yield like this (yield <variable>) in some operations
 # in simple assignments its okay without the parenthesis
 def my_function():
     v = 0 # initialization
     # parenthesis required
     r1 = (yield v) + 10
-    print(f'{v} was passed')
+    print(f'r1 is {r1}')
     while True: 
         # okay to not use parenthesis case
         r2 = yield v
         if r2:
-            r1 = r1 - r2
-        print(f"r1 is {r1} ad r2 is {r2}")
+            print(f"r2 was modified, r2 is now {r2}")
+        else:    
+            print(f"r2 was not modified, r2 is {r2}")
 
 gen = my_function()
 next(gen) # will go till first yield
 # calling next() will raise TypeError, as None is passed by default to yield when calling next() 
 # and adding 10 with None will raise Exception
-next(gen) # TypeError
+# next(gen) # TypeError
 
-# to pass a value to generator use send() method 
-gen.send(10) 
-# now calling next will set r2 to None, the if condition doesn't execute
-next(gen) # r1 is 20 ad r2 is None
+## to pass a value to generator use send() method 
+gen.send(10) # r1 is 20
+# now calling next will set r2 to None and the if condition doesn't execute
+next(gen) # r2 was not modified, r2 is None
 # try again now passing a value
-gen.send(10) # r1 is 10 ad r2 is 10
-# now the if condition executes and r1,r2 become 10,10
+gen.send(20) # r2 was modified, r2 is now 20
+# now the if condition executes and r2 become 20
 
-# to terminate the generator use close() method
+## to terminate the generator use close() method
 # this raises GeneratorExit exception inside the generator to terminate the iteration
 gen.close() 
 next(gen) # StopIteration
@@ -2452,31 +2453,31 @@ next(gen) # StopIteration
  2. **Iterators**: Are also iterables but are "lazy" and can be iterated only once, they need to be re-created for iterating again. They need to implement *\_\_iter\_\_()* and *\_\_next\_\_()* methods. They are used when it is required to implement *iterator* functionality inside a complex class (with other functionalities).
  3. **Generators**: Are iterators and iterables. Generators are a easy way to create a iterator object. They can be created using a function with a *yield* statement in it or using generator comprehension. They are used when it is required to create a standalone iterator object.
 #### **7.2.4 Descriptors**
-* A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute/variables lookup, storage/assignment and deletion. 
-* Descriptors are mainly used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when called/assigned. This operations as we know are performed using the '.' operator. 
+* A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute's/variable's lookup, assignment and deletion. 
+* Descriptors are used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when it is called/assigned. This is helpful when we want some custom behaviour with our attributes.
 * **There are two types of Descriptors**.
   1. **Data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
   2. **Non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
-* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptor. I have missed some extra details, you can catch them on [Official Python docs](https://docs.python.org/3/howto/descriptor.html).
+* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptor. Also for more on descriptors check the [Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
-## Descriptor example
 class MyDescriptor:
-    # when class holding 'MyDescriptor' object is defined this function is called
-    # which records its name for later reference 
+    # when a 'MyDescriptor' object is created inside a class this function is called first
+    # it records the class name for later reference 
     def __set_name__(self, obj, name):
-        # here obj is the 'MyClass' object and 'self' is our 'MyDescriptor' object 
-        self.private_name = "_" + name # A access/internal name, '_' to avoid name collision
+        # here 'obj' is that class ('MyClass' in our case) object
+        # 'self' is our 'MyDescriptor' object 
+        self.private_name = "_" + name # internal access name, '_' to avoid name collision
 
-    # when attribute is looked up(using '.' operator), this method is called
+    # when a attribute is looked up(using '.' operator), this method is called
     def __get__(self, obj, objtype=None):
         # fetch 'private_name' from 'MyClass' instance
         value = getattr(obj, self.private_name)
         print(f"{self.private_name} was accesed")
         return value
 
-    # when attribute is altered(using '=' operator), this method is called      
+    # when a attribute is altered(using '=' operator), this method is called      
     def __set__(self, obj, value):
-        # decide what is valid value for 'my_var1'
+        # here we can decide what is valid value for 'my_var1'
         if self.private_name == '_my_var1':
             if value % 2 == 0:
                 raise AttributeError("Not a valid value, require odd number")
@@ -2493,103 +2494,116 @@ class MyClass:
     my_var2 = MyDescriptor() # create another attribute
 
     def __init__(self, var1, var2, var3, var4):
-        # calls '__set__()' method of descriptor to assign the variable
-        self.my_var1 = var1 # alter/assign descriptor object's value
-        self.my_var2 = var2 # alter/assign descriptor object's value
-        self.my_var3 = var3 # normal attributes/variables
-        self.my_var4 = var4 # normal attributes/variables 
+        # calls '__set__()' method of our descriptor to assign the value
+        # assign var1, var2 to our descriptor objects my_var1, my_var2 when MyClass is intialized
+        self.my_var1 = var1 
+        self.my_var2 = var2 
+        # normal variables
+        self.my_var3 = var3 
+        self.my_var4 = var4 
 
-my_instance = MyClass(11, 12, 30, 40)
+## create a instance of MyClass        
+my_instance = MyClass(11, 12, 30, 40) # _my_var1 was altered # _my_var2 was altered
+# Notice: the print message we set in '__set__()' method is shown
+
+## check its attribute names
 print(my_instance.__dict__) # {'_my_var1': 11, '_my_var2': 12, 'my_var3': 30, 'my_var4': 40}
 
-# calls the '__get__()' method of our descriptor to get value
-print(my_instance.my_var1) # access descriptor object's value
-print(my_instance.my_var2) # access descriptor object's value
-# call normal variables
-print(my_instance.my_var3)
-print(my_instance.my_var4)
+## accessing the variables using the '.' operator
+# calls the '__get__()' method of our descriptor to get its value
+print(my_instance.my_var1) # _my_var1 was accesed # 11
+print(my_instance.my_var2) # _my_var2 was accesed # 12
+# Notice: the print message we set in __get__() method is shown
 
-# control what should be the valid input for particular var
+## calling normal variables
+print(my_instance.my_var3) # 30
+print(my_instance.my_var4) # 40
+# Notice: my_var3, my_var4 show normal behaviour without our print message
+
+## now trying to input invalid value according to out descriptors
 my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
 my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
+# Notice: AttributeError is raised due the values didn't match, try a valid value
 ```
 
 ## 8. Modules and Packages
 ### 8.1 Modules
 * Is a file with *.py* extension containing Python code, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
-* Python looks for modules in a sequence geiven below:
+* When you import a module Python looks in a sequence given below:
   1. Local Directory: It is where the current *.py* file is located.
-  2. PYTHONPATH: It is a environment variable that can be used to set additional directory path which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir". 
-  3. Python Installation Directory: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.
-  This does means any module with repeating name will be given priority according to this sequence. 
-* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the "\_\_pycache\_\_" folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. Also, these *byte-compiled* files are platform-independent.
-* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once import are objects too. Each imported module's object contain a special variable named *\_\_name\_\_* which is set to module name. But the current module which is ran by the user has *\_\_name\_\_* variable set to *\_\_main\_\_*. This helps a programmer to not invoke the script while importing it if they don't intent to. This is similar to *main()* function's behaviour in C/C++ language.
-* Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules in Python.</br>
-Example: Save this module as *sample.py* or anything you prefer (but change the name if so the in the next module).
+  2. PYTHONPATH: It is a environment variable that can be used to set additional Python directory paths which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir".
+  3. Python Installation Directory: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.</br>
+  **Note**: This does means any module with repeating name will be given priority according to this sequence.
+* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the *\_\_pycache\_\_* folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. These *byte-compiled* files are platform-independent.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once imported are objects too. Each imported module's object contain a special variable named *\_\_name\_\_* which is set to the module's name. But the current module which is ran by the user has *\_\_name\_\_* variable set to *\_\_main\_\_*. This helps a programmer to not invoke the script while importing it in another module if they don't intent to. This is similar to *main()* function's behaviour in C/C++ language.
+* Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules available in Python.</br>
+* Importing a module.
 ```Python
-a = 42
-def my_fun():
-  print("This function was called")
-
-# check if module is a running module
-if __name__ == "__main__":
-  # do something here
-  print("sample module was ran")
-  my_fun()
-```
-Save this module as *my_module.py* and run this module.
-```Python
-## Modules
-# modules can be imported anywhere in python, there is no restriction
+## modules can be imported anywhere in python, there is no restriction
 # but for readability they are imported at the beginning
 # Eg. math is built-in module, import it using the 'import' keyword
 # the 'import' statement creates a module object 
-# any module is only imported once a program is ran, re-importing has no effect
+# any module is only imported once in a program, re-importing has no effect
 import math 
 
 ## accessing a function from math object
 # any functions/classes/variables of math module now can be accessed using '.' operator
 my_var = math.sqrt(8) 
 
-## import specific from the module using 'from' keyword
+## import any specifics from the module using 'from' keyword, here we import a function from math module
 from math import sqrt
-# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions.
+# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions
 my_var = sqrt(16)
 
-## import with a different access name in order to avoid names collision
+## import with a different access name in order to avoid names collisions
 def math(num):
   return pow(num, 2)
 
+## import a module with different name using 'as' followed by a new name
 import math as maths 
-# accessing function from 'math' module
+# accessing a function from 'math' module
 print(maths.sqrt(4)) # 2.0
-# this 'math' does something else
+# accessing our 'math' function
 print(math(2)) # 4
 
-## Check functions/classes/variables of a module using dir()
+## Check the functions/classes/variables of a module using dir()
 print(dir(math))
+```
+* Save this below module as *sample.py* or anything you prefer (but change the import name if so the in the next module).
+```Python
+a = 42
+def my_fun():
+  print("This function was called")
 
-## __main__ in Python
-# Notice: Now importing my_module in this module will not call my_fun() 
-# as my_fun() is only called if __name__ equals '__main__'
+## check if this module is the executing module
+if __name__ == "__main__":
+  # do something here
+  print("sample module was ran")
+  my_fun()
+```
+* \_\_main\_\_ in Python, save this module as *my_module.py* and run this module.
+```Python
+## Notice: Now importing my_module in this module will not call my_fun() 
+# as my_fun() is only called if __name__ equals '__main__', as we intended
 # which is only when running from that module i.e running my_module.py script
 import sample
 print(dir(sample)) # ['__builtins__', '__name__',...]
 print(sample.__name__) # sample
-# check __name__ variable of this module 
+
+# check __name__ variable of current module 
 print(__name__) # __main__
 
-# now try doing otherwise, run sample.py check the if this print method is called
+## now try doing otherwise, run sample.py check the if this print method is called
 if __name__ == "__main__":
   # add code here which you don't want to be invoked unless this script is ran
   print("my_module was ran")
 ```
 ### 8.2 Packages
-* A folder with module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use <package_name>.<module_name> signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
+* A folder with module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use the "<package_name>.<module_name>" signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
 * One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single package's namespace, so you don't have to call them by following the module names like instead of <package_name>.<module_name>.<function_name> you can directly call by <package_name>.<function_name>.
-* You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is a official third-party software repository for Python. You can install a package simply by "*pip install <package-name>*" command in the command prompt.</br> 
-Note: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
-* You can also create your own package, create the following given below example directory structure.
+* You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is a official third-party software repository for Python. You can install a package simply by "pip install <package-name>" command in the command prompt.</br> 
+**Note**: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
+* You can also create your own packages, create the following given below example directory structure.
 ```
 ./mypackage
   __init__.py
@@ -2600,20 +2614,20 @@ Note: *pip* comes pre-bundled with Python, some installation may require you use
 ./somepackage
   others.py
     
-## Here "mypackage" folder contains __init__.py so its a package, similarly "myfolder" is also a package (or sub-package).
-## Note: From Python 3.3 and up it is optional to have __init__.py to be called package, 
-so now "somepackage" directory is also a package.
+# Here "mypackage" folder contains __init__.py so its a package, similarly "myfolder" is also a package (or sub-package).
+# Note: From Python 3.3 and up it is optional to have __init__.py to be called package, 
+# so now "somepackage" directory is also a package.
 ```
-* Importing from such directory/package is very straight forward using '.' operator. Create a test.py outside of "./mypackage" directory and try the following code. Note you also need to create .py files as shown in the above example directory and also define "MyClass" and "myfunction" inside "mymodule" with some code (or just define with *pass* statement).
+* Importing from such directory/package is very straight forward using the '.' operator. Create a *test.py* outside of *./mypackage* directory and try the following code. Note you also need to create additional '.py' files as shown in the above example directory and also define *MyClass* and *myfunction* inside *mymodule* with some code (or just define with *pass* statement).
 ```Python
 ## importing a module from package
 import mypackage.mymodule
-# now can use the <module_name> to call its classes/functions
+# now use the <module_name> to call its classes/functions
 mymodule.myfunction() 
 
 ## importing the package by name
 import mypackage
-# this will call ./mypackage/__init__.py module
+# this will call './mypackage/__init__.py' module
 
 ## but to import specific classes/functions from that module you need to use from...import
 # say import a class from mymodule
@@ -2623,8 +2637,8 @@ from mypackage.mymodule import myfunction
 ```
 
 ## 9. Files and I/O
-Basic I/O operations are to take input the from user and send output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working on any projects. We'll take a look at Three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement's support to your objects.
-### 9.1 Three built-in functions for I/O handling.
+Basic I/O operations are to take the input from user and send the output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working with a project. We'll take a look at three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement support to custom objects.
+### 9.1 Three built-in functions for I/O handling
 #### 9.1.1 input(prompt) => None
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
@@ -2634,6 +2648,7 @@ Basic I/O operations are to take input the from user and send output to the user
 ## Take input from user
 v = input() # or "input('Your message here ')"
 print(type(v)) # <class 'str'>
+print(v)
 ```
 #### 9.1.2 print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) => None
 **Parameters**:</br>
@@ -2663,60 +2678,64 @@ print("is not new lined") # This    is not new lined
   * *closefd* bool: If False, the underlying file descriptor will be kept open even when the file is closed.  
   * *opener* Optional[Callable[[str, int], int]]: A custom file opener, should return a file descriptor.
 #####
-**Explanation**: This built-in function is used to open a file. This method returns a file object (also called handle), this object is further used to perform operations such as read/write/append. For different operations there are different modes one can utilize according to their needs, default is r (reading). 
+**Explanation**: This function is used to open a file. It returns a file object (also called handle), this object is further used to perform operations such as read/write/append. For different types of operations there are different modes available, default is r (reading). 
 * Various file modes are shown below.
   1. **r**: For opening a file in read-only mode.
-  2. **w**: In write mode if the file already exist and has some previous content it is completely overwritten. Else new file is created and content is written.
-  3. **a**: In append mode if the file already exist and has some previous content, the new input is appended at the end, not overwritten. Else new file is created and content is written.
+  2. **w**: In write mode if the file already exist and has some previous content, it is completely overwritten. Else new file is created and content can be written to it.
+  3. **a**: In append mode if the file already exist and has some previous content, the new input is appended at the end and not overwritten. Else new file is created and content can be written to it.
   4. **x**: In exclusive creation mode if the file already exists, the operation fails. Else new file is created and content can be written to it.
-  5. **t**: Opening a file in text format, basically reading a file with strings, this is the default format.
-  6. **b**: Opening a file in binary format, when reading in this format bytes are returned, basically to handle non-text files like images/database/documents.
+  5. **t**: Opening a file in text format, reading a file data as strings, this is the default format.
+  6. **b**: Opening a file in binary format, reading a file data as bytes, this is used to handle non-text files like images/database/documents.
 ```Python
-## read from a file, FileNotFoundError is raised if file is not found 
-file = open("sample.txt", mode="r") # or  open("sample.txt")
-print(file.read())
-file.close()
-
 ## write to a file, PermissionError is raised if you don't have the permission
 file = open("sample.txt", mode="w")
-file.write("This is some text written to the")
+file.write("This is some text written to this file.")
 file.close()
 
 ## append mode
 file = open("sample.txt", mode="a")
-file.write("This is some text written to the")
+file.write("Previous content will not be overwritten.")
 file.close()
 
-## mixing modes, you can't mix "a","r" and "w" modes together, but can mix other modes
-# example 1: text format and write mode
-file = open("sample.txt", mode="tw") 
-file.write("This is some text written to the")
+## read from a file, FileNotFoundError is raised if file is not found 
+file = open("sample.txt", mode="r") # or  open("sample.txt")
+print(file.read())
 file.close()
-# example 2: read and append mode
+```
+* Mixing modes, you can't mix "a","r" and "w" modes together, but can mix other modes.
+```Python
+## Example 1: text format and write mode
+file = open("sample.txt", mode="tw") 
+file.write("This is some text written to the file")
+file.close()
+
+## Example 2: read and append mode
 file = open("sample.txt", mode="r+")
 print(file.read())
 file.write("This is some text written to the")
 file.close()
-# example 3: binary format and read mode
+
+## Example 3: binary format and read mode
 file = open("some.py", mode="br")
 print(file.read())
 file.close()
-
-## various file methods
-# reads all text/non-text data at once, returns string/bytes 
+```
+* Various file object methods.
+```Python
+# read all text/non-text data at once, returns string/bytes 
 file = open("sample.txt", mode="r") 
 print(file.read())
-# reads all text/non-text data line by line, returns string/byte list
+# read all text/non-text data line by line, returns string/byte list
 print(file.readlines())
-# writes string to the file 
-file.write("This is a text.")
-# takes iterable object containing multiple strings and writes to the file 
+# write string to the file 
+file.write("This is some text.")
+# take a iterable object containing multiple strings and writes to the file 
 file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
 ### 9.2 *with* statement
-This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically nested block of code ends. It guarantees to close the file no matter how the code block is exited. 
+* This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically inside a nested block of code. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
 file = open("sample.txt")
@@ -2746,36 +2765,43 @@ finally:
   file.close()
 ```
 ### 9.3 Context Manager 
-* It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods and that object will function as a context manager. Context managers are usually used in Database management and to handle Thread locks. 
-* Also there's a built-in module [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
+* It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods to add the functionality of a context manager. Context managers are usually used in Database management and to handle Thread locks. 
+* Also there's a built-in module named [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
-## Simple db example with context manager
+## Example: simple db manager class with context manager
 class MyDBManager:
   def __init__(self):
     self.some_db = {"id": [], 'name': []}
-  # called after the 'with' statement  
+    
+  # this method is called when entering the 'with' statement  
   def __enter__(self):
     return self
-  # called after block of code ends  
+    
+  # this method is called when the 'with' block code ends  
   def __exit__(self, exc_type, exc_val, exc_tb):
+    # here we are setting to clear the database once 'with' code ends
     self.some_db['id'] = []
     self.some_db['name'] = []
 
-  # simple function to add values
+  # simple function to add values to our db
   def add(self, my_id, name):
     self.some_db['id'].append(my_id)
     self.some_db['name'].append(name)
 
 with MyDBManager() as db_handler:
-  # do something
+  # add some values to our db
   db_handler.add(3251, "bob")
   db_handler.add(3252, "rob")
   db_handler.add(3253, "job")
-  print(db_handler.some_db) # {'id': [3251, 3252, 3253], 'name': ['bob', 'rob', 'job']}
+  db_handler.add(3251, "bob")
+  # print the db data
+  print(db_handler.some_db) # {'id': [3251, 3252, 3253, 3251], 'name': ['bob', 'rob', 'job', 'bob']}
+  # now to clear the db just get out of the indentaion    
 
-# now to clear the db just get out of the indentaion    
+# check the data in db
 print(db_handler.some_db) # {'id': [], 'name': []}
 # as soon as we were out of the indentation "__exit__()" was called automatically
+# which cleared the data, try modifying this behaviour to remove duplicate entries  
 ```
 
 ## 10. OOP concepts
