@@ -1051,7 +1051,7 @@ print(name_tup1._replace(aa=32)) # mynamedtuple(aa=32, bbk=60, cab=52)
 ### 3.3 Dict
 * Longform Dictionary in Python, are unordered collection of key & value pair of items. *dict* are mutable, iterable, but Indexing/Slicing doesn't work as their order don't matter. 
 * *dict* use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, these keys are used to access values. This behaviour help hashmap to do almost all operations in O(1) making them very efficient for storing and retrieval operations. 
-* Keys in *dict* should be hashable i.e have a hash value that does not change thoughout its lifetime, all immutable objects are hashables. Values have no restriction, they can be any object. 
+* Keys in *dict* should be hashable i.e have a hash value that does not change throughout its lifetime, all immutable objects are hashables. Values have no restriction, they can be any object. 
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 * Create a *dict*.
 ```Python
