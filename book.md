@@ -2137,7 +2137,7 @@ my_instance = MyClass()
 print(my_instance.other_var1) # can access
 my_instance.fun1() # can access
 ```
-3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. They can't read/modify any variables beside their local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument.
+3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. They can't read/modify any variables beside their local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument. These methods can also be subclassed.
 ```Python
 class MyClass: 
   # defining a class method, use the '@staticmethod' decorator
