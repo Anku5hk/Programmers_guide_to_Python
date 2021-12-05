@@ -19,59 +19,66 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 9. [Files and I/O](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#9-files-and-io)
 10. [OOP Concepts](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#10-oop-concepts)
 
-## 1. Basics
-### 1.1 Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language called [Cython](https://github.com/python/cpython), it is the default/standard but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/) for more on that. Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is Python3 which was released in 2008 and is still relevant(as of 2021), as Python2 was discontinued at 1 Jan 2020, Python3 is the way to go.      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount debate around "Python is a slow language", this [article](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular(as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace Python, at least in some domains in coming time, but it is yet to be seen.  
-### 1.2 Fundamentals
-#### 1.2.1 Literal constant
-* Are raw data, literals are constant fix values. A raw value by itself is a literal constant. 
+## <strong>1. Basics</strong>
+### <strong>1.1 Introduction</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; According to Wikipedia "Python is an interpreted high-level general-purpose programming language." It was created by Guido van Rossum and released in 1991. It supports multiple programming paradigms like object-oriented, procedural and functional. Python is also dynamically-typed and garbage-collected. Python's best implementation is in C language called [Cython](https://github.com/python/cpython), it is the default/standard but there are other implementations in Java, .Net, etc. Its philosophy revolves around code readability and code simplicity, you can also check [zen of python](https://www.python.org/dev/peps/pep-0020/) for more on that. Python is widely used in Web-Development([flask](https://flask.palletsprojects.com/en/2.0.x/), [django](https://www.djangoproject.com/), [fastapi](https://fastapi.tiangolo.com/)), Android/Windows/IOS/OSX application development([kivy](https://kivy.org/#home)), Big-Data Processing/Databases([Pyspark](https://spark.apache.org/docs/latest/api/python/), [Pandas](https://pandas.pydata.org/)), Machine learning([pytorch](pytorch.org/), [tensorflow](tensorflow.org/), [sklearn](scikit-learn.org/stable/)), Mathematical/Scientific libraries([numpy](numpy.org/), [scipy](scipy.org/)), DevOps, Security, etc. The current/latest version is Python3 which was released in 2008 and is still relevant (as of 2021), as Python2 was discontinued on 1 Jan 2020, Python3 is the way to go.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is a fair amount of debate around "Python is a slow language", this [article](https://hackernoon.com/why-is-python-so-slow-e5074b6fe55b) has some answers, but for most part that does not affect its usability/credibility, it is the most preferred programming language and is still growing popular (as of 2021). There are other languages which are good enough to be Python's successor such as Rust, GO and Julia. These languages do have potential to eventually replace Python, at least in some domains in the coming time, but it is yet to be seen.
+### <strong>1.2 Literal constant</strong>
+* Are raw data, literals are constant fixed values. A raw value by itself is a literal constant.
 ```Python
 # some literals
 4, 6, 2.5, 7.4, 'string', 'something'
 # here 4 has no other value replacement, so its a integer literal
 # similarly 'something' is also a string literal
 ```
-#### 1.2.2 Keywords
+### <strong>1.3 Keywords</strong>
 * Are reserved words which are defined by Python, so they can't be used as operands.
 ```Python
 # some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
-#### 1.2.3 Operands/Variable
-* Are objects that hold values, it has a user-defined name, a name should not begin with a underscore (because it is reserved for something else), other naming rules are similar to other languages. 
-* Unlike C/C++/Java, Python is Dynamically-Typed. It is when the type checking happens at run-time (and not at compile-time). Type checking is to ensure "type-safe", say a *int* doesn't get assigned to a *float*.
+### <strong>1.4 Operands</strong>
+* Are also called variables. They have a user-defined name, which should not begin with a number and names are case sensitive just like in other programming languages.
+* Unlike C/C++/Java, Python is Dynamically-Typed. It is when the type checking happens at run-time (and not at compile-time). Type checking is to ensure type-safe, say an *int* doesn't get assigned to a *str*.
 * In Python there is no "variable declaration", you do not need to declare a variable, they come to existence when they are assigned something. Also there is no need for "type declaration", variables are just name pointers.
-* Whenever a object is created in Python, the object/value along with it's type is assigned some memory in a storage. When that object is assigned a variable, that variable is just a name/reference to this memory. The value on the left is the name assigned to this object and on the right is the representation of this object. As variables are just names they do not have types, they can be assigned to any type of object.
+* Whenever an object is created in Python, the object/value along with its type is assigned some memory in a storage. When that object is assigned a variable, that variable is just a name/reference to this memory. The value on the left is the name assigned to this object and on the right is the representation of this object. As variables are just names they do not have types, they can be assigned to any type of object.
 ```python
-## variable names example
-MyInt, some_var, my_string12, SOME_NUMBER
+## some common used variable names style
+# camel casing names
+myVar, myString42, rawData
+# capital camel casing names
+MyVar, MyString30, FileData
+# snake casing names
+my_var, my_string12, some_data3
 
 ## Dynamically type feature
 # the type is checked only at run-time
 if False:
   30 + "some string"
-# Above statement should return a TypeError but it will not, 
+# Above statement should return a TypeError but it will not,
 # because that condition is never executed, if it did it will raise the exception, try with "if True"
 
 ## Dynamically typed: Assigning a name (variable) to the object
-a = 34
-a = "I am string"
-a = [1,2,3,4]
-a = 4.0
-# Assigning a name to 34, then changing it to point to a string, then a list. 
+my_var = 34
+my_var = "I am string"
+my_var = [1,2,3,4]
+my_var = 4.0
+# Assigning name 'my_var' to 34, then changing it to point to a string, then a list.
 # All of them are valid, as variables don't have types
+# Note: Python is garbage collected (auto memory management), 
+# so any object that doesn't have a reference is removed automatically from the memory. 
+# For example, 34 is collected as after 'my_var' is assigned to "I am string"
 
 ## Variables are just reference
 a = 34
 b = a
 a = 20
 print(a, b) # 20, 34
-# Here, a was pointing to 34, we assigned a to b which is b also refers to 34 (and not a)
-# so changing a to 20 doesn't affect the b, it still points to 34
+# Here, 'a' was pointing to 34, we assigned 'a' to 'b', which means now 'b' also refers to 34 (and not 'a')
+# so changing 'a' to 20 doesn't affect the 'b', it still points to 34
 ```
-#### 1.2.4 Operators 
-* Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work same as in C/C++/Java/Javascript, so I will not explain their working. Other Logical, Identity, Membership operators are Python specific, that we'll take a look at.
+### <strong>1.5 Operators</strong>
+* Are used to perform operations on operands. The Arithmetic, Assignment, Comparison, Bitwise operators work the same as in C/C++/Java/Javascript, so I will not explain them here. The Logical, Identity, Membership operators are Python specific, we'll take a look at them.
 * Seven Types of Operators (comma separated) in Python.
 ```Python
 """
@@ -95,9 +102,9 @@ in,not in
 ```Python
 ## not: to negate the underlying condition (it reverses the condition)
 a = 30
-# here the underlying condition is the isinstance() function, which return True/False 
+# here the underlying condition is the isinstance() function, which return True/False
 # normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
-# the 'if' condition is satisfies only when the output is 'False'
+# the 'if' condition is satisfied only when the output is 'False'
 if not isinstance(a, int):
   print('not printed')
 if not isinstance(a, str):
@@ -108,52 +115,68 @@ a=20
 b=30
 if a > 10 and b < 50:
   print('printed')
-  
+if a > 42 and b < 50:
+  print('not printed')
+
 ## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
 if a > 10 or b < 10:
   print('printed')
+if a > 20 or b < 30:
+  print('not printed')
 ```
 * <b>Identity operator</b>: is,is not.
 ```Python
-## is: checks if 2 objects are referring to the same object. 
-some_var1 = 42
-some_var2 = 42
-if some_var1 is some_var2:
+## is: checks if 2 objects have same identity
+my_var1 = 42
+my_var2 = 42
+# checking values with '=='
+if my_var1 == my_var2:
   print('printed')
-# check with id  
-print(id(some_var1)) # 2587096149584
-print(id(some_var2)) # 2587096149584
-# this is also true, here values are checked
-if some_var1 == some_var2:
+# now checking if they are referring to same object
+if my_var1 is my_var2:
   print('printed')
 
 # another example
-a = 42
-b = 42.0
-print(id(a)) # 2753953689168
-print(id(b)) # 2753956924080
-if a is int(b):
-  # true due to dynamic typing i.e as 42 == int(42.0) are the same, check the id
-  print(id(int(b))) # 2753953689168
-  
-# but then where's the difference  
-a = [20, 30]
-b = [20, 30]
-if a is b:
-  # even though their values are same, they are different object so not True
+x = 500
+y = 500
+# let's check with 'is' operator
+if x is y:
   print('not printed')
-print(id(a)) # 2055633338880
-print(id(b)) # 2055638580288
+# oops?
+# Every object in Python when it is created is assigned a unique number, known as its identity
+# which is what the 'is' operator checks, we can print id using the 'id()' function   
+print(id(x)) # 140544545318224 
+print(id(y)) # 140544545318416
+# This is because Python interpreter creates values is range [-5, 256] at the beginning of the program 
+# to gain some performance boost. Because values in this range are very frequently used as per Python.
 
 ## is not: negate the 'is' condition, working is similar as we saw above
 # Notice: 'not' should be applied after 'if' and not after 'is'
 if not a is b:
-  print("printed") 
+  print("printed")
 ```
-#### 1.2.5 Expressions
-* A expression is something that is evaluated by the interpreter, say on a value/sequence by doing some operation (arithmetic/conditional/lambda function). They are a part of statements (as in expression statement).
+* <b>Membership operators</b>: in,not in.
 ```Python
-# some examples
+## in: used to check if a value is inside a sequence or not, returns a boolean value
+# consider a list containing some values, we'll learn about lists in details later, for now think of it as an array
+my_list = [23,5,32,65,20]
+# check with 'in' operator if 'my_list' contains the value 20, yes so True
+print(20 in my_list) # True
+# similarly check if it contains 30, nope so False
+print(30 in my_list) # False
+
+## not in: negate the 'in' condition, same as above but returns opposite values
+# consider the same list, we'll check values again
+# checking if 10 'not in' 'my_list' 
+print(10 not in my_list) # True
+# this spells as 10 is not in my_list, which is True
+# checking if 24 'not in' 'my_list', which is, so False
+print(32 not in my_list) # False
+```
+### <strong>1.6 Expressions</strong>
+* An expression is something that is evaluated by the interpreter, say on a value/sequence by doing some operation (arithmetic/conditional/lambda function). They are a part of statements (as in expression statements).
+```Python
+# Some examples
 "Yes"+"this"
 x+6
 if a==3 else 2
@@ -161,24 +184,24 @@ a or b
 2 and 3
 lambda x:x**2
 ```
-#### 1.2.6 Pythonic Sugar expressions
-* Are optionally available to write some expressions in a short way.   
+### <strong>1.7 Python Syntactic Sugar</strong>
+* Are optionally available to write some expressions/statements in a short way.
 ```Python
 ## Some examples
 ## Multiple Target assignment
 a = b = c = 10
-# lets check the outputs
+# let's check the outputs
 print(a,b,c) # 10,10,10
 a = 20
 b = 30
-# lets check again
+# let's check again
 print(a,b,c) # 20,30,10
 # This "a = b = c = 10" is similar to
 some_var = 10
 a = some_var
 b = some_var
 c = some_var
-# as we saw earlier variables are just names, when we change a/b/c 
+# as we saw earlier variables are just names, when we change a/b/c
 # we are only changing their reference, others are not affected
 # but there is some catch and we'll catch it later
 
@@ -193,13 +216,20 @@ if 10 <= 20 < 30:
 text = "This is text 1." \
 "This is text 2" \
 "And I can also continue here in the next line."
-# Example 2: Using parens (...)  
-output = something 
+# Example 2: Using parens (...)
+output = something
          .some_fun()
-         .calling_other_fun()        
+         .calling_other_fun()
+
+## Ternary operator: syntax -> True if condition else False
+value = 40
+result = "Yes" if value > 10 else "No"
+print(result) # "Yes"
+
+# Apart from these there are more syntactic sugars in Python such as comprehensions, incrementing & derementing etc     
 ```
-#### 1.2.7 Statements
-* Are basically every line/block of code that Python interpreter executes. There are two types, simple and compound statements. 
+### <strong>1.8 Statements</strong>
+* Are basically every line/block of code that Python interpreter executes. There are two types, simple and compound statements.
 ```Python
 ## simple statements
 # expressions we saw earlier
@@ -210,63 +240,63 @@ t = "Time"
 yield, del, return, pass, raise, break, continue
 
 ## compound statements
-# like function and class definitions which we will covered later on 
-# and also keywords like 
-if, else, elif, while, for, try, with 
+# like function and class definitions which we will covered later on
+# and also keywords like
+if, else, elif, while, for, try, with
 ```
-#### 1.2.8 Comments
+### <strong>1.9 Comments</strong>
 * Hiding information/description from the interpreter to exclude.
 ```Python
 # this is a single line comment
-# TODO: this is a todo comment, useful in IDEs like Visual Code/Pycharm
+# TODO: this is a todo comment, useful in IDEs like Visual Studio Code/Pycharm
 
-"""this is a 
+"""this is a
 multiline comment
 """
 ```
-#### 1.2.9 Indentations 
-* Unlike using brackets in C/C++/Java, indentations are used for a code block in Python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Un-indented line is used to show the end of that block of code. 
-* They are used in Flow Control, Exception Handling, Functions/Classes definitions in Python, else *IndentationError* is raised. Any statements or even comments should follow the indentation rule.
+### <strong>1.10 Indentations</strong>
+* Unlike using brackets in C/C++/Java, indentations are used for a code block in Python. Indentations can be of any range, usually four indentations are preferred, only constraint is that they should be consistent throughout that block of code. Any next un-indented line is used to show the end of that block of code.
+* They are used in Flow Control, Exception Handling, Functions/Classes definitions in Python, else *IndentationError* is raised. Every statement should follow the indentation rule.
 ```Python
-## example 1
+## Example 1
 # Notice: the colon at the end of 'if' condition
 if 10 > 5:
 print('printed') # IndentationError
 
-## example 2
+## Example 2
 if 10 > 5:
     # preferred indentation
     print('printed')
 print('block code ends')
 # also valid indentation
 if 10 > 5:
-   print('printed')
-   print('also printed')
+  print('printed')
+  print('also printed')
 # continue other code
 
-## example 3
+## Example 3
 class MyClass:
 some_var = 10 # IndentationError
   def my_function():
   some_var1 = 20 # IndentationError
 ```
-#### 1.2.10 Namespaces
-* As seen in C++ namespaces are collection of names of variables/functions, but unlike C++, Python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language.</br></br> 
+### <strong>1.11 Namespaces</strong>
+* As seen in C++ namespaces are a collection of names of variables/functions, but unlike C++, Python does not have the *namespace* keyword and so no user defined namespaces. Python maintains all of the namespaces in a dictionary automatically. They are maintained/recorded according to the scope of a variable/function, just as in any programming language. 
+  
   **Three types of namespaces.**
-  #####
   1. **built-in**: Are readily available functions without any import.
-  2. **global**: Are which user defines outside of any function/class. 
-  3. **local**: Are which user defines inside a function/class/nested.
+  2. **global**: Are which user defines outside of any function/class.
+  3. **local**: Are which user defines inside a function/class.
 ```Python
-## built-in namespace 
+## built-in namespace
 """
-# For example some functions which do not require any import 
-print(), len(), map(), range(), list(), set(), str()
+# For example some functions which do not require any import
+print(), len(), map(), range(), list(), set(), str(), etc. 
 """
 
 ## global namespace
 # importing any modules adds them global namespace
-import time 
+import time
 # variables and functions
 my_var = 10
 def my_fun():
@@ -279,19 +309,18 @@ def some_fun():
     def my_fun():
         pass
 ```
-#### 1.2.11 Time Complexity 
-* It is used to measure how runtime of a function increases with the size input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problem that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). </br></br>
-  **Common Time Complexities in ascending order of their growing time.** 
-  #####
+### <strong>1.12 Time Complexity</strong>
+* It is used to measure how the runtime of a function increases with the size of input. Note that time complexity is not equal to execution time. It is used to calculate how a function will scale, given the number of inputs. Time Complexity for a smaller data/problem can be negligible or not necessary to be optimized, usually one should invest time in tuning time complexity for larger, time intensive problems or problems that require faster response time. A good time complexity [chart](https://www.bigocheatsheet.com/). 
+  
+  **Common Time Complexities in ascending order of their growing time.**
   1. **O(1)**: Constant time. Time does not increase at all.
   2. **O(logN)**: Logarithmic time. When time is increasing logarithmically (grows at inversely proportional rate of N).
   3. **O(N)**: Linear time. Time increases linearly with the input size.
   4. **O(NLogN)**: Linearithmic time. Logarithmic and Linear time together.
   5. **O(N\*\*K)**: Polynomial time. When time increases at N (input) to the power K (constant) times.
   6. **O(K\*\*N)**: Exponential time. When time increases at K (constant) to the power N (input) times.
-  #####
-  **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/) and with some examples [here](https://www.kaggle.com/delayedkarma/understanding-time-complexity-via-python-examples).
-
+  **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/).
+* Similar to time complexity there is also space complexity, it is used to measure how the memory of a function increases with the size of input.
 
 ## 2. Data Types
 Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned *int* or *float* or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used. </br>
