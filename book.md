@@ -1841,19 +1841,22 @@ assert a == 10 # No error raised
 assert a == 30, "Your error message here" # AssertionError
 ```
 
-## 6. Functions
-### 6.1 Function Basics
-* A function is a block of code (group of statements) used to perform some operation/task on some data/variables/sequences. A function may or may not have parameters, it may or may not return something (in Python, *None* is returned by default if *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
+## <strong>6. Functions</strong>
+In this chapter we'll explore what are functions, the most important part of functional programming. Just as in any other programming languages, functions play an essential part of a program. They contain a block of code under a single name, which can be called out indefinitely without having to re-write the code. In Python, functions are also objects which further opens the gate for more capabilities such as closures and decorators. But before moving onto them, let's start from the basics. 
+### <strong>6.1 Function Basics</strong>
+* A function is a block of code (group of statements) used to perform some operation/task on some data/variables/sequences. A function may or may not have parameters, it may or may not return something (in Python, *None* is returned by default if the *return* statement is not defined). Functions do not require return type declaration in Python. Functions are the callable objects in Python i.e they can be called with rounded brackets parenthesis.
 * **Parameters vs Arguments**: Parameters are the ones which are defined in function definition, arguments are the ones which are passed when a function is called. 
-* Functions in Python are first class, which means they behave just like an object, they can be stored in a variable or can be passed as a argument to other functions.
+* Functions in Python are first class, which means they are objects too, they can be stored in a variable, they can be passed as an argument to other functions and they can also be returned like a variable.
 * Defining and calling functions.  
 ```Python
-# Example 1: Non-parameterize function which returns nothing 
-# use the 'def' keyword to define a function followed by its name 
+# Example 1: Non-parameterized function which returns nothing 
+# use the 'def' keyword to define a function followed by its name with rounded brackets 
+# function names are recommended to be in snake_casing 
+
 def my_function1():
-  # do something
+  # this is function's body
   pass # to ensure the program runs this empty function   
-  # if the function is not empty 'pass' is not required at all
+  # Note: if the function is not empty 'pass' is not required at all
   
 # Example 2: function with parameter which returns nothing
 def my_function2(var1, var2):
@@ -1863,25 +1866,27 @@ def my_function2(var1, var2):
 def my_function2(var1: int, var2: int) -> None: 
   pass
   
-# Example 3: function with default parameters and return statement
-# default parameters should always follow later
-def my_function3(var1, var2, var3, do_something=False): 
-  if do_something:
-    # did something
-    return var1 + var2 + var3
-    
+# Example 3: function with a default parameter and return statement
+def my_function3(var1, var2, var3, return_op=False): 
+    # Note: return_op is a default parameter, they should always follow later
+    if return_op:
+        # did something, now returning something
+        return var1 + var2 + var3
+
 # calling a function without a return statement, returns None by default
 print(my_function1()) # None
+
 # calling a function and passing the arguments
-print(my_function3(30, 20, 10, do_something=True)) # 60
+print(my_function3(30, 20, 10, return_op=True)) # 60
 # check if it is a function using the built-in callable() function
 print(callable(my_function1)) # True
 ```
-* First class functions behaviour.
+* Functions are objects too.
 ```Python
+## Example: define a function that also takes a function as parameter
 def square_or_some_fun(number, some_fun=None):
   if some_fun:
-    # if some_fun is a function it can be callable 
+    # if some_fun is a function it can be callable, can check it with callable() 
     output = some_fun(number)
   else:
     output=number**2  
@@ -1894,29 +1899,18 @@ def cube_num(n):
 # Notice: no rounded brackets on the function
 my_var = cube_num 
 print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
-# 'my_var' points to the 'cube_num()', so calling 'my_var' is same calling 'cube_num'
+# Note: 'my_var' is only referring to 'cube_num()', so both are the same
 print(my_var(2)) # 8
 
 # passing a argument to another function
 print(square_or_some_fun(2)) # 4 
-# pass a function as argument
+# passing a function as argument
 print(square_or_some_fun(2, my_var)) # 8
 # passing a list at some_fun will raise TypeError
 print(square_or_some_fun(2, [4,4])) # TypeError: 'list' object is not callable
 ```
-### 6.2 Functional Programming
-* Python like C++ is a multi-paradigm and support functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, previous output cannot be re-gained given different input (as state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
-* A function is pure (without any side effect) if it does not rely any mutable types, global variables or some objects' attributes i.e relying solely on input arguments and generating the output only based on them. This adds advantage in parallel programming, testing, making programs more modular and requiring less debugging overall.
-* When designing systems, depending on the scenario specific paradigm approaches are preferred, todays systems are usually build with multi-paradigm in mind with say some computational part written with functional programming & GUI parts designed with OOP.
-### 6.3 *pass* statement
-* It is to declare a function/method with a empty body without raising error and later implement the code for the function.  
-```Python
-# Example 1: empty function body
-def my_fun():
-  pass
-```
-### 6.4 Packing and Unpacking
-1. **Packing**: It is when we pass more than the number of defined variables to a function. It is useful when we are not sure about the exact number of arguments required for some operation. They should always be the last parameters in a function (else they'll contain all the values). 
+### <strong>6.2 Packing and Unpacking in functions</strong>
+1. **Packing**: It is when we pass more than the number of defined variables to a function. Packing allows us to pass an arbitrary amount of arguments, which is useful when we are not sure about the exact number. They should always be the last parameters in a function, else they'll contain all the values and the rest of them will stay empty. Variables can be packed in either a *tuple* (which is generally named as *\*args*) or in a dictionary (generally named as *\*\*kwargs*), these names are not a compulsion but are recommended as common practice.
 ```Python
 ## Example 1: packing args into a tuple
 # Notice: the * operator before args variable
@@ -1936,9 +1930,9 @@ sum_nums(2,3) # 5
 # passing more than two arguments, now all values after 3 go into args 
 sum_nums(2,3,4,4,2,1,1,4) # 28
 
-## Example 2: packing kwargs into a dict
+## Example 2: packing kwargs into a dictionary
 # Notice: the ** operator before kwargs variable
-def my_fun2(x,y,**kwargs):
+def sum_nums2(x,y,**kwargs):
   total = x+y
   if kwargs:  
     print(type(kwargs)) # <class 'dict'>
@@ -1951,12 +1945,13 @@ def my_fun2(x,y,**kwargs):
   return total
   
 # passing only 2 arguments, so kwargs stays empty
-print(my_fun2(2,3)) # 5   
+print(sum_nums2(2,3)) # 5   
 # passing more than 2 arguments, now all values after 3 go into kwargs
-# Notice: arguments should have some unique name
-print(my_fun2(2, 3, a=2, b=4, d=4, any_name=5, my_var=8)) # 28
+# Notice: arguments should have some unique name, they will be the keys in kwargs dictionary
+print(sum_nums2(2, 3, a=2, b=4, d=4, any_name=5, my_var=8)) # 28
+# try using both args & kwargs in a function, print and check their values
 ```
-2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpack or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name, generally as *\*args*. Passing a *dict* requires '\*\*' operator followed by sequence's name, generally as *\*\*kwargs*.
+2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpacks or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name and passing a dictionary requires '\*\*' operator followed by sequence's name.
 ```Python
 def my_fun1(a,b,c,d):
   return a+b+c+d
@@ -1964,21 +1959,21 @@ def my_fun1(a,b,c,d):
 my_list = [1,2,3,4]
 my_dict = {'a':1,'d':4,'b':2,'c':3}
 
-## Example 1: unpacking from list/tuple, list here, notice the * operator
+## Example 1: unpacking from a list/tuple, list here, notice the * operator
 print(my_fun1(*my_list)) # 10
 
-## Example 2: unpacking from dict, notice the ** operator
+## Example 2: unpacking from a dictionary, notice the ** operator
 print(my_fun1(**my_dict)) # 10 
 
 # same goes for built-in functions too, "print()" function unpacks the list values
 print(*my_list) # 1,2,3,4
 ```
-### 6.5 Recursion
-* Recursion is when a function calls itself. It is a powerful tool that works on particular set of problems where a problem can be divided in simple repetitive chunks. 
+### <strong>6.3 Recursion</strong>
+* Recursion is when a function calls itself. It is a powerful tool that works on a particular set of problems where a problem can be divided into simple repetitive chunks. 
 * Recursion uses system stack to maintain the memory required for the recursive calls, this usually leads to higher memory usage compared to iteration.    
 * Recursion requires to handle the *StackOverFlow*, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
-* There are certain advantages such as reduction in size of code when a iterative solution is lengthy/complex, there are situations were recursion is a easier/better solution. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
-* To identify a recursion problem, one has to identify the smaller repetitive parts of a solutions. A recursive solution usually form a tree like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will lead to causing a *StackOverFlow* error. Finally the sub-problem solution with the base case is sequenced correctly to form a recursive solution.  
+* There are certain advantages such as reduction in size of code when an iterative solution is lengthy/complex, there are situations where recursion is an easier/better solution. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
+* To identify a recursion problem, one has to identify the smaller repetitive parts of a solution. A recursive solution usually forms a decision tree-like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will run indefinitely causing a *StackOverFlow* error. Finally the sub-problem solution with the base case is sequenced correctly to form a recursive solution.  
 ```Python
 ## Example 1: Sum of n given number
 # using iteration
@@ -2002,7 +1997,8 @@ print(recur_sum(5)) # 15
 
 ## stack calls over recursion
 '''
-# In our recursion function recursive calls are made till n is 0, so here we begin from the last line
+# In our recursion function recursive calls are made till n is 0, in this example recursion is bottom-up, 
+# so we'll begin from the last line. Note: '->' is the output from that call
 5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
 4 + recur_sum(3) -> 6 = 10 # same thing here
 3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
@@ -2010,9 +2006,45 @@ print(recur_sum(5)) # 15
 1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the return calls are made
 '''
 ```
-* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation.
-### 6.6 Anonymous functions
-* Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using *lambda* keyword, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
+* In recursion, there are some problems that require re-computation of repetitive calculations. We can save some computation by storing the previous results in the memory and looking up from it when it is required to compute again. This process is known as Memoization (or caching).
+* Now it would be memory inefficient to store all the previous results of a function with longer runtimes. So we can use techniques such as using FIFO (remove the oldest first), LFU (remove the least frequently used first) or LRU (remove the least recently used first) etc, to manage the number of results to store in the memory. 
+* Python provides support for LRU using the *functools* module (which is included in the standard library). Using the *lru_cache* function, a desired function can be optimized to use LRU cache for storing its repetitive calculations. So whenever a function is run *lru_cache* will check for cached results for the inputs, if it exists the output will be returned instantly else the function will be run and the output will be cached for next time. It maintains a dictionary with keys as inputs & values as outputs.
+* As *lru_cache* is a *decorator* function, we'll see an example of it in the *decorator*'s section, for now let's use Memoization without memory management. 
+```Python
+## Example: find factorial of n numbers using recursion and memoization
+# for storing previous calculation/result we can use a dictionary (memo here)
+def factorial(input_value, cur_num=2, memo = {1:1}):
+    # base case, we return 'memo' to the caller
+    if cur_num > input_value:
+      return memo
+
+    # calculate factorial 
+    memo[cur_num] = cur_num * memo[cur_num - 1]
+    # recursively call the next number, finally return 'memo' from the base case
+    return factorial(input_value, cur_num+1, memo)
+
+print(factorial(5)) # {1: 1, 2: 2, 3: 6, 4: 24, 5: 120}
+
+## stack calls over recursion
+'''
+# In this recursion function recursive calls are made till 'cur_num' > 'input_value',
+# as soon as it is we return to the caller and return output 'memo'. Below is the calculated factorial line. 
+# This is a top-down recursive call so we'll begin from top. Note: '->' is the value from the memo.
+# 1. we multiply 2 with 1 which came from memo[1], later store it at memo[2]
+memo[2] = 2 * memo[2 - 1] -> 1 
+# 2. we multiply 3 with 2 which came from memo[2] and store result at memo[3]
+memo[3] = 3 * memo[3 - 1] -> 2 
+# 3. similarly we multiply with memo[3] and store at memo[4]
+memo[4] = 4 * memo[4 - 1] -> 6  
+# 4. lastly we store the final calculation
+memo[5] = 5 * memo[5 - 1] -> 24 
+# 5. Our base case hits at this call, from there we return 'memo' which returns to the last line of the function
+# and then return 'memo' from there to the caller from outside of the function. 
+'''
+```
+* Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is a list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation.
+### <strong>6.4 Anonymous functions</strong>
+* Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using the *lambda* keyword, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
 ```Python
 ## Example 1: return sum of 2 numbers 
 # syntax => lambda arguments : expression
@@ -2022,7 +2054,14 @@ my_function = lambda a,b: a+b
 ## calling the function
 print(my_function(1,1)) # 2 
 ```
-### 6.7 global and nonlocal statements
+### <strong>6.4 *pass* statement</strong>
+* It is to declare a function/method/class with an empty body without raising an error, so that we can come back later to implement the function.  
+```Python
+# Example 1: empty function body
+def my_fun():
+  pass
+```
+### <strong>6.5 global and nonlocal statements</strong>
 1. **global**: Is used to modify a variable with global scope from inside a function.
 ```Python
 # defining 3 variables in global scope
@@ -2031,17 +2070,18 @@ my_var1, my_var2, my_var3 = 10, 20, 30
 def some_fun():
   # declaring my_var1 as global inside a local scope, so now my_var1 can be modified for global scope
   global my_var1
+  
   # accessing a global scope variable, works fine
   print(my_var3) # 30
   # accessing a global scope variable defined as global, works fine
   print(my_var1) # 10
   # same thing with my_var2 doesn't work (comment below line to execute the program further) 
   print(my_var2) # UnboundLocalError
-  # Its because in Python you don't declare the variable's scope  
-  # Python tries to figure out the scope of a variable by watching if it has some assignment in this scope
-  # if it does that variable is considered a local variable (even if same named global variable is present)
-  # here my_var2 has assignment in below lines so its a local variable which we can't access before assignment    
-  # if you remove the assignment of my_var2 it will be considered global and you can access it like my_var3 
+  # Its because Python tries to figure out the scope of a variable by watching if it has some assignment in this scope
+  # if it does Python thinks it is a local variable, which we cannot access before assignment right?
+  # in below lines my_var2 has assignment, so it is considered as local variable,
+  # even if same named global variable exists
+  # if the assignment is removed, my_var2 it will be considered global and it can be access normally
 
   my_var1 = 30 # modifying for global scope
   my_var2 = 40 # modifying only for local scope
@@ -2060,76 +2100,482 @@ def some_fun():
   def some_nested_fun():
     # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope too
     nonlocal my_var2 
-    my_var1 = 30 # modifying for local scope
+    my_var1 = 30 # modifying for some_nested_fun() scope
     my_var2 = 40 # modifying for some_fun() scope
     print(my_var1, my_var2) # 30, 40
 
   some_nested_fun()  
-  # similar to global keyword now my_var1 is not modified but my_var2 is
+  # here my_var1 is not modified but my_var2 is
   print(my_var1, my_var2) # 10, 40    
 
 some_fun()
 ```
-### 6.8 Decorators
-* They are used to wrap another function around to basically extend its functionality. It is simply running a function inside another function, like a nested function. This allows to extend the wrapped function's behaviour without actually modifying the function itself. These decorators are part of "Python syntactic sugar". Using '@' prefix a function can be decorated.
-* This functionality is utilized using functions being first class in Python.
+### <strong>6.6 Closures</strong>
+* They are the nested function objects that remember the data from the local scope. It is a nested function (a function inside a function) that has access to variables called "free variables" from the local scope even if the function is removed from the current namespace.   
+* These "free variables" are attached to the closure function object once it is returned by the enclosing function, so even if the enclosing function is out of the scope or is removed the variables still exist. 
+* Closures are an easy alternative to classes with few methods in them and they also provide some level of data hiding in functions.  
+* Creating a simple closure function.
 ```Python
-# defining the my_outer_func() which is a container function
-def my_outer_func(some_func):
-  # wrapper function goes here inside the container
-  # my_wrapper_func() does something before/after calling some_func() 
+# this is the enclosing/outer function
+def my_enclosing(para1, para2):
+    # this is the closure function
+    def inner():
+        print(para1, para2)
+ 
+    # Note: the inner function is returned not called
+    return inner
 
-  def my_wrapper_func(some_func_para1, some_func_para2): 
-    # Notice: some_func's parameter should be pass to my_wrapper_func
-    # so they can be accessed inside this scope
-    # do something of my_wrapper_func()
-    print(f"Product of two numbers is {some_func_para1 * some_func_para2}")
+# initializing the closure function 
+my_closure = my_enclosing(10, 20)
+# calling my_closure, which is just referring to "inner()" as "my_enclosing()" has returned it
+my_closure() # 10, 20
 
-    # calling some_func(), do something in it and return something if required
-    some_func(some_func_para1, some_func_para2) 
-    # do something extra if want, return something if want
-    
-  # return this my_wrapper_func 
-  return my_wrapper_func 
+# here para1 & para2 are free variables attached to "inner()" function
+# so even if "my_enclosing()" is removed, "inner()" can still access them
+del my_enclosing
+# now calling "my_enclosing()" should raise NameError, 
+# Note: comment the following line to execute the program further
+my_enclosing() # NameError
+
+# but "my_closure()" should still have access to para1 & para2
+my_closure() # 10 20
+```
+* Another example of closure.
+```Python
+## Example: create a callable that prints maximum from all previous values
+## Creating a callable using a class, 
+# Note: we'll learn more about classes in next chapter, you can comeback to this one later
+
+class Make_maxer:
+    def __init__(self):
+        self.my_values = {10, 50, 80}
+        self.all_time_max = self.max(my_values)
+
+    def __call__(self, new_value):
+        self.my_values.add(new_value)
+        current_max = max(self.my_values)
+        if current_max > self.all_time_max:
+            print(f"Found new max: {current_max}")
+            self.all_time_max = current_max
+
+# creating a instance of Make_maxer
+my_maxer = Make_maxer()
+my_maxer(20)
+my_maxer(95) # Found new max: 95
+
+
+## Now creating the same with closures
+def make_maxer():
+    # a closure can access this variables
+    my_values = {10, 50, 80}
+    all_time_max = max(my_values)
+
+    def maxer(new_value):
+        # Note: all_time_max is nonlocal because we have its assignment below
+        nonlocal all_time_max
+        my_values.add(new_value)
+        current_max = max(my_values)
+        if current_max > all_time_max:
+            print(f"Found new max: {current_max}")
+            all_time_max = current_max
+
+    return maxer
+
+# creating closure object
+my_maxer = make_maxer()
+# Note: "my_maxer" is just referring to "maxer()", checking its name
+print(my_maxer.__name__) # maxer
+
+# adding some values to maxer
+my_maxer(42)
+my_maxer(105) # Found new max: 105
+
+## the free variable names can be found in "__code__" variable of a function
+print(my_maxer.__code__.co_freevars) # ('all_time_max', 'my_values')
+# their values are attached to the __closure__ variable
+closure_values = my_maxer.__closure__
+print(closure_values[0].cell_contents, closure_values[1].cell_contents) # 105 {105, 10, 42, 80, 50, 20}
+```
+### <strong>6.7 Decorators</strong>
+* They are used to wrap another function around to extend/replace its functionality. It is simply running a function inside another function, like a nested function. This allows extending the wrapped function's behaviour without actually modifying the function itself. This functionality is utilized using functions being first class in Python. A function can be decorated using '@' prefix, which is just a "Syntactic sugar".
+* In Python, functions and classes (we'll see an example in next Chapter) can be decorated. The wrapper/decorator function has an inner function that can choose to call or not call the wrapped/decorated function, which is replacing the decorated function entirely. Finally the decorators can also have their own parameters.
+* Creating a simple decorator.
+```Python
+# this is a decorator function
+def my_decorator(func):
+    # decorator function has a inner function which calls the decorated function
+    def inner():  
+        print("decorator did something")
+        # calling decorated function
+        output = func()
+        print(output)
+    return inner 
+
+# decorated function, decorate with '@' prefix
+@my_decorator
+def my_decorated():
+  print("decorated did something")
+  return 42
+  
+# calling the decorated function
+my_decorated()
+
+# the above lines without the '@' prefix are similar to this
+my_decorator(my_decorated) 
+```
+* A decorated function with parameters.
+```Python
+## Example: create a decorator to extend functionality of other function
+# First defined the decorator function with parameter as decorated function 
+def my_decorator(deco_func):
+  # Second define the inner function
+  # Note: inner function can do something before/after calling our wrapped function
+  def my_inner(deco_func_para1, deco_func_para2): 
+    # Notice: the parameters of a decorated should be the parameters of inner function
+    # because this function is going to be returned and we're going to call it
+    # do something of inner function say printing
+    print(f"Product of two numbers is {deco_func_para1 * deco_func_para2}")
+
+    # now calling our decorated function, passing the required arguments
+    output = deco_func(deco_func_para1, deco_func_para2) 
+    return output
+
+  # Finally return the inner function
+  return my_inner 
 
 def my_fun(a,b):
   print(f"Sum of two numbers is {a+b}")
 
 # calling my_fun gets sum of two numbers
 my_fun(10, 20) # Sum of two numbers is 30
-# but then i want to extend my_fun's functionality without changing its previous code
+# to extend my_fun's functionality without changing its previous code
 
-# pass the my_fun as some_func to my_outer_func
-my_decorated_fun = my_outer_func(my_fun) 
+# pass the my_fun as deco_func to my_decorator
+my_decorated_fun = my_decorator(my_fun) 
 
 # done, my_decorated_fun can now do both product as well as sum
 my_decorated_fun(10, 20) # Product of two numbers is 200 # Sum of two numbers is 30
 
 ## now doing the same using decorators
-@my_outer_func
+@my_decorator
 def my_fun(a,b):
   print(f"Sum of two numbers is {a+b}")
 
-# now calling 'my_fun()' normally, will automatically call/invoke my_outer_func()
+# now calling 'my_fun()' will automatically call/invoke my_decorator()
 my_fun(10,20) # Product of two numbers is 200 # Sum of two numbers is 30
 ```
+* Replacing the functionality of a decorated function.
+```Python
+## Example: create a decorator function that replaces the decorated function 
+def my_adder(func):
+  def adder(para1, para2):
+    return para1 + para2
+  return adder
 
-## 7. Classes and Objects
-### 7.1 Class
+# decorating subtr and mutpl
+@my_adder
+def subtr(p1, p2):
+  return p1 - p2
+
+@my_adder
+def mutpl(p1, p2):
+  return p1 * p2
+
+# now calling subtr and mutpl
+print(subtr(20, 10)) # 30
+print(mutpl(2, 5)) # 7
+# this is because we didn't call the 'func'/decorated function inside 'my_adder'
+# so if a function is decorated with 'my_adder' it is going to be replace by 'adder' and 'func' won't be called
+```
+* A decorator function with parameters.
+```Python
+## Example: create a function that prints/returns the output
+# this function is called decorator factory, because it returns a decorator
+def result_fetcher(print_op=True):
+    def resulter(func): # this is our decorator function
+        def inner(para1, para2):
+            output = func(para1, para2)
+            if print_op:
+                print(f"Output is {output}")
+            else:
+                return output
+        return inner
+    return resulter
+
+# passing the parameters in result_fetcher decorator
+@result_fetcher(print_op=False)
+def addr(p1, p2):
+    return p1 + p2
+
+@result_fetcher(print_op=True)
+def multpl(p1, p2):
+    return p1 * p2
+
+# calling addr and multpl
+print(addr(10, 20)) # 30     
+multpl(10, 20) # Output is 200     
+```
+* The *lru_cache* decorator to manage memory.
+```Python
+## lru_cache basics
+from functools import lru_cache
+# simply add a decorator to computational function 
+@lru_cache
+def power_of(num1, num2):
+  print('power_of was called')
+  return pow(num1, num2)
+
+# call the function and lru_cache will store the result
+v = power_of(342, 388)  # power_of was called
+# so next time for the same inputs results will be returned directly
+v = power_of(342, 388)  
+
+# set the size of lru_cache by passing a parameter
+# if the memory gets full, the least recently used ones will be removed
+@lru_cache(256)
+def power_of(num1, num2):
+  print('power_of was called')
+  return pow(num1, num2)
+
+# check cache info like times hit/used , missed and current remaining size
+print(fib.cache_info()) # CacheInfo(hits=8, misses=11, maxsize=128, currsize=11)
+# clear the cache 
+fib.cache_clear()
+```
+* Another example of *lru_cache*.
+```Python
+## Checking function call counts of fibonacci function with and without lru_cache
+# Note: cache is similar to lru_cache, only without the size limit, good for smaller programs
+from functools import cache
+# checking without caching
+call_counter = 0
+def fib(num):
+    global call_counter
+    call_counter += 1
+    if num < 2:
+        return num
+    else:
+        return fib(num-1) + fib(num-2)
+
+fib(10)
+print(call_counter) # 177
+
+# checking with caching
+call_counter = 0
+@cache
+def fib(num):
+    global call_counter
+    call_counter += 1
+    if num < 2:
+        return num
+    else:
+        return fib(num-1) + fib(num-2)
+
+fib(10)
+print(call_counter) # 11
+# 177 vs 11, the difference speaks everything
+```
+### <strong>6.8 Generators and Coroutines</strong>
+* Generators are used to generate streams of data. Instead of loading all the data at once (example like *list* object does) they "lazy load" the data, which means they return a value only when the *next()* function is called upon them. The *next()* function is used to fetch the next element from the *generator* object.
+* Generators are *iterator*s (we'll learn more about them in next Chapter) objects, so they can be iterated using loops. A generator object is created using a function with one or more *yield* statements in it. *yield* allows generators to be iterated with/without defining loops in their function.
+* *yield* helps to save the state (or maintains current index of iteration) of a *generator* object, this allows generators to be interrupted and resumed throughout the program's execution. Once a *generator*'s data is exhausted it stops returning values and raises *StopIteration*, at this point it needs to be created again. 
+* For longer iteration (larger/infinite length of data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoiding the machine to run out of memory. Lastly, generators can also be created using comprehensions, using the rounded brackets.
+* Creating a simple generator.
+```Python
+## Example 1: create a generator function which returns a square of each values
+def square_generator(*args):
+  for a in args:
+    yield a**2
+    # Notice: using 'yield' instead of 'return' makes this function "lazy" and hence a generator
+
+generator = square_generator(2,3,4)
+# fetch the value using the next() function
+print(next(generator)) # 4
+# whenever a value is returned the generator is paused at the 'yield' statement
+# now next value is called the 'for' loop will be resumed and so on
+print(next(generator)) # 9
+print(next(generator)) # 16
+# now once exhausted, StopIteration is raised
+print(next(generator)) # StopIteration
+
+
+## Creating the above generator using comprehensions
+generator = (a**2 for a in [2,3,4,5])
+print(type(generator)) # <class 'generator'>
+print(hasattr(generator, '__next__')) # True
+# fetch the first value
+print(next(generator)) # 4
+
+# now try iterating a generator
+for a in generator:
+  print(a) # [9, 16, 25]
+  # Notice: generator resumed after first value
+
+# creating a new generator
+generator = (x**2 for x in [2,3,4,5])
+for v in generator:
+  print(v) # [4, 9, 16, 25]
+  # Notice: we didn't call "next()" first, so all values are iterated properly
+# however now it is exhausted, so will raise error 
+print(next(generator)) # StopIteration
+```
+* The pause and play of generators.
+```Python
+def some_generator():
+  print('Hello 1')
+  yield 10
+  print('Hello 2')
+  yield 20
+  print('Hello 3')
+  yield 30
+  
+# creating a generator  
+my_generator = some_generator()
+# calling the next() on generator will execute till first 'yield' statement
+print(next(my_generator)) # Hello 1 # 10
+# now calling the next() again will resume from the execute 'yield 10' till next 'yield' statement which is 'yield 20'
+print(next(my_generator)) # Hello 2 # 20
+# so we get the returned value
+# this is how the generator saves its state at yield statement, allowing the object to be interrupted and resumed anytime
+```
+* Iterating generators that don't have loops in them.
+```Python
+def my_generator():
+  yield 1
+  yield 2
+  yield 3
+
+generator = my_generator()
+## now iterating the generator  
+for a in generator:
+  print(a) # [1,2,3]
+# behind the scenes the 'for' loop is actually calling the 'next()' function on each iteration, 
+# which is why in our square_generator example the 'for' loop was able to continue from the interruption/breakpoint 
+
+## yield from: to yield from a sequence or even a generator (it'll be called a subgenerator) 
+# above function can be coded as following
+def my_generator():
+  yield from [1,2,3]
+
+for a in my_generator():
+  print(a) # [1,2,3]
+```
+* Coroutines are similar to generators, but instead of generating data they are used for consuming the data. Similar to a *generator*, a coroutine also has *yield* in its function. The difference is that the *yield* is assigned to a variable, it is used to pass some value into the function. So a generator becomes coroutine if its *yield* is assigned to a variable.
+* Coroutines can also maintain their state just like a *generator*, allowing to a constant flow of input data. Apart from *send()*, there are more two methods named *close()* and *throw()* associated with the *generator* objects. *close()* is used to terminate the *generator*'s/*coroutine*'s execution and *throw()* is used to raise an *Exception* into a *generator* function. 
+* Coroutines are easy to define and can be combined with other generators/coroutines, this helps in building pipelines and in other asynchronous workflows.   
+* Creating a coroutine.
+```Python
+def my_coroutine():
+  print('Coroutine is activated..')
+  val = yield   
+  print(f"{val} received")
+
+# Note: a coroutine is activated only after reaching the first yield statement
+# to activate you need to call next() on its object
+coroutine = my_coroutine()
+next(coroutine)
+# now you can start sending values
+# Note: if you call next() at this point None will be send
+coroutine.send(42) # 42 received
+# now coroutine has started looking for next yield, if it doesn't find any the coroutine terminates raising StopIteration
+
+# to stop this from happening, create a infinite loop and call '.close()' method when done 
+def my_coroutine():
+  print('Coroutine is activated..')
+  while True:
+    val = yield   
+    print(f"{val} received")
+
+coroutine = my_coroutine()
+next(coroutine)
+coroutine.send(42) # 42 received
+coroutine.send(34) # 34 received
+coroutine.close()
+
+## Example: percent calculator using coroutine
+# Note: when pairing yield with a expression it is recommended to use parentheses like this (yield)
+def percent_coroutine(total):
+  while True:
+    result = (yield) / total * 100  
+    # limiting float number to 3 decimal points using :.3
+    print(f"Your Percentage are {result:.3}")
+
+percent_calc = percent_coroutine(420)  
+next(percent_calc)
+percent_calc.send(250) # Your Percentage are 59.5
+percent_calc.send(356) # Your Percentage are 84.8
+percent_calc.send(155) # Your Percentage are 36.9
+percent_calc.close()
+```
+* Using generators and coroutines together.
+```Python
+## Example: Create a fibonacci generator and then a coroutine to filter even numbers in a list and finally return it 
+def fib_gen(limit=10):
+  """
+  This is a generator function that generates fibonacci numbers.
+  """
+  x, y = 0, 1
+  for _ in range(limit):
+      x, y = y, x+y
+      yield x
+  # at last send None to coroutine, to signal for stopping
+  yield None
+
+def co_fetcher():
+  """
+  This is a coroutine function that takes numbers and stores the even numbers in a list and finally returns the list.
+  """
+  even_fibs = []
+  while True:
+    num = yield
+    # stopping condition for coroutine
+    if not num:
+      break
+    if num % 2 == 0:
+      even_fibs.append(num)
+  return even_fibs
+
+# create a generator
+fib = fib_gen()
+# create and activate the coroutine 
+fetcher = co_fetcher()
+next(fetcher)
+
+# Note: As the coroutine is terminated it raises StopIteration, 
+# so the returned value should inside the "value" attribute of the exception
+while True:
+  try:
+      # send values generated from generator to coroutine
+      fetcher.send(next(fib))
+  except StopIteration as e:
+    print(f"Your even fibonacci are {e.value}") # Your even fibonacci are [2, 8, 34]
+    # make sure to stop this loop too
+    break
+```
+### <strong>6.9 Functional Programming</strong>
+* Python like C++ is a multi-paradigm and supports functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, they can't produce different outputs given the same inputs (as state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
+* A function is pure (without any side effect) if it does not rely on any mutable types, global variables or some objects' attributes i.e relying solely on its input arguments and generating the output only based on them. This adds advantage in parallel programming, testing, making programs more modular and requiring less debugging overall.
+* When designing systems, depending on the scenario specific paradigm approaches are preferred, today's systems are usually built with multi-paradigm in mind with say some computational parts written with functional programming & GUI parts designed with OOP.
+
+## <strong>7. Classes and Objects</strong>
+In this chapter we're going to take a look at the most fundamental part of Python, objects. Earlier we learned about function, now it's time for classes, which allows us to create more sophisticated objects. Later we'll check out what are methods in classes and their types. Then we'll check out objects and lastly some helpful built-in Python objects. Let's begin. 
+### <strong>7.1 Classes</strong>
 * **Class**: Is a blueprint/template of/for an object. It defines what the object holds (which variables/data types), what methods/operations that can be performed on that object. 
-* **Instance**: Is a object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. A instance has its own state and it is also mutable, so modifying some variables will reflect changes for that particular instance.  
-* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and parameterized constructor does have parameters.
-* **Methods**: Functions inside the class are called as methods.
-* **self**: *self* resembles a instance of class inside the class methods. Similar to Java/Javscript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have *self* object as the first parameter inside their definition. Although a argument is not required to be passed when calling such method. When a instance calls a method, the calling instance gets passed automatically by Python as *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it highly recommended to use *self* as a common practice for code readability. 
+* In Python, classes are also objects. Similar to functions, they can be assigned, passed or returned. Every class in Python is created using the *type()* function, this function has 2 signatures, one that we saw in Chapter 2 that returns *bool* output given an *object* as input, another one is used to create classes. The *type()* function is actually a metaclass. Metaclasses are used to create/modify class objects. They are a complicated concept and are very rarely required to be created, so we'll not be covering them here. I found a very clear explanation on [stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python), which is worth checking out if you're further interested in metaclasses.
+* **Instance**: Is an object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. An instance has its own state and it is also mutable, so modifying some variables will reflect changes for that particular instance.
+* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and a parameterized constructor does have parameters.
+* **Methods**: Functions inside the class are called methods.
+* **self**: It resembles an instance of class inside the class methods. Similar to Java/Javascript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have a *self* object as the first parameter inside their definition. Although an argument is not required to be passed when calling such a method. When an instance calls a method, the calling instance gets passed automatically by Python as a *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it is highly recommended to use *self* as a common practice for code readability.
 ```Python
 ## Classes
-# defining a class using the class keyword followed by its name 
+# defining a class using the 'class' keyword followed by its name, 
+# class names are recommended to be in CapitalCamelCasing 
 # python defines a empty constructor automatically in background, if it is not provided
 class MyClass: 
   # instance methods here
   def myfunction(self):
     # Notice: the self parameter in myfunction
-    # do something  
+    # function body
     pass
 
 # class with default constructor
@@ -2183,11 +2629,110 @@ print(my_instance.my_func(40)) # 75
 print(MyClass2.my_func(my_instance, 40)) # 75
 # the 'self' resembles the instance object, which is 'my_instance' here
 ```
+* Classes are objects too.
+```Python
+def my_fun(some_var, some_class=None):
+    print("Values is %d"% some_var)
+    # create a instance of some_class        
+    instance = some_class()
+    print(instance.my_var)
+    print(type(instance))
+
+# a single liner class
+class MyClass: my_var = 42
+
+# pass a class to variable
+new_class = MyClass
+# new_class is now pointing to MyClass
+print(new_class.my_var) # 42
+
+# passing class a argument
+my_fun(24, MyClass) # Values is 24 # 42 # <class '__main__.MyClass'>
+
+# returning a class
+def some_fun():
+  class MyClass: my_var = 42
+  return MyClass
+
+# some_fun() returns a class
+SomeClass = some_fun()
+print(SomeClass.my_var) # 42
+```
+* Dynamically creating classes using *type()* function. 
+```Python
+# Syntax: type(Class_name, bases, attrs)
+# "bases" is a tuple that should contain parent classes
+# "attrs" is a dictionary that should contain attributes
+# creating a class without parameters
+MyClass = type("MyClass", (), {})
+my_instance = MyClass()
+print(type(my_instance)) # <class '__main__.MyClass'>
+
+# add attributes to a class
+MyClass = type("MyClass", (), {"my_var":42})
+my_instance = MyClass()
+print(my_instance.my_var) # 42
+
+# add methods to class, add self as first parameter
+# define methods and pass them just like attributes
+def my_fun(self):
+    return self.a
+def __init__(self): 
+    self.a = 34
+    print('constructor was called')
+
+MyClass = type("MyClass", (), {"my_var":42, "my_fun":my_fun, "__init__":__init__})
+my_instance = MyClass() # constructor was called
+print(my_instance.my_fun()) # 34
+
+# Every class is created using a class of classes which is ...
+print(MyClass.__class__.__class__) # <class 'type'>
+print(float().__class__.__class__) # <class 'type'>
+print(range(42).__class__.__class__) # <class 'type'>
+```
+* Class decorator example.
+```Python
+## Example: create a decorator class that limits the number of function calls and also maintains unique values
+import math
+# a class decorator should have two methods __init__() with the function to be decorated as parameter 
+# and __call__() for decorator being callable, with parameters of a decorated function
+class CallLimiter:
+    def __init__(self, func):
+        self.func = func
+        self.call_count = 0
+
+    def __call__(self, *args):
+        # to maintain unique values, add items to a set
+        args = set(args)
+        # checking limit of numbers
+        if self.call_count >= 2:
+            raise ValueError("Maximum calling limit reached")
+        self.call_count += 1
+        result = self.func(*args)
+        print("Your total is %d"% result)
+
+@CallLimiter
+def sum_of_numbers(*args):
+    return sum(args)
+
+@CallLimiter
+def sum_of_sqrt(*args):
+    return sum([math.sqrt(a) for a in args])
+
+sum_of_numbers(34,21,65,32) # Your total is 152
+sum_of_numbers(34,34,34,8) # Your total is 42
+sum_of_numbers(5,34,21,65) # ValueError: Maximum limit reached
+
+sum_of_sqrt(54,20,45,38) # Your total is 24
+sum_of_sqrt(54,89,12,90,12,62) # Your total is 37
+sum_of_sqrt(54,20,45,38) # ValueError: Maximum limit reached
+```
 #### 7.1.1 Three Types of methods in classes
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, they can read class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instances and classes. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
+Python comes with three built-in decorators named *classmethod*, *staticmethod* and *property*. We'll check the first two here and the later one in the next chapter.
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, they can read class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instances and classes. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as the first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
 ```Python
 class MyClass: 
-  # class variables: they not inside of any method 
+  # class variables: they are outside of methods 
   my_var1 = 20
   my_var2 = 10
   
@@ -2210,8 +2755,12 @@ MyClass.my_var1 = 42
 my_instance = MyClass()
 print(my_instance.my_var1) # can access
 my_instance.fun1() # can access
+
+## optionally creating class variables using the class
+MyClass.new_var = 43
+print(MyClass.new_var) # 43
 ```
-2. **Instance**: Instance methods are bound to instances. They have access to both instance & class state, they can read class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not by class. A normal function inside a class is a instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
+2. **Instance**: Instance methods are bound to instances. They have access to both instance & class state, they can read class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not by class. A normal function inside a class is an instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
 ```Python
 class MyClass: 
   my_var1 = 10
@@ -2237,6 +2786,10 @@ MyClass.fun1() # can't access
 my_instance = MyClass()
 print(my_instance.other_var1) # can access
 my_instance.fun1() # can access
+
+## optionally creating instance variables using the instance
+my_instance.new_var = 42
+print(my_instance.new_var) # 42
 ```
 3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. They can't read/modify any variables beside their local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument. These methods can also be subclassed.
 ```Python
@@ -2276,8 +2829,8 @@ delattr(my_instance, 'my_new_var')
 print(my_instance.my_new_var) # AttributeError
 ```
 #### 7.1.2 Special methods
-* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. This methods are used to enrich your object with more features. These are called "magic" methods because these methods are invoked indirectly, we do not need to invoke them directly.
-* This methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality.   
+* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. These methods are used to enrich your object with more features. These are called "magic" methods because these methods are invoked indirectly by the Python Interpreter and we do not need to invoke them.
+* These methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality. Also it is a good practice to not invent new special methods to avoid name collisions between the built-ins.  
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in Python.
 ```Python
 ## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
@@ -2296,63 +2849,76 @@ class MyClass:
   def __len__(self):
     """Length of some_values"""
     return len(self.some_values)    
-  # define '__getitem__' for enabling iteration of items 
+  # define '__getitem__' for enabling iteration/indexing/slicing of items 
   def __getitem__(self, index):
     """Iterate through some_values""" 
     return self.some_values[index]
+  # define '__call__' for making the instance callable
+  def __call__(self, new_value):
+    self.some_values.append(new_value)
 
 ## create a instance to check these functionalities
-my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,655])
+my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,65])
+
 # testing the print functionality, '__str__()' is invoked when 'print()' is called 
 print(my_instance) # id: 239034, name: Bob, age: 23
+
 # similarly length functionality
 print(len(my_instance)) # 6
+
+# indexing and slicing
+print(my_instance[0]) # 10
+print(my_instance[0:3]) # [10, 45, 32]
 # iterate through the instance 
 for a in my_instance:
-  print(a) # [10,45,32,67,32,655]
+  print(a) # [10,45,32,67,32,65]
+
+# calling a instance
+my_instance(20)
+my_instance(90)
+
+# get all values using empty slice
+print(my_instance[:]) # [10, 45, 32, 67, 32, 65, 20, 90]
 ```
 #### 7.1.3 Docstrings
-* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below start of a function/class definition. This is a way of documenting functions/class behaviours, useful stuff.
+* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below the start of a function/class definition. This is a way of documenting functions/class behaviours, useful stuff.
 ```Python 
 class MyClass:
     """This is a docstring."""
     def my_fun():
         """This is what this method does..."""
 ```
-### 7.2 Objects
+### <strong>7.2 Objects</strong>
 * An object has its own attributes/variable (it can be any data-type/data-structure/object) and functions (methods).
-* **"Everything in Python is an object"**, in Python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in Python have attributes/methods, Data Structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes also have their attributes/methods, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to a function. So in a sense everything can be called an object. 
-* We saw earlier how to create a instance of a class (i.e object) and what/how they can access variables and methods.
+* **"Everything in Python is an object"**, in Python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in Python have attributes/methods, Data Structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes are created by metaclasses, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to or returned from a function. So in a sense everything can be called an object. 
+* We saw earlier how to create an instance of a class (i.e object) and what/how they can access variables and methods. Here we'll see some examples of everything being an object.
 ```Python
-## data types are object
+## data types are object, eg. integer is object of class 'int'
 a = 30
 print(type(a)) # <class 'int'>
-# print attributes/methods of class int
-print(dir(a)) 
+# print some attributes/methods of class int
+print(dir(a)[:3]) 
 
-## data structures are object
+## data structures are object, eg list is object of class 'list'
 a = [30, 10, 20]
 print(type(a)) # <class 'list'>
-# print attributes/methods of class list
-print(dir(a)) 
+# print some attributes/methods of class list
+print(dir(a)[:3]) 
 
-## functions are objects
+## functions are objects of class 'function'
 def my_fun():
   pass
-print(my_fun) # <class 'function'>
-print(dir(my_fun))
+print(type(my_fun)) # <class 'function'>
 
-## classes are objects
+## classes are objects of class 'type'
 class MyClass: 
-  def __init__(self):
-    pass    
-print(MyClass) # <class '__main__.MyClass'>
-print(dir(MyClass))
+  pass    
+print(MyClass.__class__) # <class 'type'>
 ```
 #### 7.2.1 Iterables
-* Iterables are objects that can be iterated using loops. A object having a special method *\_\_iter\_\_()* are considered to be iterables. They can be iterated as many times as required.
-* Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as *dict*, *set* and others such as *file*, *range* objects.
-* A custom class can implement *\_\_iter\_\_()* (which should return a iterator object) or *\_\_get\_\_()* (which is the special method for enabling indexing) method to make its object iterable. They can also become subscriptable/indexable if implemented using *\_\_get\_\_()* method. Example of non-indexable are *dict* or *set*.
+* Iterables are objects that can be iterated using loops. An object having a special method *\_\_iter\_\_()* is considered to be iterables. They can be iterated as many times as required.
+* Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as dictionary, *set* and others such as *file*, *range* objects.
+* A custom class can implement *\_\_iter\_\_()* (which should return an iterator object) or *\_\_get\_\_()* (which is the special method for enabling indexing) method to make its object iterable. They can also become subscriptable/indexable if implemented using *\_\_get\_\_()* method. Examples of non-indexable are dictionaries or *set*s.
 * Iterables can be used in *for* loops and in built-in functions like *map()*, *zip()*, *filter()* etc.
 * Checking built-in iterables.
 ```Python
@@ -2392,11 +2958,11 @@ for a in my_object:
     print(a) # [0,10,20,30,...100]      
 ```
 #### 7.2.2 Iterators
-* Iterator objects can also be iterated using loops. They are also a *iterable* object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns a iterator object, the *\_\_next\_\_()* method here is to fetch the next element from the iterator object.
-* A *iterator* object represents a stream of data, when called upon the *\_\_next\_\_()* method (or using built-in function *next()*) returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* are not required to be finite but be careful when looping over they may cause a *RecursionError*.
-* One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as Iterator object returns itself when passed to *iter()*), which is not the case with a *iterable* object (a new iterator object is created every time *iter()* is called).
-* The *iterator* objects are used to "lazy" load data into memory. So instead of loading all data at once like a *iterable* (example like *list* object does), *iterator* loads data when it is called upon. Examples of *iterator* are *enumerate*, *zip*, *reversed* etc. The [*itertools*](https://docs.python.org/3/library/itertools.html#module-itertools) module included in standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
-* Limitations of *iterator* are that values can be iterated only once and in one direction only (can't access previous values) and need to be re-created once exhausted.
+* Iterator objects can also be iterated using loops. They are also an *iterable* object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns an *iterator* object, the *\_\_next\_\_()* method is to fetch the next element from the iterator object.
+* An *iterator* object represents a stream of data, when the *\_\_next\_\_()* method (or using built-in function *next()*) is called it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* is not required to be finite but be careful when looping over they may cause a *RecursionError*.
+* One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as *Iterator* object returns itself when passed to *iter()*), which is not the case with a *iterable* object (a new *iterator* object is created every time *iter()* is called).
+* The *iterator* objects are similar to *generators* "lazy load" data into memory. Examples of iterators are *enumerate*, *zip*, *reversed* etc. The [*itertools*](https://docs.python.org/3/library/itertools.html#module-itertools) module included in the standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
+* Limitations of *iterator*s is that values can be iterated only once and in one direction only (can't access previous values) and need to be re-created once exhausted.
 * Creating a simple iterator.
 ```Python
 ## Example: create a simple iterator from a iterable
@@ -2454,7 +3020,7 @@ my_iter = SquareIterator(2,3,4,8,9,12)
 for a in my_iter:
     print(a) # [4,9,16,64,81,144]
 ```
-* When iterating with a *for* loop, the iterable input object is first converted to a temporary *iterator* object and then these object is traversed using *\_\_next\_\_()* till *StopIteration* is raised. So every time a *for* is called a new temporary *iterator* object is created and removed when iteration is finished/interrupted. In case of iterating a *iterator* object, the object itself is returned (as we saw in our *SquareIterator's* *\_\_iter\_\_()* method), so once its exhausted it stays empty. We'll check a example of the working below.
+* When iterating with a *for* loop, the iterable input object is first converted to a temporary *iterator* object and then this object is traversed using *\_\_next\_\_()* till *StopIteration* is raised. So every time a *for* is called a new temporary *iterator* object is created and removed when iteration is finished/interrupted. In case of iterating an *iterator* object, the object itself is returned (as we saw in our *SquareIterator's* *\_\_iter\_\_()* method), so once it's exhausted it stays empty. We'll check an example of the working below.
 ```Python
 ## Internal working of for loops
 def for_loop(my_iterable):
@@ -2477,89 +3043,17 @@ for_loop(my_list) # 34,32,55,34,56
 for a in my_list:
     print(a) # 34,32,55,34,56
 ```
-#### 7.2.3 Generators
-* Generators are "lazy", they return value only when *next()* function is called upon. Generators are iterators objects but not vice versa, there are some differences. A generator object is created using a function that has one or more *yield* statements in it. They might have or not have loops in them. A *yield* statement makes a function iterable with/without loops. *yield* can also be used to pass values to a generator.
-* Similar to a *iterator* object, *yield* in generators saves the state (or maintain current index like in our SquareIterator class), so generators can be interrupted and resumed throughout the program's execution. And once exhausted they stop returning values, at this point they need to be created again. 
-* For longer iteration (larger/infinite length of data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoiding the machine to run out of memory. Generators can also be created using similar to *list* comprehension's syntax, but using rounded brackets.
-* Creating a simple generator.
-```Python
-## Example 1: create a generator function similar to our SquareIterator class
-def my_square_generator(*args):
-  for a in args:
-    yield a**2
-    # Notice: using "yield" instead of "return" makes this function "lazy" and hence a generator
-
-generator = my_square_generator(2,3,4,5)
-
-# or same using generator comprehension
-generator = (a**2 for a in [2,3,4,5])
-print(type(generator)) # <class 'generator'>
-print(hasattr(generator, '__next__')) # True
-
-## iterate a generator
-for a in generator:
-  print(a) # [4,9,16,25]
-  # Notice: now that we didn't call "next()" this time all values are iterated
-# however now it is exhausted, so will raise error 
-print(next(generator)) # StopIteration
-```
-* Generators without loops.
-```Python
-def my_generator():
-  yield 1
-  yield 2
-  yield 3
-## calling my_generator() returns a generator object, which can be iterated  
-for a in my_generator():
-  print(a) # [1,2,3]
-```  
-* Passing a value to generator.
-```Python
-## it is recommended to use parenthesis around yield like this (yield <variable>) in some operations
-# in simple assignments its okay without the parenthesis
-def my_function():
-    v = 0 # initialization
-    # parenthesis required
-    r1 = (yield v) + 10
-    print(f'r1 is {r1}')
-    while True: 
-        # okay to not use parenthesis case
-        r2 = yield v
-        if r2:
-            print(f"r2 was modified, r2 is now {r2}")
-        else:    
-            print(f"r2 was not modified, r2 is {r2}")
-
-gen = my_function()
-next(gen) # will go till first yield
-# calling next() will raise TypeError, as None is passed by default to yield when calling next() 
-# and adding 10 with None will raise Exception
-# next(gen) # TypeError
-
-## to pass a value to generator use send() method 
-gen.send(10) # r1 is 20
-# now calling next will set r2 to None and the if condition doesn't execute
-next(gen) # r2 was not modified, r2 is None
-# try again now passing a value
-gen.send(20) # r2 was modified, r2 is now 20
-# now the if condition executes and r2 become 20
-
-## to terminate the generator use close() method
-# this raises GeneratorExit exception inside the generator to terminate the iteration
-gen.close() 
-next(gen) # StopIteration
-```
-#### So just to summarize the difference between **Iterables**, **Iterators** and **Generators.**
- 1. **Iterators**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement the *\_\_iter\_\_()* method.
+#### The difference between **Iterables**, **Iterators** and **Generators.**
+ 1. **Iterables**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement the *\_\_iter\_\_()* method.
  2. **Iterators**: Are also *iterables* but are "lazy" and can be iterated only once, they need to be re-created for iterating again. They need to implement *\_\_iter\_\_()* and *\_\_next\_\_()* methods. They are used when it is required to implement *iterator* functionality inside a complex class (with other functionalities).
- 3. **Generators**: Are iterators and *iterables*. Generators are a easy way to create a iterator object. They can be created using a function with a *yield* statement in it or using generator comprehension. They are used when it is required to create a standalone iterator object.
+ 3. **Generators**: Are *iterables* and *iterators* (but not vice versa). Generators are an easy way to create an iterator object. They can be created using a function with a *yield* statement in it or using generator comprehension. They are used when it is required to create a standalone iterator object.
 #### **7.2.4 Descriptors**
-* A Descriptors is simply a object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute's/variable's lookup, assignment and deletion. 
-* Descriptors are used to control what happens when a attribute is looked up/altered/removed, to override their default behaviour. So instead of class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when it is called/assigned. This is helpful when we want some custom behaviour with our attributes.
+* A Descriptor is simply an object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute's/variable's lookup, assignment and deletion. 
+* Descriptors are used to control what happens when an attribute is looked up/altered/removed, to override their default behaviour. So instead of the class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when it is called/assigned. This is helpful when we want some custom behaviour with our attributes.
 * **There are two types of Descriptors**.
-  1. **Data descriptors**: A Descriptors class that at least have one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
+  1. **Data descriptors**: A Descriptors class that at least has one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
   2. **Non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
-* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptor. Also for more on descriptors check the [Python docs](https://docs.python.org/3/howto/descriptor.html).
+* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptors. Also for more on descriptors check the [Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
 class MyDescriptor:
     # when a 'MyDescriptor' object is created inside a class this function is called first
@@ -2573,7 +3067,7 @@ class MyDescriptor:
     def __get__(self, obj, objtype=None):
         # fetch 'private_name' from 'MyClass' instance
         value = getattr(obj, self.private_name)
-        print(f"{self.private_name} was accesed")
+        print(f"{self.private_name} was accessed")
         return value
 
     # when a attribute is altered(using '=' operator), this method is called      
@@ -2627,17 +3121,18 @@ my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even numbe
 # Notice: AttributeError is raised due the values didn't match, try a valid value
 ```
 
-## 8. Modules and Packages
-### 8.1 Modules
+## <strong>8. Modules and Packages</strong>
+A short introduction to what are modules and packages in Python. 
+### <strong>8.1 Modules</strong>
 * Is a file with *.py* extension containing Python code, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
 * When you import a module Python looks in a sequence given below:
-  1. Local Directory: It is where the current *.py* file is located.
-  2. PYTHONPATH: It is a environment variable that can be used to set additional Python directory paths which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir".
-  3. Python Installation Directory: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.</br>
-  **Note**: This does means any module with repeating name will be given priority according to this sequence.
-* As Python is a Interpreted Language, each time a program is ran the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the *\_\_pycache\_\_* folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. These *byte-compiled* files are platform-independent.
-* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once imported are objects too. Each imported module's object contain a special variable named *\_\_name\_\_* which is set to the module's name. But the current module which is ran by the user has *\_\_name\_\_* variable set to *\_\_main\_\_*. This helps a programmer to not invoke the script while importing it in another module if they don't intent to. This is similar to *main()* function's behaviour in C/C++ language.
-* Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules available in Python.</br>
+  1. **Local Directory**: It is where the current *.py* file is located.
+  2. **PYTHONPATH**: It is an environment variable that can be used to set additional Python directory paths which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir".
+  3. **Python Installation Directory**: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.
+  **Note**: This does mean any module with repeating name will be given priority according to this sequence.
+* As Python is a Interpreted Language, each time a program is run the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the *\_\_pycache\_\_* folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. These *byte-compiled* files are platform-independent.
+* Use the built-in function *dir()* to find variables/functions/classes inside a module, as modules once imported are objects too. Each imported module's object contains a special variable named *\_\_name\_\_* which is set to the module's name. But the current module which is run by the user has a *\_\_name\_\_* variable set to *\_\_main\_\_*. This helps a programmer to not invoke the script while importing it in another module if they don't intend to. This is similar to the *main()* function's behaviour in C/C++ language.
+* Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules available in Python.
 * Importing a module.
 ```Python
 ## modules can be imported anywhere in python, there is no restriction
@@ -2653,6 +3148,7 @@ my_var = math.sqrt(8)
 
 ## import any specifics from the module using 'from' keyword, here we import a function from math module
 from math import sqrt
+
 # Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions
 my_var = sqrt(16)
 
@@ -2670,7 +3166,7 @@ print(math(2)) # 4
 ## Check the functions/classes/variables of a module using dir()
 print(dir(math))
 ```
-* Save this below module as *sample.py* or anything you prefer (but change the import name if so the in the next module).
+* Save this below module as *sample.py* or anything you prefer (but change the import name if so in the next module).
 ```Python
 a = 42
 def my_fun():
@@ -2699,10 +3195,10 @@ if __name__ == "__main__":
   # add code here which you don't want to be invoked unless this script is ran
   print("my_module was ran")
 ```
-### 8.2 Packages
-* A folder with module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use the "<package_name>.<module_name>" signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
+### <strong>8.2 Packages</strong>
+* A folder with a module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use the "<package_name>.<module_name>" signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
 * One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single package's namespace, so you don't have to call them by following the module names like instead of "<package_name>.<module_name>.<function_name>" you can directly call by "<package_name>.<function_name>".
-* You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is a official third-party software repository for Python. You can install a package simply by "pip install <package-name>" command in the command prompt.</br> 
+* You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is an official third-party software repository for Python. You can install a package simply by "pip install <package-name>" command in the command prompt.
 **Note**: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
 * You can also create your own packages, create the following given below example directory structure.
 ```
@@ -2715,14 +3211,15 @@ if __name__ == "__main__":
 ./somepackage
   others.py
     
-# Here "mypackage" folder contains __init__.py so its a package, similarly "myfolder" is also a package (or sub-package).
+# Here "mypackage" folder contains __init__.py so it's s a package, similarly "myfolder" is also a package (or sub-package).
 # Note: From Python 3.3 and up it is optional to have __init__.py to be called package, 
 # so now "somepackage" directory is also a package.
 ```
-* Importing from such directory/package is very straight forward using the '.' operator. Create a *test.py* outside of *./mypackage* directory and try the following code. Note you also need to create additional '.py' files as shown in the above example directory and also define *MyClass* and *myfunction* inside *mymodule* with some code (or just define with *pass* statement).
+* Importing from such a directory/package is very straightforward using the '.' operator. Create a *test.py* outside of the *./mypackage* directory and try the following code. Note you also need to create additional '.py' files as shown in the above example directory and also define *MyClass* and *myfunction* inside *mymodule* with some code (or just define with *pass* statement).
 ```Python
 ## importing a module from package
 import mypackage.mymodule
+
 # now use the <module_name> to call its classes/functions
 mymodule.myfunction() 
 
@@ -2737,14 +3234,14 @@ from mypackage.mymodule import MyClass
 from mypackage.mymodule import myfunction
 ```
 
-## 9. Files and I/O
-Basic I/O operations are to take the input from user and send the output to the user's screen. To handle a file is task of basically opening/creating a file, read or make changes and then close the file. Basic I/O and File operations are very general when working with a project. We'll take a look at three built-in functions for handling these operations and *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add *with* statement support to custom objects.
-### 9.1 Three built-in functions for I/O handling
+## <strong>9. Files and I/O</strong>
+Basic I/O operations are to take the input from the user and send the output to the user's screen. To handle a file is the task of basically opening/creating a file, reading or making changes and then closing the file. Basic I/O and File operations are very general when working with a project. We'll take a look at three built-in functions for handling these operations and the *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add the *with* statement support to custom objects. Alright.
+### <strong>9.1 Three built-in functions for I/O handling</strong>
 #### 9.1.1 input(prompt) => None
 **Parameters**:</br>
   * *prompt* Any: Your message to the screen.
-#####
-**Explanation**: Reads input from standard input device (such as keyboard) and take it input as string.
+
+**Explanation**: Reads input from standard input devices (such as keyboard) and takes it input as string.
 ```Python
 ## Take input from user
 v = input() # or "input('Your message here ')"
@@ -2758,7 +3255,7 @@ print(v)
   * *end* Optional[Text]: The last print value.
   * *file* Optional[_Writer]: A file-like object (stream), default is screen.
   * *flush* bool: Whether to forcibly flush the stream.
-##### 
+ 
 **Explanation**: Prints the given object to a standard output device, usually screen.
 ```Python
 ## Print output to the screen
@@ -2766,25 +3263,25 @@ print("This is output") # This is output
 print("multiple", "objects", "to print") # multiple objects to print
 print("This", "is", "a", "String" , sep="_") # This_is_a_String
 print("This", end="\t") 
-print("is not new lined") # This    is not new lined
+print("is not new line") # This    is not new line
 ```
 #### 9.1.3 open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None) => file
 **Parameters**:</br>
   * *filename* Union[*str*, *bytes*, *int*]: path-like object or a string.
   * *mode* *str*: Opening file mode.
   * *buffering* *int*: For specifying buffering policy.
-  * *encoding* Optional[*str*]: Specify encoding format. On Windows default is "cp1252" and "utf-8" in Linux.
+  * *encoding* Optional[*str*]: Specify encoding format. On Windows the default is "cp1252" and "utf-8" on Linux.
   * *errors* Optional[*str*]: To handle Encoding/Decoding errors.
-  * *newline* Optional[*str*]: Specify how newline work.
+  * *newline* Optional[*str*]: Specify how newline works.
   * *closefd* *bool*: If set to False, the underlying file descriptor will be kept open even when the file is closed.  
   * *opener* Optional[Callable[[*str*, *int*], *int*]]: A custom file opener, should return a file descriptor.
-#####
+
 **Explanation**: This function is used to open a file. It returns a file object (also called handle), this object is further used to perform operations such as read/write/append. For different types of operations there are different modes available, default is r (reading). 
 * Various file modes are shown below.
   1. **r**: For opening a file in read-only mode.
-  2. **w**: In write mode if the file already exist and has some previous content, it is completely overwritten. Else new file is created and content can be written to it.
-  3. **a**: In append mode if the file already exist and has some previous content, the new input is appended at the end and not overwritten. Else new file is created and content can be written to it.
-  4. **x**: In exclusive creation mode if the file already exists, the operation fails. Else new file is created and content can be written to it.
+  2. **w**: In write mode if the file already exists and has some previous content, it is completely overwritten or a new file is created and content can be written to it.
+  3. **a**: In append mode if the file already exists and has some previous content, the new input is appended at the end and not overwritten or a new file is created and content can be written to it.
+  4. **x**: In exclusive creation mode if the file already exists, the operation fails or a new file is created and content can be written to it.
   5. **t**: Opening a file in text format, reading a file data as strings, this is the default format.
   6. **b**: Opening a file in binary format, reading a file data as bytes, this is used to handle non-text files like images/database/documents.
 ```Python
@@ -2835,8 +3332,8 @@ file.writelines(["This is a text.", "This is also some text"])
 # close a file, frees up system resources, should be called at the last step
 file.close()
 ```
-### 9.2 *with* statement
-* This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using *with* statement  the resources are handled automatically inside a nested block of code. It guarantees to close the file no matter how the code block is exited. 
+### <strong>9.2 *with* statement</strong>
+* This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using a *with* statement the resources are handled automatically inside a nested block of code. It guarantees to close the file no matter how the code block is exited. 
 ```Python
 ## Example 1: without "with" statement
 file = open("sample.txt")
@@ -2865,8 +3362,8 @@ except Exception as e:
 finally:
   file.close()
 ```
-### 9.3 Context Manager 
-* It is a simple protocol that a object needs to follow to add support for *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods to add the functionality of a context manager. Context managers are usually used in Database management and to handle Thread locks. 
+### <strong>9.3 Context Manager</strong>
+* It is a simple protocol that an object needs to follow to add support for the *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods to add the functionality of a context manager. Context managers are usually used in Database management and to handle Thread locks. 
 * Also there's a built-in module named [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
 ## Example: simple db manager class with context manager
@@ -2905,23 +3402,23 @@ print(db_handler.some_db) # {'id': [], 'name': []}
 # which cleared the data, try modifying this behaviour to remove duplicate entries  
 ```
 
-## 10. OOP concepts
+## <strong>10. OOP concepts</strong>
 #### What is OOP?
 Wikipedia suggests
   > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of objects.
 
-  Classes and objects are the two important aspects of OOP. As we saw earlier an object is a instance of class and it has its own attributes & methods and class is where all this attributes & methods are defined.
+  Classes and objects are the two important aspects of OOP. As we saw earlier an object is an instance of class and it has its own attributes & methods and class is where all these attributes & methods are defined.
 #### Why OOP?
-OOP helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called objects. OOP really shines when designing a large software systems which typically requires huge amount of inter-dependencies among the blocks of code. By following OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to the structural programming.
+OOP helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called objects. OOP really shines when designing large software systems which typically require huge amounts of inter-dependencies among the blocks of code. By following the OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to structural programming.
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#101-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#102-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#103-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#104-polymorphism).**
-### 10.1 Inheritance
-* Instead of re-writing the code for all identical blocks like in functional programming, we re-use can the methods/variables from say a class inside another class in OOP. This concept is called Inheritance. So basically inheritance helps to eliminate the redundant code.
-* We inherit a base/super class and use its methods/variables inside a child/sub class, but not the other way.
-* **super()**: This is a built-in function used to access any child's/parent's methods/variables inside of a child class, it is very similar to *super* keyword in Java. When this function is called it returns a temporary object of parent class which then can be used to access to all of its methods/variables. 
-* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
+### <strong>10.1 Inheritance</strong>
+* Instead of rewriting the code for all identical blocks like in functional programming, we re-use the methods/variables from say a class inside another class in OOP. This concept is called Inheritance. So basically inheritance helps to eliminate the redundant code.
+* We inherit a base/super class and use its methods/variables inside a child/subclass, but not the other way.
+* **super()**: This is a built-in function used to access any child's/parent's methods/variables inside of a child class, it is very similar to *super* keyword in Java. When this function is called it returns a temporary object of parent class which then can be used to access all of its methods/variables. 
+* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in the hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
 #### **10.1.1 Four types of Inheritance.**
-1. **Single**: A child/sub class only inherits a single parent/super class.
+1. **Single**: A child/subclass only inherits a single parent/super class.
 ```Python
 ## Example: inherit the parent class and try calling its attributes/methods  
 class MyParent:
@@ -2942,16 +3439,14 @@ class MyChild(MyParent):
     self.arg1 = arg1
     # instantiate parent class inside child class by calling 'super().__init__()'
     super().__init__(arg1)
-    # or pass self to the class's construtor like this 'MyParent.__init__(self)' 
+    # or pass self to the class's constructor like this 'MyParent.__init__(self)' 
 
   def my_func(self, num):
     # call parent's method using 'super()' function
     output1 = super().some_func(num) 
     print(output1) # 4
-
     # access parent's variables using 'super()'
     print(super().some_var) # 50
-
     # here self calls parent's method, as this class doesn't have 'other_method()'
     # this happens due to MRO, as we saw after child parent class is the next lookup target
     output2 = self.other_method(num) 
@@ -2997,7 +3492,7 @@ class MyChild(MyParent1, MyParent2):
       super().__init__()
       print(self.para1) # 10
       # initialize second parent by passing 'self' object to its constructor
-      # this is due to super can only keep track of single class, which is MyParent1
+      # because super can only keep track of single class, which is MyParent1
       MyParent2.__init__(self) 
       # so now MyParent2's variables/methods can be accessed
       print(self.para1) # 20
@@ -3013,7 +3508,7 @@ class MyChild(MyParent1, MyParent2):
 # create a child instance
 child = MyChild(30)
 # use the mro method on a instance to check the parent classes
-print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, \
+print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>,
 # <class '__main__.MyParent2'>, <class 'object'>]
 
 # same as before, calling MyParent1's method
@@ -3027,16 +3522,15 @@ print(MyParent2.other_method(child, 2)) # 8
 print(MyParent1.other_method(child, 2)) # 4
 # calling by class name is always available, you can use it to avoid naming collisions 
 ```
-* When it comes to Multiple Inheritance there is one more concept called *mixins*. You might spot them in some libraries code, they are named somewhat like "<class_name>Mixin". They are classes that act as base classes carrying some features (i.e functions) that other classes are supposed to used. They do usually don't have instance variables (might have class variables), they are base classes which do not inherit other class (other than *object*) and are not intended to be instantiated, only sub-classed.
+* When it comes to Multiple Inheritance there is one more concept called *mixins*. You might spot them in some library code, they are named somewhat like "<class_name>Mixin". They are classes that act as base classes carrying some features (i.e functions) that other classes are supposed to use. They usually don't have instance variables (might have class variables), they are base classes which do not inherit another class (other than *object*) and are not intended to be instantiated, only sub-classed.
 * *Mixins* are a cleaner way to define some functions that other classes can use right away without defining them individually. This concept is not recognized by Python, so they act as a normal class.
 ```Python
-## Example: create a class with printing functionality and derive it by other classes
+## Example: create a class with printing functionality and subclass it
 class SomeMixin:
     def printer(self):
         print(f"a = {self.a}")
         print(f"b = {self.b}")
         print(f"total = {self.total}")
-    
     # can also have other methods
     def do_something(self):
         pass 
@@ -3067,7 +3561,7 @@ v = Subbtr(40, 10)
 v.perform_op()
 v.printer() # a = 40 # b = 10 # total = 30
 ```
-3. **Multilevel**: In Multi-Level a child class inherits a parent class and is also a parent class to other class.
+3. **Multilevel**: In Multi-Level a child class inherits a parent class and is also a parent class to another class.
 ```Python
 ## Example: inherit classes in a sequence like MyClass1 -> MyClass2 -> MyClass3
 class MyClass1:
@@ -3116,7 +3610,7 @@ print(MyClass3.mro()) # [<class '__main__.MyClass3'>, <class '__main__.MyClass2'
 # <class '__main__.MyClass1'>, <class 'object'>]
 print(child.para1, child.para2, child.my_para1) # 5 20 42
 ```
-4. **Hierarchical**: A parent/super class is inherited by more than one child/sub class. 
+4. **Hierarchical**: A parent/super class is inherited by more than one child/subclass. 
 ```Python
 ## Example: inherit a base class by 2 sub classes
 class MyParent:
@@ -3137,11 +3631,11 @@ my_instance2 = MyChild2()
 print(my_instance1.max_finder()) # 81
 print(my_instance2.min_finder()) # 12
 ```
-### 10.2 Abstraction
+### <strong>10.2 Abstraction</strong>
 * It is a process of hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods and classes must do and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although Python doesn't support interfaces Abstract classes should be enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body (they are empty methods). The abstract classes cannot be instantiated (its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error should be raised. The concept of abstract is not applicable to variables so they behave normally.
-* Python does not have *abstract* keyword like in Java and also does not directly supports abstract classes. But Python provides a module named *abc*, it can be used to define Abstract Base classes (ABC) which act about the same. 
-* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can be good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmer to implement/design other classes following some common interface.    
+* Python does not have *abstract* keywords like in Java and also does not directly support abstract classes. But Python provides a module named *abc*, it can be used to define Abstract Base classes (ABC) which act about the same. 
+* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can be good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmers to implement/design other classes following some common interface.    
 ```Python
 ## Example: create a abstract class and inherit it
 # import the 'ABC' class and 'abstractmethod' from abs module
@@ -3156,7 +3650,6 @@ class MyBase(ABC):
     @abstractmethod
     def change_values(self, a, b):
         pass
-
     # defining combination of method types   
     # Notice: 'abstractmethod' should always follow later 
     @staticmethod
@@ -3198,13 +3691,12 @@ my_concrete1.some_info() # This is MyConcrete1
 # 'MyConcrete2' will raise TypeError due to not implementing all abstract methods 
 # TypeError: Can't instantiate abstract class MyConcrete2 with abstract methods change_values, some_info
 my_concrete2 = MyConcrete2(10, 20, 30) 
-
-# you cannnot instantiate a abstract class 
+# you cannot instantiate a abstract class 
 my_base = MyBase() # TypeError: Can't instantiate abstract class
 ```
-### 10.3 Encapsulation
+### <strong>10.3 Encapsulation</strong>
 * Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data (of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
-* This technique is essential to protect private data to be accessed/misused form another class directly. To implement this we use Access Modifiers. They are used to define the access type of a variable inside a class. 
+* This technique is essential to protect private data to be accessed/misused from another class directly. To implement this we use Access Modifiers. They are used to define the access type of a variable inside a class. 
 * **Three Types of Access modifiers.** 
   1. **Public**: Can be accessed anywhere in the program. All variables are public by default.
   2. **Protected**: Only the current class and derived class can access them. Use "\_<variable_name>" to define them.
@@ -3297,7 +3789,7 @@ print(some_instance._MyClass__my_var3) # 42
 del some_instance._MyClass__my_var3 
 # causing AttributeError
 print(some_instance._MyClass__my_var3) # AttributeError
-# so in summary its not really a private variable, Python does not follow the concept 
+# so in summary it's not really a private variable, Python does not follow the concept 
 ```
 #### **10.3.1 property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
@@ -3305,9 +3797,9 @@ print(some_instance._MyClass__my_var3) # AttributeError
   * *fset* Optional[Callable]: The setter function.  
   * *fdel* Optional[Callable]: The deleter function.  
   * *doc* Optional[*str*]: Provide some information about this property.
-#####
-**Explanation**: It is a Pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variable using the '.' operator without really exposing the real (private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).</br></br>
-**Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are descriptors, they are a implementation of descriptors. Although one drawback using descriptors is that for creating a single variable a separate class has to be defined, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
+
+**Explanation**: It is a Pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variables using the '.' operator without really exposing the real (private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
+**Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are descriptors, they are an implementation of descriptors. Although one drawback using descriptors is that for creating a single variable a separate class has to be defined, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
 ```Python
 ## Example: implement encapsulation using property 
 class MyClass:
@@ -3318,14 +3810,14 @@ class MyClass:
       self.__my_var4 = 40 # private variable
 
   # getter method for '__my_var3'
-  # Notice: the property decorator, 'my_var' can be renamed to any other name
+  # Note: the property decorator, 'my_var' can be renamed to any other name
   @property 
   def my_var(self):
     print("Getter method called")
     return self.__my_var3
     
   # setter method for '__my_var3'
-  # if you don't want '__my_var3' value to be altered, don't define this 'setter' method     
+  # if you don't want '__my_var3' value to be altered, don't define this method     
   # Notice: the <VAR_NAME>.setter decorator  
   @my_var.setter
   def my_var(self, new_value):
@@ -3333,7 +3825,7 @@ class MyClass:
     self.__my_var3 = new_value    
   
   # deleter method for '__my_var3'
-  # if you don't want '__my_var3' value to be deleted, don't define this 'deleter' method     
+  # if you don't want '__my_var3' value to be deleted, don't define this method     
   @my_var.deleter
   def my_var(self):
     print("Deleter method called")
@@ -3346,17 +3838,18 @@ class MyClass:
   
   # or without using property decorator, just pass the functions to property function, example below  
   # my_var = property(my_getter, my_setter, my_deleter)
-  # thats it, my_var will have getter, setter, deleter methods
+  # that's it, my_var will have getter, setter, deleter methods
 
 # '__my_var3' is a private variable and 'my_var' is the variable that can be
 # used to modify '__my_var3' from outside the class     
+
 some_instance = MyClass()
 print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30, '_MyClass__my_var4': 40}
 
 # access using the property variables by <VAR_NAME>, calls the getter method
 print(some_instance.my_var) # Getter method called # 30
 print(some_instance.some_var) # 40
-# alter thier values using '=' operator, calls the setter method
+# alter their values using '=' operator, calls the setter method
 some_instance.my_var = 50 # Setter method called
 print(some_instance.my_var) # 50
 # remove the variables
@@ -3366,13 +3859,13 @@ del some_instance.my_var # Deleter method called
 some_instance.some_var = 90 # AttributeError
 del some_instance.some_var # AttributeError
 ```
-### 10.4 Polymorphism
-* Polymorphism means many forms. It is the ability to use a common interface/function to perform tasks on different types of objects. It can be also thought as a way to get rid of *if..else* or *switch* case when same type of function needs to be called on different objects.     
+### <strong>10.4 Polymorphism</strong>
+* Polymorphism means many forms. It is the ability to use a common interface/function to perform tasks on different types of objects. It can be also thought of as a way to get rid of *if..else* or *switch* when the same type of function needs to be called on different objects.     
 * **Two main types of Polymorphism.**
   1. **Static**: The behaviour is decided at Compile-time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided at Runtime, like in method/function overriding.
 #### **10.4.1 The Four types of Polymorphism.**
-1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in Python. As the methods with same name are overwritten by the newer ones. Usually other parameters are set to *None* and missing object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum).
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in Python. As the methods with the same name are overwritten by the newer ones. Usually other parameters are set to *None* and missing object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using functool's singledispatchmethod, [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum). *functool* is included in the standard library and the other two are required to be installed separately using "pip".
 ```Python
 ## Example 1: simple Method Overloading in Python
 class MyClass:
@@ -3401,20 +3894,43 @@ class MyClass:
 my_instance = MyClass() 
 my_instance.printer(20, 30, "Bob") # Bob your total is 50
 my_instance.printer(20, 30) # Your total is 50
-# now everything works and this the preferred way in Python
+# now it works
 ```
-2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function (which is a special function in Python) and changes its functionality (does something and returns something), that functionality is applicable to that class/object only. Changing operator's behaviour for a specific object can be done by overloading a operator's function.
+* Example using *multipledispatch*.
 ```Python
-## Example: overload the addition and subtractor operator in MyClass
+## Example: simple Method Overloading using multipledispatch
+## Note: you need to first install multipledispatch using "pip install multipledispatch" command 
+from multipledispatch import dispatch
+class MyClass:
+    # decorate with dispatch and pass the desired data type for method
+    # its important because using it dispatch will figure out the signature 
+    @dispatch(int, int)
+    def printer(self, a, b):
+        total = a + b
+        print(f"Your total is {total}")
+
+    @dispatch(int, int, str)
+    def printer(self, a, b, name):
+        total = a + b
+        print(f"{name} your total is {total}")
+      
+my_instance = MyClass() 
+# now calling methods with parameters
+my_instance.printer(20, 30, "Bob") # Bob your total is 50
+my_instance.printer(20, 30) # Your total is 50
+```
+2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function (which is a special function in Python) and changes its functionality (does something and returns something), that functionality is applicable to that class/object only. Changing an operator's behaviour for a specific object can be done by overloading an operator's function.
+```Python
+## Example: overload the addition and subtraction operator in MyClass
 class MyClass:
   def __init__(self, *args):
     self.args = args
   
   # this is a special method to overload '+' operator
   def __add__(self, my_obj):
-    # Note: my_obj is the other object Python passes when '+' operator is called
-    """Define functionality behaviour for '+' operator inside this method, the input parameter can be 
-    of any type as required. Just the functionality defined should support it."""
+    # Note: my_obj is the other object Python passes when the '+' operator is called
+    """Define functionality behaviour for the '+' operator inside this method, 
+    the input parameter can be of any type as required. Just the functionality defined below should support it."""
     return sum(self.args) + sum(my_obj.args)
     
   # similarly this is a special method to overload '-' operator
@@ -3428,11 +3944,10 @@ my_ins2 = MyClass(10, 70, 20, 50)
 print(my_ins1 + my_ins2) # 324
 # or call with class by passing a self and my_obj 
 print(MyClass.__add__(my_ins1, my_ins1)) # 324
-
 # invoking the __sub__() method of MyClass
 print(my_ins1 - my_ins2) # 12
 ```
-3. **Method overriding**: Use same named methods but inside different classes. Two classes can have same named methods, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred as Duck Typing. It is a feature of dynamic languages, it means directly (by not caring about exceptions) calling methods on objects without checking their types.  
+3. **Method overriding**: Use same named methods but inside different classes. Two classes can have same named methods, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred to as Duck Typing. It is a feature of dynamic languages, it means directly (by not caring about exceptions) calling methods on objects without checking their types.  
 ```Python
 ## Example: create two classes with same named methods and a interface function to call these methods
 class ListHandler:
@@ -3479,14 +3994,15 @@ class MyClass:
     # return " ".join((str(a) for a in self.args))
 
 my_ins = MyClass(10, 20, 30, 40, 50)
-# now as the' __len__()' is implemented this will return the output
+# now as the __len__() is implemented this will return the output
 print(len(my_ins)) # 5
 # this will return address of this object by default
 print(my_ins)
-# uncomment '__str__()' and re-run to see change in its functionality
+# uncomment __str__() and re-run to see change in its functionality
 ```
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
+* [Fluent Python](https://www.oreilly.com/library/view/fluent-python/9781491946237/)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
 * [Python built-in modules](https://docs.python.org/3/py-modindex.html)
 * [Python built-in functions](https://docs.python.org/3/library/functions.html)
