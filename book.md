@@ -220,13 +220,8 @@ text = "This is text 1." \
 output = something
          .some_fun()
          .calling_other_fun()
-
-## Ternary operator: syntax -> True if condition else False
-value = 40
-result = "Yes" if value > 10 else "No"
-print(result) # "Yes"
-
-# Apart from these there are more syntactic sugars in Python such as comprehensions, incrementing & derementing etc     
+         
+# Apart from these there are more syntactic sugars in Python such as ternary operator, comprehensions, incrementing & derementing etc
 ```
 ### <strong>1.8 Statements</strong>
 * Are basically every line/block of code that Python interpreter executes. There are two types, simple and compound statements.
@@ -322,26 +317,27 @@ def some_fun():
   **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/).
 * Similar to time complexity there is also space complexity, it is used to measure how the memory of a function increases with the size of input.
 
-## 2. Data Types
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned *int* or *float* or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another module (we will cover this later), their names should be in capital letters and then later they are imported inside the current module to be used. </br>
+## <strong>2. Data Types </strong>
+Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as we saw before variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned *int* or *float* or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another *.py* file in capital letters and then they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. *int*, *float*, double (n/a in Python), char (n/a in Python), bool etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array (*list* in Python), Record (*tuple* in Python), Union (*dict* in Python), Strings (*str* in Python), Functions, Pointers (n/a in Python), Structures (n/a in Python) etc.
-  3. **Abstract**: They define operations on object using functions but without specifying the exact implementations of those functions (the underlying implementation can differ from languages but the working has to stay same), Eg. Stack, Queue, Map, Tree, Graphs etc.
-#### Mutable and Immutable types inside Python.
+  3. **Abstract**: They define operations on objects using functions but without specifying the exact implementations of those functions (the underlying implementation can differ from languages but the working has to stay the same), Eg. Stack, Queue, Map, Tree, Graphs etc.
+#### Mutable and Immutable types in Python.
   1. **Immutable**: Values cannot be altered/added/removed once created or are read-only types once created, Eg. *int*, *float*, *complex*, *bool*, *None*, *str*, *tuple*, *frozenset*.
   2. **Mutable**: Values can be altered/added/removed after creation, Eg. *list*, *dict*, *set*.
-####  
-Data types explained below are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#22-text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#23-boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#24-binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#25-user-defined-data-type). For simplicity I've arranged rest of them in [Data Structure's](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section. Later we'll take a look at the [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#26-none-object) object and some built-in functions.
-### 2.1 Three Numeric Types
-1. **Interger** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* and it can be of any size. 
-2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* as it is a double precision floating point number. 
-3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is normal number, the second part is imaginary number which should be followed by j. </br>
+
+Data types explained below are [int](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [float](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [complex](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#21-three-numeric-types), [str](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#22-text-type-str), [bool](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#23-boolean-type-bool), [byte](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#24-binary-types-byte) and [User-defined Data Type](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#25-user-defined-data-type). Later we'll take a look at the [None](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#26-none-object) object and some built-in functions. For simplicity I've arranged the rest of them in the [Data Structure](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-data-structures) section. Alright, let's begin.
+### <strong>2.1 Three Numeric Types</strong>
+1. **Integer** (int): Numbers that do not have decimal values. In Python, *int* is also a *long* type and it can be of any size. 
+2. **Float** (float): Numbers that do have decimal values. In Python, *float* is also a *double* type as it is a double precision floating point number. 
+3. **Complex** (complex): Numbers that have two parts, real and imaginary. First part is a normal number, the second part is an imaginary number which should be followed by j.
 * Creating numeric types. 
 ```Python
 # here my_int is an operand, 42 is a literal and its data type is int
 my_int = 42 # int
 print(type(my_int)) # <class 'int'>
+
 my_float = 3.0 # float
 print(type(my_float)) # <class 'float'>
 my_complex = 4.22 + 20j # complex
@@ -378,10 +374,10 @@ print(int(my_float)) # 3
 # float to str
 print(str(my_float)) # 3.0
 ```
-### 2.2 Text Type (str)
-* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of character data. *str* (String types) hold sequence of characters and are also called as string literals. 
-* They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific sub-string. 
-* Creating text types. 
+### <strong>2.2 Text Type (str)</strong>
+* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of character data. *str* (String types) hold sequences of characters and are also called string literals. 
+* They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific substring. 
+* Creating text types.
 ```Python
 # Single Quote: insert string value inside single inverted commas  
 text = 'strings can be single quoted'
@@ -425,6 +421,7 @@ sample_str = "This contain some characters"
 ## Indexing: accessing item/character from string
 print(sample_str[0]) # T
 print(sample_str[2]) # i
+
 # negative indexing: starts from 1 and not 0
 print(sample_str[-1]) # s
 print(sample_str[-5]) # c
@@ -433,8 +430,8 @@ print(sample_str[-5]) # c
 for x in sample_str:
   print(x)
 
-## Slicing: for creating sub-strings, syntax is [start_index:end_index:step] 
-# start_index is starting index of sub-string, default is 0
+## Slicing: for creating substrings, syntax is [start_index:end_index:step] 
+# start_index is starting index of substring, default is 0
 # end_index is ending index, (end_index - 1) is considered, default is last index
 # step is the gap between characters, default is 1 
 my_string = "This is some string."
@@ -464,7 +461,7 @@ print(my_string.index("it")) # 8
 # Searches given key string(which is 'it' here), replaces with 
 # second key(which is 'not it' here) string and then returns the final string
 print(my_string.replace("it","not it")) # this IS not it.
-# joins a list of strings to a single string with given string key(which is '.' here)
+# joins a list of strings to a single string with a given string key(which is '.' here)
 print(".".join(['hey','is','this','it?'])) # hey.is.this.it?
 ```
 * Some functions on string.
@@ -492,7 +489,7 @@ print(float(my_string1)) # 20.0
 # str to bytes
 print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
-### 2.3 Boolean Type (bool)
+### <strong>2.3 Boolean Type (bool)</strong>
 * Has only 2 values *True* and *False*. *True* is also 1, so 4 + *True* is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as Truthy & Falsy values when evaluating.
 * Creating boolean types. 
 ```Python
@@ -509,18 +506,18 @@ print(bool(-40), bool(0), bool(40)) # True False True
 # str to bool, empty string is False, rest is True
 print(bool(""), bool("This is string")) # False True
 ```
-### 2.4 Binary Types (byte)
+### <strong>2.4 Binary Types (byte)</strong>
 #### 2.4.1 Little bit about Computer Memory
-A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a Kilo Byte (KB) is 1024 bytes, a Mega Bytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains characters data and Binary files contain well, binary data. For example images, documents, executables & compressed files, compiled programs etc are called binary files. Now to store characters (Text files) in a computer, encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to the letters, numbers and symbols used in languages or on keyboards.
+A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically a group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a KiloByte (KB) is 1024 bytes, a MegaBytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains character data and Binary files contain well.. binary data. For example images, documents, executables & compressed files, compiled programs etc are called binary files. Now to store characters (Text files) in a computer, encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to the letters, numbers and symbols used in languages or on keyboards.
 
-#### 2.4.2 Two functions to convert a string to bytes.
+#### 2.4.2 Two functions to convert a string to bytes
 #### 1. bytes(source, encoding, errors) => bytes
 **Parameters**:</br>
   * *source* *object*: Any object.
   * *encoding* *str*: Provide encoding scheme for the source string.
   * *errors* *str*: Way to handle errors for source data.
-#####
-**Explanation**: This function creates a immutable object consisting of Unicode (character set containing all major languages characters) 0-256 characters.
+
+**Explanation**: This function creates an immutable object consisting of Unicode (character set containing all major languages characters) 0-256 characters.
 * Creating byte types. 
 ```Python
 ## create a bytes object
@@ -536,8 +533,8 @@ print(my_bytes) # b'\x00\x00\x00\x00'
 
 ## indexing a bytes object returns a Unicode of a character
 print(data[0], chr(data[0])) # 84 T
-```
-* Type conversion.
+``` 
+* Type conversion. 
 ```Python
 ## create bytes object using a iterable objects
 print(bytes([1,2,3])) # b'\x01\x02\x03'
@@ -548,7 +545,7 @@ print(bytes((80,50,60))) # b'P2<'
   * *source* object: Any object.
   * *encoding* *str*: Provide encoding scheme, if source is string.
   * *errors* *str*: Way to handle errors, if the source is a string.
-#####
+
 **Explanation**: This function returns a mutable version of bytes object.
 * Creating bytearray types. 
 ```Python
@@ -562,8 +559,8 @@ print(type(output)) # <class 'bytearray'>
 output[0] = 30
 print(output) # bytearray(b'\x1e\x00\x00\x00')
 ```
-### 2.5 User-defined Data Type
-* User defined data type, are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does has is classes, which can be utilized to do the same.
+### <strong>2.5 User-defined Data Type</strong>
+* User defined data types are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does have is classes, which can be utilized to do the same.
 * Create a user defined data type.
 ```Python
 class MyDataType:
@@ -590,13 +587,13 @@ my_dt.x = "THis can also become a string"
 # The problem is you can't define type of data or length of an array(list) in Python
 # For such situations you can create your own methods for inserting
 # where you can check the type of data that is fed in
-# But will not that be a Data structure? Nope?
+# But will it not be a Data structure? Nope?
 ```
 * Create a slightly better data type that can check the inputs.  
 ```Python
 class MyDataType:
   def __init__(self, x, y):
-    """__init__ is antoher 'magic method', which enables usage of constructor in python, more on this later."""
+    """__init__ is another 'magic method', which enables usage of constructor in python, more on this later."""
     # initialize here
     if not isinstance(x, int) or not isinstance(y, str):
       raise TypeError() # raise error if type does not match
@@ -624,6 +621,7 @@ class MyDataType:
 my_dt = MyDataType(10, "Hello")  
 # insert values
 my_dt.insert(15, "Foo") 
+
 print(my_dt) # 15 Foo
 my_dt.insert(20) 
 my_dt.insert(y="Bar")
@@ -631,9 +629,9 @@ print(my_dt) # 20 Bar
 # raising type error if data type is not what we expected
 my_dt.insert(y=20) # TypeError: Should be a String
 ```
-#### 2.6 *None* Object
-* *None* is similar to *null* in C/C++/Java it indicates that something has no value, but there are some differences. In in those languages *null* refers to a pointer that doesn't point to anything and it is also *0*, not in Python. In Python, *None* is not "0", its a object itself. It is a object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
-* *None* is often use in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
+### <strong>2.6 *None* Object</strong>
+* *None* is similar to *null* in C/C++/Java, it indicates that something has no value, but there are some differences. In those languages *null* refers to a pointer that doesn't point to anything and it is also *0*, not in Python. In Python, *None* is not "0", it's an object itself. It is an object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
+* *None* is often used in absence of value in a variable, as a default value in a function parameter and is returned by default by a function if no return statement is provided or any condition is met.
 * Creating a *None* type.
 ```Python
 n = None
@@ -647,11 +645,12 @@ if n: # same as "if n != None:"
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
-#### 2.7 Some built-in functions: [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
+### <strong>2.7 Some related built-in functions</strong>
+ Let's check some functions which we'll be using later on such as [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
 #### 1. type(object) => *str*
 **Parameters**:</br>
   * *object* object: Any object.
-#####
+
 **Explanation**: This function is used for type checking, it returns the class name of an object.
 ```Python
 a = "What?"
@@ -663,8 +662,8 @@ print(type(b)) # float
 **Parameters**:</br>
   * *object* object: Any object.
   * *class* class: Any class.
-#####
-**Explanation**: This function checks if a object is an instance of a particular class. Returns True/False.
+
+**Explanation**: This function checks if an object is an instance of a particular class. Returns True/False.
 ```Python
 a = 23
 print(isinstance(a, int)) # True
@@ -674,7 +673,7 @@ print(isinstance(a, str)) # False
 #### 3. id(object) => int
 **Parameters**:</br>
   * *object* object: Any object.
-#####
+
 **Explanation**: This function returns the object identity which is the object’s address in memory. The returned object id varies across programs/systems, so will not be the same anytime. 
 ```Python
 my_float = 50.0
@@ -684,8 +683,8 @@ print(id(my_float)) # 1875526208176
 #### 4. dir(object) => list
 **Parameters**:</br>
   * *object* object: Any object.
-#####
-**Explanation**: Returns a *list* containing names of variables/functions/class in a object. This function also works on modules, as modules are also objects.
+
+**Explanation**: Returns a *list* containing names of variables/functions/class in an object. This function also works on modules, as modules are also objects.
 ```Python
 ## names under current local scope
 print(dir())
@@ -695,29 +694,31 @@ print(dir(int))
 print(dir(my_obj))
 ```
 
-## 3. Data Structures
-#### Wikipedia suggests </br>
+## <strong>3. Data Structures</strong>
+#### Wikipedia suggests
   > In computer science, a data structure is a data organization, management and storage format that enables efficient access and modification.
 
-Simply put data structures are used to organize data in a way that it can be stored/retrieved efficiently. Data can be any data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. In Python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in background. 
+Simply put data structures are used to organize data in a way that it can be stored/retrieved efficiently. Data can be any data types or even other data structures. Different data structures have their advantages/disadvantages in terms of accessing/storing/removing data speed, so they should be used as per the task/ease. They can also be called literal collections. In Python, you can't/don't need to declare the size of the built-in data structures beforehand, they are dynamically scaled/released automatically in the background. 
 #### Composite Data Type, Abstract Data Type and Data Structures differences.
   1. Composite Data Types are data structures but not all data structures are composite types.
-  2. Abstract Data Type define only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
-  3. Data structure are the actual coded/coding implementation of the pseudo code i.e they are implemented in a programming language's code.
-#### 
-The built-in Data Structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Additionally we'll also take a look at some of their alternatives. Later we'll check out some more built-in functions which provide additional useful operations.
-### 3.1 List
-* By the name it may seem a *LinkedList* data structure but its not, *list* is a array (Dynamic Array) like implementation in Python. *list* is a ordered collection of sequence of items, which can be of any data type or objects.
-* It is Mutable (values can be changed). Indexing, Slicing is supported and it is a iterable object (more on this later). 
-* They are preferred in most use cases. Where indexing, looping over some items is required lists are used. 
-* Creating a list.
+  2. Abstract Data Type defines only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
+  3. Data structures are the actual coded/coding implementation of the pseudo code i.e they are implemented in a programming language's code.
+ 
+The built-in Data Structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Additionally we'll also take a look at some of their alternatives. Later we'll check out some more built-in functions which provide additional useful operations. Let's get to it.
+### <strong>3.1 List</strong>
+* By the name it may seem a *LinkedList* data structure but its not, *list* is an array (Dynamic Array) like implementation in Python. *list* is an ordered collection of sequence of items, which can be of any data type or objects.
+* *List* is Mutable (values can be changed) and an *iterable* object (can be iterated using loops, more on this later). It supports Indexing, Slicing, and also Comprehensions, which is a short way of creating a sequence.  
+* They are preferred in most use cases. They are regularly used for storing, indexing & iterating elements. 
+* Creating a *list*.
 ```Python
 # insert items inside '[]' brackets
 my_list = [1,1,3,'a','cab boy',4.0]
 # or create empty list
-some_list = [] # using list() function
+some_list = [] 
+# or using the list() function
+some_list = list()
 ```
-* Basic operations on list.
+* Basic operations on a *list*. 
 ```Python
 my_list = [23,65,12,76,10]
 
@@ -745,7 +746,7 @@ if 20 in my_list: # similar to "if some_var in my_list:" where "some_var = 20"
 if 200 in my_list:
   print('printed')
 ```  
-* Joining and multiplying list.
+* Joining and multiplying operations on a *list*.
 ```Python
 ## Joining: join two or more lists
 # using '+' operator
@@ -759,13 +760,14 @@ print(my_list1) # [2, 4, 5, 6, 34, 7, 4, 2, 3, 6, 2]
 eg_list = ['This',30]
 print(eg_list*3) # ['This', 30, 'This', 30, 'This', 30]
 ```
-* Indexing, iterating, slicing operations on *list*.
+* Indexing, iterating, slicing operations on a *list*.
 ```Python
 my_list = [1,1,3,'a','cab boy',4.0]
 my_list1 = [45,23,5,6,34,6,22]
 
 ## Indexing: for accessing/altering elements
 var_1 = my_list1[0] # as usual 0 is the first element
+
 var_2 = my_list1[1]
 print(var_1, var_2) # 45, 23
 # altering values in list
@@ -792,7 +794,7 @@ print(my_list[:-4]) # [3, 'a', 'this way']
 # reverse a list
 print(my_list[::-1]) # [1, 2.0, 1.0, 'cab', 'this way', 'a', 3]
 ```
-* List comprehension.
+* *list* comprehension.
 ```Python
 ## List comprehension: create a new list in a single line 
 # Note: range function returns sequence of integers, we'll learn more on range later 
@@ -801,17 +803,20 @@ my_list1 = [x for x in range(10)]
 my_list1 = []
 for x in range(10):
     my_list1.append(x)
-# list comprehension saves lines of code
+
+# comprehensions are syntactic sugar, they save lines of code
 my_list2 = [[y for y in range(x)] for x in range(5)] # it can be nested
 my_list3 = [abc for abc in range(10) if abc > 5] # if condition
 my_list4 = [True if z > 5 else False for z in range(10)] # if with else condition
-# try printing each of the list
+# Notice: the syntax difference between if and if..else clauses
+# also try printing each of the list
 ```
-* Copy a *list* example.
+* Copy a *list* example. 
 ```Python
 my_list = [1,2,3,4,5,6]
 new_copy = my_list
 del new_copy[0] # deleting first item
+
 print(my_list, new_copy) # [2, 3, 4, 5, 6] [2, 3, 4, 5, 6]
 # the deletion is reflected to of the lists because they refer to same object
 # this behaviour is exclusive to mutable objects, the catch from 'Multiple Target assignment'
@@ -841,7 +846,7 @@ print(my_list1.pop(5)) # 80
 my_list1.clear() # list becomes empty
 print(my_list1) # []
 ```
-* Some functions on *list*.
+* Some functions on the *list*.
 ```Python
 my_list1 = [10,50,40,50,60,80,15]
 
@@ -859,14 +864,14 @@ print(sum([10, 20])) # 30
 my_list = list((1,2,3,4,5)) # tuple to list
 my_list = list({1,2,3,4,5}) # set to list
 ```
-* **Time Complexity**</br>
+* **Time Complexity** </br>
 indexing, appending (to the end) and get_length are O(1).</br>
-deleting, poping, inserting (at position), iteration are O(n).</br>
+deleting, poping, inserting (at position), iteration are O(n).
 #### 3.1.1 Array
-* *list* allows to hold data of any data-type/object which is great, but this means the data is usually less tightly coupled, so they end up taking more storage. To hold large amount of data efficiently one can utilize the *array* types.
-* Similar to *list* they are mutable, iterables, they support indexing, slicing, they even share almost all *list* operations. The difference is they allow storing data of limited types only such as characters, integers or floating point numbers and one data type per array. It has to be one of in C language's Data-Types (eg. *signed int*/*unsigned float*).
+* *list* allows to hold data of any data-type/object which is great, but this means the data is usually less tightly coupled, so they end up taking more storage. To hold a large amount of data efficiently one can utilize the *array* types.
+* Similar to *list*s they are mutable, iterables, they support indexing, slicing, they even share almost all *list* operations. The difference is they allow storing data of limited types only such as characters, integers or floating point numbers and one data type per array. It has to be one of in C language's Data-Types (eg. *signed int*/*unsigned float*).
 * They are not part of the core Python, so they need to be imported from the *array* module and are required to be declared first. When declaring we need to define the type of data the *array* can contain, it can be one of types mentioned in the table shown [here](https://docs.python.org/3/library/array.html#module-array). 
-* Create a array.
+* Creating an array.
 ```Python
 import sys
 import array
@@ -885,9 +890,9 @@ print(char_array) # array('u', 'somestr')
 # check their memory usage 
 print(sys.getsizeof(my_list)) # 152
 print(sys.getsizeof(my_array)) # 88
-# we can see difference in bytes, array consumes less space compared to list
+# we can see a difference in bytes, array consumes less space compared to list
 ```
-* Indexing, iterating and slicing operations on *array*.
+* Indexing, iterating and slicing operations on an *array*.
 ```Python
 import array
 my_array = array.array('i', [5,7,11,6,2,8,1])
@@ -917,19 +922,17 @@ print(my_array.itemsize) # 4
 my_array.fromlist([67,87])
 print(my_array) # array('i', [5, 3, 5, 2, 7, 8, 67, 87])
 ```
-### 3.2 Tuple
-* Are ordered collection of sequence of items similar to *list*s. But unlike *list* they are Immutable (items cannot be altered/deleted), so they are preferred when data should not be changed. They are data efficient than *list* and are slightly faster than *list*. Indexing, Slicing is supported and they are iterable objects just like lists, but there no *tuple* comprehension (it becomes a generator). 
-* They are mostly used to store different data type items, unlike *list* which are mostly used for storing similar items, but either way is also valid. 
-* Create a *tuple*.
+### <strong>3.2 Tuple</strong>
+* Are ordered collections of sequence of items similar to *list*s. But unlike *list*s they are Immutable (items cannot be altered/deleted), so they are preferred when data should not be changed. They are data efficient than *list* and are slightly faster than *list*. Indexing, Slicing is supported and they are iterable objects just like lists, but there is no *tuple* comprehension (it becomes a generator). 
+* They are mostly used to store different data type items, unlike *list*s which are mostly used for storing similar items, but either way is also valid. 
+* Creating a *tuple*.
 ```Python
 # insert items inside '()' brackets
 my_tuple = (1,2,3,'we','are','one',5.0)
-# this is also valid but using the parenthesis is cleaner 
-my_tuple = 1,2,3,'we','are','one',5.0
 # create empty tuple
 some_tuple = () # or using tuple() function
 ```
-* Basic operations.
+* Basic operations on a *tuple*.
 ```Python
 ## tuple is immutable, there is no append()/remove(), can't use 'del' like in list
 # so to add a element join two tuples, and assign it to the previous/new variable
@@ -940,7 +943,7 @@ print(my_tuple) # (1, 2, 3, 4, 5)
 some_tuple = (5) # this will give the type of variable inside parenthesis and not tuple, here 'int'
 print(type(some_tuple)) # <class 'int'>
 ```
-* Joining and multiplying *tuple*.
+* Joining and multiplying operations on a *tuple*.
 ```Python
 ## Joining: join two or more tuples
 my_tuple1 = (34,65,23) + (34,34)
@@ -950,18 +953,18 @@ print(my_tuple1) # (34, 65, 23, 34, 34)
 my_tuple1 = (34,65,23) * 2
 print(my_tuple1) # (34, 65, 23, 34, 65, 23)
 ```
-* Indexing, iterating and slicing operations on *tuple*.
+* Indexing, iterating and slicing operations on a *tuple*.
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
 ## Indexing: accessing item/character from tuple
 my_var = my_tuple[0] # okay
-# my_tuple[0] = 23 # not okay because Immutable, raises TypeError
+my_tuple[0] = 23 # not okay because Immutable, raises TypeError
 
 ## Iterating: going over item by item from a tuple
-# for var in my_tuple:
-#   print(var) # (1,2,3,'we','are','one',5.0)
-# checking if some value is present in tuple
+ for var in my_tuple:
+   print(var) # (1,2,3,'we','are','one',5.0)
+# checking if some value is present using the 'in' operator
 if 5.0 in my_tuple:
   print('printed')
 
@@ -972,6 +975,7 @@ print(my_tuple[:3]) # (1,2,3)
 print(my_tuple[:5:2]) # (1,3,'are')
 # negative indexing
 print(my_tuple[:-4]) # (1,2,3) 
+print(my_tuple[:-2:2]) # (1, 3, 'are')
 # reverse a tuple
 print(my_tuple[::-1]) # (5.0, 'one', 'are', 'we', 3, 2, 1)
 ```
@@ -991,10 +995,10 @@ a,b = b,a
 my_tuple1 = (3,2,6,2,5,3,1,1)
 # Returns number of occurrences of value.
 print(my_tuple1.count(3)) # 2
-# Returns first index of value.
+# Returns the first index of value.
 print(my_tuple1.index(2)) # 1
 ```
-* Some functions on *tuple*.
+* Some functions on *tuple*s.
 ```Python
 my_tuple = (3,6,1,8,2,3)
 
@@ -1009,23 +1013,24 @@ print(len(my_tuple)) # 6
 my_tuple = tuple([1,2,3,4,5]) # list to tuple
 my_tuple = tuple({1,2,3,4,5}) # set to tuple
 ```
-* **Time Complexity**</br>
-indexing, appending (to the end) and get_length are O(1).</br>
+* **Time Complexity** </br>
+indexing, appending (to the end) and get_length are O(1). </br>
 deleting, poping, inserting (at position), iteration are O(n).
 #### 3.2.1 NamedTuple
-* As the name suggest, they are named *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing the class variables). 
-* They are sub-class of *tuple*. When instantiated they return a new *tuple* sub-class named \<typename\>. This new sub-class can be used to create tuple-like objects which are also immutables, indexable, iterables and are as data efficient as regular *tuple*.  
+* As the name suggests, they are "named" *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing the class variables). 
+* They are a subclasses of a *tuple*. When instantiated they return a new *tuple* subclass named \<typename\>. This new subclass can be used to create tuple-like objects which are also immutables, indexable, iterables and are as data efficient as a regular *tuple*.  
 * They are not part of core Python and need to be imported from the *collections* module. They provide more readable, self-documenting code over the regular *tuple* where they are intended. 
-* So why not use custom class anyway? If you're okay with immutable type, *nametuple* save you most of the hustle to write the code for operations (like iterable, indexing) with the convenience of naming access. 
-* Create a *namedtuple*.
+* So why not use custom class anyway? If you're okay with immutable types, *namedtuple* saves you most of the hassle of writing the code for operations (like iterable, indexing) with the convenience of naming access. 
+* Creating a *namedtuple*.
 ```Python
 from collections import namedtuple
 import sys
 
-# create a tuple sub-class 
-# first parameter is typename, string which is name of tuple sub-class
-# second parameter is field_names, iterable/string which has names of fields/variables/data tuple will contain 
+# first parameter of namedtuple is typename: string which is name of tuple subclass
+# second parameter is field_names: iterable/string  which has names of fields/variables/data tuple will contain 
 Name_tup = namedtuple("mynamedtuple", ['a', 'b'])
+# or provide names from a single string (separated by space)
+Name_tup = namedtuple("mynamedtuple", "a b")
 # print the class name 
 print(Name_tup) # <class '__main__.mynamedtuple'>
 
@@ -1045,10 +1050,10 @@ print(name_tup1 == (42, 65)) # True
 # comparing their sizes
 print(sys.getsizeof(name_tup1), sys.getsizeof((42, 65))) # 56, 56
 
-# like regular tuple immuatable
+# like regular tuple immutable
 name_tup1[0] = 32 # TypeError
 ```
-* Indexing, iterating and slicing operations on *namedtuple*.
+* Indexing, iterating and slicing operations on a *namedtuple*.
 ```Python
 from collections import namedtuple
 
@@ -1072,25 +1077,26 @@ from collections import namedtuple
 
 Name_tup = namedtuple("mynamedtuple", ['aa', 'bbk', 'cab'])
 name_tup1 = Name_tup(42,60,52)
-# convert to dict
+# convert to dictionary
 print(name_tup1._asdict()) # {'aa': 42, 'bbk': 60, 'cab': 52}
 # replace the value, creates and returns a new mynamedtuple instance
 print(name_tup1._replace(aa=32)) # mynamedtuple(aa=32, bbk=60, cab=52)
 ```
-### 3.3 Dict
-* Longform Dictionary in Python, are unordered collection of key & value pair of items. *dict* are mutable, iterable, but Indexing/Slicing doesn't work as their order don't matter. 
-* *dict* use Hashtable to store data with a key & value. A hashtable uses a hash function which given a key generates a index to an array like Data Structure, which store the actual values. So instead of indexing, these keys are used to access values. This behaviour help hashmap to do almost all operations in O(1) making them very efficient for storing and retrieval operations. 
-* Keys in *dict* should be hashable i.e have a hash value that does not change throughout its lifetime, all immutable objects are hashables. Values have no restriction, they can be any object. 
+### <strong>3.3 Dictionary</strong>
+* Dictionary short form *dict* in Python, is an unordered collection of key & value pairs of items. Dictionaries are mutable, iterable, but Indexing/Slicing doesn't work as their order doesn't matter. 
+* A dictionary uses Hashtable to store data with a key & value.A hashtable uses a hash function which, given a key, generates an index to an array like Data Structure, which stores the actual values. So instead of indexing, these keys are used to access values. This behaviour helps hashmap to do almost all operations in O(1) making them very efficient for storing and retrieval operations.
+* Keys in a dictionary should be hashable i.e have a hash value that does not change throughout its lifetime, all immutable objects are hashables. Values have no restriction, they can be any object. 
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
-* Create a *dict*.
+* Creating a dictionary.
 ```Python
 # insert keys & values inside '{}' brackets
 # Note: key & value are separated with ':' colon. i.e key:value
+
 my_dict = {'e':23, 'w':65, 'q':52}
-# create empty dict
+# create empty dictionary
 my_dict = {} # or using dict() function
 ```
-* Basic operations.
+* Basic operations on a dictionary.
 ```Python
 my_dict = {'raf': 23, 'soe': 65, 'qr': 52, 10: 20}
 ## add operation
@@ -1116,13 +1122,13 @@ print(my_dict.get("ar", None)) # None
 if 'az' in my_dict:
   print('printed')
 ```
-* Joining and iterating operations on *dict*.
+* Joining and iterating operations on a dictionary.
 ```Python
 my_dict = {'a':34, 'b': 42}
 my_dict1 = {'z':5, 'y':3, 'x':4}
 
-## Joining: join two dicts, '+' operator is not supported
-# using the update method of dict
+## Joining: join two dictionary, '+' operator is not supported
+# using the update method of dictionary
 my_dict.update(my_dict1)
 print(my_dict) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
 # or use "my_dict | my_dict1" 
@@ -1130,12 +1136,12 @@ print(my_dict | my_dict1) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
 # or unpack them in a new dict 
 print({**my_dict, **my_dict1}) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
 
-## Iterating: going over item by item from a dict
+## Iterating: going over item by item from a dictionary
 # use the items method for both keys, values unpacking
 for k,v in my_dict1.items(): 
    print(k, v) # {'z':5, 'y':3, 'x':4}
 ```
-* *dict* comprehension. 
+* Dictionary comprehension. 
 ```Python 
 my_dict = {x:x*x for x in range(5)} # generating keys and values on the go
 print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
@@ -1143,46 +1149,51 @@ print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
 my_keys = ['a', 'b', 'c']
 my_values = [1,2,3]
 my_dict = {k:v for k,v in zip(my_keys, my_values)}
+print(my_dict) # {'a': 1, 'b': 2, 'c': 3}
+# similar to list's comprehension, dictionaries also support if..else clause inside comprehension
+# create a dictionary without a key 'a' 
+my_dict = {k:v for k,v in zip(my_keys, my_values) if k is not 'a' }
 ```
-* Some methods of *dict*.
+* Some methods of dictionaries.
 ```Python
 my_dict1 = {'a':1, 'b':2, 'c':3}
 my_dict2 = {'z':50, 'y':40, 'x':30}
 
-# returns a dict_keys object, it contains dict's keys, it is iterable, you can also convert it to list
+# returns a dict_keys object, it contains dictionary's keys, it is iterable, you can also convert it to list
 print(my_dict1.keys()) # dict_keys(['a', 'b', 'c'])
-# returns a dict_values object, it contains dict's values, it is iterable, you can also convert it to list
+# returns a dict_values object, it contains dictionary's values, it is iterable, you can also convert it to list
 print(my_dict1.values()) # dict_values([1, 2, 3])
 # returns a dict_items object, has keys & values, you know the rest
 print(my_dict1.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
 # removes item(key,value) given key, which is 'a' here and returns value
 print(my_dict1.pop("a")) # 1 
-my_dict1.clear() # removes all items of dict
+my_dict1.clear() # removes all items of dictionary
 ```
 * Type conversion examples.
 ```Python
 keys = [1,2]
 values = [2,3]
-my_dict = dict([keys, values]) # list to dict
-my_dict = dict(((1,2), (2,3))) # tuple to dict
+my_dict = dict([keys, values]) # list to dictionary
+my_dict = dict(((1,2), (2,3))) # tuple to dictionary
 ```
-* **Time Complexity**</br> Dicts are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n).</br>
-insert, add, delete is O(1).</br>
+* **Time Complexity** </br>
+Dictionaries are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n). </br>
+insert, add, delete is O(1). </br>
 iteration is O(n).
-### 3.4 Set
-* Are unordered collection of non repeating sequence of immutable items. Similar to *dict*, *set* is mutable, iterable, but Indexing/Slicing doesn't work. 
-* Items/Members inside a *set* should be hashable (must have a *\_\_hash\_\_()* method), its hash value must never changes during its lifetime. Numbers, strings & *tuple* (with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. 
+### <strong>3.4 Set</strong>
+* Are unordered collections of non repeating sequences of immutable items. Similar to dictionary, *set* is mutable, iterable, but Indexing/Slicing doesn't work. 
+* Items/Members inside a *set* should be hashable (must have a *\_\_hash\_\_()* method), its hash value must never change during its lifetime. *int*, *float*, *str* & *tuple* (with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. 
 * Sets are used to maintain unique values and in membership testing i.e check if the variable is already present in the *set*. Like in BFS/DFS algorithms for checking visited nodes.
-* Create a *set*.
+* Creating a *set*.
 ```Python
 # insert values inside '{}' brackets
-my_set = {9,1,5,2,20} # Notice: dict like parenthesis but without keys
+my_set = {9,1,5,2,20} # Notice: dictionary like parenthesis but without keys
 # items order don't matter, so while printing order might differ
 print(my_set) # {1, 2, 20, 5, 9}
 # create a empty set
 my_set = set() 
 ```
-* Basic operations.
+* Basic operations on a *set*.
 ```Python
 my_var = 4
 my_set = {9,1,5,2,20}
@@ -1199,7 +1210,7 @@ my_set[0] # not allowed, TypeError: 'set' object is not subscriptable.
 if my_var in my_set: 
   print('not printed')
 ```
-* Joining and iterating operations on *set*.
+* Joining and iterating operations on a *set*.
 ```Python  
 a = {54,23,67}
 b = {34,65,55.6}
@@ -1212,6 +1223,22 @@ print(a) # {65, 34, 67, 55.6, 54, 23}
 for x in a: 
    print(x) # {65, 34, 67, 55.6, 54, 23}
 ```
+* *set* comprehension.
+```Python
+# creating a set using comprehensions
+my_set = {a for a in (10,10,20,30,60,20,40)}
+
+# similar to previous comprehensions, there is also multiple comprehension
+my_set = {(a,b) for a in range(2) for b in range(3)}
+# Notice: (a,b) is a tuple inside a set
+# above expression is similar to
+my_set = set()
+for a in range(2):
+    for b in range(3):
+        my_set.add((a, b))
+print(my_set) # {(0, 1), (1, 2), (0, 0), (1, 1), (0, 2), (1, 0)}
+# you can try practicing different combinations of comprehensions  
+```
 * Some methods of *set*.
 ```Python   
 my_set1 = {3,5,7,1,8}
@@ -1223,14 +1250,17 @@ print(my_set1.intersection(my_set2)) # {1, 3, 5}
 print(my_set1.union(my_set2)) # {1, 2, 3, 4, 5, 7, 8}
 # find difference in my_set1 and my_set2
 print(my_set1.difference(my_set2)) # {8,7}
-# create a copy of a set
-my_copy = my_set1.copy() 
-# removes all members of set
-my_copy.clear() 
 # checks if my_set2 is a subset of my_set1
 print(my_set1.issubset(my_set2)) # False
 # checks if my_set2 is a superset of my_set1
 print(my_set1.issuperset(my_set2)) # False
+# removes all members of set
+my_set2.clear() 
+# create a copy of a set, a shallow copy
+my_copy = my_set1.copy() 
+# it means copying only references of original items into a new sequence, 
+# so if a item isn't a literal constant like a list, 
+# any modification made inside that list will be reflected to that item of a new copy 
 ```
 * Type conversion examples.
 ```Python
@@ -1241,14 +1271,15 @@ my_set = set(my_list) # this unpacks items from list to set
 # also if my_list contained a list inside it, TypeError: unhashable type: 'list' is raised
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
-* **Time Complexity**</br> Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when Hash collision occurs O(n).</br>
-adding, checking (with *in* operator) and removing are O(1).</br>
-iterating is O(n).</br>
-union is O(m+n).</br>
-intersection is O(min(m,n)), worst is O(m\*n).<br/>
-#### 3.4.1 FrozenSet
-* They are *set* but only difference is they are immutable. So once a *frozenset* is created the elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are non repeating sequence of items, unordered, iterable and no indexing/slicing is supported. They can be created using any iterable object.
-* Create a *frozenset*.
+* **Time Complexity** </br>
+Sets are implemented using hash tables, so pretty much all operations should be O(1) and worst case when Hash collision occurs O(n). </br>
+adding, checking (with the *in* operator) and removing are O(1). </br>
+iterating is O(n). </br>
+union is O(m+n). </br>
+intersection is O(min(m,n)), worst is O(m\*n).
+#### <strong>3.4.1 FrozenSet</strong>
+* They are *set* but the only difference is that they are immutable. So once a *frozenset* is created the elements/members cannot be removed/added. Rest is pretty much similar to *set*, they are a non repeating sequence of items, unordered, iterable and no indexing/slicing is supported. They can be created using any iterable object.
+* Creating a *frozenset*.
 ```Python
 # using a list
 my_fset = frozenset([10,65,65,2,7,94,34,42,21])
@@ -1265,6 +1296,7 @@ my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove
 ```Python  
 my_fset1 = frozenset({3,5,7,1,8})
 my_fset2 = frozenset({1,2,3,4,5})
+
 # intersection 
 print(my_fset1.intersection(my_fset2)) # frozenset({1, 3, 5})
 # union
@@ -1278,10 +1310,10 @@ print(my_fset1.issubset(my_fset2)) # False
 # checks if my_fset2 is a superset of my_fset1
 print(my_fset1.issuperset(my_fset2)) # False
 ```
-### 3.5 Extras
+### <strong>3.5 Extras</strong>
 #### 3.5.1 Stack
-* Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing a element which is called a *pop* operation. Other operations are *isEmpty*, *isFull* and *peek* etc.
-* The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), *list* are good enough for Stacks.
+* Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing an element which is called a *pop* operation. Other operations are *isEmpty*, *isFull* and *peek* etc.
+* The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), *list* should be good enough for Stacks.
 ```Python
 # create a stack
 my_stack = []
@@ -1290,7 +1322,7 @@ my_stack.append(20) # push: append at top
 my_stack.pop() # pop: remove at top
 ```
 #### 3.5.2 Queue
-* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from other direction. Main operations/methods of Queue are adding an element which is called a *enqueue* operation and removing a element which is called a *dequeue* operation. Other operations are *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
+* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from another direction. Main operations/methods of Queue are adding an element which is called an *enqueue* operation and removing an element which is called a *dequeue* operation. Other operations are *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
 ```Python
 # create a queue
 my_queue = []
@@ -1298,8 +1330,8 @@ my_queue = []
 my_queue.append(20) # enqueue: append at rear
 my_queue.pop(0) # dequeue: remove at front
 ```
-* Python also has *dequeue* (double ended queue) Data Structure which can also be used as a normal Queue. They are implemented as doubly linked-list and support adding & removing from both sides (front & end), they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. 
-* For Queues we only need append at the end and pop/remove at the front, both of which are O(1) for *dequeue* which is good enough. They are not part of core Python and need to be imported from the *collections* module.
+* Python also has a *dequeue* (double ended queue) Data Structure which can also be used as a normal Queue. They are implemented as doubly linked-list and support adding & removing from both sides (front & end), they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. 
+* For Queues we only need to append at the end and pop/remove at the front, both of which are O(1) for *dequeue* which is good enough. They are not part of core Python and need to be imported from the *collections* module.
 ```Python
 from collections import deque
 import sys
@@ -1316,13 +1348,13 @@ print(sys.getsizeof(dq)) # 624
 print(sys.getsizeof(my_list)) # 152
 ```
 #### 3.5.3 Priority Queue
-* Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue use priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
-* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implement the Heap Data Structure (Binary heap) which is the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property, which is nothing but the max/min criteria for getting elements out. 
+* Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue uses priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
+* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which is the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property, which is nothing but the max/min criteria for getting elements out. 
 * A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for sorting. Three main operations *add*, *delete* and *peek* are explained below:
-  1. *add*: First traverse to last (leaf) empty position, add the element there and heapify the tree.
-  2. *delete*: Select the index to be deleted, replace with last element (rightest leaf), remove the last element and heapify the tree.
+  1. *add*: First traverse to the last (leaf) empty position, add the element there and heapify the tree.
+  2. *delete*: Select the index to be deleted, replace with the last element (rightest leaf), remove the last element and heapify the tree.
   3. *peek*: Traverse to the rightest leaf position, return the element.
-* A Priority Queues is useful in tasks such as prioritizing, scheduling, load balancing etc. Other implementation of Priority Queue is in *queue* module, named *PriorityQueue*, you can also use normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
+* A Priority Queues is useful in tasks such as prioritizing, scheduling, load balancing etc. Another implementation of Priority Queue is in the *queue* module, named *PriorityQueue*, you can also use a normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
 ```Python
 import heapq
 
@@ -1358,18 +1390,21 @@ heapq.heapify(my_pq)
 print(my_pq) # [6, 23, 23, 67, 34, 78]
 ```
 * Apart from the above Data Structures there are some more that I haven't mentioned, you can find them in the [collections](https://docs.python.org/3/library/collections.html) module. 
-### 3.6 Some built-in functions: [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
+### <strong>3.6 Some related built-in functions</strong>
+Now let's check out some more important built-in functions such as [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
   * *start_index* *int*: The start index for iteration.
   * *end_index* *int*: The stopping index for iteration.
   * *step* *int*: A skipping index in iteration.
-#####
+
 **Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable, supports indexing and is immutable. It is mainly used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
 ```Python
-## examples
-# create a range object length 20
-print(range(20)) # range(0,20)
+# create a range object of length 20
+my_range = range(20)) 
+print(my_range) # range(0,20)
+print(type(my_range)) # <class 'range'>
+
 # create a range object values ranging 5 to 20
 print(range(5,20)) # range(5,20)
 # create a range object values ranging 6 to 20 with 2 steps
@@ -1382,38 +1417,37 @@ print(range(20)[0:10])
 # convert a range sequence to a list
 print(list(range(5,10))) # [5,6,7,8,9] 
 
-## looping range object
+## looping a range object
 for var in range(5): 
   print(var) # [1,2,3,4,5]
-# reversing the order
+# reversing the order with step=-1 and end_index=-1
 for var in range(5, -1, -1): 
   print(var) # [5,4,3,2,1]
 ```
-#### 2. enumerate(iterable) => tuple
+#### 2. enumerate(iterable) => enumerate
 **Parameters**:</br>
   * *iterable* iterable: Iterable object containing items.
-#####
-**Explanation**: This function returns a *enumerate* object given a iterable, each item is a *tuple* which contains index & value. Index is in range from 0-length of the *list* and value is a item from the *list*. The *enumerate* object is iterable and indexing/slicing is not supported. Similar to *range*, *enumerate* is mostly used in iteration of loops. 
+
+**Explanation**: This function returns a *enumerate* object given an iterable, each item is a *tuple* which contains index & value. Index is in range from 0-length of the *list* and value is an item from the *list*. The *enumerate* object is iterable and indexing/slicing is not supported. Similar to *range*, *enumerate* is mostly used in iteration of loops. 
 ```Python
-## examples
-my_list = [100,200,500,100]
 # create a enumerate object from a list
+my_list = [100,200,500,100]
 print(type(enumerate(my_list))) # <class 'enumerate'>
-# converts to list and indexing the first value, the output tuple is index & value
+
+# checking the item of enumerate, it is a tuple (index, value)
 print(list(enumerate(my_list))[0]) # (0,100) 
 
-# looping over enumerate object
+# looping over the enumerate object
 for i, val in enumerate(my_list):
   print(i) # 0,1,2,3
   print(val) # 100,200,500,100
 ```
 #### 3. zip(\*iterable) => zip
 **Parameters**:</br>
-  * *iterable* iterable: Iterable object containing items, '\*' denotes a function can take multiple input objects.
-#####
-**Explanation**: This function returns a *zip* object given single/multiple iterables, each item is a *tuple* which contains n (number of input iterables) length elements. When provided multiple number of iterables, the length of returned *zip* object is equal to the length of the smallest iterable. *zip()* is commonly used to unpack values from multiple iterables simultaneously in a loop.  
+  * *iterable* iterable: Iterable object containing items, '\*' denotes a function that can take multiple input objects.
+
+**Explanation**: This function returns a *zip* object given single/multiple iterables, each item is a *tuple* which contains n (number of input iterables) length elements. When provided with multiple iterables, the length of the returned *zip* object is equal to the length of the smallest iterable. *zip()* is commonly used to unpack values from multiple iterables simultaneously in a loop.  
 ```Python
-## examples
 a = ['This','is','something']
 b = (14, 3, 6)
 c = {34,7} 
@@ -1438,15 +1472,15 @@ for var1, var2 in zip(a,b):
 #### 4. sorted(iterable, key=None, reverse=False) => list
 **Parameters**:</br>
   * *iterable* iterable: Iterable object containing items.
-  * *key* iterable: Optional function to fetch values from a your iterable object.
+  * *key* iterable: Optional function to fetch values from your iterable object.
   * *reverse* bool: Whether to reverse the sorting.
-#####
-**Explanation**: This function returns a sorted *list* given a iterable object. Sorting is O(nLogn). *key* parameter takes a function which is then used to extract the elements, helpful when a object has some inner structure. Also has *reverse* parameter, which is used to do reverse sorting if it is set to *True*.
+
+**Explanation**: This function returns a sorted *list* given an iterable object. Sorting is O(nLogn). *key* parameter takes a function which is then used to extract the elements, helpful when an object has some inner structure. Also has a *reverse* parameter, which is used to do reverse sorting if it is set to *True*.
 ```Python
-## examples
 my_tuple = (14, 3, 6)
 my_set = {34,7,1}
 my_string = "ererer"
+
 my_list = [[10,20,56,23,12],[200], [2,7,23]]
 
 def my_fun(a):
@@ -1460,14 +1494,14 @@ print(sorted(my_string)) # ['e', 'e', 'e', 'r', 'r', 'r']
 print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
 # sort a list by the length of sub-list
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
-# Notice: "my_fun" is passed not called, we'll learn about this in function's section.
+# Notice: "my_fun" is passed and not called, we'll learn about this in the function's section.
 ```
 #### 5. filter(function, iterable) => filter
 **Parameters**:</br>
   * *function* function: Your function for filtering.
   * *iterable* iterable: Iterable object containing items.
-#####
-**Explanation**: This function takes a input function & a iterable and applies that function on every item of that iterable. The return value of filter's input function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from a iterable object. *filter()* returns a filter object which iterable and indexing/slicing is not supported.
+
+**Explanation**: This function takes an input function & an iterable and applies that function on every item of that iterable. The return value of the filter's input function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from an iterable object. *filter()* returns a filter object which is iterable and indexing/slicing is not supported.
 ```Python
 ## Example: create simple filter object that filter elements which are divisible by 10
 def my_func(var):
@@ -1491,8 +1525,8 @@ for val in filter(my_func, my_list):
 **Parameters**:</br>
   * *function* function: Your function to apply on items.
   * *iterable* iterable: Iterable object containing items.
-#####
-**Explanation**: This function takes a input *function* & a iterable object and applies that *function* on every item of that *iterable*. As name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our input *function*.
+
+**Explanation**: This function takes an input *function* & an iterable object and applies that *function* on every item of that *iterable*. As the name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our input *function*.
 ```Python
 ## Example 1: Return square of each element in a list
 my_tuple = (1,2,3,4,5)
@@ -1504,14 +1538,15 @@ my_mapper = map(my_func, my_tuple)
 print(type(my_mapper)) # <class 'map'>
 # call list construtor to executes the map function
 output = list(my_mapper) # [1, 4, 9, 16, 25]
+
 # or looping through map object
 for val in map(my_func, my_tuple):
   print(val) # [1, 4, 9, 16, 25]
 ```
 
-## 4. Flow Control
-Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. 
-#### 4.1 *if...else* statement
+## <strong>4. Flow Control</strong>
+Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. Let’s check them out.
+### <strong>4.1 *if...else* statement</strong>
 * *if...else* is the simplest and most general conditional statement that helps turn the program execution based on the conditions provided. An *if...else* can be extended to any length using *elif* and also can be nested as required. Like in other programming languages, the *elif* & *else* part is totally optional.
 * Creating a conditional *if...else* statement.
 ```Python
@@ -1555,7 +1590,7 @@ my_var = "Yes" if 20%2 == 0 else "No"
 # here is 'Yes' is the output when 'if' condition is satisfied, else 'No' is the output
 print(my_var) # "Yes"
 ```
-* Truth value testing, check whether a object is a Truthy and Falsy. Their values are given below(comma separated).
+* Truth value testing, check whether an object is Truthy and Falsy. Their values are given below(comma separated).
 ```Python
 # Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty Data-structures/sequences
 # Falsy(False values): 0,0.0,0j,None,False,[],{},(),"",range(0)
@@ -1585,8 +1620,8 @@ print(bool("")) # False
 print(bool(None)) # False
 # Explore the rest!
 ```
-#### 4.2 *for* statement
-* Is used for looping purpose, to iterate a certain number of time. Python supports regular to the length looping using the *range* object or there is more pythonic way of looping. 
+### <strong>4.2 *for* statement</strong>
+* Is used for looping purposes, to iterate a certain number of times. Python supports regular to the length looping using the *range* object or there is a more pythonic way of looping. 
 ```Python
 my_list = [10,20,30,40,50]
 
@@ -1608,8 +1643,8 @@ for v in []:
 else:
   print("So this will execute")
 ```
-#### 4.3 *while* statement
-* A *while* loop executes till its given condition is valid and stops execution when its invalid. *while* loops are more flexible than *for* loops and they can be executed infinitely by setting the condition to *True*, something that is not possible with *for* loops.
+### <strong>4.3 *while* statement</strong>
+* A *while* loop executes till its given condition is valid and stops execution when it's invalid. *while* loops are more flexible than *for* loops and they can be executed infinitely by setting the condition to *True*, something that is not possible with *for* loops.
 ```Python
 i=0
 my_list = [10,20,30,40,50]
@@ -1624,9 +1659,9 @@ while True:
   # do something
   # but remember to stop at some point!
 ```
-#### 4.4 *break* and *continue* statements
+### <strong>4.4 *break* and *continue* statements</strong>
 * **break**: Use to break from iteration/loop. 
-* **continue**: Use to continue to next iteration in loops.
+* **continue**: Use to continue to the next iteration in loops.
 ```Python
 i=-1
 my_list = [10,20,30,40,50]
@@ -1640,12 +1675,12 @@ while i<len(my_list):
   print(my_list[i]) # [20,30,40]
 ```
 
-## 5. Exception Handling
-As humans while writing code we are prone to make mistakes/errors, causing programs the program to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spend most of their time debugging and it becomes very essential to spot their types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and it might take huge amount of time in debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it need to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. User can also sub-class built-in exception classes to define their own Exceptions. Although, Python docs recommends sub-classing from *Exception* class or its sub-class only. 
-### 5.1 Three Types of Errors/Exceptions
+## <strong>5. Exception Handling</strong>
+As humans while writing code we are prone to make mistakes/errors, causing programs to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spends most of their time debugging and it becomes very essential to spot their types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and it might take a huge amount of time in debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it needs to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. Users can also subclass built-in exception classes to define their own Exceptions. Although, Python docs recommend subclassing from *Exception* class or its subclass only. Let’s begin this chapter.
+### <strong>5.1 Three Types of Errors/Exceptions</strong>
 #### 1. Compile Time Errors
 * These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program. 
-* The interpreter raises a *SyntaxError*/*IndentationError* and also indicate the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
+* The interpreter raises a *SyntaxError*/*IndentationError* and also indicates the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
 ```Python
 ## Example 1: wrong indentation in condition
 a = 30
@@ -1662,8 +1697,8 @@ def myfun() # SyntaxError
     print("my function")
 ```
 #### 2. Runtime Error
-* Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, interpreter starts to execute and if a exception is raised it is a runtime error. The program to the part of runtime error line is executed, rest of the execution is stopped. Along with the Exception type interpreter also prints appropriate message on the screen. A user at this point can fix the error or can bypass and continue rest of the execution by using *Exception* Handling. 
-* **Some common runtime errors in Python.**
+* Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, the interpreter starts to execute and if an exception is raised it is a runtime error. The program to the part of the runtime error line is executed, the rest of the execution is stopped. Along with the Exception type interpreter also prints appropriate messages on the screen. A user at this point can fix the error or can bypass and continue the rest of the execution by using Exception Handling. </br>
+**Some common runtime errors in Python.**
   1. **AttributeError**: Raised when an attribute reference or assignment fails.
   2. **TypeError**: Raised when an operation or function is applied to an object of inappropriate type.
   3. **ValueError**: Raised when an operation or function receives an argument that has the right type but an inappropriate value.
@@ -1671,7 +1706,7 @@ def myfun() # SyntaxError
   5. **IndexError**: Raised when a sequence subscript is out of range.
   6. **KeyError**: Raised when a mapping (dictionary) key is not found in the set of existing keys.
 * For more exceptions check the exception hierarchy on [python doc](https://docs.python.org/3/library/exceptions.html#exception-hierarchy). 
-* Python also has a [*warnings*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a sub-class of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
+* Python also has a [*warnings*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a subclass of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
 ```Python
 ## Example 1: indexing error
 a = [34,56,32,87]
@@ -1687,10 +1722,11 @@ math.square # AttributeError
 ## Example 4: raise a warning
 import warnings
 warnings.warn("Something is not right.")
+print("This can execute")
 ```
 #### 3. Logical Error
-* Are not raised, but the program output is not an expected behaviour. They usually get difficult to fix as the program grows. They occur when the program logic is incorrect. Common examples such as using wrong variable/operator, calling wrong function/method instead, sub-classing a wrong class etc.  
-* To avoid these errors it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into a application.
+* Are not raised, but the program output is not an expected behaviour. They usually get difficult to fix as the program grows. They occur when the program logic is incorrect. Common examples such as using the wrong variable/operator, calling the wrong function/method instead, subclassing a wrong class etc.  
+* To avoid these errors it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into an application.
 ```Python
 ## Example 1: accessing wrong index
 my_list = [82,92,38,42,54,23,64,87]
@@ -1698,12 +1734,13 @@ my_list = [82,92,38,42,54,23,64,87]
 print(my_list[-2:]) # [64, 87]
 # here program has no error, but instead of printing 3
 # its only printing 2 numbers, because we provided wrong index
-# this example is not hard to fix, but in larger programs it consumes a lot of time to find
-# which object/variable/function must have caused the wrong output 
+# this example is not hard to fix, but in larger programs it consumes a lot of 
+# time to find which object/variable/function must have caused the wrong output 
 ```
-### 5.2 Handling the Exceptions
+### <strong>5.2 Handling the Exceptions</strong>
 * Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the Exception.
-* Python has the *try* block to try the suspicious code, *except* (catch in C/C++/Java) block to add behaviour when such error occurs. Optionally Python has a *else* block which executes only if no exception was occurred. Then there is a *finally* block which executes if/not an error is occurred.  
+* Python has the *try* block to try the suspicious code, *except* (catch in C/C++/Java) block to add behaviour when such error occurs. Optionally Python has an *else* block which executes only if no exception has occurred. Then there is a *finally* block which executes if/not an error occurs.
+* Basic exception handling.
 ```Python
 ## use traceback built-in module for printing Tracebacks
 import traceback
@@ -1713,12 +1750,12 @@ try:
   a=10
   a = "this"+a
 except (TypeError, ZeroDivisionError):    
-  print("ZeroDivisionError/TypeError occured")
+  print("ZeroDivisionError/TypeError occurred")
   # printing traceback
   traceback.print_exc()
   
 ## Example 2: catch any exception with 'Exception' class, it is base class of all exceptions
-# lets cause stackoverflow/RecursionError in python
+# let's cause stackoverflow/RecursionError in python
 # below is a user defined function, we'll get into details in next chapter
 def my_fun():
   try:
@@ -1730,7 +1767,7 @@ def my_fun():
     print(e) # maximum recursion depth exceeded
 my_fun()
 ```
-* *finally* and *else* statements/conditions.    
+* *finally* and *else* statements.    
 ```Python
 try:
  a = 20/0
@@ -1743,7 +1780,42 @@ else:
 finally:
     print("Finally, its finally, which always executes.")    
 ```
-### 5.3 Raising the exceptions
+* Create a user defined *Exception*.
+```Python
+## Example 1: a simple exception
+class MyException(Exception):
+  pass
+
+try:
+  raise MyException
+except MyException:
+  print("My Exception was raised") # My Exception was raised
+
+## Example 2: Raise a large value exception in pow()
+class NumberTooLargeException(Exception):
+  def __init__(self, message):
+    self.message = message
+  def __str__(self):
+      return f"NumberTooLargeException: {self.message}"    
+
+def calculate_pow(num1, num2):
+  try:
+    if num1 > 100 and num2 > 10:
+      raise NumberTooLargeException("base & exp are too large, should be below 100 & 10")
+    elif num1 > 100:
+        raise NumberTooLargeException("base is too large, should be below 100")  
+    elif num2 > 10:
+      raise NumberTooLargeException("exp is too large, should be below 10")  
+    print(pow(num1, num2))  
+  except Exception as e:
+    print(e)    
+
+calculate_pow(10, 2) # 100
+calculate_pow(100, 2) # 1000
+calculate_pow(100, 200) # NumberTooLargeException: exp is too large, should be below 10
+calculate_pow(1000, 20) # NumberTooLargeException: base & exp are too large, should be below 100 & 10
+```
+### <strong>5.3 Raising the exceptions</strong>
 * Raising (throw in C++/Java) built-in/User-defined exceptions is done using the *raise* statement. Most commonly raised are *ValueError* and *AttributeError*.
 ```Python
 ## Example 1: manually raising a exception
@@ -1757,8 +1829,8 @@ def my_fun(a):
     print(v)
 my_fun(20) # I don't want number 20
 ```
-### 5.4 **assert** statement
-* *assert* helps in debugging, it is used to check if certain condition is true, else *raise* a *AssertionError*.
+### <strong>5.4 **assert** statement</strong>
+* *assert* helps in debugging, it is used to check if a certain condition is true, else *raise* an *AssertionError*.
 ```Python
 a = 10
 
