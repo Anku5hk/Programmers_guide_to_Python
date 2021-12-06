@@ -2193,9 +2193,9 @@ print(my_maxer.__name__) # maxer
 my_maxer(42)
 my_maxer(105) # Found new max: 105
 
-## the free variable names can be found in "__code__" variable of a function
+## the free variable names can be found in "__code__" attribute of a function
 print(my_maxer.__code__.co_freevars) # ('all_time_max', 'my_values')
-# their values are attached to the __closure__ variable
+# their values are attached to the __closure__ attribute
 closure_values = my_maxer.__closure__
 print(closure_values[0].cell_contents, closure_values[1].cell_contents) # 105 {105, 10, 42, 80, 50, 20}
 ```
@@ -2568,12 +2568,12 @@ while True:
 ## <strong>7. Classes and Objects</strong>
 In this chapter we're going to take a look at the most fundamental part of Python, objects. Earlier we learned about function, now it's time for classes, which allows us to create more sophisticated objects. Later we'll check out what are methods in classes and their types. Then we'll check out objects and lastly some helpful built-in Python objects. Let's begin. 
 ### <strong>7.1 Classes</strong>
-* **Class**: Is a blueprint/template of/for an object. It defines what the object holds (which variables/data types), what methods/operations that can be performed on that object. 
+* **Class**: Is a blueprint/template of/for an object. It defines what data (attributes/variables) the object holds, what methods/operations that can be performed on that object. 
 * In Python, classes are also objects. Similar to functions, they can be assigned, passed or returned. Every class in Python is created using the *type()* function, this function has 2 signatures, one that we saw in Chapter 2 that returns *bool* output given an *object* as input, another one is used to create classes. The *type()* function is actually a metaclass. Metaclasses are used to create/modify class objects. They are a complicated concept and are very rarely required to be created, so we'll not be covering them here. I found a very clear explanation on [stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python), which is worth checking out if you're further interested in metaclasses.
 * **Instance**: Is an object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. An instance has its own state and it is also mutable, so modifying some variables will reflect changes for that particular instance.
 * **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and a parameterized constructor does have parameters.
 * **Methods**: Functions inside the class are called methods.
-* **self**: It resembles an instance of class inside the class methods. Similar to Java/Javascript's *this* keyword, it is used to access variables/methods of that instance. But in Python, a class method should have a *self* object as the first parameter inside their definition. Although an argument is not required to be passed when calling such a method. When an instance calls a method, the calling instance gets passed automatically by Python as a *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it is highly recommended to use *self* as a common practice for code readability.
+* **self**: It resembles an instance of class inside the class methods. Similar to Java/Javascript's *this* keyword, it is used to access the attributes/methods of that instance. But in Python, a class method should have a *self* object as the first parameter inside their definition. Although an argument is not required to be passed when calling such a method. When an instance calls a method, the calling instance gets passed automatically by Python as a *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it is highly recommended to use *self* as a common practice for code readability.
 ```Python
 ## Classes
 # defining a class using the 'class' keyword followed by its name, 
@@ -2620,7 +2620,7 @@ class MyClass2:
 ## Instances
 # create a instance of MyClass1
 some_instance = MyClass1()
-# use '.' dot operator to access methods/variables of an object
+# use the '.' dot operator to access methods/attributes of an object
 print(some_instance.other_var) # 10
 # if attribute is not found, AttributeError is returned
 print(some_instance.other_var_42) # AttributeError
@@ -2897,7 +2897,7 @@ class MyClass:
         """This is what this method does..."""
 ```
 ### <strong>7.2 Objects</strong>
-* An object has its own attributes/variable (it can be any data-type/data-structure/object) and functions (methods).
+* An object has its own attributes/variables (it can be any data-type/data-structure/object) and functions (methods).
 * **"Everything in Python is an object"**, in Python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in Python have attributes/methods, Data Structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes are created by metaclasses, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to or returned from a function. So in a sense everything can be called an object. 
 * We saw earlier how to create an instance of a class (i.e object) and what/how they can access variables and methods. Here we'll see some examples of everything being an object.
 ```Python
