@@ -150,8 +150,9 @@ if x is y:
 # which is what the 'is' operator checks, we can print id using the 'id()' function   
 print(id(x)) # 140544545318224 
 print(id(y)) # 140544545318416
-# This is because Python interpreter creates values is range [-5, 256] at the beginning of the program 
-# to gain some performance boost. Because values in this range are very frequently used as per Python.
+# This is because Python interpreter creates values in range [-5, 256] at the beginning of the program 
+# and when you create a variables in this range you're only referencing to them.
+# Python does this because values in this range are frequently used, so this helps to gain some performance boost
 
 ## is not: negate the 'is' condition, working is similar as we saw above
 # Notice: 'not' should be applied after 'if' and not after 'is'
