@@ -1,13 +1,14 @@
-# Programmer's guide to Python
+![image info](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/github%20poster.png)
+
 #### Note: This is the web version of the book.
 
-Hello Learner, welcome to this Programmer's guide to Python handbook, this book was originally designed as notes when I was learning Python, but then I thought okay why not make it public for everyone, so I added some missing components (many) and completed it as a book. I hope this helps you in your Python programming journey. 
+Hello Learner, welcome to this Programmer's guide to Python handbook, this book was created as notes when I was learning Python, but then I thought okay why not make it public for everyone, so I added some components (many) and completed it as a book. I hope this helps you in your Python programming journey. 
 
-**What's not this:** Not a traditional programming course/book, this is by no means a complete Python walkthrough and might be structured somewhat differently. I have tried to cover & mostly emphasis on important features and tricks inside Python. This book is not recommended for 'programming freshers', you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and comeback to this one to further fine tune your learning.  If you even have little exposure to basic programming that should be fine too.</br>  
+**What's not this:** Not a traditional programming course/book, this is by no means a complete Python walkthrough and might be structured somewhat differently. I have tried to cover & mostly emphasis on important features and tricks inside Python. This book is not recommended for 'programming freshers', if you even have little exposure to basic programming that should be fine too or else you should try more beginner friendly books like [Byte of Python](https://python.swaroopch.com/)/[Think Python](https://greenteapress.com/wp/think-python-2e/) and come back to this one to further fine tune your learning.</br>  
 
-**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit by this book. The goal is to take you through enough Python (and much more), while saving you tons of time. I have tried to keep the explanations concise most of the times, so things can be gone through fast. This book will not make you a Python pro, but will introduce to much of its features in general. 
+**What is this:** This book is meant for a programmer who's already familiar with other languages such as C/C++/Java and wants to learn Python but fast. The one who needs a Python refresher can also benefit from this book. The goal is to take you through enough Python (and much more), while saving your time. I have tried to keep the explanations concise most of the time, so things can be gone through fast. This book will not make you a Python pro, but will introduce to much of its features in general. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To read this book I would suggest going at your own pace, typing the code from the book & running the programs. Making your own notes will help you remember the "gotcha's" much longer. Being curious is the most rewarding thing for a programmer, thats when you'll grow faster. Happy Learning!! 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To read this book I would suggest going at your own pace, typing the code from the book & running the programs. Making your own notes will help you remember the "gotcha" much longer. Being curious is the most rewarding thing for a programmer, that's when you'll grow faster. Happy Learning!! 
 
 ## Index
 1. [Basics](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-basics)
@@ -2148,7 +2149,6 @@ my_closure() # 10 20
 ## Example: create a callable that prints maximum from all previous values
 ## Creating a callable using a class, 
 # Note: we'll learn more about classes in next chapter, you can comeback to this one later
-
 class Make_maxer:
     def __init__(self):
         self.my_values = {10, 50, 80}
@@ -2340,7 +2340,7 @@ def power_of(num1, num2):
   print('power_of was called')
   return pow(num1, num2)
 
-# check cache info like times hit/used , missed and current remaining size
+# check cache info like times hit/used, missed and current remaining size
 print(fib.cache_info()) # CacheInfo(hits=8, misses=11, maxsize=128, currsize=11)
 # clear the cache 
 fib.cache_clear()
@@ -2377,6 +2377,11 @@ def fib(num):
 fib(10)
 print(call_counter) # 11
 # 177 vs 11, the difference speaks everything
+
+## check cache info like times hit/used, missed and current remaining size
+print(fib.cache_info()) # CacheInfo(hits=8, misses=11, maxsize=None, currsize=11)
+# clear the  cache 
+fib.cache_clear()
 ```
 ### <strong>6.8 Generators and Coroutines</strong>
 * Generators are used to generate streams of data. Instead of loading all the data at once (example like *list* object does) they "lazy load" the data, which means they return a value only when the *next()* function is called upon them. The *next()* function is used to fetch the next element from the *generator* object.
