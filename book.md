@@ -529,6 +529,7 @@ print(chr(ord("c"))) # c
 ```Python
 my_string = "bar"
 my_string1 = "20"
+
 # str to int
 print(int(my_string)) # ValueError
 print(int(my_string1)) # 20
@@ -566,7 +567,7 @@ print(bool(""), bool("This is string")) # False True
 ```
 ### <strong>2.4 Binary Types (byte)</strong>
 #### 2.4.1 Little bit about Computer Memory
-A computer stores data in its memory in binary (0's and 1's) format only. A bit (binary digit) is the smallest possible unit of data in a computer. Typically a group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a KiloByte (KB) is 1024 bytes, a MegaBytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains character data and Binary files contain well.. binary data. For example images, documents, executables & compressed files, compiled programs etc are called binary files. Now to store characters (Text files) in a computer, encoding schemes are used. It is simply a way to represent Character (human readable data) in Binary format (computer readable), various schemes such as UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/ISO/UTF/Unicode), which is basically a table of unique numbers assigned to the letters, numbers and symbols used in languages or on keyboards.
+A computer stores data in its memory in binary (0's and 1's) format only. A singlr bit (binary digit) is the smallest possible unit of data in a computer. Typically a group of eight bits is known as a byte. Eg 10100101 this is a byte. A single byte represents numbers between 0 (00000000) to 255 (11111111), so 256 (2^8) bits in total, similarly a KiloByte (KB) is 1024 bytes, a MegaBytes (MB) is 1024 KB and so on. A file is a sequence of these bytes, the size of a file is determined by the number of bytes in them. A programming language usually deals with two types of file, a Text file and Binary file. Text file contains character data and Binary files contain well.. binary data. Images, documents, executables & compressed files, compiled programs etc are examples of binary files. Now to store characters (Text files) in a computer, they need to be encoded as binary data. For this encoding schemes are used. It is simply a way to represent Character data (human readable) in Binary format (computer readable), schemes like as ASCII, UTF-8 or UTF-16 are used. A Encoding scheme has to follow a Character Set (such as ASCII/Unicode), which is basically a table of unique numbers assigned to the letters, numbers and symbols used in languages or on keyboards. This way using the encoding schemes the text data is converted to binary (bytes) data and then stored in a computer storage.
 
 #### 2.4.2 Two functions to convert a string to bytes
 #### 1. bytes(source, encoding, errors) => bytes
@@ -578,24 +579,25 @@ A computer stores data in its memory in binary (0's and 1's) format only. A bit 
 **Explanation**: This function creates an immutable object consisting of Unicode (character set containing all major languages characters) 0-256 characters.
 * Creating byte types. 
 ```Python
-## create a bytes object
-data = bytes("This is bytes data", 'UTF-8')
-print(data) # b'This is bytes data'
+## Create a bytes object
+data = bytes("This is bytes data using ascii encoding.", 'ascii')
+print(data) # b'This is bytes data using ascii encoding.'
+data = bytes("This is bytes data using utf-8 encoding.", 'UTF-8')
+print(data) # b'This is bytes data using utf-8 encoding.'
 # or can use b prefix on string like syntax
 print((b'42')) # b'42'
 print(type(b'42')) # <class 'bytes'>
 
-## initialize bytes object with 0's by providing size in int
-my_bytes = bytes(4)
-print(my_bytes) # b'\x00\x00\x00\x00'
-
-## indexing a bytes object returns a Unicode of a character
+## Indexing a bytes object returns a Unicode of a character, 
+# which we can use to convert it back to a character  
 print(data[0], chr(data[0])) # 84 T
 ``` 
 * Type conversion. 
 ```Python
 ## create bytes object using a iterable objects
+# from a list
 print(bytes([1,2,3])) # b'\x01\x02\x03'
+# from a tuple
 print(bytes((80,50,60))) # b'P2<'
 ```
 #### 2. bytearray(source, encoding, errors) => bytearray
@@ -605,9 +607,9 @@ print(bytes((80,50,60))) # b'P2<'
   * *errors* *str*: Way to handle errors, if the source is a string.
 
 **Explanation**: This function returns a mutable version of bytes object.
-* Creating bytearray types. 
+* Creating bytearray type.
 ```Python
-# create bytearray with 0's by providing size in int
+## Create bytearray with 0's by providing size in int
 output = bytearray(4)
 print(output) # bytearray(b'\x00\x00\x00\x00')
 print(bytes("Something", 'UTF-8')) # b'Something'
@@ -618,7 +620,7 @@ output[0] = 30
 print(output) # bytearray(b'\x1e\x00\x00\x00')
 ```
 ### <strong>2.5 User-defined Data Type</strong>
-* User defined data types are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does have is classes, which can be utilized to do the same.
+* User defined data types are used to create a new data type by combining the built-in data types. Unlike in C/C++ Python doesn't have *struct*, but what it does have is classes, which can be utilized to do the same. We'll learn in detail about classes in Chapter 7, you can skip this for now.
 * Create a user defined data type.
 ```Python
 class MyDataType:
@@ -627,7 +629,7 @@ class MyDataType:
     self.x = x 
     self.y = y
     
-  # this function is totally optional  
+  # Note: This function is totally optional  
   def __str__(self):
     """Define this 'magic method' to enable print functionality for this object, it should return a string."""
     return f"{self.x} {self.y}"
@@ -650,42 +652,49 @@ my_dt.x = "THis can also become a string"
 * Create a slightly better data type that can check the inputs.  
 ```Python
 class MyDataType:
-  def __init__(self, x, y):
-    """__init__ is another 'magic method', which enables usage of constructor in python, more on this later."""
-    # initialize here
-    if not isinstance(x, int) or not isinstance(y, str):
-      raise TypeError() # raise error if type does not match
-    self.x = x 
-    self.y = y
-    
-  def insert(self, x=None, y=None):
-    """To check values while inserting in our custom data type"""
-    if x:
-      if isinstance(x, int):
-        self.x = x
-      else:
-        raise TypeError("Should be a integer")  
-    if y:
-      if isinstance(y, str):
-        self.y = y  
-      else:
-        raise TypeError("Should be a String")
-        
-  def __str__(self):
-    """Define this 'magic method' to enable print functionality for this object, it should return a string."""
-    return f"{self.x} {self.y}"
+    def __init__(self, x, y):
+        """__init__ is another 'magic method', which enables usage of constructor in python, more on this later."""
+        # raise error if type does not match
+        if not isinstance(x, int) or not isinstance(y, str):
+            raise TypeError("x should be integer and y should be string") 
+        # define x and y as private variables to protect them from being altered directly
+        self.__x = x 
+        self.__y = y
 
-# create our data type
+    def insert(self, x=None, y=None):
+        """To check values while inserting in our custom data type"""
+        if x:
+            if isinstance(x, int):
+                self.__x = x
+            else:
+                raise TypeError("Should be a integer")  
+        if y:
+            if isinstance(y, str):
+                self.__y = y  
+            else:
+                raise TypeError("Should be a String")
+                
+    # define x & y as methods to access thier value        
+    def x(self):
+            return self.__x
+    def y(self):
+        return self.__y
+
+## create our data type
 my_dt = MyDataType(10, "Hello")  
-# insert values
-my_dt.insert(15, "Foo") 
 
-print(my_dt) # 15 Foo
+# insert values
+my_dt.insert(15, "Foo")
+print(my_dt.x(), my_dt.y()) # 15 Foo
 my_dt.insert(20) 
 my_dt.insert(y="Bar")
-print(my_dt) # 20 Bar
+print(my_dt.x(), my_dt.y()) # 20 Bar
+
 # raising type error if data type is not what we expected
 my_dt.insert(y=20) # TypeError: Should be a String
+
+# There's a even better way to create custom data-types, that is using descriptors
+# we'll get to it in chapter 7
 ```
 ### <strong>2.6 *None* Object</strong>
 * *None* is similar to *null* in C/C++/Java, it indicates that something has no value, but there are some differences. In those languages *null* refers to a pointer that doesn't point to anything and it is also *0*, not in Python. In Python, *None* is not "0", it's an object itself. It is an object of *NoneType* class and is a singleton i.e only one instance is created of *None* in a program. 
@@ -695,11 +704,11 @@ my_dt.insert(y=20) # TypeError: Should be a String
 n = None
 print(type(None)) # <class 'NoneType'>
 
-## to check whether an object is not None simply use 'if <object_name>'
+## To check whether an object is not None simply use 'if <object_name>'
 if n: # same as "if n != None:"
   print('will not enter this condition')
 
-## not to negate that condition
+## Use 'not' to negate that condition
 if not n: # same as "if n == None:"
   print('will enter this condition, as n is None')
 ```
@@ -732,10 +741,9 @@ print(isinstance(a, str)) # False
 **Parameters**:</br>
   * *object* object: Any object.
 
-**Explanation**: This function returns the object identity which is the object’s address in memory. The returned object id varies across programs/systems, so will not be the same anytime. 
+**Explanation**: This function returns the object identity which is the object’s unique id. The returned object id varies across programs/systems, so will not be the same anytime. 
 ```Python
 my_float = 50.0
-# object id will differ each time with program
 print(id(my_float)) # 1875526208176
 ```
 #### 4. dir(object) => list
