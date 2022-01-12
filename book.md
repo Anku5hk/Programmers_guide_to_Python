@@ -29,7 +29,7 @@ Hello Learner, welcome to this Programmer's guide to Python handbook, this book 
 ### <strong>1.2 Literal constant</strong>
 * Literals are raw data and are constant fixed values. A raw value by itself is a literal constant. They are the data given to the variables.
 ```Python
-## Literals in Python: Numeric, String, Boolean, Special (None) and Literal Collections
+## Literals in Python: Numeric, String, Boolean, Special (None) and Literal Collections.
 # some examples    
 # Numeric
 a = 4 
@@ -62,15 +62,17 @@ myVar, myString42, rawData
 MyVar, MyString30, FileData
 # snake casing names (preffered for variable/function names)
 my_var, my_string12, some_data3
+# Note: I use my_<data_type> names throughout the book just for the sake of simplicity, 
+# don't use such names in real world projects.
 
-## Dynamically typed: Type checking
+## Dynamically typed: Type checking.
 # the type is checked only at run-time
 if False:
   30 + "some string"
 # Above statement should return a TypeError but it will not,
 # because that condition is never executed, if it did it will raise the exception, try with "if True"
 
-## Dynamically typed: Assigning a name (variable) to the object
+## Dynamically typed: Assigning a name (variable) to the object.
 my_var = 34
 my_var = "I am string"
 my_var = [1,2,3,4]
@@ -112,7 +114,7 @@ in,not in
 ```
 * <b>Logical operators</b>: not,and,or.
 ```Python
-## not: to negate the underlying condition (it reverses the condition)
+## not: to negate the underlying condition (it reverses the condition).
 a = 30
 # here the underlying condition is the isinstance() function, which return True/False
 # normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
@@ -123,7 +125,7 @@ if not isinstance(a, str):
   print('printed')
 # here 'a' is not a string, so the second condition is executed
 
-## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied
+## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied.
 a=20
 b=30
 if a > 10 and b < 50:
@@ -131,7 +133,7 @@ if a > 10 and b < 50:
 if a > 42 and b < 50:
   print('not printed')
 
-## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied
+## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied.
 if a > 10 or b < 10:
   print('printed')
 if a > 20 or b < 30:
@@ -139,7 +141,7 @@ if a > 20 or b < 30:
 ```
 * <b>Identity operator</b>: is,is not.
 ```Python
-## is: checks if 2 objects have same identity
+## is: checks if 2 objects have same identity.
 my_var1 = 42
 my_var2 = 42
 # checking values with '=='
@@ -174,7 +176,7 @@ print(id(y)) # 140544545318416
 # This is not the case with 500, they are not from that range so each time they are re-created as new objects
 # Python does this because values in this range are frequently used, so this helps to gain some performance boost
 
-## is not: negate the 'is' condition, working is similar as we saw above
+## is not: negate the 'is' condition, working is similar as we saw above.
 # Notice: 'not' should be applied after 'if' and not after 'is'
 a = 3
 b = 4
@@ -183,7 +185,7 @@ if not a is b:
 ```
 * <b>Membership operators</b>: in,not in.
 ```Python
-## in: used to check if a value is inside a sequence or not, returns a boolean value
+## in: used to check if a value is inside a sequence or not, returns a boolean value.
 # consider a list containing some values, we'll learn about lists in details later, for now think of it as an array
 my_list = [23,5,32,65,20]
 # check with 'in' operator if 'my_list' contains the value 20, yes so True
@@ -194,7 +196,7 @@ print(20 in my_list) # True
 # similarly check if it contains 30, nope so False
 print(30 in my_list) # False
 
-## not in: negate the 'in' condition, same as above but returns opposite values
+## not in: negate the 'in' condition, same as above but returns opposite values.
 # consider the same list, we'll check values again
 # checking if 10 'not in' 'my_list' 
 print(10 not in my_list) # True
@@ -216,7 +218,7 @@ lambda x:x**2
 ### <strong>1.7 Statements</strong>
 * Are basically every line/block of code that Python Interpreter executes. There are two types, simple and compound statements.
 ```Python
-## Simple statements: Are usually single liners
+## Simple statements: Are usually single liners.
 # all expressions,
 # assignments, for example
 a = 40
@@ -224,7 +226,7 @@ t = "Time"
 # and also keywords like
 yield, del, return, pass, raise, break, continue, global, nonlocal, import
 
-## Compound statements: Can be multi liners
+## Compound statements: Can be multi liners.
 # like function and class definitions which we will covered later on
 # and also keywords like
 if, else, elif, while, for, try, with
@@ -348,12 +350,12 @@ def some_fun():
   **Note**: Explaining all time complexities would consume lots of space for this book, you can get more information about it [here](https://www.hackerearth.com/practice/basic-programming/complexity-analysis/time-and-space-complexity/tutorial/).
 * Similar to time complexity there is also space complexity, it is used to measure how the memory of a function increases with the size of input.
 
-## <strong>2. Data Types </strong>
-Defines a particular kind/domain of data item, they define the type of data a variable holds. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as we saw before variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned *int* or *float* or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another *.py* file in capital letters and then they are imported inside the current module to be used.
+## <strong>2. Data Types</strong>
+Data Types define a particular kind/domain of a data item. They define the type of data a variable is pointing to. They also define the operations allowed on that data type. Python doesn't require declaration of data types like in C/C++/Java (as we saw before variables are just pointers). Any variable can be assigned any data type/object, a string variable can be assigned *int* or *float* or any other object it doesn't matter. There is no *final* (used for declaring a constant variable) keyword for variables in Python like in Java. The constant variables in Python are defined inside another *.py* file in capital letters and then they are imported inside the current module to be used.
 #### Three types of Data Types in programming.
   1. **Primitive**: Are built-in or predefined data types in a programming language, Eg. *int*, *float*, double (n/a in Python), char (n/a in Python), bool etc.
   2. **Composite/Derived**: Are data types which are constructed using two/more data types, Eg. Array (*list* in Python), Record (*tuple* in Python), Union (*dict* in Python), Strings (*str* in Python), Functions, Pointers (n/a in Python), Structures (n/a in Python) etc.
-  3. **Abstract**: They define operations on objects using functions but without specifying the exact implementations of those functions (the underlying implementation can differ from languages but the working has to stay the same), Eg. Stack, Queue, Map, Tree, Graphs etc.
+  3. **Abstract**: They define operations on objects using functions but without specifying the exact implementations of those functions (the underlying implementation can differ from a programming language to another but the working has to stay the same), Eg. Stack, Queue, Map, Tree, Graphs etc.
 #### Mutable and Immutable types in Python.
   1. **Immutable**: Values cannot be altered/added/removed once created or are read-only types once created, Eg. *int*, *float*, *complex*, *bool*, *None*, *str*, *tuple*, *frozenset*.
   2. **Mutable**: Values can be altered/added/removed after creation, Eg. *list*, *dict*, *set*.
@@ -377,14 +379,14 @@ print(my_complex) # (4.22+20j)
 ```
 * Some functions on numeric types.
 ```Python
-# returns maximum from n numbers(n > 2)
+# returns maximum from n numbers (n >= 2)
 print(max(30, 20)) # 30
-# returns minimum from n numbers(n > 2)
+# returns minimum from n numbers (n >= 2)
 print(min(30, 20)) # 20
 # returns absolute value of a number
 print(abs(-50)) # 50
 # returns a rounded to decimal value of a number
-print(round(my_float)) # 3
+print(round(3.1)) # 3
 # returns the power of a number, similar to using '**' operator, eg "10**2" 
 print(pow(10, 2)) # 100
 # returns quotient and remainder of integer division
@@ -396,6 +398,7 @@ print(hex(42)) # 0x2a
 ```Python
 my_int = 42
 my_float = 3.0
+
 # int to str
 print(str(my_int)) # 42
 # int to float
@@ -406,15 +409,15 @@ print(int(my_float)) # 3
 print(str(my_float)) # 3.0
 ```
 ### <strong>2.2 Text Type (str)</strong>
-* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of character data. *str* (String types) hold sequences of characters and are also called string literals. 
-* They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific substring. 
+* Unlike Java, Python does not have *char* type for storing character/character array, it has *str* object (similar to *string* in C++) which is a collection of characters. *str* (String types) hold sequences of characters and are also called string literals. 
+* They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific substring.
 * Creating text types.
 ```Python
-# Single Quote: insert string value inside single inverted commas  
-text = 'strings can be single quoted'
-# Double Quote: can be useful for escaping single inverted comma(') rest there is no difference
-text = "strings can be double quoted" 
-# Triple Quote: used for multi-line text, can be used with single/double inverted commas
+# Single Quote: insert string value inside single inverted commas.
+text = 'A strings can be single quoted'
+# Double Quote: can be useful for escaping single inverted comma(') rest there is no difference.
+text = "This string's under double quotes" 
+# Triple Quote: used for multi-line text, can be used with single/double inverted commas.
 text = """This is a long text.
         And want to use multiple lines."""
 ```
@@ -422,8 +425,15 @@ text = """This is a long text.
 ```Python
 print("normal str,\t escaping characters") # normal str,    escaping characters
 print(r"\n raw string \t no escaping characters") # \n raw string \t no escaping characters
-# unicode type, it represents english and non-english characters
-print(u"This is unicode") # This is unicode
+# unicode type, it represents english and non-english characters or other symbols
+print(u"This is unicode, also can be in हिन्दी.") # This is unicode, also can be in हिन्दी.
+# From python 3.0 and above, str object can contain Unicode characters, so u'' is optional
+# Note: Make sure you have selected utf-8 encoding in your code editor
+print("\U0001F40D") # 🐍
+# Also variable names support Unicode characters
+संख्या = 34
+print(संख्या) # 34
+
 # formatting type, used to pass python expression/variable inside a string
 n = 1
 text = f"This is a String number {n}" # f-string to pass variable
@@ -434,11 +444,11 @@ print(text) # This is a String number 1
 ```
 * Multiplying and joining operations on strings.
 ```Python
-## Multiplying: use the '*' operator on string to replicate to the count.
+## Multiplying: Use the '*' operator on string to replicate to the count.
 string1 = "this" * 5
 print(string1) # thisthisthisthisthis
 
-## Joining: use the '+' operator to join two or more strings, they should be str. 
+## Joining: Use the '+' operator to join two or more strings, they should be str.
 # str is immutable, so a new string is created when joining. 
 string1 = "This is 1."
 string2 = "This is 2."
@@ -449,27 +459,35 @@ print(new_string) # This is 1.This is 2.
 ```Python
 sample_str = "This contain some characters"
 
-## Indexing: accessing item/character from string
+## Indexing: Accessing item/character from string.
 print(sample_str[0]) # T
 print(sample_str[2]) # i
 
-# negative indexing: starts from 1 and not 0
+# Negative indexing: Access string characters from end of the string. 
+# It starts from 1 and not 0, so the last character is -1
 print(sample_str[-1]) # s
 print(sample_str[-5]) # c
 
-## Iterating: going over item by item from a string
+## Iterating: Going over item by item from a string.
 for x in sample_str:
-  print(x)
+  print(x) # "This contain some characters"
 
-## Slicing: for creating substrings, syntax is [start_index:end_index:step] 
+## Slicing: For creating substrings, syntax is [start_index:end_index:step].
 # start_index is starting index of substring, default is 0
-# end_index is ending index, (end_index - 1) is considered, default is last index
+# end_index is ending index, (end_index - 1) is considered, default is last index i.e length of string
 # step is the gap between characters, default is 1 
 my_string = "This is some string."
 print(my_string[5:7]) # is
+# not providing end_index will use default i.e length - 1
+# so below line is same as my_string[5:20]
 print(my_string[5:]) # is some string.
+# not providing start_index will use default i.e 0
+# so below line is same as my_string[0:4]
 print(my_string[:4]) # This 
-print(my_string[:5:2]) # Ti 
+# using 2 step, missing one character after a character
+print(my_string[::2]) # Ti ssm tig 
+# using negative indexing
+# so below line is same as my_string[0:16]
 print(my_string[:-4]) # This is some str
 # reverse a string
 print(my_string[::-1]) # .gnirts emos si sihT
@@ -504,7 +522,7 @@ print(len(my_string)) # 11
 print(repr("This \t should have escaped.")) # 'This \t should have escaped.'
 # Returns a Unicode of a character
 print(ord("c")) # 99 
-# Returns Converted the Unicode to a character
+# Returns converted the Unicode to a character
 print(chr(ord("c"))) # c
 ```
 * Type conversion examples.
@@ -521,14 +539,23 @@ print(float(my_string1)) # 20.0
 print(bytes(my_string, encoding='utf-8')) # b'bar'
 ```
 ### <strong>2.3 Boolean Type (bool)</strong>
-* Has only 2 values *True* and *False*. *True* is also 1, so 4 + *True* is 5. *False* is also 0, so 4 + *False* stays 4. Boolean values *True* & *False* are also referred as Truthy & Falsy values when evaluating.
+* Boolean Type only have two values *True* and *False*. Boolean values *True* & *False* are also referred as Truthy & Falsy values when evaluating. The *True* is also 1, so 4 + *True* is 5 and the *False* is also 0, so 4 + *False* stays 4.
+* Boolean Types are used mostly for deciding 'if..else' conditions to execute or not in order to allow/close some functionality.
 * Creating boolean types. 
 ```Python
 my_bool = True
 print(type(my_bool)) # <class 'bool'>
-my_bool = my_bool + 4 # becomes 5
-my_bool = False
-my_bool = my_bool + 4 # stays 4
+# becomes 5
+print(True + 4) # 5
+# stays 4
+print(False + 4) # 4
+
+# using boolean in if..else conditions, executes only when boolean is True
+if my_bool:
+    print('printed') # printed
+    
+if False:
+    print('never executed')
 ```
 * Type conversion or truth value testing with boolean values.
 ```Python
