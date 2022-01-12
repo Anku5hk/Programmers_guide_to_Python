@@ -788,7 +788,7 @@ some_list = list()
 ```Python
 my_list = [23,65,12,76,10]
 
-## Adding/Appending: adding values to list
+## Adding/Appending: Adding values to list
 my_var = 1
 my_list.append(my_var)
 print(my_list) # [23, 65, 12, 76, 10, 1]
@@ -798,7 +798,7 @@ my_list[0] = 100
 my_list[4] = 200
 print(my_list) # [100, 65, 12, 76, 200]
 
-## Removing: remove values from list
+## Removing: Remove values from list
 my_list.remove(my_var)
 # remove using 'del' statement is mostly preferred, eg 'del my_list[index]'
 del my_list[0] # or even with slicing, eg del my_list[2:4]
@@ -808,13 +808,13 @@ print(my_list) # [65, 12, 76, 200]
 
 ## Checking if some value is present in list
 if 20 in my_list: # similar to "if some_var in my_list:" where "some_var = 20"
-  print('not printed')
+    print('not printed')
 if 200 in my_list:
-  print('printed')
+    print('printed')
 ```  
 * Joining and multiplying operations on a *list*.
 ```Python
-## Joining: join two or more lists
+## Joining: Join two or more lists
 # using '+' operator
 my_list1 = [2,4,5,6] + [34,7,4,2]
 print(my_list1) # [2, 4, 5, 6, 34, 7, 4, 2]
@@ -822,7 +822,7 @@ print(my_list1) # [2, 4, 5, 6, 34, 7, 4, 2]
 my_list1.extend([3,6,2])
 print(my_list1) # [2, 4, 5, 6, 34, 7, 4, 2, 3, 6, 2]
 
-## Multiplying: using '*' operator on a list
+## Multiplying: Using '*' operator on a list
 eg_list = ['This',30]
 print(eg_list*3) # ['This', 30, 'This', 30, 'This', 30]
 ```
@@ -831,39 +831,33 @@ print(eg_list*3) # ['This', 30, 'This', 30, 'This', 30]
 my_list = [1,1,3,'a','cab boy',4.0]
 my_list1 = [45,23,5,6,34,6,22]
 
-## Indexing: for accessing/altering elements
-var_1 = my_list1[0] # as usual 0 is the first element
-
+## Indexing: For accessing/altering elements
+var_1 = my_list1[0] # as usual index 0 is the first element
 var_2 = my_list1[1]
+
 print(var_1, var_2) # 45, 23
-# altering values in list
+# altering values in list, like we saw above
 my_list1[0] = 100
-my_list1[1] = 200
-print(my_list1) # [100, 200, 5, 6, 34, 6, 200] 
-# checking if some value is present in list
-if 20 in my_list1: # similar to "if some_var in my_list1:" where "some_var = 20"
-  print('not printed')
-if 200 in my_list1:
-  print('printed')
+my_list1[-1] = 200
 
-## Iterating: going over item by item from a list
+## Iterating: Going over item by item from a list
 for var in my_list1:
-  print(var) # [2, 4, 5, 6, 34, 7, 4, 2, 3, 6, 2]
+  print(var) # [100, 23, 5, 6, 34, 6, 200]
 
-## Slicing: for creating sub-list, syntax is [start_index:end_index:step]
-print(my_list[3:5]) # ['cab', 1.0]
-print(my_list[5:]) # [2.0, 1]
-print(my_list[:3]) # [3, 'a', 'this way']
-print(my_list[:5:2]) # [3, 'this way', 1.0]
+## Slicing: For creating sub-list, syntax is [start_index:end_index:step]
+print(my_list[3:5]) # ['a', 'cab boy']
+print(my_list[5:]) # [4.0]
+print(my_list[:3]) # [1, 1, 3]
+print(my_list[:5:2]) # [1, 3, 'cab boy']
 # negative indexing similar to string
-print(my_list[:-4]) # [3, 'a', 'this way']
+print(my_list[:-4]) # [1, 1]
 # reverse a list
-print(my_list[::-1]) # [1, 2.0, 1.0, 'cab', 'this way', 'a', 3]
+print(my_list[::-1]) # [4.0, 'cab boy', 'a', 3, 1, 1]
 ```
 * *list* comprehension.
 ```Python
-## List comprehension: create a new list in a single line 
-# Note: range function returns sequence of integers, we'll learn more on range later 
+## List comprehension: Create a new list in a single line 
+# Note: range function creates a sequence of integers, we'll learn more on range later 
 my_list1 = [x for x in range(10)]
 # this is similar to 
 my_list1 = []
@@ -873,7 +867,7 @@ for x in range(10):
 # comprehensions are syntactic sugar, they save lines of code
 my_list2 = [[y for y in range(x)] for x in range(5)] # it can be nested
 my_list3 = [abc for abc in range(10) if abc > 5] # if condition
-my_list4 = [True if z > 5 else False for z in range(10)] # if with else condition
+my_list4 = [True if z > 5 else False for z in range(10)] # if and else condition
 # Notice: the syntax difference between if and if..else clauses
 # also try printing each of the list
 ```
@@ -884,14 +878,15 @@ new_copy = my_list
 del new_copy[0] # deleting first item
 
 print(my_list, new_copy) # [2, 3, 4, 5, 6] [2, 3, 4, 5, 6]
-# the deletion is reflected to of the lists because they refer to same object
+# the deletion is reflected to my_list too, because they refer to same object
 # this behaviour is exclusive to mutable objects, the catch from 'Multiple Target assignment'
-# modified mutable objects reflect changes to its references
+# modification on mutable objects reflect changes to its references too
 
 ## Creating a copy 
 new_copy = my_list[:] # or "my_list.copy()"
-del new_copy[0]
 # now they do not refer to the same object 
+print(id(new_copy), id(my_list)) # 1882455764160 1882447248640
+del new_copy[0]
 print(my_list, new_copy) # [2, 3, 4, 5, 6] [3, 4, 5, 6]
 ```
 * Some methods of *list*.
@@ -900,14 +895,14 @@ my_list1 = [10,50,40,50,60,80,15]
 # reverses a list, its inplace so does not return anything
 my_list1.reverse() 
 print(my_list1) # [15, 80, 60, 50, 40, 50, 10]
-# sorts a list, inplace
+# sorts a list, also inplace
 my_list1.sort()
 print(my_list1) # [10, 15, 40, 50, 50, 60, 80]
 # returns index of first arrival of given value 
 print(my_list1.index(50)) # 3
-# removes value from a list given value
+# removes given value from a list
 my_list1.remove(15) 
-# removes value from a list given index, also returns the value
+# removes value given index from a list, also returns the value
 print(my_list1.pop(5)) # 80
 my_list1.clear() # list becomes empty
 print(my_list1) # []
@@ -917,8 +912,10 @@ print(my_list1) # []
 my_list1 = [10,50,40,50,60,80,15]
 
 # returns sorted list of items in ascending order by default, 
-# sorting is O(nLogn), for reversing pass 'reverse=True'
+# sorting is O(nLogn)
 print(sorted(my_list1)) # [10, 15, 40, 50, 50, 60, 80]
+# for reversing just pass 'reverse=True'
+print(sorted(my_list1, reverse=True)) # [80, 60, 50, 50, 40, 15, 10]
 # return length of list
 print(len(my_list1)) # 7
 # sum of variables
@@ -936,7 +933,7 @@ deleting, poping, inserting (at position), iteration are O(n).
 #### 3.1.1 Array
 * *list* allows to hold data of any data-type/object which is great, but this means the data is usually less tightly coupled, so they end up taking more storage. To hold a large amount of data efficiently one can utilize the *array* types.
 * Similar to *list*s they are mutable, iterables, they support indexing, slicing, they even share almost all *list* operations. The difference is they allow storing data of limited types only such as characters, integers or floating point numbers and one data type per array. It has to be one of in C language's Data-Types (eg. *signed int*/*unsigned float*).
-* They are not part of the core Python, so they need to be imported from the *array* module and are required to be declared first. When declaring we need to define the type of data the *array* can contain, it can be one of types mentioned in the table shown [here](https://docs.python.org/3/library/array.html#module-array). 
+* Arrays are not part of the core Python, so they need to be imported from the *array* module. While defining we need to provide the type of data the *array* can contain, it can be one of types mentioned in the table shown [here](https://docs.python.org/3/library/array.html#module-array). 
 * Creating an array.
 ```Python
 import sys
@@ -944,11 +941,12 @@ import array
 
 # create a normal list
 my_list = [54,32,65,32,65,32]
-# while declaring the first parameter is c data type (only the mentioned in the table)
-# and another is data from a sequence type such as list/tuple
+# the first parameter is c data type (only the ones mentioned in the table)
+# and second is the data from a sequence type such as list/tuple
 my_array = array.array('i', my_list)
 print(my_array) # array('i', [54, 32, 65, 32, 65, 32])
-# so here i shows signed integer data type
+# 'i' stands for signed integer data type
+
 # create a character data array
 char_array = array.array('u', 'somestr')
 print(char_array) # array('u', 'somestr')
@@ -956,7 +954,7 @@ print(char_array) # array('u', 'somestr')
 # check their memory usage 
 print(sys.getsizeof(my_list)) # 152
 print(sys.getsizeof(my_array)) # 88
-# we can see a difference in bytes, array consumes less space compared to list
+# we can see the difference in bytes, array consumes less space compared to list
 ```
 * Indexing, iterating and slicing operations on an *array*.
 ```Python
@@ -982,9 +980,7 @@ my_array.append(30)
 print(my_array.index(30)) # 7
 my_array.remove(30)
 print(my_array.pop(3)) # 5
-# length of item in byte
-print(my_array.itemsize) # 4
-# appending from array
+# extending from array
 my_array.fromlist([67,87])
 print(my_array) # array('i', [5, 3, 5, 2, 7, 8, 67, 87])
 ```
@@ -1011,11 +1007,11 @@ print(type(some_tuple)) # <class 'int'>
 ```
 * Joining and multiplying operations on a *tuple*.
 ```Python
-## Joining: join two or more tuples
+## Joining: Join two or more tuples
 my_tuple1 = (34,65,23) + (34,34)
 print(my_tuple1) # (34, 65, 23, 34, 34)
 
-## Multiplying: using '*' operator on a tuple
+## Multiplying: Using '*' operator on a tuple
 my_tuple1 = (34,65,23) * 2
 print(my_tuple1) # (34, 65, 23, 34, 65, 23)
 ```
@@ -1023,18 +1019,19 @@ print(my_tuple1) # (34, 65, 23, 34, 65, 23)
 ```Python
 my_tuple = (1,2,3,'we','are','one',5.0)
 
-## Indexing: accessing item/character from tuple
+## Indexing: Accessing item/character from tuple
 my_var = my_tuple[0] # okay
 my_tuple[0] = 23 # not okay because Immutable, raises TypeError
+# Note: Make sure to comment above line to execute the program further
 
-## Iterating: going over item by item from a tuple
- for var in my_tuple:
+## Iterating: Going over item by item from a tuple
+for var in my_tuple:
    print(var) # (1,2,3,'we','are','one',5.0)
 # checking if some value is present using the 'in' operator
 if 5.0 in my_tuple:
   print('printed')
 
-## Slicing: for creating sub-tuple, syntax is [start_index:end_index:step] 
+## Slicing: For creating sub-tuple, syntax is [start_index:end_index:step] 
 print(my_tuple[3:5]) # ('we','are')
 print(my_tuple[5:]) # ('one',5.0)
 print(my_tuple[:3]) # (1,2,3)
@@ -1059,9 +1056,9 @@ a,b = b,a
 * Some methods of *tuple*.
 ```Python
 my_tuple1 = (3,2,6,2,5,3,1,1)
-# Returns number of occurrences of value.
+# returns number of occurrences of value
 print(my_tuple1.count(3)) # 2
-# Returns the first index of value.
+# returns the first index of value
 print(my_tuple1.index(2)) # 1
 ```
 * Some functions on *tuple*s.
@@ -1080,12 +1077,12 @@ my_tuple = tuple([1,2,3,4,5]) # list to tuple
 my_tuple = tuple({1,2,3,4,5}) # set to tuple
 ```
 * **Time Complexity** </br>
-indexing, appending (to the end) and get_length are O(1). </br>
-deleting, poping, inserting (at position), iteration are O(n).
+indexing and get_length are O(1). </br>
+iteration and count are O(n).
 #### 3.2.1 NamedTuple
-* As the name suggests, they are "named" *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing the class variables). 
+* As the name suggests, they are "named" *tuple* i.e regular tuples that support field/item names (and also indexes). So along with indexing they support accessing fields/elements using their names with the '.' operator (just as accessing the class attributes). 
 * They are a subclasses of a *tuple*. When instantiated they return a new *tuple* subclass named \<typename\>. This new subclass can be used to create tuple-like objects which are also immutables, indexable, iterables and are as data efficient as a regular *tuple*.  
-* They are not part of core Python and need to be imported from the *collections* module. They provide more readable, self-documenting code over the regular *tuple* where they are intended. 
+* They are not part of core Python and need to be imported from the *collections* module. They provide more readable, self-documenting code over the regular *tuple* where they are intended.
 * So why not use custom class anyway? If you're okay with immutable types, *namedtuple* saves you most of the hassle of writing the code for operations (like iterable, indexing) with the convenience of naming access. 
 * Creating a *namedtuple*.
 ```Python
@@ -1150,7 +1147,7 @@ print(name_tup1._replace(aa=32)) # mynamedtuple(aa=32, bbk=60, cab=52)
 ```
 ### <strong>3.3 Dictionary</strong>
 * Dictionary short form *dict* in Python, is an unordered collection of key & value pairs of items. Dictionaries are mutable, iterable, but Indexing/Slicing doesn't work as their order doesn't matter. 
-* A dictionary uses Hashtable to store data with a key & value.A hashtable uses a hash function which, given a key, generates an index to an array like Data Structure, which stores the actual values. So instead of indexing, these keys are used to access values. This behaviour helps hashmap to do almost all operations in O(1) making them very efficient for storing and retrieval operations.
+* A dictionary uses Hashtable to store data with a key & value. A hashtable uses a hash function which, given a key, generates an index to an array like Data Structure, which stores the actual values. So instead of indexing, these keys are used to access values. This behaviour helps hashmap to do almost all operations in O(1) making them very efficient for storing and retrieval operations.
 * Keys in a dictionary should be hashable i.e have a hash value that does not change throughout its lifetime, all immutable objects are hashables. Values have no restriction, they can be any object. 
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 * Creating a dictionary.
@@ -1164,87 +1161,92 @@ my_dict = {} # or using dict() function
 ```
 * Basic operations on a dictionary.
 ```Python
-my_dict = {'raf': 23, 'soe': 65, 'qr': 52, 10: 20}
-## add operation
+my_dictionary = {'raf': 23, 'soe': 65, 'qr': 52, 10: 20}
+
+## Adding values
 my_var = 20
 key = 10
 tuple_key = (20,)
-# add item at key
-my_dict[key] = my_var # adding 10: 20
-my_dict[tuple_key] = 45 # adding (20,): 45
-my_dict['az'] = 42 # adding 'az': 42
-print(my_dict) # {'raf': 23, 'soe': 65, 'qr': 52, 10: 20, (20,): 45, 'az': 42}
+# add item at key, provide key in '[]' brackets
+# if the key is already present, the previous value will be replaced 
+my_dictionary[key] = my_var # adding 10: 20
+my_dictionary[tuple_key] = 45 # adding (20,): 45
+my_dictionary['az'] = 42 # adding 'az': 42
+print(my_dictionary) # {'raf': 23, 'soe': 65, 'qr': 52, 10: 20, (20,): 45, 'az': 42}
 
-## remove
-del my_dict[tuple_key] # remove the item
+## Removing values
+del my_dictionary[tuple_key] # remove the item
 
-## accessing element
+## Accessing elements
 key = 'qr'
-my_var = my_dict[key] # can raise KeyError if not present
-# use get() method to avoid KeyError, None is default, can be set to anything else
-print(my_dict.get("ar", None)) # None
+my_var = my_dictionary[key] # can raise KeyError if not present
+# use get() method to avoid KeyError, None is a default alternative
+# which will be returned when key is not present, can be set to anything else
+print(my_dictionary.get("ar", None)) # None
 
-## check if key is inside my_dict   
-if 'az' in my_dict:
+## check if key is inside my_dictionary   
+if 'az' in my_dictionary:
   print('printed')
 ```
 * Joining and iterating operations on a dictionary.
 ```Python
-my_dict = {'a':34, 'b': 42}
-my_dict1 = {'z':5, 'y':3, 'x':4}
+my_dictionary = {'a':34, 'b': 42}
+my_dictionary1 = {'z':5, 'y':3, 'x':4}
 
-## Joining: join two dictionary, '+' operator is not supported
+## Joining: Join two dictionary, '+' operator is not supported
 # using the update method of dictionary
-my_dict.update(my_dict1)
-print(my_dict) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
-# or use "my_dict | my_dict1" 
-print(my_dict | my_dict1) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
-# or unpack them in a new dict 
-print({**my_dict, **my_dict1}) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
+my_dictionary.update(my_dictionary1)
+print(my_dictionary) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
+# or using pipe like this "my_dictionary | my_dictionary1" 
+print(my_dictionary | my_dictionary1) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
+# or unpack them in a new dictionary 
+print({**my_dictionary, **my_dictionary1}) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 'x': 4}
 
-## Iterating: going over item by item from a dictionary
+## Iterating: Going over item by item from a dictionary
 # use the items method for both keys, values unpacking
-for k,v in my_dict1.items(): 
+for k,v in my_dictionary1.items(): 
    print(k, v) # {'z':5, 'y':3, 'x':4}
 ```
 * Dictionary comprehension. 
 ```Python 
-my_dict = {x:x*x for x in range(5)} # generating keys and values on the go
-print(my_dict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+my_dictionary = {x:x*x for x in range(5)} # generating keys and values on the go
+print(my_dictionary) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
 # another way is using the zip function
 my_keys = ['a', 'b', 'c']
 my_values = [1,2,3]
-my_dict = {k:v for k,v in zip(my_keys, my_values)}
-print(my_dict) # {'a': 1, 'b': 2, 'c': 3}
-# similar to list's comprehension, dictionaries also support if..else clause inside comprehension
-# create a dictionary without a key 'a' 
-my_dict = {k:v for k,v in zip(my_keys, my_values) if k is not 'a' }
+my_dictionary = {k:v for k,v in zip(my_keys, my_values)}
+print(my_dictionary) # {'a': 1, 'b': 2, 'c': 3}
+
+# similar to list's comprehension, dictionaries also support if or if..else clause 
+# inside comprehension, create a dictionary without a key 'a' 
+my_dictionary = {k:v for k,v in zip(my_keys, my_values) if k != 'a' }
+print(my_dictionary) # {'b': 2, 'c': 3}
 ```
 * Some methods of dictionaries.
 ```Python
-my_dict1 = {'a':1, 'b':2, 'c':3}
-my_dict2 = {'z':50, 'y':40, 'x':30}
+my_dictionary = {'a':1, 'b':2, 'c':3}
 
-# returns a dict_keys object, it contains dictionary's keys, it is iterable, you can also convert it to list
-print(my_dict1.keys()) # dict_keys(['a', 'b', 'c'])
-# returns a dict_values object, it contains dictionary's values, it is iterable, you can also convert it to list
-print(my_dict1.values()) # dict_values([1, 2, 3])
+# returns a dict_keys object, it contains dictionary's keys, it is iterable and can be converted to list
+print(my_dictionary.keys()) # dict_keys(['a', 'b', 'c'])
+# returns a dict_values object, it contains dictionary's values, it is iterable and can be converted to list
+print(my_dictionary.values()) # dict_values([1, 2, 3])
 # returns a dict_items object, has keys & values, you know the rest
-print(my_dict1.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
+print(my_dictionary.items()) # dict_items([('a', 1), ('b', 2), ('c', 3)])
 # removes item(key,value) given key, which is 'a' here and returns value
-print(my_dict1.pop("a")) # 1 
-my_dict1.clear() # removes all items of dictionary
+print(my_dictionary.pop("a")) # 1 
+my_dictionary.clear() # removes all items of dictionary
 ```
 * Type conversion examples.
 ```Python
 keys = [1,2]
 values = [2,3]
+
 my_dict = dict([keys, values]) # list to dictionary
 my_dict = dict(((1,2), (2,3))) # tuple to dictionary
 ```
 * **Time Complexity** </br>
 Dictionaries are implemented using HashMaps, so most operations are O(1) and depending on implementation worst case O(n). </br>
-insert, add, delete is O(1). </br>
+get, set and delete are O(1). </br>
 iteration is O(n).
 ### <strong>3.4 Set</strong>
 * Are unordered collections of non repeating sequences of immutable items. Similar to dictionary, *set* is mutable, iterable, but Indexing/Slicing doesn't work. 
