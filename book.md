@@ -1468,172 +1468,181 @@ print(my_pq) # [6, 23, 23, 67, 34, 78]
 ```
 * Apart from the above Data Structures there are some more that I haven't mentioned, you can find them in the [collections](https://docs.python.org/3/library/collections.html) module. 
 ### <strong>3.6 Some related built-in functions</strong>
-Now let's check out some more important built-in functions such as [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--tuple), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
+Now let's check out some more important built-in functions such as [range()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-rangestart_index0-end_index-step1--range), [enumerate()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-enumerateiterable--enumerate), [zip()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-zipiterable--zip), [sorted()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-sortediterable-keynone-reversefalse--list), [filter()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#5-filterfunction-iterable--filter) and [map()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#6-mapfunction-iterable--map).
 #### 1. range(start_index=0, end_index, step=1) => range
 **Parameters**:</br>
-  * *start_index* *int*: The start index for iteration.
-  * *end_index* *int*: The stopping index for iteration.
-  * *step* *int*: A skipping index in iteration.
+  * *start_index* *int*: The start index for iteration, default is 0.
+  * *end_index* *int*: The stopping index for iteration, it is a required argument.
+  * *step* *int*: Number of indexes to skip on iteration, default is 1.
 
-**Explanation**: This function returns a sequence of length *start_index(0 by default)* to *end_index(is a required argument)*. *range()* function returns a range object, which is iterable, supports indexing and is immutable. It is mainly used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
+**Explanation**: This function returns a sequence of length starting from *start_index* to *end_index*. The *range()* function returns a range object, which is iterable, supports indexing and is immutable. It is mainly used in loops, where a certain number of times a loop should work, like for iterating to the length of an array in C/C++/Java.
 ```Python
-# create a range object of length 20
-my_range = range(20)) 
+## Create a range object of length 20
+my_range = range(20)
 print(my_range) # range(0,20)
 print(type(my_range)) # <class 'range'>
 
-# create a range object values ranging 5 to 20
+# create a range object with values ranging 5 to 20
 print(range(5,20)) # range(5,20)
-# create a range object values ranging 6 to 20 with 2 steps
-print(range(6,20,2)) # [6, 8, 10, 12, 14, 16, 18] 
 
-## indexing a range
+# create a range object values ranging 6 to 20 with 2 steps
+# for printing purpose converting range to list
+print(list(range(6,20,2))) # [6, 8, 10, 12, 14, 16, 18] 
+
+## Indexing a range
 print(range(20)[0]) # 0
 # supports slicing but its not preferred/recommended
 print(range(20)[0:10]) 
-# convert a range sequence to a list
-print(list(range(5,10))) # [5,6,7,8,9] 
 
 ## looping a range object
 for var in range(5): 
-  print(var) # [1,2,3,4,5]
+    print(var) # [1,2,3,4,5]
 # reversing the order with step=-1 and end_index=-1
 for var in range(5, -1, -1): 
-  print(var) # [5,4,3,2,1]
+    print(var) # [5,4,3,2,1]
 ```
 #### 2. enumerate(iterable) => enumerate
 **Parameters**:</br>
-  * *iterable* iterable: Iterable object containing items.
+  * *iterable* iterable: Iterable object containing items, it is a required argument.
 
-**Explanation**: This function returns a *enumerate* object given an iterable, each item is a *tuple* which contains index & value. Index is in range from 0-length of the *list* and value is an item from the *list*. The *enumerate* object is iterable and indexing/slicing is not supported. Similar to *range*, *enumerate* is mostly used in iteration of loops. 
+**Explanation**: This function returns a *enumerate* object given an iterable, each item is a *tuple* which contains index & value. The index is in range from 0 to length of the iterable provided and value is an item from that iterable. The *enumerate* object is iterable and indexing/slicing is not supported. Similar to *range*, *enumerate* is mostly used in iteration of loops, but here we use a predefined iterable while creating the object. 
 ```Python
-# create a enumerate object from a list
+## Create a enumerate object from a iterable, say list
 my_list = [100,200,500,100]
 print(type(enumerate(my_list))) # <class 'enumerate'>
 
 # checking the item of enumerate, it is a tuple (index, value)
 print(list(enumerate(my_list))[0]) # (0,100) 
+# checking all items
+print(list(enumerate(my_list))) # [(0, 100), (1, 200), (2, 500), (3, 100)]
 
-# looping over the enumerate object
+## Looping over the enumerate object
 for i, val in enumerate(my_list):
-  print(i) # 0,1,2,3
-  print(val) # 100,200,500,100
+    print(i) # 0,1,2,3
+    print(val) # 100,200,500,100
 ```
 #### 3. zip(\*iterable) => zip
 **Parameters**:</br>
-  * *iterable* iterable: Iterable object containing items, '\*' denotes a function that can take multiple input objects.
+  * *iterable* iterable: Iterable object containing items, it is a required argument. The '\*' denotes a function can take multiple input objects.
 
-**Explanation**: This function returns a *zip* object given single/multiple iterables, each item is a *tuple* which contains n (number of input iterables) length elements. When provided with multiple iterables, the length of the returned *zip* object is equal to the length of the smallest iterable. *zip()* is commonly used to unpack values from multiple iterables simultaneously in a loop.  
+**Explanation**: This function returns a *zip* object given single/multiple iterables, each item in a *zip* is a *tuple* which contains n (number of input iterables) length of elements. When provided with multiple iterables, the length of the returned *zip* object is equal to the length of the smallest iterable. *zip()* is commonly used to unpack values from multiple iterables simultaneously in a loop.  
 ```Python
 a = ['This','is','something']
 b = (14, 3, 6)
 c = {34,7} 
-# create a zip object given a iterable
+
+## Create a zip object given a iterable
 my_zip = zip(a)
 print(type(zip(a))) # <class 'zip'>
 
-# the length of zip is 2 because smallest is c and its length is 2
-# so remaining values in a,c are ignored
+# create a zip from multiple iterables
 print(len(list(zip(a, b, c)))) # 2
-# convert to list in order to print
-print(list(zip(a, b, c))) # [('This', 14, 7), ('is', 3, 34)]
+# the length of zip is 2 because smallest is c and its length is 2
+# so remaining values in a,b are ignored
 
-# loop over the values
+# converting to list for printing
+print(list(zip(a, b, c))) # [('This', 14, 34), ('is', 3, 7)]
+
+## Loop over the values
 for v in zip(a, b, c):
-  # v is a tuple with 3 values, so we can index them
-  print(v[0], v[1], v[2]) # [('This', 14, 7), ('is', 3, 34)]
+    # v is a tuple with n values, i.e 3 in our case
+    print(v[0], v[1], v[2]) # [('This', 14, 34), ('is', 3, 7)]
 # or unpack them into named variables
 for var1, var2 in zip(a,b):
-  print(var1, var2) # [('This','is','something'), (14, 3, 6)]
+    print(var1, var2) # [('This', 14), (is', 3), ('something', 6)]
 ```
 #### 4. sorted(iterable, key=None, reverse=False) => list
 **Parameters**:</br>
-  * *iterable* iterable: Iterable object containing items.
-  * *key* iterable: Optional function to fetch values from your iterable object.
-  * *reverse* bool: Whether to reverse the sorting.
+  * *iterable* iterable: Iterable object containing items, it is a required argument.
+  * *key* iterable: Optional function to fetch values from your iterable object, default is *None*.
+  * *reverse* bool: Optional to reverse the sorting, default is *False*.
 
-**Explanation**: This function returns a sorted *list* given an iterable object. Sorting is O(nLogn). *key* parameter takes a function which is then used to extract the elements, helpful when an object has some inner structure. Also has a *reverse* parameter, which is used to do reverse sorting if it is set to *True*.
+**Explanation**: This function returns a sorted *list* given an iterable object. Sorting is O(nLogn). *key* parameter takes a function which is then used to extract the elements, helpful when an object has some inner structure. *sorted()* function has a *reverse* parameter, which is used to do reverse sorting.
 ```Python
-my_tuple = (14, 3, 6)
-my_set = {34,7,1}
 my_string = "ererer"
-
-my_list = [[10,20,56,23,12],[200], [2,7,23]]
-
-def my_fun(a):
-  # return element you want iterable to be sorted by
-  # here we are returning length of each element(sub-list)
-  return len(a)
+my_set = {34,7,1}
+my_tuple = (14, 3, 6)
 
 # sort a string
 print(sorted(my_string)) # ['e', 'e', 'e', 'r', 'r', 'r']
+# sort a set
+print(sorted(my_set)) # [1, 7, 34]
 # sort a tuple in reverse order
 print(sorted(my_tuple, reverse=True)) # [14, 6, 3]
-# sort a list by the length of sub-list
+
+## Sorting a list with some inner structure, example nested lists
+my_list = [[10,20,56,23,12],[200], [2,7,23]]
+
+def my_fun(a):
+    # here return the element you want the iterable to be sort with
+    # here we are returning length of the nested list
+    return len(a)
+
+# sort a list by the length of its nested lists
 print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 # Notice: "my_fun" is passed and not called, we'll learn about this in the function's section.
 ```
 #### 5. filter(function, iterable) => filter
 **Parameters**:</br>
-  * *function* function: Your function for filtering.
-  * *iterable* iterable: Iterable object containing items.
+  * *function* function: Your function for filtering, it is a required argument.
+  * *iterable* iterable: Iterable object containing items, it is a required argument.
 
 **Explanation**: This function takes an input function & an iterable and applies that function on every item of that iterable. The return value of the filter's input function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from an iterable object. *filter()* returns a filter object which is iterable and indexing/slicing is not supported.
 ```Python
 ## Example: create simple filter object that filter elements which are divisible by 10
 def my_func(var):
-  # returns True if number is divisible by 10
-  if var % 10 == 0:
-    # value is returned
-    return True 
-  # value is not returned   
-  return False
+    # returns True if number is divisible by 10
+    if var % 10 == 0:
+        # value is returned
+        return True 
+    # value is not returned   
+    return False
 
 my_list = [101,100,501,200]
 # create a filter object
 my_filter = filter(my_func, my_list)  
 print(type(my_filter)) # <class 'filter'>
-output = list(my_filter)
-# or looping through filter object 
+
+print(list(my_filter)) # [100, 200]
+# or loop through the filter object 
 for val in filter(my_func, my_list):
-  print(val) # [100, 200]
+    print(val) # [100, 200]
 ```
 #### 6. map(function, iterable) => map
 **Parameters**:</br>
-  * *function* function: Your function to apply on items.
-  * *iterable* iterable: Iterable object containing items.
+  * *function* function: Your function to apply on items, it is a required argument.
+  * *iterable* iterable: Iterable object containing items, it is a required argument.
 
-**Explanation**: This function takes an input *function* & an iterable object and applies that *function* on every item of that *iterable*. As the name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our input *function*.
+**Explanation**: This function takes an input function & an iterable object and applies that function on every item of that iterable. As the name suggests, a function is mapped to each element of an *iterable*. So unlike *filter()*, *map()* returns the direct value returned by our input function.
 ```Python
-## Example 1: Return square of each element in a list
+## Example 1: Return square of each element in a tuple
 my_tuple = (1,2,3,4,5)
 def my_func(var):
-  # returns square of a number
-  return var**2
+    # returns square of a number
+    return var**2
   
 my_mapper = map(my_func, my_tuple)   
 print(type(my_mapper)) # <class 'map'>
-# call list construtor to executes the map function
-output = list(my_mapper) # [1, 4, 9, 16, 25]
 
+print(list(my_mapper)) # [1, 4, 9, 16, 25]
 # or looping through map object
 for val in map(my_func, my_tuple):
-  print(val) # [1, 4, 9, 16, 25]
+    print(val) # [1, 4, 9, 16, 25]
 ```
 
 ## <strong>4. Flow Control</strong>
-Flow Control is used for making decisions in programs. This decision making helps turn the output of the program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. Let’s check them out.
+Flow Control is used for making decisions in programs. This decision making helps to turn the output of a program based on the executed conditions. Python supports all the general statements for conditions and loops except *switch*. Let’s check them out.
 ### <strong>4.1 *if...else* statement</strong>
-* *if...else* is the simplest and most general conditional statement that helps turn the program execution based on the conditions provided. An *if...else* can be extended to any length using *elif* and also can be nested as required. Like in other programming languages, the *elif* & *else* part is totally optional.
+* *if...else* is the simplest and most general conditional statement that helps turn the program execution based on the conditions provided. An *if...else* can be extended to any length using *elif* and also can be nested as required. Like in other programming languages, the *elif* & *else* part are totally optional.
 * Creating a conditional *if...else* statement.
 ```Python
 my_var = 10
 
 # check if my_var is 20, else print something else, notice the indentations
 if my_var == 20:
-  print('Yes its 20')
+    print('Yes its 20')
 else:
-  print('Its something else')
+    print('Its something else')
 ```
 * *if...else* can be extended with single/multiple *elif*.
 ```Python
@@ -1641,35 +1650,35 @@ my_var = 30
 
 # same example with different value
 if my_var == 20:
-  print('Yes its 20')
+    print('Yes its 20')
 elif my_var == 30:
-  print('Yes its 30')
+    print('Yes its 30')
 else:
-  print('Its something else')
+    print('Ah, its something else')
 ```
 * Nesting *if...else*.
 ```Python
 my_value = 18
 
-# notice the indentation here
+# notice the indentations here
 if my_value > 10:
-  if my_value < 20:
-    print("my_value is between 10 and 20")
-  else:
-    print("my_value is greater than 20")
+    if my_value < 20:
+        print("my_value is between 10 and 20")
+    else:
+        print("my_value is greater than 20")
 else:
-  print("my_value is smaller than 10")
+    print("my_value is smaller than 10")
 ```
 * Ternary Operator to use *if...else* in a single line.
 ```Python
 ## Ternary Operator: SYNTAX => [on_true] if [expression] else [on_false] 
 my_var = "Yes" if 20%2 == 0 else "No"
-# here is 'Yes' is the output when 'if' condition is satisfied, else 'No' is the output
+# here 'Yes' is the output when 'if' condition is satisfied, else 'No' is the output
 print(my_var) # "Yes"
 ```
 * Truth value testing, check whether an object is Truthy and Falsy. Their values are given below(comma separated).
 ```Python
-# Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty Data-structures/sequences
+# Truthy(True values): non-zero numbers(including negative numbers),True,Non-empty sequences
 # Falsy(False values): 0,0.0,0j,None,False,[],{},(),"",range(0)
 
 my_var = 10
@@ -1678,19 +1687,19 @@ my_var1 = None
 ## Some Examples
 # my_var is a non-zero number, which is Truthy, so 'if' will execute
 if my_var: 
-  print("printed") # printed
+    print("printed") # printed
 # my_var1 is 'None', which is Falsy, so 'if' will not execute  
 if my_var1: 
-  print("not printed")
+    print("not printed")
 # check a empty tuple
 if ():
-  print("not printed")
+    print("not printed")
 # check a non-empty list
 if [23,45,34]:
-  print("printed")
+    print("printed") # printed
 
 # By default user-defined object is also Truthy, you can manipulate using '__bool__()' special method
-# can also use 'bool()' built-in function to check the Truth value  
+# you can also use 'bool()' built-in function to check the Truth value  
 print(bool(42)) # True
 print(bool("This?")) # True
 print(bool("")) # False
@@ -1702,23 +1711,23 @@ print(bool(None)) # False
 ```Python
 my_list = [10,20,30,40,50]
 
-## regular looping using range object
+## Regular looping using range object
 for i in range(len(my_list)): # [0:4]
-  print(my_list[i])
+    print(my_list[i]) # [10,20,30,40,50]
 
-## pythonic loops
+## Pythonic loops
 for v in my_list:
-  print(v)
+    print(v) # [10,20,30,40,50]
 # or 
 for a in [10,20,30,40,50]:
-  print(a)   
+    print(a) # [10,20,30,40,50]
   
-## there's also a 'else' condition, when a "for" loop is not executed
-# if no statement has executed inside a "for" loop, this 'else' condition will execute
+## There's also a 'else' condition, when a 'for' loop is not executed
+# if no statement has executed inside a 'for' loop, this 'else' condition will execute
 for v in []:
-  print("List has no elements")
+    print("List has no elements")
 else:
-  print("So this will execute")
+    print("So this will execute")
 ```
 ### <strong>4.3 *while* statement</strong>
 * A *while* loop executes till its given condition is valid and stops execution when it's invalid. *while* loops are more flexible than *for* loops and they can be executed infinitely by setting the condition to *True*, something that is not possible with *for* loops.
@@ -1726,77 +1735,79 @@ else:
 i=0
 my_list = [10,20,30,40,50]
 
-# define a while loop, till i is smaller than length of my_list
+## Define a while loop, till 'i' is smaller than length of my_list
 while i < len(my_list):
-  print(my_list[i])
-  i+=1 # similar to 'i=i+1', since 'i++' is not supported
+    print(my_list[i])
+    i+=1 # similar to 'i=i+1', since 'i++' is not supported
   
-# infinite looping
+## Infinite looping
 while True:
-  # do something
-  # but remember to stop at some point!
+    pass
+    # do something, but remember to stop at some point!
 ```
 ### <strong>4.4 *break* and *continue* statements</strong>
-* **break**: Use to break from iteration/loop. 
-* **continue**: Use to continue to the next iteration in loops.
+* **break**: Used to break from iteration/loop. 
+* **continue**: Used to continue to the next iteration in loops.
 ```Python
 i=-1
-my_list = [10,20,30,40,50]
+my_list = [10,20,30,40,50,60]
 
 while i<len(my_list):
-  i+=1
-  if i == 0:
-    continue
-  if i == 4:
-    break
-  print(my_list[i]) # [20,30,40]
+    i+=1
+    # skip 0th index
+    if i == 0:
+        continue
+    # stop iteration at 4th index
+    if i == 4:
+        break
+    print(my_list[i]) # [20,30,40]
 ```
 
 ## <strong>5. Exception Handling</strong>
-As humans while writing code we are prone to make mistakes/errors, causing programs to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. A programmer usually spends most of their time debugging and it becomes very essential to spot their types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and it might take a huge amount of time in debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it needs to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. Users can also subclass built-in exception classes to define their own Exceptions. Although, Python docs recommend subclassing from *Exception* class or its subclass only. Let’s begin this chapter.
+As humans while writing code we are prone to make mistakes/errors, causing programs to crash or behave incorrectly. The process of finding and fixing the errors/bugs is called debugging. Programmers usually spend most of their time debugging and it becomes very essential to spot their types and fix them accordingly. As programs get larger in size errors might not be that straightforward to fix/spot and it might take some amount of time in debugging. In Python errors are called Exceptions, it is a Pythonic way of saying something exceptional has occurred and it needs to be handled. All exceptions are instances of classes derived from *BaseException* class. User code can *raise* (throw in Java/C++) any built-in exceptions. Users can also subclass any built-in exception classes to define their own Exceptions. Although, Python docs recommends subclassing from *Exception* class or its subclasses only and not from *BaseException* class. Let’s begin this chapter.
 ### <strong>5.1 Three Types of Errors/Exceptions</strong>
 #### 1. Compile Time Errors
-* These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program. 
-* The interpreter raises a *SyntaxError*/*IndentationError* and also indicates the line causing the error when found. *SyntaxError* is raised due missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
+* These exceptions are raised due to the syntactical mistake in code and are usually easier to spot and fix. They are raised when the Python Interpreter is compiling a program. A user at this point has to fix the error to be able to execute the program.
+* The interpreter raises a *SyntaxError*/*IndentationError* and also indicates the line causing the error when found. *SyntaxError* is raised due to a syntactical error in code such as missing colon in compound statements, invalid condition checking in *if..else* statements, missing string quote or bracket operator's termination, empty *import* statement, missing/misspelling keywords, empty function/class definition etc. *IndentationError* is raised when using a invalid indentation in compound statements.    
 ```Python
-## Example 1: wrong indentation in condition
+## Example 1: Wrong indentation in condition
 a = 30
 if a == 30:
     print("Execute this")
      print("This will raise a Indentation error") # IndentationError
 
-## Example 2: missing closing brackets in list and string  
+## Example 2: Missing closing brackets in list and missing inverted comma in string
 data = [232,54,65 # SyntaxError
 data = "this string is not complete # SyntaxError
 
-## Example 3: missing colon in function 
+## Example 3: Missing colon in function 
 def myfun() # SyntaxError
     print("my function")
 ```
 #### 2. Runtime Error
-* Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, the interpreter starts to execute and if an exception is raised it is a runtime error. The program to the part of the runtime error line is executed, the rest of the execution is stopped. Along with the Exception type interpreter also prints appropriate messages on the screen. A user at this point can fix the error or can bypass and continue the rest of the execution by using Exception Handling. </br>
+* Are raised at runtime due to some illegal invocation/operation on objects. If a program is syntactically correct, the interpreter starts to execute and if an exception is raised it is a runtime error. The program to the part of the runtime error line is executed, the rest of the execution is stopped. Along with the Exception type, the interpreter also prints appropriate messages on the screen. A user at this point can fix the error or can bypass and continue the rest of the execution by using Exception Handling. </br>
 **Some common runtime errors in Python.**
   1. **AttributeError**: Raised when an attribute reference or assignment fails.
   2. **TypeError**: Raised when an operation or function is applied to an object of inappropriate type.
   3. **ValueError**: Raised when an operation or function receives an argument that has the right type but an inappropriate value.
-  4. **RecursionError**: Raised when the maximum recursion depth is exceeded.
+  4. **RecursionError**: Raised when the maximum recursion depth is exceeded, also called StackOverFlow error.
   5. **IndexError**: Raised when a sequence subscript is out of range.
   6. **KeyError**: Raised when a mapping (dictionary) key is not found in the set of existing keys.
 * For more exceptions check the exception hierarchy on [python doc](https://docs.python.org/3/library/exceptions.html#exception-hierarchy). 
 * Python also has a [*warnings*](https://docs.python.org/3/library/warnings.html#warnings.warn) module which is a subclass of *Exception* class and unlike all other exceptions they don't terminate the program. They are only meant to warn the user by showing some message.
 ```Python
-## Example 1: indexing error
+## Example 1: Indexing error
 a = [34,56,32,87]
 print(a[6]) # IndexError
 
-## Example 2: dividing by zero
+## Example 2: Dividing by zero
 print(34/0) # ZeroDivisionError
 
-## Example 3: accessing unknown attribute 
+## Example 3: Accessing unknown attribute 
 import math
 math.square # AttributeError
 
-## Example 4: raise a warning
+## Example 4: Raise a warning
 import warnings
 warnings.warn("Something is not right.")
 print("This can execute")
@@ -1805,87 +1816,88 @@ print("This can execute")
 * Are not raised, but the program output is not an expected behaviour. They usually get difficult to fix as the program grows. They occur when the program logic is incorrect. Common examples such as using the wrong variable/operator, calling the wrong function/method instead, subclassing a wrong class etc.  
 * To avoid these errors it is recommended to debug a program normally or use unit testing framework [unittest](https://docs.python.org/3/library/unittest.html#module-unittest) to test the program before integrating it into an application.
 ```Python
-## Example 1: accessing wrong index
+## Example 1: Accessing wrong index
 my_list = [82,92,38,42,54,23,64,87]
 # printing last 3 values
 print(my_list[-2:]) # [64, 87]
-# here program has no error, but instead of printing 3
+# here our program has no error, but instead of printing 3 numbers
 # its only printing 2 numbers, because we provided wrong index
-# this example is not hard to fix, but in larger programs it consumes a lot of 
-# time to find which object/variable/function must have caused the wrong output 
+# this example is not hard to fix, but in larger programs it might consume some  
+# time to find out which object/variable/function has caused the wrong output
 ```
 ### <strong>5.2 Handling the Exceptions</strong>
 * Exception handling is a way to handle the Runtime errors. Exception/Error handling helps to continue the program execution while handling the Errors/Exceptions on the way. If you know a particular block of code is likely to cause an error, you can integrate that code inside a *try..except* block and provide a behaviour for the Exception.
 * Python has the *try* block to try the suspicious code, *except* (catch in C/C++/Java) block to add behaviour when such error occurs. Optionally Python has an *else* block which executes only if no exception has occurred. Then there is a *finally* block which executes if/not an error occurs.
 * Basic exception handling.
 ```Python
-## use traceback built-in module for printing Tracebacks
+## Use traceback built-in module for printing Tracebacks
 import traceback
 
-## Example 1: catching specific errors
+## Example 1: Catching specific errors
 try:
-  a=10
-  a = "this"+a
+    a=10
+    a = "this"+a
 except (TypeError, ZeroDivisionError):    
-  print("ZeroDivisionError/TypeError occurred")
-  # printing traceback
-  traceback.print_exc()
+    print("ZeroDivisionError/TypeError occurred")
+    # printing traceback
+    traceback.print_exc()
   
-## Example 2: catch any exception with 'Exception' class, it is base class of all exceptions
+## Example 2: Catch any exception with 'Exception' class, it is base class of all exceptions
 # let's cause stackoverflow/RecursionError in python
-# below is a user defined function, we'll get into details in next chapter
+# below is a user defined function, we'll learn about functions in next chapter
 def my_fun():
-  try:
-    my_fun() 
-  except Exception as e:
-    # printing exception class
-    print(e.__class__)  # <class 'RecursionError'>
-    # printing the exception
-    print(e) # maximum recursion depth exceeded
+    try:
+        my_fun() 
+    except Exception as e:
+        # printing exception class
+        print(e.__class__)  # <class 'RecursionError'>
+        # printing the exception
+        print(e) # maximum recursion depth exceeded
 my_fun()
 ```
 * *finally* and *else* statements.    
 ```Python
 try:
- a = 20/0
- a=20
+    a = 20/0
+    a=20
 except Exception as e:
-  print(e.__class__) # <class 'ZeroDivisionError'>
-  print(e) # division by zero
+    print(e.__class__) # <class 'ZeroDivisionError'>
+    print(e) # division by zero
 else:
     print("This optional block executes if no exception was raised.")  
 finally:
-    print("Finally, its finally, which always executes.")    
+    print("Finally, its finally, which always executes.")
 ```
 * Create a user defined *Exception*.
 ```Python
-## Example 1: a simple exception
+## Example 1: Creating a simple exception
 class MyException(Exception):
-  pass
+    pass
 
 try:
-  raise MyException
+    raise MyException
 except MyException:
-  print("My Exception was raised") # My Exception was raised
+    print("My Exception was raised") # My Exception was raised
+
 
 ## Example 2: Raise a large value exception in pow()
 class NumberTooLargeException(Exception):
-  def __init__(self, message):
-    self.message = message
-  def __str__(self):
-      return f"NumberTooLargeException: {self.message}"    
+    def __init__(self, message):
+        self.message = message
+    def __str__(self):
+        return f"NumberTooLargeException: {self.message}"    
 
 def calculate_pow(num1, num2):
-  try:
-    if num1 > 100 and num2 > 10:
-      raise NumberTooLargeException("base & exp are too large, should be below 100 & 10")
-    elif num1 > 100:
-        raise NumberTooLargeException("base is too large, should be below 100")  
-    elif num2 > 10:
-      raise NumberTooLargeException("exp is too large, should be below 10")  
-    print(pow(num1, num2))  
-  except Exception as e:
-    print(e)    
+    try:
+        if num1 > 100 and num2 > 10:
+            raise NumberTooLargeException("base & exp are too large, should be below 100 & 10")
+        elif num1 > 100:
+            raise NumberTooLargeException("base is too large, should be below 100")  
+        elif num2 > 10:
+            raise NumberTooLargeException("exp is too large, should be below 10")  
+        print(pow(num1, num2))  
+    except Exception as e:
+        print(e)    
 
 calculate_pow(10, 2) # 100
 calculate_pow(100, 2) # 1000
@@ -1895,26 +1907,26 @@ calculate_pow(1000, 20) # NumberTooLargeException: base & exp are too large, sho
 ### <strong>5.3 Raising the exceptions</strong>
 * Raising (throw in C++/Java) built-in/User-defined exceptions is done using the *raise* statement. Most commonly raised are *ValueError* and *AttributeError*.
 ```Python
-## Example 1: manually raising a exception
+## Example 1: Manually raising a exception
 def my_fun(a):
-  try:
-    if a == 20:
-      raise ValueError("I don't want number 20") 
-      # or not specifying a specific exception like, "raise Exception('my message')"
-    return "Okay"
-  except ValueError as v:
-    print(v)
+    try:
+        if a == 20:
+            raise ValueError("I don't want number 20") 
+        # or not specifying a specific exception like, "raise Exception('my message')"
+        return "Okay"
+    except ValueError as v:
+        print(v)
 my_fun(20) # I don't want number 20
 ```
 ### <strong>5.4 **assert** statement</strong>
-* *assert* helps in debugging, it is used to check if a certain condition is true, else *raise* an *AssertionError*.
+* *assert* helps in debugging, it is used to check if a certain condition is True, else *raise* an *AssertionError*.
 ```Python
 a = 10
 
-# Example 1: check if a is 10
+# Example 1: Check if a is 10
 assert a == 10 # No error raised
 
-# Example 2: check if a is 30
+# Example 2: Check if a is 30
 assert a == 30, "Your error message here" # AssertionError
 ```
 
