@@ -770,7 +770,7 @@ Simply put data structures are used to organize data in a way that it can be sto
   2. Abstract Data Type defines only the mathematical model of the implementation of a data type i.e they only exist in pseudo code.
   3. Data structures are the actual coded/coding implementation of the pseudo code i.e they are implemented in a programming language's code.
  
-The built-in Data Structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dict) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Additionally we'll also take a look at some of their alternatives. Later we'll check out some more built-in functions which provide additional useful operations. Let's get to it.
+The built-in Data Structures explained below are [list](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#31-list), [tuple](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#32-tuple), [dict](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#33-dictionary) and [set](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#34-set). Additionally we'll also take a look at some of their alternatives. Later we'll check out some more built-in functions which provide additional useful operations. Let's get to it.
 ### <strong>3.1 List</strong>
 * By the name it may seem a *LinkedList* data structure but its not, *list* is an array (Dynamic Array) like implementation in Python. *list* is an ordered collection of sequence of items, which can be of any data type or objects.
 * *List* is Mutable (values can be changed) and an *iterable* object (can be iterated using loops, more on this later). It supports Indexing, Slicing, and also Comprehensions, which is a short way of creating a sequence.  
@@ -793,7 +793,7 @@ my_var = 1
 my_list.append(my_var)
 print(my_list) # [23, 65, 12, 76, 10, 1]
 
-## Altering: change values of list items
+## Altering: Change values of list items
 my_list[0] = 100
 my_list[4] = 200
 print(my_list) # [100, 65, 12, 76, 200]
@@ -996,7 +996,7 @@ some_tuple = () # or using tuple() function
 ```
 * Basic operations on a *tuple*.
 ```Python
-## tuple is immutable, there is no append()/remove(), can't use 'del' like in list
+## Tuple is immutable, there is no append()/remove(), can't use 'del' like in list
 # so to add a element join two tuples, and assign it to the previous/new variable
 my_tuple = (1,2,3,4)
 my_tuple += (5,) # adding another element as tuple, its basically joining two tuples
@@ -1044,7 +1044,7 @@ print(my_tuple[::-1]) # (5.0, 'one', 'are', 'we', 3, 2, 1)
 ```
 * Unpacking a *tuple*.
 ```Python
-## unpacking tuple (more on unpacking later on)
+## Unpacking tuple (more on unpacking later on)
 a,b,c = (1,2,3) # unpacking values into a,b,c
 # even below line does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c 
 # same is true when returning comma separated values from a function 
@@ -1184,7 +1184,7 @@ my_var = my_dictionary[key] # can raise KeyError if not present
 # which will be returned when key is not present, can be set to anything else
 print(my_dictionary.get("ar", None)) # None
 
-## check if key is inside my_dictionary   
+## Check if key is inside my_dictionary   
 if 'az' in my_dictionary:
   print('printed')
 ```
@@ -1249,9 +1249,9 @@ Dictionaries are implemented using HashMaps, so most operations are O(1) and dep
 get, set and delete are O(1). </br>
 iteration is O(n).
 ### <strong>3.4 Set</strong>
-* Are unordered collections of non repeating sequences of immutable items. Similar to dictionary, *set* is mutable, iterable, but Indexing/Slicing doesn't work. 
-* Items/Members inside a *set* should be hashable (must have a *\_\_hash\_\_()* method), its hash value must never change during its lifetime. *int*, *float*, *str* & *tuple* (with hashable items in them) are hashable. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union. 
-* Sets are used to maintain unique values and in membership testing i.e check if the variable is already present in the *set*. Like in BFS/DFS algorithms for checking visited nodes.
+* Are unordered collections of non repeating sequences of items. Similar to dictionary, *set* is mutable, iterable, but Indexing/Slicing doesn't work. 
+* Items/Members inside a *set* should be hashable (similar to keys of dictionaries), that object must have a *\_\_hash\_\_()* method in its class. All immutable objects are valid members of a *set*. For example, *int*, *float*, *str* & *tuple* etc are all hashables. This behaviour allows sets to check if a particular object is unique from other members and also to perform operations like intersection, union.
+* Sets are used to maintain unique values and in membership testing i.e check if the variable is already present in a *set*. Like in BFS/DFS algorithms for checking visited nodes.
 * Creating a *set*.
 ```Python
 # insert values inside '{}' brackets
@@ -1266,30 +1266,30 @@ my_set = set()
 my_var = 4
 my_set = {9,1,5,2,20}
 
-## add
-my_set.add(my_var) # if repeated value, it will not be added again 
+## Adding items: If it is a repeated value, it will not be added again 
+my_set.add(my_var)
 
-## remove
-my_set.remove(my_var) # removes a member, raises KeyError if not found
+## Removing items: Removes a item, raises KeyError if not found
+my_set.remove(my_var) 
 
-## accessing element: indexing is not supported
+## Accessing members: Indexing is not supported
 my_set[0] # not allowed, TypeError: 'set' object is not subscriptable.
-# so use in operator to check if my_var is inside my_set   
-if my_var in my_set: 
-  print('not printed')
+# so use the 'in' operator to check if my_var is inside my_set   
+if my_var in my_set:
+    print('not printed')
 ```
 * Joining and iterating operations on a *set*.
 ```Python  
 a = {54,23,67}
 b = {34,65,55.6}
 
-## Joining: join two sets, '+' operator is not supported, use the update method
+## Joining: Join two sets, '+' operator is not supported, use the update method
 a.update(b) 
 print(a) # {65, 34, 67, 55.6, 54, 23}
 
-## Iterating: going over item by item from a set
+## Iterating: Going over item by item from a set
 for x in a: 
-   print(x) # {65, 34, 67, 55.6, 54, 23}
+    print(x) # {65, 34, 67, 55.6, 54, 23}
 ```
 * *set* comprehension.
 ```Python
@@ -1305,18 +1305,18 @@ for a in range(2):
     for b in range(3):
         my_set.add((a, b))
 print(my_set) # {(0, 1), (1, 2), (0, 0), (1, 1), (0, 2), (1, 0)}
-# you can try practicing different combinations of comprehensions  
+# you can try practicing different combinations of comprehensions
 ```
 * Some methods of *set*.
 ```Python   
 my_set1 = {3,5,7,1,8}
 my_set2 = {1,2,3,4,5}
 
-# find intersection, or use 'my_set1 & my_set2'     
+# find intersection, similar to 'my_set1 & my_set2'     
 print(my_set1.intersection(my_set2)) # {1, 3, 5}
-# to find union, or use 'my_set1 | my_set2'   
+# find union, similar to 'my_set1 | my_set2'   
 print(my_set1.union(my_set2)) # {1, 2, 3, 4, 5, 7, 8}
-# find difference in my_set1 and my_set2
+# find difference between my_set1 and my_set2
 print(my_set1.difference(my_set2)) # {8,7}
 # checks if my_set2 is a subset of my_set1
 print(my_set1.issubset(my_set2)) # False
@@ -1326,17 +1326,19 @@ print(my_set1.issuperset(my_set2)) # False
 my_set2.clear() 
 # create a copy of a set, a shallow copy
 my_copy = my_set1.copy() 
-# it means copying only references of original items into a new sequence, 
+# A shallow copy means copying only references of original items into a new sequence, 
 # so if a item isn't a literal constant like a list, 
 # any modification made inside that list will be reflected to that item of a new copy 
 ```
 * Type conversion examples.
 ```Python
 my_list = [1,2,3,4,5]
-# here my_list is mutable, but set() function unpacks the items from my_list
-my_set = {my_list} # this raises TypeError
+
+# here my_list is mutable, so will raises TypeError
+my_set = {my_list} # TypeError: unhashable type: 'list'
+# but set() function unpacks the items from my_list
 my_set = set(my_list) # this unpacks items from list to set
-# also if my_list contained a list inside it, TypeError: unhashable type: 'list' is raised
+# also if my_list contained a list inside it, TypeError is raised
 my_set = set((1,2,3,4,5)) # tuple to set
 ```
 * **Time Complexity** </br>
@@ -1356,7 +1358,7 @@ my_fset = frozenset((10,65,65,2,7,94,34,42,21))
 print(type(my_fset)) # <class 'frozenset'>
 print(my_fset) # frozenset({65, 2, 34, 7, 10, 42, 21, 94})
 
-## immutable 
+## Immutable 
 my_fset.add(20) # AttributeError: 'frozenset' object has no attribute 'add'
 my_fset.remove(20) # AttributeError: 'frozenset' object has no attribute 'remove'
 ```
@@ -1381,45 +1383,49 @@ print(my_fset1.issuperset(my_fset2)) # False
 ### <strong>3.5 Extras</strong>
 #### 3.5.1 Stack
 * Stacks are LIFO, Last In First Out Data Structures. Elements go in and out from a single direction only. Main operations/methods of Stack are adding an element which is called a *push* operation and removing an element which is called a *pop* operation. Other operations are *isEmpty*, *isFull* and *peek* etc.
-* The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), *list* should be good enough for Stacks.
+* The main operations of Stack can be easily performed using *list*'s available methods. And as *append* is ~O(1) and *pop* is O(1), so *list* should be good enough for Stacks.
 ```Python
 # create a stack
 my_stack = []
-## add/remove operation
+
+## Add/Remove operations
 my_stack.append(20) # push: append at top
 my_stack.pop() # pop: remove at top
 ```
 #### 3.5.2 Queue
-* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from another direction. Main operations/methods of Queue are adding an element which is called an *enqueue* operation and removing an element which is called a *dequeue* operation. Other operations are *isEmpty*, *isFull* and *peek* etc. Variants of Queue are circular queue, priority queue and dequeue. 
+* Queues are FIFO, First In First Out Data Structures. Elements go in one direction and go out from another direction. Main operations/methods of Queue are adding an element which is called an *enqueue* operation and removing an element which is called a *dequeue* operation. Other operations are *isEmpty*, *isFull* and *peek* etc.
+* Variants of Queue are circular queue, priority queue and dequeue. Let's use *list* as a Queue. 
 ```Python
 # create a queue
 my_queue = []
-## add/remove operation
+
+## Add/Remove operations
 my_queue.append(20) # enqueue: append at rear
 my_queue.pop(0) # dequeue: remove at front
 ```
-* Python also has a *dequeue* (double ended queue) Data Structure which can also be used as a normal Queue. They are implemented as doubly linked-list and support adding & removing from both sides (front & end), they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. 
-* For Queues we only need to append at the end and pop/remove at the front, both of which are O(1) for *dequeue* which is good enough. They are not part of core Python and need to be imported from the *collections* module.
+* Python also has a *dequeue* (double ended queue) Data Structure which can also be used as a normal Queue. They are implemented as doubly linked-list and support adding & removing from both sides (front & rear), they are efficient at add/remove from left (front) operation. Other operations have similar performance as *list*. 
+* For Queues we only need to append at the rear and pop/remove at the front, both of which are O(1) for *dequeue*, which is great. They are not part of core Python and need to be imported from the *collections* module.
 ```Python
 from collections import deque
 import sys
+
 my_list = [23,45,12,67,132,67]
-# create a deque using any iterable
+# deque can be created using any iterable
 dq = deque(my_list)
 
-## Queue operations
-dq.append(20) # # push: append at top
-dq.popleft() # pop: remove at top
+## Add/Remove operations
+dq.append(20) # enqueue: append at rear
+dq.popleft() # dequeue: remove at front
 
-# Only drawback is that they are data inefficient than list
+# only drawback is that they are data inefficient than list
 print(sys.getsizeof(dq)) # 624
 print(sys.getsizeof(my_list)) # 152
 ```
 #### 3.5.3 Priority Queue
-* Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue uses priority, elements with highest priority are taken out first. In order to work the data has to be comparable (same type).
-* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which is the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property, which is nothing but the max/min criteria for getting elements out. 
-* A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for sorting. Three main operations *add*, *delete* and *peek* are explained below:
-  1. *add*: First traverse to the last (leaf) empty position, add the element there and heapify the tree.
+* Priority Queues are used when the elements are supposed to have some priority associated with them. So instead of using FIFO like normal queues, Priority Queue uses priority, elements with highest priority are taken out first. In order for this to work the data has to be comparable (same type).
+* Python provides *heapq* which are Priority Queues implementation, they support only min-heap (smallest element has highest priority). The *heapq* module implements the Heap Data Structure (Binary heap) which is the most efficient way of implementing a Priority Queue. A Heap DS is a complete binary tree (all levels are filled except the leaf positions) that satisfies a heap property, which is nothing but the max/min criteria for getting a element out.
+* A Heap DS has a *heapify* function, it is responsible for constructing a Heap DS i.e constructing/adding elements in a binary tree for sorting. The three main operations of a Heap DS *add*, *delete* and *peek* are explained below:
+  1. *add*: First traverse to the last (leaf) empty position (left to right), add the element there and heapify the tree.
   2. *delete*: Select the index to be deleted, replace with the last element (rightest leaf), remove the last element and heapify the tree.
   3. *peek*: Traverse to the rightest leaf position, return the element.
 * A Priority Queues is useful in tasks such as prioritizing, scheduling, load balancing etc. Another implementation of Priority Queue is in the *queue* module, named *PriorityQueue*, you can also use a normal *list* for doing the same utilizing the *sorted()* function, but *heapq* operations are efficient. 
@@ -1429,30 +1435,33 @@ import heapq
 # create a priority queue, initialize with a empty list
 my_pq = []
 
-## add: use the heappush function to add elements, syntax (container, item)
+## Adding: Use the 'heappush()' function to add elements, syntax (container, item)
 # here container is our list 'my_pq'
 heapq.heappush(my_pq, 3)
 heapq.heappush(my_pq, 2)
 heapq.heappush(my_pq, 0)
 
-## remove: use the heappop function to get elements from the list
+## Removing: Use the 'heappop()' function to get elements from the list
 print(heapq.heappop(my_pq)) # 0
-# smallest element is taken out
+# smallest element is taken out first
 print(my_pq) # [2, 3]
 # when a element is inserted it is put in right sorted position
-# so [0] is always the smallest and the pop position
+# so [0] is always the smallest and hence the pop position
 
-# elements should be comparable, so once int is inserted other elements should be int only
-# or TypeError will be raised
-# heapq.heappush(my_pq, (2, "task1")) # TypeError
+## Elements should be comparable: So once a 'int' type is inserted, 
+# other elements should be 'int' only else TypeError will be raised
+heapq.heappush(my_pq, "some string") # TypeError
 
-my_pq = []
 # the items can also be tuple, so we can provide some name  
-heapq.heappush(my_pq, (1, "task2"))
-heapq.heappush(my_pq, (5, "task3"))
-print(heapq.heappop(my_pq)) # (1, 'task4')
+my_pq = []
 
-# use heapify function to construct a Heap DS or sort elements
+heapq.heappush(my_pq, (2, "task2"))
+heapq.heappush(my_pq, (1, "task1"))
+heapq.heappush(my_pq, (5, "task3"))
+print(heapq.heappop(my_pq)) # (1, 'task1')
+
+# use heapify function first to construct a Heap DS or sort elements
+# on list with some previous values
 my_pq = [34,6,23,67,23,78]
 heapq.heapify(my_pq)
 print(my_pq) # [6, 23, 23, 67, 34, 78]
