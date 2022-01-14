@@ -2688,144 +2688,157 @@ while True:
 * When designing systems, depending on the scenario specific paradigm approaches are preferred, today's systems are usually built with multi-paradigm in mind with say some computational parts written with functional programming & GUI parts designed with OOP.
 
 ## <strong>7. Classes and Objects</strong>
-In this chapter we're going to take a look at the most fundamental part of Python, objects. Earlier we learned about function, now it's time for classes, which allows us to create more sophisticated objects. Later we'll check out what are methods in classes and their types. Then we'll check out objects and lastly some helpful built-in Python objects. Let's begin. 
+In this chapter we're going to take a look at the most fundamental part of Python, objects. Earlier we learned about functions, now it's time for classes, which allows us to create more sophisticated objects. Later we'll check out methods in classes and their types. Then we'll check out objects and lastly some helpful built-in Python objects. Let's begin.
 ### <strong>7.1 Classes</strong>
-* **Class**: Is a blueprint/template of/for an object. It defines what data (attributes/variables) the object holds, what methods/operations that can be performed on that object. 
-* In Python, classes are also objects. Similar to functions, they can be assigned, passed or returned. Every class in Python is created using the *type()* function, this function has 2 signatures, one that we saw in Chapter 2 that returns *bool* output given an *object* as input, another one is used to create classes. The *type()* function is actually a metaclass. Metaclasses are used to create/modify class objects. They are a complicated concept and are very rarely required to be created, so we'll not be covering them here. I found a very clear explanation on [stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python), which is worth checking out if you're further interested in metaclasses.
-* **Instance**: Is an object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. An instance has its own state and it is also mutable, so modifying some variables will reflect changes for that particular instance.
-* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. A default constructor does not have parameters and a parameterized constructor does have parameters.
-* **Methods**: Functions inside the class are called methods.
-* **self**: It resembles an instance of class inside the class methods. Similar to Java/Javascript's *this* keyword, it is used to access the attributes/methods of that instance. But in Python, a class method should have a *self* object as the first parameter inside their definition. Although an argument is not required to be passed when calling such a method. When an instance calls a method, the calling instance gets passed automatically by Python as a *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it is highly recommended to use *self* as a common practice for code readability.
+* **Class**: Is a blueprint/template of/for an object. It defines what data (attributes/variables) the object holds, what methods/operations that can be performed on that object.
+* In Python, classes are also objects. Similar to functions, they can be assigned, passed or returned. Every class in Python is created using the *type()* function, this function has 2 signatures, one that we saw in Chapter 2 that returns a *bool* output given an *object* as input, another one is used to create classes. The *type()* function is actually a metaclass. Metaclasses are used to create/modify class objects. They are a complicated concept and are very rarely required to be created, so we'll not be covering them here. I found a very clear explanations on [stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python), which is worth checking out if you're further interested in metaclasses.
+* **Instance**: Is an object of a class, it is created using the class. This instance/object is then used to perform operations/tasks that the class is intended to. An instance has its own state and it is also mutable, so modifying some variables will reflect changes for that particular instance only.
+* **Constructor**: Is a function that is called when the class's object is instantiated/created, a class may or may not have a constructor. There are two types of constructors, one is a default constructor which does not have parameters and another is a parameterized constructor which does have parameters.
+* **Methods**: Functions inside the classes are called methods.
+* **self**: It resembles an instance of class inside the class methods. Similar to Java/Javascript's *this* keyword, it is used to access the attributes/methods of that instance. But in Python, every class method should have a *self* object as the first parameter inside their definition. Although an argument is not required to be passed when calling such method. When an instance calls a method, the calling instance gets passed automatically by Python as a *self* object to that method, explained more below. Also note that *self* is not a keyword, you can use any other name instead but it is highly recommended to use *self* as a common practice for code readability.
+* Let's see how classes are defined and instances are created using them.
 ```Python
 ## Classes
-# defining a class using the 'class' keyword followed by its name, 
-# class names are recommended to be in CapitalCamelCasing 
+# Defining a class using the 'class' keyword followed by its name,
+# class names are recommended to follow CapitalCamelCasings
 # python defines a empty constructor automatically in background, if it is not provided
-class MyClass: 
-  # instance methods here
-  def myfunction(self):
-    # Notice: the self parameter in myfunction
-    # function body
-    pass
+class MyClass:
+    # methods are defined here
+    def my_function(self):
+        # Notice: The 'self' parameter in 'myfunction()'
+        # function body
+        pass
 
-# class with default constructor
+# Define a class with default constructor
 class MyClass1:
-  # default constructor, a constructor is defined with the special method __init__
-  def __init__(self):
-    # instance variables are created with 'self.' prefix
-    self.my_var = 30
-    self.other_var = 10
-    
-  # defining instance methods
-  def my_fun1(self):
-    # access instance variables using the 'self' object
-    print(self.my_var) 
-    # change/define new variables inside any instance method using 'self' object
-    self.my_var = 42 
-    self.my_var1 = 92
+    # default constructor, a constructor is defined with the special method '__init__()'
+    def __init__(self):
+        # instance variables are created with 'self.' prefix
+        self.my_var = 30
+        self.other_var = 10
 
-  def return_my_var(self):
-    return self.my_var 
- 
-# defining class with a parameterized constructor
+    # defining instance methods
+    def modify_vars(self):
+        # access instance variables using the 'self' object
+        print(f"my_var is {self.my_var}")
+        # change/define new variables inside any instance method using 'self' object
+        self.my_var = 42
+        self.my_var1 = 92
+
+    def return_my_var(self):
+        # then can use them inside another method
+        return self.my_var
+
+# Define a class with parameterized constructor
 class MyClass2:
-  # passing parameters (para1, para2) and saving them as instance variables
-  def __init__(self, para1, para2, para3=None): 
-    self.para1 = para1
-    self.para2 = para2
+    # passing parameters (para1, para2) and
+    # saving them as instance variables (self.para1, self.para2)
+    def __init__(self, para1, para2, para3=None):
+        self.para1 = para1
+        self.para2 = para2
 
-  # here var1 is a method parameter
-  def my_func(self, var1): 
-    return var1 + max(self.para1, self.para2)
+    # here var1 is a method parameter
+    def my_func(self, var1):
+        return var1 + max(self.para1, self.para2)
 
 
 ## Instances
-# create a instance of MyClass1
+# Create a instance of MyClass1 by adding rounded brackets 
 some_instance = MyClass1()
+# now the variable 'some_instance' is pointing to the object of 'MyClass1'
 # use the '.' dot operator to access methods/attributes of an object
-print(some_instance.other_var) # 10
+print(some_instance.other_var)  # 10
 # if attribute is not found, AttributeError is returned
-print(some_instance.other_var_42) # AttributeError
+print(some_instance.other_var_42)  # AttributeError
 # call methods with the rounded brackets
-print(some_instance.return_my_var()) # 30
+print(some_instance.return_my_var())  # 30
+some_instance.modify_vars()  # my_var is 30
+print(some_instance.return_my_var())  # 42
 
-# create a new instance, pass arguments for parameterized constructor
-my_instance = MyClass2(22,35) 
+# create a new instance, pass arguments for a parameterized constructor
+my_instance = MyClass2(22, 35)
 # calling my_func() of my_instance
-print(my_instance.my_func(40)) # 75
+print(my_instance.my_func(40))  # 75
 
-# in python the invocation of the instance method is operated via the class calling a method 
-# by passing the instance as an argument, so this is same as above instance calling method
-print(MyClass2.my_func(my_instance, 40)) # 75
-# the 'self' resembles the instance object, which is 'my_instance' here
+
+## In python, the invocation of the instance method is operated via a class calling a method
+# by passing the instance as an argument, so this is the same as above instance calling a method
+print(MyClass2.my_func(my_instance, 40))  # 75
+# the 'self' resembles the instance object, which we are passing 'my_instance' as
 ```
 * Classes are objects too.
 ```Python
 def my_fun(some_var, some_class=None):
-    print("Values is %d"% some_var)
-    # create a instance of some_class        
-    instance = some_class()
-    print(instance.my_var)
-    print(type(instance))
+    print("Values is %d" % some_var)
+    # create a instance of some_class
+    if some_class:
+        instance = some_class()
+        print(instance.my_var)
+        print(type(instance))
 
-# a single liner class
+# A single liner class
 class MyClass: my_var = 42
 
-# pass a class to variable
+
+## Passing a class to variable
 new_class = MyClass
-# new_class is now pointing to MyClass
-print(new_class.my_var) # 42
+# new_class variable is now pointing to 'MyClass'
+print(new_class.my_var)  # 42
 
-# passing class a argument
-my_fun(24, MyClass) # Values is 24 # 42 # <class '__main__.MyClass'>
+## Passing class as an argument to a function
+my_fun(24, MyClass)  # Values is 24 # 42 # <class '__main__.MyClass'>
 
-# returning a class
+## Returning a class
 def some_fun():
-  class MyClass: my_var = 42
-  return MyClass
+    class MyClass: my_var = 42
+    return MyClass
 
-# some_fun() returns a class
+# Now calling 'some_fun()' will return a class
 SomeClass = some_fun()
-print(SomeClass.my_var) # 42
+print(SomeClass.my_var)  # 42
 ```
-* Dynamically creating classes using *type()* function. 
+* Dynamically creating classes using the *type()* function. 
 ```Python
 # Syntax: type(Class_name, bases, attrs)
-# "bases" is a tuple that should contain parent classes
-# "attrs" is a dictionary that should contain attributes
-# creating a class without parameters
+# "bases" is a tuple that contain parent classes
+# "attrs" is a dictionary that contain attributes
+
+# Creating a class without parameters
 MyClass = type("MyClass", (), {})
 my_instance = MyClass()
-print(type(my_instance)) # <class '__main__.MyClass'>
+print(type(my_instance))  # <class '__main__.MyClass'>
 
-# add attributes to a class
-MyClass = type("MyClass", (), {"my_var":42})
+# Adding attributes to a class
+MyClass = type("MyClass", (), {"my_var": 42})
 my_instance = MyClass()
-print(my_instance.my_var) # 42
+print(my_instance.my_var)  # 42
 
-# add methods to class, add self as first parameter
-# define methods and pass them just like attributes
+# Adding methods to class, add 'self' as first parameter
+# define methods
 def my_fun(self):
     return self.a
-def __init__(self): 
+
+def __init__(self):
     self.a = 34
-    print('constructor was called')
+    print("constructor was called")
 
-MyClass = type("MyClass", (), {"my_var":42, "my_fun":my_fun, "__init__":__init__})
-my_instance = MyClass() # constructor was called
-print(my_instance.my_fun()) # 34
+# and pass them just like attributes
+MyClass = type("MyClass", (), {"my_var": 42, "my_fun": my_fun, "__init__": __init__})
+my_instance = MyClass()  # constructor was called
+print(my_instance.my_fun())  # 34
 
-# Every class is created using a class of classes which is ...
-print(MyClass.__class__.__class__) # <class 'type'>
-print(float().__class__.__class__) # <class 'type'>
-print(range(42).__class__.__class__) # <class 'type'>
+# Every object/class in Python is created using a class of classes which is ...
+print(MyClass.__class__.__class__)  # <class 'type'>
+print(float().__class__.__class__)  # <class 'type'>
+print(range(42).__class__.__class__)  # <class 'type'>
 ```
 * Class decorator example.
 ```Python
-## Example: create a decorator class that limits the number of function calls and also maintains unique values
+## Example: Create a decorator class that limits the number of function calls
+# and also maintains unique values
 import math
-# a class decorator should have two methods __init__() with the function to be decorated as parameter 
-# and __call__() for decorator being callable, with parameters of a decorated function
+# A class decorator should have two methods, '__init__()' with the function to be decorated as parameter 
+# and '__call__()' for decorator being callable, with parameters of the decorated function
 class CallLimiter:
     def __init__(self, func):
         self.func = func
@@ -2841,6 +2854,7 @@ class CallLimiter:
         result = self.func(*args)
         print("Your total is %d"% result)
 
+# Decorate a function using @<class_name>
 @CallLimiter
 def sum_of_numbers(*args):
     return sum(args)
@@ -2849,6 +2863,7 @@ def sum_of_numbers(*args):
 def sum_of_sqrt(*args):
     return sum([math.sqrt(a) for a in args])
 
+# Now calling the functions would result in calling CallLimiter.__call__
 sum_of_numbers(34,21,65,32) # Your total is 152
 sum_of_numbers(34,34,34,8) # Your total is 42
 sum_of_numbers(5,34,21,65) # ValueError: Maximum limit reached
@@ -2858,161 +2873,175 @@ sum_of_sqrt(54,89,12,90,12,62) # Your total is 37
 sum_of_sqrt(54,20,45,38) # ValueError: Maximum limit reached
 ```
 #### 7.1.1 Three Types of methods in classes
-Python comes with three built-in decorators named *classmethod*, *staticmethod* and *property*. We'll check the first two here and the later one in the next chapter.
-1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, they can read class variables/methods and modify class variables. Unlike instance only one copy is created, so every instance/class refers to this copy. Class methods can be accessed by both instances and classes. Unlike in Java, there is no *static* keyword, they are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as the first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside these methods. 
+Python comes with three built-in decorators named *classmethod*, *staticmethod* and *property*. We'll check the first two here and the later one in chapter 10.
+1. **Class**: Class methods are bound to classes and not to instances. These methods have access to class state, they can read class variables/methods and modify class variables but cannot access instance attributes. Unlike instance only one copy is created per class, so every instance/class refers to this copy only. The class methods can be accessed by both instances and classes. Unlike in Java, there is no *static* keyword (it is used to define class variables & methods), in Python class methods are defined using *classmethod* as decoration (using *@classmethod* prefix). These methods should have class as the first parameter, which can be of any name, *CLS* is preferred. This parameter further can be used to access other class variables/methods inside the current method.
 ```Python
-class MyClass: 
-  # class variables: they are outside of methods 
-  my_var1 = 20
-  my_var2 = 10
-  
-  # defining a class method, use the '@classmethod' decorator
-  @classmethod
-  def fun1(CLS):
-    # Notice: the CLS parameter
-    print("This is class method")
-    # access class variable using CLS parameter
-    print(CLS.my_var1)
+class MyClass:
+    # Class variables: They are outside of any methods
+    my_var1 = 20
+    my_var2 = 10
 
-## access using class
-print(MyClass.my_var1) # can access
-MyClass.fun1() # can access
+    # Defining a class method, use the '@classmethod' decorator
+    @classmethod
+    def fun1(CLS):
+        # Notice: The CLS parameter
+        print("This is a class method")
+        # access the class variable using 'CLS' parameter
+        print(CLS.my_var2)
+        
 
-# modify the class variable, will reflect to class and its instances
+## Accessing variables/methods using class
+print(MyClass.my_var1)  # 20
+MyClass.fun1()  # This is a class method # 10
+
+# Modify the class variable, will reflect to class
+# and all of its instances
 MyClass.my_var1 = 42
 
-## access using instance    
+## Access using instance
 my_instance = MyClass()
-print(my_instance.my_var1) # can access
-my_instance.fun1() # can access
+print(my_instance.my_var1)  # 42
+my_instance.fun1()  # This is a class method # 10
 
-## optionally creating class variables using the class
+## Optionally creating new class variables using the class
 MyClass.new_var = 43
-print(MyClass.new_var) # 43
+print(MyClass.new_var)  # 43
 ```
-2. **Instance**: Instance methods are bound to instances. They have access to both instance & class state, they can read class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not by class. A normal function inside a class is an instance method, these methods should have *self* as first parameter, which is used to access the instance's/class's variables/methods inside these methods.
+2. **Instance**: Instance methods are bound to instances. They have access to both instance & class state, they can read class & instance variables/methods and also can modify class & instance variables. These methods can only be accessed by instance and not by class. A normal function inside a class is an instance method, these methods should have *self* as first parameter, which is used to access other instance's/class's variables/methods inside the current method.
 ```Python
-class MyClass: 
-  my_var1 = 10
-  # instance methods
-  def __init__(self):
-    # define instance variables inside the constructor method with 'self.' prefix
-    self.other_var1 = 30 
-    self.other_var2 = 40
-    # can also access class variable
-    print(self.my_var1)
+class MyClass:
+    my_var1 = 10
+    # Defining instance methods
+    def __init__(self):
+        # Define instance variables: In the constructor method with 'self.' prefix
+        self.other_var1 = 30
+        self.other_var2 = 40
+        # can also access class variables
+        print(self.my_var1)
 
-  # another instance method   
-  def fun1(self):
-    # Notice: the self parameter
-    print("This is a instance method")
+    # defining another instance method
+    def fun1(self):
+        # Notice: The 'self' parameter
+        print("This is a instance method")
 
-## access using class
-print(MyClass.my_var1) # can access
-print(MyClass.other_var1) # can't access
-MyClass.fun1() # can't access
 
-## access using instance    
+## Accessing variables/methods using class
+# Note: Comment the 'AttributeError' lines to continue further execution
+print(MyClass.my_var1)  # 10
+print(MyClass.other_var1)  # AttributeError
+MyClass.fun1()  # AttributeError
+
+## Access using instance
 my_instance = MyClass()
-print(my_instance.other_var1) # can access
-my_instance.fun1() # can access
+print(my_instance.other_var1)  # 30
+my_instance.fun1()  # This is a instance method
 
-## optionally creating instance variables using the instance
+## Optionally creating instance variables using the instance
 my_instance.new_var = 42
-print(my_instance.new_var) # 42
+print(my_instance.new_var)  # 42
 ```
-3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. They can't read/modify any variables beside their local scope. These methods exist because that function has to belong to the class like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument. These methods can also be subclassed.
+3. **Static**: Static methods are also bound to classes. But they don't have access to instance/class state. They can't read/modify any variables beside their local scope. These methods exist because that function has to belong to the class, like a independent function but inside a class. They are defined using *staticmethod* as decoration (using *@staticmethod* prefix), these methods are not required to pass class as first argument. These methods can also be subclassed.
 ```Python
-class MyClass: 
-  # defining a class method, use the '@staticmethod' decorator
-  @staticmethod
-  def fun3():
-    # can't access instance/class variable/methods, but can do its own task
-    print("This is static method")
- 
-## access using class    
-MyClass.fun3() # can access
- 
-## access using instance
+class MyClass:
+    # Defining a class method: Use the '@staticmethod' decorator
+    @staticmethod
+    def fun3():
+        # Can't access any instance's/class's variable/methods
+        # but can do its own task
+        print("This is static method")
+
+
+## Access using class
+MyClass.fun3()  # This is static method
+
+## Access using instance
 my_instance = MyClass()
-my_instance.fun3() # can access
+my_instance.fun3()  # This is static method
 ```
 * Some functions for objects.
 ```Python
 class DummyClass:
-  def some_method():
-    pass
+    def some_method():
+        pass
+
 
 my_instance = DummyClass()
 
-# check if a object has some attribute
-print(hasattr(my_instance, 'x')) # False
-# get value of object's attribute, similar to accessing with '.' operator 
-# though one benefit is if attribute is not found, the default value is returned
-print(getattr(my_instance, 'x', 42)) # 42
-# set value of object's attribute, similar to assigning with '=' operator 
-# though one benefit is if attribute is not found, it creates one and assigns value to it 
-setattr(my_instance, 'my_new_var', 'Hello')
-print(my_instance.my_new_var) # Hello
-# delete object's attribute returns nothing, raises AttributeError if not found
-delattr(my_instance, 'my_new_var')
-print(my_instance.my_new_var) # AttributeError
+# Check if a object has some attribute
+print(hasattr(my_instance, "x"))  # False
+# Use getattr() to get value of a object's attribute, similar to accessing with '.' operator
+# though one benefit is if the attribute is not found, the default provided is returned
+print(getattr(my_instance, "x", 42))  # 42
+# Set value to a object's attribute, similar to assigning with '=' operator
+setattr(my_instance, "my_new_var", "Hello")
+print(my_instance.my_new_var)  # Hello
+# Delete a object's attribute, returns nothing and raises 'AttributeError' if not found
+delattr(my_instance, "my_new_var")
+print(my_instance.my_new_var)  # AttributeError
+delattr(my_instance, "my_new_var")  # AttributeError
 ```
 #### 7.1.2 Special methods
-* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. These methods are used to enrich your object with more features. These are called "magic" methods because these methods are invoked indirectly by the Python Interpreter and we do not need to invoke them.
-* These methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality. Also it is a good practice to not invent new special methods to avoid name collisions between the built-ins.  
+* These methods begin & end with double underscore '\_\_' and are called magic/special/dunder methods in Python. These methods are used to enrich a object with more features. These are called "magic" methods because these methods are invoked indirectly by the Python Interpreter and we do not need to invoke them.
+* These methods are used to enable operator overloading, overriding built-in functions, accessing attributes etc. So using them in your custom class will enable more functionality but be careful to use them when it makes sense and document (add docstrings) their usage where required to avoid break in some functionality. Also it is a good practice to not invent new special methods to avoid name collisions between the built-ins ones.  
 * Check this [list](http://docs.python.org/3/reference/datamodel.html#special-method-names) of all special methods in Python.
 ```Python
-## MyClass defines '__str__', '__len__' and '__getitem__' magic methods 
-# to add functionality behaviour to its instance 
+## Example: Here 'MyClass' defines some magic methods
+# to add functionality behaviour to its instance
 class MyClass:
-  def __init__(self, a, b, c, d):
-    self.some_id = a
-    self.some_name = b
-    self.some_age = c
-    self.some_values = d
-  # define '__str__' to enable print functionality
-  def __str__(self):
-    """Add doc string to describe their behaviour"""
-    return f"id: {self.some_id}, name: {self.some_name}, age: {self.some_age}"
-  # define '__len__' to enable showing length of MyClass using the len() function  
-  def __len__(self):
-    """Length of some_values"""
-    return len(self.some_values)    
-  # define '__getitem__' for enabling iteration/indexing/slicing of items 
-  def __getitem__(self, index):
-    """Iterate through some_values""" 
-    return self.some_values[index]
-  # define '__call__' for making the instance callable
-  def __call__(self, new_value):
-    self.some_values.append(new_value)
+    def __init__(self, a, b, c, d):
+        self.some_id = a
+        self.some_name = b
+        self.some_age = c
+        self.some_values = d
 
-## create a instance to check these functionalities
-my_instance = MyClass(239034, "Bob", 23, [10,45,32,67,32,65])
+    # Define '__str__' to enable print functionality
+    def __str__(self):
+        """Add doc string to describe their behaviour"""
+        return f"id: {self.some_id}, name: {self.some_name}, age: {self.some_age}"
 
-# testing the print functionality, '__str__()' is invoked when 'print()' is called 
-print(my_instance) # id: 239034, name: Bob, age: 23
+    # Define '__len__' to enable showing length of MyClass using the 'len()' function
+    def __len__(self):
+        """Returns length of some_values"""
+        return len(self.some_values)
 
-# similarly length functionality
-print(len(my_instance)) # 6
+    # Define '__getitem__' for enabling iteration/indexing/slicing of items
+    def __getitem__(self, index):
+        """Iterate through some_values"""
+        return self.some_values[index]
 
-# indexing and slicing
-print(my_instance[0]) # 10
-print(my_instance[0:3]) # [10, 45, 32]
-# iterate through the instance 
-for a in my_instance:
-  print(a) # [10,45,32,67,32,65]
+    # Define '__call__' for making the instance callable
+    def __call__(self, new_value):
+        self.some_values.append(new_value)
+        print(f"{new_value} was added")
 
-# calling a instance
-my_instance(20)
-my_instance(90)
 
+## Create a instance to check these functionalities
+my_instance = MyClass(239034, "Bob", 23, [10, 45, 32, 67, 32, 65])
+
+# Print functionality, '__str__()' is invoked automatically
+# when 'print()' is called on 'my_instance'
+print(my_instance)  # id: 239034, name: Bob, age: 23
+
+# similarly length functionality, '__len__()' is invoked automatically
+print(len(my_instance))  # 6
+
+# Indexing and Slicing, '__getitem__()' is invoked
+print(my_instance[0])  # 10
+print(my_instance[0:3])  # [10, 45, 32]
 # get all values using empty slice
-print(my_instance[:]) # [10, 45, 32, 67, 32, 65, 20, 90]
+print(my_instance[:])  # [10, 45, 32, 67, 32, 65, 20, 90]
+
+# Iterating through the instance
+for a in my_instance:
+    print(a)  # [10,45,32,67,32,65]
+
+# Calling a instance, 
+my_instance(20)  # 20 was added
+my_instance(90)  # 90 was added
 ```
 #### 7.1.3 Docstrings
-* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below the start of a function/class definition. This is a way of documenting functions/class behaviours, useful stuff.
-```Python 
+* Holds the hints/suggestion working of a function/class provided by the developer. It begins just below the start of a function/class definition. This is a way of documenting functions/class behaviours, its a good practice to write a short summary about a complicated/long function/class.
+```Python
 class MyClass:
     """This is a docstring."""
     def my_fun():
@@ -3023,232 +3052,247 @@ class MyClass:
 * **"Everything in Python is an object"**, in Python's definition of object, some objects may or may not have meta-data/functions and are still objects. The Data-Types in Python have attributes/methods, Data Structures have their attributes/methods, Functions (are first class, as we saw earlier)/Classes are created by metaclasses, so they are all objects. And as a property of an object they all can be assigned to a variable or passed to or returned from a function. So in a sense everything can be called an object. 
 * We saw earlier how to create an instance of a class (i.e object) and what/how they can access variables and methods. Here we'll see some examples of everything being an object.
 ```Python
-## data types are object, eg. integer is object of class 'int'
+## Data types are object, eg. integer is object of class 'int'
 a = 30
-print(type(a)) # <class 'int'>
+print(type(a))  # <class 'int'>
 # print some attributes/methods of class int
-print(dir(a)[:3]) 
+print(dir(a)[:3]) # ['__abs__', '__add__', '__and__']
 
-## data structures are object, eg list is object of class 'list'
+## Data structures are object, eg list is object of class 'list'
 a = [30, 10, 20]
-print(type(a)) # <class 'list'>
+print(type(a))  # <class 'list'>
 # print some attributes/methods of class list
-print(dir(a)[:3]) 
+print(dir(a)[:3]) # ['__add__', '__class__', '__class_getitem__']
 
-## functions are objects of class 'function'
-def my_fun():
-  pass
-print(type(my_fun)) # <class 'function'>
+## Functions are objects of class 'function'
+def my_fun(): pass
+print(type(my_fun))  # <class 'function'>
 
-## classes are objects of class 'type'
-class MyClass: 
-  pass    
-print(MyClass.__class__) # <class 'type'>
+## Classes are objects of class 'type'
+class MyClass: pass
+print(MyClass.__class__)  # <class 'type'>
 ```
 #### 7.2.1 Iterables
 * Iterables are objects that can be iterated using loops. An object having a special method *\_\_iter\_\_()* is considered to be iterables. They can be iterated as many times as required.
-* Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as dictionary, *set* and others such as *file*, *range* objects.
-* A custom class can implement *\_\_iter\_\_()* (which should return an iterator object) or *\_\_get\_\_()* (which is the special method for enabling indexing) method to make its object iterable. They can also become subscriptable/indexable if implemented using *\_\_get\_\_()* method. Examples of non-indexable are dictionaries or *set*s.
+* Examples of iterables include sequence types such as *list*, *tuple*, *str*, *bytes* and *bytearray*. Also non-sequence types such as dictionary, *set* and others such as *file*, *range*, *enumerate* objects.
+* A custom class can implement *\_\_iter\_\_()* (a magic method which should return an iterator object) or *\_\_getitem\_\_()* (which is the magic method for enabling indexing) method to make its object iterable. They can also become subscriptable/indexable if implemented using *\_\_getitem\_\_()* method. Examples of non-indexable are dictionaries or *set*s.
 * Iterables can be used in *for* loops and in built-in functions like *map()*, *zip()*, *filter()* etc.
 * Checking built-in iterables.
 ```Python
-## to check if list is a iterable, check if it has a __iter__() method using dir()
-print(dir([1,2,3]))
+## Checking if 'list' is a iterable,
+# we can check if it has a '__iter__()' method using 'dir()'
+print(dir([1, 2, 3]))
 # or using hasattr
-print(hasattr([1,2,3], '__iter__')) # True
-# check for tuple
-print(hasattr((1,2,3), '__iter__')) # True
-# check if set have __iter__ method
-print(hasattr({1,2,3}, '__iter__')) # True
+print(hasattr([1, 2, 3], "__iter__"))  # True
+# checking for 'tuple'
+print(hasattr((1, 2, 3), "__iter__"))  # True
+# checking if 'set' have '__iter__' method
+print(hasattr({1, 2, 3}, "__iter__"))  # True
 
-## iterables can be used in for loops
-for a in (34,32,55,34,56):
-    print(a) # 34,32,55,34,56
+## Iterables can be used in for loops
+for a in (34, 32, 55, 34, 56):
+    print(a)  # 34,32,55,34,56
 ```
 * Create a custom class that has iterable functionality.
 ```Python
-## Example: create a simple iterable object that returns multiplier of 10 by index
+## Example: Create a simple iterable object that returns multiplier of 10 by index
 class TenMultiplier:
     def __init__(self):
         self.max_range = 10
 
-    # implement __getitem__() or __iter__() method to enable iteration     
-    # by implementing __getitem__() our object is also indexable
+    # implement '__getitem__()' or '__iter__()' method to enable iteration
+    # by implementing '__getitem__()' our object is also indexable
     def __getitem__(self, index):
         if index > self.max_range:
-            # StopIteration is raised to break the iteration in loops
+            # 'StopIteration' is raised to break the iteration in loops
             raise StopIteration
-        return index * 10    
+        return index * 10
+
 
 my_object = TenMultiplier()
-# indexing our object
-print(my_object[2]) # 20
-# looping over a iterable
+# Indexing our object
+print(my_object[2])  # 20
+
+# Iterating our object
 for a in my_object:
-    print(a) # [0,10,20,30,...100]      
+    print(a)  # [0,10,20,30,...100]
 ```
 #### 7.2.2 Iterators
-* Iterator objects can also be iterated using loops. They are also an *iterable* object, but the difference is they must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns an *iterator* object, the *\_\_next\_\_()* method is to fetch the next element from the iterator object.
-* An *iterator* object represents a stream of data, when the *\_\_next\_\_()* method (or using built-in function *next()*) is called it returns the next consecutive value till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called. *iterator* is not required to be finite but be careful when looping over they may cause a *RecursionError*.
+* A Iterator is also an *iterable* object, but the difference is it must have both *\_\_iter\_\_()* and *\_\_next\_\_()* special methods implemented (this is called the iterator protocol). The *\_\_iter\_\_()* method as we saw earlier returns an *iterator* object, the *\_\_next\_\_()* method is to fetch the next element from the iterator object (we saw this method in generators).
+* An *iterator* object represents a stream of data, when the *\_\_next\_\_()* (or the *next()*) method is called it returns the next consecutive element till the *StopIteration* is raised. And when the *StopIteration* is raised, the *iterator* object is exhausted and no longer returns a value when *\_\_next\_\_()* is called.
 * One difference between *iterator* and *iterable* is that once a *iterator* is exhausted it stays empty even after passing it to the *iter()* function (as *Iterator* object returns itself when passed to *iter()*), which is not the case with a *iterable* object (a new *iterator* object is created every time *iter()* is called).
-* The *iterator* objects are similar to *generators* "lazy load" data into memory. Examples of iterators are *enumerate*, *zip*, *reversed* etc. The [*itertools*](https://docs.python.org/3/library/itertools.html#module-itertools) module included in the standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
-* Limitations of *iterator*s is that values can be iterated only once and in one direction only (can't access previous values) and need to be re-created once exhausted.
+* The *iterator* objects are similar to *generators*, they "lazy load" data into memory. They are not required to be finite but be careful when looping over, it might lead to a *RecursionError*. Examples of iterators are *enumerate*, *zip*, *reversed* etc. The [*itertools*](https://docs.python.org/3/library/itertools.html#module-itertools) module included in the standard library contains a number of commonly-used iterators as well as functions for combining several iterators.
+* Limitations of *iterator*s are that the elements can be iterated only once and in a single direction only (can't access previous values). They need to be re-created once they're exhausted.
 * Creating a simple iterator.
 ```Python
-## Example: create a simple iterator from a iterable
-# iter() function takes a iterable/iterator object and returns a iterator object
-my_iterator = iter([12,34,2,65,21,65])
-# iterate to next values using next()
-print(next(my_iterator)) # 12
+## Example: Create a simple iterator from a iterable
+# 'iter()' function takes a iterable/iterator object and returns a iterator object
+my_iterator = iter([12, 34, 2, 65, 21, 65])
+# iterate to next values using 'next()'
+print(next(my_iterator))  # 12
 # or calling the special method from a instance
-print(my_iterator.__next__()) # 34
+print(my_iterator.__next__())  # 34
 for a in my_iterator:
-    print(a) # [2,65,21,65]
-    # Notice: loop started from index 2, because we already called next() twice
-# now as my_iterator is exhausted calling next() again will raise StopIteration
-print(next(my_iterator)) # StopIteration
-# calling loop will print no value
+    print(a)  # [2,65,21,65]
+    # Notice: Loop started from index 2, because we already called 'next()' twice
+
+# Now as 'my_iterator' is exhausted calling 'next()' again will raise 'StopIteration'
+print(next(my_iterator))  # StopIteration
+# Calling loop will print no value
 for a in my_iterator:
     print(a)
+# and calling 'iter()' won't work either
+my_iterator = iter(my_iterator)
+print([a for a in my_iterator]) # []
 ```
 * Create a custom class that has iterator functionality.
 ```Python
-## Example: create a iterator object which returns a square of each values
+## Example: Create a iterator object which returns a square of each values
 class SquareIterator:
-  """SquareIterator takes items and returns item's square upon called"""
-  def __init__(self, *args):
-    self.args = args
-    self.iter_len = len(args)-1 # iterating limit for StopIteration
-    self.idx = -1 # initialize index to keep track of it
+    """SquareIterator takes items and returns item's square upon called"""
 
-  def __iter__(self):
-    """This method returns an iterator object, which is itself."""
-    return self
-    
-  def __next__(self):
-    """This method is used to fetch next value, so it should return some value."""
-    self.idx += 1  
-    # stop if limit is reached
-    if self.idx > self.iter_len:
-      raise StopIteration
-    return self.args[self.idx]**2
+    def __init__(self, *args):
+        self.args = args
+        self.iter_len = len(args) - 1  # iterating limit for 'StopIteration'
+        self.idx = -1  # initialize index to keep track of it
 
-my_iter = SquareIterator(2,3,4,8,9,12)  
-# iterate values using next()
-print(next(my_iter)) # 4
-# iterating a iterator object
-# for loop calls '__iter__()' and later '__next__()' functions on a iterable/iterator automatically
+    def __iter__(self):
+        """This method returns an iterator object, which is itself."""
+        return self
+
+    def __next__(self):
+        """This method is used to fetch next value, so it should return some value."""
+        self.idx += 1
+        # stop if limit is reached
+        if self.idx > self.iter_len:
+            raise StopIteration
+        return self.args[self.idx] ** 2
+
+
+my_iter = SquareIterator(2, 3, 4, 8, 9, 12)
+# Iterate values using 'next()'
+print(next(my_iter))  # 4
+
+# Iterating a iterator object
+# A for loop internally calls '__iter__()' function first, then '__next__()' on a iterable/iterator
 # we'll see more on the working of for loops next
 for v in my_iter:
-  print(v) # [9,16,64,81,144]
-  # Notice: This time loop started from index 1 now, because we called next() only once
-# now like earlier next() will raise error
-print(next(my_iter)) # StopIteration
+    print(v)  # [9,16,64,81,144]
+# now like earlier 'next()' will raise error
+print(next(my_iter))  # StopIteration
 
-# create a new SquareIterator to reset its index
-my_iter = SquareIterator(2,3,4,8,9,12)  
+# Create a new SquareIterator to reset its index
+my_iter = SquareIterator(2, 3, 4, 8, 9, 12)
 for a in my_iter:
-    print(a) # [4,9,16,64,81,144]
+    print(a)  # [4,9,16,64,81,144]
 ```
 * When iterating with a *for* loop, the iterable input object is first converted to a temporary *iterator* object and then this object is traversed using *\_\_next\_\_()* till *StopIteration* is raised. So every time a *for* is called a new temporary *iterator* object is created and removed when iteration is finished/interrupted. In case of iterating an *iterator* object, the object itself is returned (as we saw in our *SquareIterator's* *\_\_iter\_\_()* method), so once it's exhausted it stays empty. We'll check an example of the working below.
 ```Python
 ## Internal working of for loops
 def for_loop(my_iterable):
-  """A function to simulate a for loop"""
-  # create a temporary iterator object each time starting a loop
-  temp_object = iter(my_iterable)
-  while True:
-      try:
-          # call the next() function
-          value = next(temp_object)
-          print(value) 
-      except StopIteration:
-          break  # stop the iteration
+    """A function to simulate a for loop"""
+    # create a temporary iterator object each time starting a loop
+    temp_object = iter(my_iterable)
+    while True:
+        try:
+            # call the 'next()' function
+            value = next(temp_object)
+            print(value)
+        except StopIteration:
+            break  # stop the iteration
 
-# pass a iterable/iterator object to our for_loop() function 
-my_list = [34,32,55,34,56]
-for_loop(my_list) # 34,32,55,34,56
+
+# Pass a iterable/iterator object to our for_loop() function
+my_list = [34, 32, 55, 34, 56]
+for_loop(my_list)  # 34,32,55,34,56
 
 # Now doing the same thing with a for loop
 for a in my_list:
-    print(a) # 34,32,55,34,56
+    print(a)  # 34,32,55,34,56
 ```
 #### The difference between **Iterables**, **Iterators** and **Generators.**
- 1. **Iterables**: Are objects that can be iterated, they can be iterated as many times as wanted. They need to implement the *\_\_iter\_\_()* method.
- 2. **Iterators**: Are also *iterables* but are "lazy" and can be iterated only once, they need to be re-created for iterating again. They need to implement *\_\_iter\_\_()* and *\_\_next\_\_()* methods. They are used when it is required to implement *iterator* functionality inside a complex class (with other functionalities).
- 3. **Generators**: Are *iterables* and *iterators* (but not vice versa). Generators are an easy way to create an iterator object. They can be created using a function with a *yield* statement in it or using generator comprehension. They are used when it is required to create a standalone iterator object.
+ 1. **Iterables**: Are objects that can be iterated, they can be iterated as many times as required. They need to implement the *\_\_iter\_\_()* method.
+ 2. **Iterators**: Are also *iterables* but are "lazy" and can be iterated only once, they need to be re-created for iterating again. They need to implement *\_\_iter\_\_()* and *\_\_next\_\_()* methods. They are used when it is required to have *iterator* functionality inside a complex class (with other functionalities).
+ 3. **Generators**: Are *iterables* and *iterators* (but not vice versa). Generators are an easy way to create an iterator object. They can be created using a function with a *yield* statement or using generator comprehension. They can be used when we need a standalone iterator object.
 #### **7.2.4 Descriptors**
-* A Descriptor is simply an object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute's/variable's lookup, assignment and deletion. 
-* Descriptors are used to control what happens when an attribute is looked up/altered/removed, to override their default behaviour. So instead of the class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when it is called/assigned. This is helpful when we want some custom behaviour with our attributes.
+* A Descriptor is simply an object that defines at least one of *\_\_get\_\_()*, *\_\_set\_\_()* or *\_\_delete\_\_()* methods and optionally *\_\_set_name\_\_()* method. They allow objects to customize the attribute's/variable's lookup, assignment and deletion.
+* Descriptors are used to control what happens when an attribute is looked up/altered/removed, to override their default behaviour. So instead of the class controlling what happens to the attribute, the attribute decides for itself what goes and what comes out when it is called/assigned. This is helpful when we want some custom behaviour with our class attributes.
 * **There are two types of Descriptors**.
   1. **Data descriptors**: A Descriptors class that at least has one of *\_\_set\_\_()* or *\_\_delete\_\_()* methods defined.
   2. **Non-data descriptor**: A Descriptors class that only has *\_\_get\_\_()* method defined.
-* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptors. Also for more on descriptors check the [Python docs](https://docs.python.org/3/howto/descriptor.html).
+* These two types are not that different but this affects the '.' operator's "lookup chain" i.e data descriptors have more precedence over non-data descriptors. For more details on descriptors check the [Python docs](https://docs.python.org/3/howto/descriptor.html).
 ```Python
+## Example: Use Data descriptors to create class attributes with thier own functionality
 class MyDescriptor:
     # when a 'MyDescriptor' object is created inside a class this function is called first
-    # it records the class name for later reference 
+    # it records the class name for later reference
     def __set_name__(self, obj, name):
-        # here 'obj' is that class ('MyClass' in our case) object
-        # 'self' is our 'MyDescriptor' object 
-        self.private_name = "_" + name # internal access name, '_' to avoid name collision
+        # here 'obj' is that class ('MyClass' in our case)
+        # 'self' is our 'MyDescriptor' object
+        # 'private_name' is our internal access name
+        # '"_" + name' for avoiding name collisions
+        self.private_name = "_" + name
 
-    # when a attribute is looked up(using '.' operator), this method is called
+    # When a attribute is looked up (using '.' operator), this method is called
     def __get__(self, obj, objtype=None):
-        # fetch 'private_name' from 'MyClass' instance
+        # fetch 'private_name' from 'MyClass' instance using 'getattr()'
         value = getattr(obj, self.private_name)
         print(f"{self.private_name} was accessed")
         return value
 
-    # when a attribute is altered(using '=' operator), this method is called      
+    # When a attribute is altered (using '=' operator), this method is called
     def __set__(self, obj, value):
         # here we can decide what is valid value for 'my_var1'
-        if self.private_name == '_my_var1':
+        if self.private_name == "_my_var1":
             if value % 2 == 0:
-                raise AttributeError("Not a valid value, require odd number")
+                raise AttributeError("Not a valid number, require odd number")
+
         # decide what is valid value for 'my_var2'
-        elif self.private_name == '_my_var2':
+        elif self.private_name == "_my_var2":
             if value % 2 != 0:
-                raise AttributeError("Not a valid value, require even number")
-        # alter 'private_name' of 'MyClass' instance
+                raise AttributeError("Not a valid number, require even number")
+
+        # set value to the variable 'private_name' of 'MyClass' instance
         setattr(obj, self.private_name, value)
         print(f"{self.private_name} was altered")
 
+# define a class that will contain our descriptor objects
 class MyClass:
-    my_var1 = MyDescriptor() # initialize our descriptor object
-    my_var2 = MyDescriptor() # create another attribute
+    my_var1 = MyDescriptor()  # initialize our descriptor object
+    my_var2 = MyDescriptor()  # create another attribute
 
     def __init__(self, var1, var2, var3, var4):
         # calls '__set__()' method of our descriptor to assign the value
-        # assign var1, var2 to our descriptor objects my_var1, my_var2 when MyClass is initialized
-        self.my_var1 = var1 
-        self.my_var2 = var2 
+        # here we are assigning 'var1' and 'var2' values to our descriptors
+        # which are 'my_var1' and 'my_var2'
+        self.my_var1 = var1
+        self.my_var2 = var2
         # normal variables
-        self.my_var3 = var3 
-        self.my_var4 = var4 
+        self.my_var3 = var3
+        self.my_var4 = var4
 
-## create a instance of MyClass        
-my_instance = MyClass(11, 12, 30, 40) # _my_var1 was altered # _my_var2 was altered
-# Notice: the print message we set in '__set__()' method is shown
 
-## check its attribute names
+## Create a instance of MyClass
+my_instance = MyClass(11, 12, 30, 40)  # _my_var1 was altered # _my_var2 was altered
+# Notice: The print message we set in '__set__()' method is printed
+
+## Check attribute names of our instance
 print(my_instance.__dict__) # {'_my_var1': 11, '_my_var2': 12, 'my_var3': 30, 'my_var4': 40}
 
-## accessing the variables using the '.' operator
+## Accessing the variables using the '.' operator
 # calls the '__get__()' method of our descriptor to get its value
-print(my_instance.my_var1) # _my_var1 was accessed # 11
-print(my_instance.my_var2) # _my_var2 was accessed # 12
-# Notice: the print message we set in __get__() method is shown
+print(my_instance.my_var1)  # _my_var1 was accessed # 11
+print(my_instance.my_var2)  # _my_var2 was accessed # 12
 
-## calling normal variables
-print(my_instance.my_var3) # 30
-print(my_instance.my_var4) # 40
-# Notice: my_var3, my_var4 show normal behaviour without our print message
+## Calling normal variables
+print(my_instance.my_var3)  # 30
+print(my_instance.my_var4)  # 40
+# Notice: my_var3, my_var4 show normal behaviour without any print message
 
-## now trying to input invalid value according to out descriptors
-my_instance.my_var1 = 42 # AttributeError: Not a valid value, require odd number
-my_instance.my_var2 = 41 # AttributeError: Not a valid value, require even number
-# Notice: AttributeError is raised due the values didn't match, try a valid value
+## Now trying to input invalid values according to out descriptors
+my_instance.my_var1 = 42  # AttributeError: Not a valid value, require odd number
+my_instance.my_var2 = 41  # AttributeError: Not a valid value, require even number
+# Notice: 'AttributeError' is raised due the values didn't match, try a valid value
 ```
 
 ## <strong>8. Modules and Packages</strong>
