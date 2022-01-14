@@ -1938,31 +1938,35 @@ In this chapter we'll explore what are functions, the most important part of fun
 * Functions in Python are first class, which means they are objects too, they can be stored in a variable, they can be passed as an argument to other functions and they can also be returned like a variable.
 * Defining and calling functions.  
 ```Python
-# Example 1: Non-parameterized function which returns nothing 
+# Example 1: Defining a non-parameterized function which returns nothing 
 # use the 'def' keyword to define a function followed by its name with rounded brackets 
 # function names are recommended to be in snake_casing 
 
 def my_function1():
-  # this is function's body
-  pass # to ensure the program runs this empty function   
-  # Note: if the function is not empty 'pass' is not required at all
+    # this is function's body
+    pass # to ensure the program runs this empty function   
+    # Note: If the function is not empty 'pass' is not required at all
   
-# Example 2: function with parameter which returns nothing
+# Example 2: Defining a function with parameters which returns nothing
 def my_function2(var1, var2):
-  pass
-# alternative way is to describe the input/return type hints
-# As they are just hints, it does not matter what is send/returned
+    pass
+
+# Alternative way is to describe the input/return type hints
+# as they are just hints, it does not matter what is send/returned
+# But this acts as self documenting code, so good to use in bigger projects
 def my_function2(var1: int, var2: int) -> None: 
-  pass
+    pass
   
-# Example 3: function with a default parameter and return statement
+# Example 3: Defining a function with a default parameter and return statement
 def my_function3(var1, var2, var3, return_op=False): 
     # Note: return_op is a default parameter, they should always follow later
     if return_op:
         # did something, now returning something
         return var1 + var2 + var3
 
-# calling a function without a return statement, returns None by default
+# calling a function without a return statement or 
+# did not met the return condition in a function
+# will returns None by default
 print(my_function1()) # None
 
 # calling a function and passing the arguments
@@ -1972,28 +1976,29 @@ print(callable(my_function1)) # True
 ```
 * Functions are objects too.
 ```Python
-## Example: define a function that also takes a function as parameter
+## Example: Define a function that also takes a function as parameter
 def square_or_some_fun(number, some_fun=None):
-  if some_fun:
-    # if some_fun is a function it can be callable, can check it with callable() 
-    output = some_fun(number)
-  else:
-    output=number**2  
-  return output
+    if some_fun:
+        # if some_fun is a function it can be callable, can check it with callable() 
+        output = some_fun(number)
+    else:
+        output=number**2  
+    return output
 
 def cube_num(n):
-  return n**3
+    return n**3
 
-# assigning a function to a variable/data structure, it is not same as calling a function
-# Notice: no rounded brackets on the function
+## Assigning a function to a variable/data structure: It is not same as calling a function
+# Notice: No rounded brackets on the function
 my_var = cube_num 
 print(my_var) # <function cube_num at 0x000001C1FDFAF0D0>
 # Note: 'my_var' is only referring to 'cube_num()', so both are the same
 print(my_var(2)) # 8
 
-# passing a argument to another function
+# passing a argument to a function
 print(square_or_some_fun(2)) # 4 
-# passing a function as argument
+
+## Passing a function as argument
 print(square_or_some_fun(2, my_var)) # 8
 # passing a list at some_fun will raise TypeError
 print(square_or_some_fun(2, [4,4])) # TypeError: 'list' object is not callable
@@ -2001,124 +2006,127 @@ print(square_or_some_fun(2, [4,4])) # TypeError: 'list' object is not callable
 ### <strong>6.2 Packing and Unpacking in functions</strong>
 1. **Packing**: It is when we pass more than the number of defined variables to a function. Packing allows us to pass an arbitrary amount of arguments, which is useful when we are not sure about the exact number. They should always be the last parameters in a function, else they'll contain all the values and the rest of them will stay empty. Variables can be packed in either a *tuple* (which is generally named as *\*args*) or in a dictionary (generally named as *\*\*kwargs*), these names are not a compulsion but are recommended as common practice.
 ```Python
-## Example 1: packing args into a tuple
-# Notice: the * operator before args variable
+## Example 1: Packing args into a tuple
+# Notice: The '*' operator before args variable
 def sum_nums(a,b, *args):
-  total = a+b
-  if args:
-    print(type(args)) # <class 'tuple'>
-    # rest of the values are inside args
-    print(args) # (4, 4, 2, 1, 1, 4)
-    for n in args:
-      total+=n
+    total = a+b
+    if args:
+        print(type(args)) # <class 'tuple'>
+        # rest of the values are inside args
+        print(args) # (4, 4, 2, 1, 1, 4)
+        for n in args:
+            total+=n
 
-  return total
+    return total
 
 # passing only two arguments, so args stays empty
 sum_nums(2,3) # 5   
 # passing more than two arguments, now all values after 3 go into args 
 sum_nums(2,3,4,4,2,1,1,4) # 28
 
-## Example 2: packing kwargs into a dictionary
-# Notice: the ** operator before kwargs variable
+## Example 2: Packing kwargs into a dictionary
+# Notice: The '**' operator before kwargs variable
 def sum_nums2(x,y,**kwargs):
-  total = x+y
-  if kwargs:  
-    print(type(kwargs)) # <class 'dict'>
-    # rest of the values are inside kwargs
-    print(kwargs) # {'a': 2, 'b': 4, 'd': 4, 'any_name': 5, 'my_var': 8}
-    # total the values
-    for v in kwargs.values():
-      total+=v
+    total = x+y
+    if kwargs:  
+        print(type(kwargs)) # <class 'dict'>
+        # rest of the values are inside kwargs
+        print(kwargs) # {'a': 2, 'b': 4, 'd': 4, 'any_name': 5, 'my_var': 8}
+        # total the values
+        for v in kwargs.values():
+            total+=v
 
-  return total
+    return total
   
 # passing only 2 arguments, so kwargs stays empty
 print(sum_nums2(2,3)) # 5   
 # passing more than 2 arguments, now all values after 3 go into kwargs
-# Notice: arguments should have some unique name, they will be the keys in kwargs dictionary
+# Notice: Arguments should have some unique name, as they'll be the keys in kwargs dictionary
 print(sum_nums2(2, 3, a=2, b=4, d=4, any_name=5, my_var=8)) # 28
 # try using both args & kwargs in a function, print and check their values
 ```
 2. **Unpacking**: It is when a *list/tuple/dict* is passed, which then unpacks or gets extracted as function arguments. Now passing a *tuple/list* can be done with '\*' operator followed by sequence's name and passing a dictionary requires '\*\*' operator followed by sequence's name.
 ```Python
-def my_fun1(a,b,c,d):
-  return a+b+c+d
+def my_fun1(a, b, c, d):
+    return a + b + c + d
 
-my_list = [1,2,3,4]
-my_dict = {'a':1,'d':4,'b':2,'c':3}
+my_list = [1, 2, 3, 4]
+my_dict = {"a": 1, "d": 4, "b": 2, "c": 3}
 
-## Example 1: unpacking from a list/tuple, list here, notice the * operator
+## Example 1: Unpacking from a list/tuple (list here), notice the '*' operator
 print(my_fun1(*my_list)) # 10
 
-## Example 2: unpacking from a dictionary, notice the ** operator
-print(my_fun1(**my_dict)) # 10 
+## Example 2: Unpacking from a dictionary, notice the '**' operator
+print(my_fun1(**my_dict)) # 10
 
 # same goes for built-in functions too, "print()" function unpacks the list values
-print(*my_list) # 1,2,3,4
+print(*my_list)  # 1,2,3,4
 ```
 ### <strong>6.3 Recursion</strong>
 * Recursion is when a function calls itself. It is a powerful tool that works on a particular set of problems where a problem can be divided into simple repetitive chunks. 
-* Recursion uses system stack to maintain the memory required for the recursive calls, this usually leads to higher memory usage compared to iteration.    
-* Recursion requires to handle the *StackOverFlow*, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
-* There are certain advantages such as reduction in size of code when an iterative solution is lengthy/complex, there are situations where recursion is an easier/better solution. Also if implemented correctly using Dynamic Programming or dependent on a problem it reduces the time complexity and also some memory usage.
-* To identify a recursion problem, one has to identify the smaller repetitive parts of a solution. A recursive solution usually forms a decision tree-like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will run indefinitely causing a *StackOverFlow* error. Finally the sub-problem solution with the base case is sequenced correctly to form a recursive solution.  
+* Recursion uses system stack to maintain the memory required for the recursive calls, this usually leads to a higher memory usage compared to iteration.    
+* Recursion requires to handle the *StackOverFlow* exception, the complexion in debugging and also it can sometimes be hard to formulate a recursive solution.
+* There are certain advantages such as reduction in size of code when an iterative solution is lengthy/complex, there are situations where recursion is an easier/better solution. Also if implemented correctly using Dynamic Programming or dependening on the problem, a recursive solution can reduce the time complexity as well as some memory usage.
+* To identify a recursion problem, one has to identify the smaller repetitive parts of a solution. A recursive solution usually forms a decision tree-like structure where the branches are sub-problems. After identifying the sub-problems one has to identify the base case, which is the condition where a recursion program stops itself. This is very important or else the program will run indefinitely causing a *StackOverFlow* exception. Finally the sub-problem's solution with the base case is sequenced correctly to form a recursive solution.  
 ```Python
 ## Example 1: Sum of n given number
 # using iteration
 def iter_sum(n):
     total = 0
-    for i in range(n+1):
+    for i in range(n + 1):
         total += i
     return total
-    
-# using recursion    
+
+# using recursion
 def recur_sum(n):
     # 'n == 0' is the base case here
     if n == 0:
         return 0
     else:
-        return n + recur_sum(n-1)   
-        
+        return n + recur_sum(n - 1)
+
+
 print(iter_sum(5)) # 15
 print(recur_sum(5)) # 15
 # here iterative solution seems easy/understandable, but the recursive solution is much more concise
 
-## stack calls over recursion
-'''
-# In our recursion function recursive calls are made till n is 0, in this example recursion is bottom-up, 
-# so we'll begin from the last line. Note: '->' is the output from that call
-5 + recur_sum(4) -> 10 = 15 # finally 15 is the result, which is returned to the original caller
+## Stack calls over recursion
+"""
+# In our function, recursive calls are made till n is 0, so the recursion is bottom-up, 
+# and we'll begin from the last line. Note: '->' is the output from that call
+5 + recur_sum(4) -> 10 = 15 # finally '15' is the result, which is returned to the original caller
 4 + recur_sum(3) -> 6 = 10 # same thing here
-3 + recur_sum(2) -> 3 = 6 # similarly the result 3 is returned here from previous call and added with 3
-2 + recur_sum(1) -> 1 = 3 # the result 1 is returned here from previous call and added with 2
+3 + recur_sum(2) -> 3 = 6 # similarly the result '3' is returned here from previous call and added with '3'
+2 + recur_sum(1) -> 1 = 3 # the result '1' is returned here from previous call and added with '2'
 1 + recur_sum(0) -> 0 = 1 # this is the last call, as the base case is hit, now the return calls are made
-'''
+"""
 ```
 * In recursion, there are some problems that require re-computation of repetitive calculations. We can save some computation by storing the previous results in the memory and looking up from it when it is required to compute again. This process is known as Memoization (or caching).
 * Now it would be memory inefficient to store all the previous results of a function with longer runtimes. So we can use techniques such as using FIFO (remove the oldest first), LFU (remove the least frequently used first) or LRU (remove the least recently used first) etc, to manage the number of results to store in the memory. 
-* Python provides support for LRU using the *functools* module (which is included in the standard library). Using the *lru_cache* function, a desired function can be optimized to use LRU cache for storing its repetitive calculations. So whenever a function is run *lru_cache* will check for cached results for the inputs, if it exists the output will be returned instantly else the function will be run and the output will be cached for next time. It maintains a dictionary with keys as inputs & values as outputs.
+* Python provides support for LRU using the *functools* module (which is included in the standard library). Using the *lru_cache* function, a desired function can be optimized to use LRU cache for storing its repetitive calculations. So whenever a function is run *lru_cache* will check for cached results for the current inputs, if it exists the output will be returned instantly else the function will be run and the output will be cached for next time. It maintains a dictionary with keys as inputs of a function & values as outputs of a function.
 * As *lru_cache* is a *decorator* function, we'll see an example of it in the *decorator*'s section, for now let's use Memoization without memory management. 
 ```Python
-## Example: find factorial of n numbers using recursion and memoization
-# for storing previous calculation/result we can use a dictionary (memo here)
-def factorial(input_value, cur_num=2, memo = {1:1}):
+## Example: Find factorial of n numbers using recursion and memoization
+# for storing previous calculation/result we can use a dictionary ('memo' here)
+def factorial(input_value, cur_num=2, memo={1: 1}):
     # base case, we return 'memo' to the caller
     if cur_num > input_value:
-      return memo
+        return memo
 
-    # calculate factorial 
+    # calculate factorial
     memo[cur_num] = cur_num * memo[cur_num - 1]
     # recursively call the next number, finally return 'memo' from the base case
-    return factorial(input_value, cur_num+1, memo)
+    return factorial(input_value, cur_num + 1, memo)
+
 
 print(factorial(5)) # {1: 1, 2: 2, 3: 6, 4: 24, 5: 120}
 
-## stack calls over recursion
-'''
-# In this recursion function recursive calls are made till 'cur_num' > 'input_value',
-# as soon as it is we return to the caller and return output 'memo'. Below is the calculated factorial line. 
-# This is a top-down recursive call so we'll begin from top. Note: '->' is the value from the memo.
+## Stack calls over recursion
+"""
+# In this function the recursive calls are made till 'cur_num' > 'input_value',
+# as soon as it is we return to the caller (line 11) and return output 'memo'.
+# This is a top-down recursive call so we'll begin from top. Note: '->' is the value from the 'memo'
+
 # 1. we multiply 2 with 1 which came from memo[1], later store it at memo[2]
 memo[2] = 2 * memo[2 - 1] -> 1 
 # 2. we multiply 3 with 2 which came from memo[2] and store result at memo[3]
@@ -2127,28 +2135,28 @@ memo[3] = 3 * memo[3 - 1] -> 2
 memo[4] = 4 * memo[4 - 1] -> 6  
 # 4. lastly we store the final calculation
 memo[5] = 5 * memo[5 - 1] -> 24 
-# 5. Our base case hits at this call, from there we return 'memo' which returns to the last line of the function
-# and then return 'memo' from there to the caller from outside of the function. 
-'''
+# 5. Our base case hits at this call, from there we return 'memo' to the caller (line 11)
+# and then return 'memo' from there to the caller from outside of the function (line 14). 
+"""
 ```
 * Recursion can be overwhelming even for intermediate programmers, recursion requires practice on well... recursion. [Here](https://web.stanford.edu/class/cs9/lectures/06/Recursion%20Problems.pdf) is a list of some recursive problems. If you are not that familiar with recursion [here](https://www.youtube.com/watch?v=ngCos392W4w) is a nice video explanation.
 ### <strong>6.4 Anonymous functions</strong>
-* Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using the *lambda* keyword, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
+* Is a function that is defined without a name (without using *def* keyword in python). Anonymous function can be created using the *lambda* statement, it is a single line function. This function helps in reducing the line of code required for defining a short function. 
 ```Python
-## Example 1: return sum of 2 numbers 
+## Example 1: Return sum of 2 numbers 
 # syntax => lambda arguments : expression
 my_function = lambda a,b: a+b  
-# Notice: 'a+b' is also the return statement without using 'return' keyword 
+# Notice: 'a+b' is the return statement without using 'return' keyword 
 
-## calling the function
+## Calling the function
 print(my_function(1,1)) # 2 
 ```
 ### <strong>6.4 *pass* statement</strong>
-* It is to declare a function/method/class with an empty body without raising an error, so that we can come back later to implement the function.  
+* It is used to define a function/method/class with an empty body without raising an error, so that we can come back later to implement the function.  
 ```Python
-# Example 1: empty function body
+# Example 1: Empty function body
 def my_fun():
-  pass
+    pass
 ```
 ### <strong>6.5 global and nonlocal statements</strong>
 1. **global**: Is used to modify a variable with global scope from inside a function.
@@ -2156,53 +2164,58 @@ def my_fun():
 # defining 3 variables in global scope
 my_var1, my_var2, my_var3 = 10, 20, 30
 
+
 def some_fun():
-  # declaring my_var1 as global inside a local scope, so now my_var1 can be modified for global scope
-  global my_var1
-  
-  # accessing a global scope variable, works fine
-  print(my_var3) # 30
-  # accessing a global scope variable defined as global, works fine
-  print(my_var1) # 10
-  # same thing with my_var2 doesn't work (comment below line to execute the program further) 
-  print(my_var2) # UnboundLocalError
-  # Its because Python tries to figure out the scope of a variable by watching if it has some assignment in this scope
-  # if it does Python thinks it is a local variable, which we cannot access before assignment right?
-  # in below lines my_var2 has assignment, so it is considered as local variable,
-  # even if same named global variable exists
-  # if the assignment is removed, my_var2 it will be considered global and it can be access normally
+    # declaring my_var1 as global inside a local scope, so now my_var1 can be modified for global scope
+    global my_var1
 
-  my_var1 = 30 # modifying for global scope
-  my_var2 = 40 # modifying only for local scope
+    # accessing a global scope variable, works fine
+    print(my_var3)  # 30
+    # accessing a global scope variable defined as global, works fine
+    print(my_var1)  # 10
+    # same thing with my_var2 doesn't work (comment below line to execute the program further)
+    print(my_var2)  # UnboundLocalError
+    # Its because Python tries to figure out the scope of a variable by watching if it has some assignment in this scope
+    # if it does Python thinks it is a local variable, which we cannot access before assignment right?
+    # in below lines my_var2 has assignment, so it is considered as a local variable,
+    # even if same named global variable exists it will be considered as a local variable
+    # if the assignment is removed, my_var2 it will be considered global and it can be access normally
 
+    my_var1 = 30  # modifying for global scope
+    my_var2 = 40  # modifying only for local scope
+
+# now calling the function
 some_fun()
-print(my_var1, my_var2) # 30, 20
+# let's check our global variables
+print(my_var1, my_var2)  # 30, 20
 # Notice: my_var1 is now changed but my_var2 is not
 ```
 2. **nonlocal**: Is used to modify a variable of local scope from inside a nested function.
 ```Python
 def some_fun():
-  # defining my_var1 and my_var2 in local scope 
-  my_var1 = 10
-  my_var2 = 20
-  
-  def some_nested_fun():
-    # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope too
-    nonlocal my_var2 
-    my_var1 = 30 # modifying for some_nested_fun() scope
-    my_var2 = 40 # modifying for some_fun() scope
-    print(my_var1, my_var2) # 30, 40
+    # defining my_var1 and my_var2 in local scope
+    my_var1 = 10
+    my_var2 = 20
 
-  some_nested_fun()  
-  # here my_var1 is not modified but my_var2 is
-  print(my_var1, my_var2) # 10, 40    
+    def some_nested_fun():
+        # declaring my_var2 as nonlocal, so now it can be modified for some_fun() scope too
+        nonlocal my_var2
+        my_var1 = 30  # modifying for some_nested_fun() scope
+        my_var2 = 40  # modifying for some_fun() scope
+        print(my_var1, my_var2)  # 30, 40
 
+    # calling the nested function
+    some_nested_fun()
+    # Notice: Here my_var1 is not modified but my_var2 is
+    print(my_var1, my_var2)  # 10, 40
+
+# calling the outer function
 some_fun()
 ```
 ### <strong>6.6 Closures</strong>
 * They are the nested function objects that remember the data from the local scope. It is a nested function (a function inside a function) that has access to variables called "free variables" from the local scope even if the function is removed from the current namespace.   
 * These "free variables" are attached to the closure function object once it is returned by the enclosing function, so even if the enclosing function is out of the scope or is removed the variables still exist. 
-* Closures are an easy alternative to classes with few methods in them and they also provide some level of data hiding in functions.  
+* Closures are an easy alternative to small classes with fewer methods and they also provide some level of data hiding in functions.  
 * Creating a simple closure function.
 ```Python
 # this is the enclosing/outer function
@@ -2210,34 +2223,35 @@ def my_enclosing(para1, para2):
     # this is the closure function
     def inner():
         print(para1, para2)
- 
-    # Note: the inner function is returned not called
+
+    # Note: The inner function is returned not called
     return inner
 
-# initializing the closure function 
+
+## Initializing the closure function
 my_closure = my_enclosing(10, 20)
-# calling my_closure, which is just referring to "inner()" as "my_enclosing()" has returned it
-my_closure() # 10, 20
+# calling 'my_closure', which is just referring to "inner()" as "my_enclosing()" has returned it
+my_closure()  # 10, 20
 
 # here para1 & para2 are free variables attached to "inner()" function
 # so even if "my_enclosing()" is removed, "inner()" can still access them
 del my_enclosing
-# now calling "my_enclosing()" should raise NameError, 
-# Note: comment the following line to execute the program further
-my_enclosing() # NameError
+# now calling "my_enclosing()" should raise NameError,
+# Note: Comment the following line to execute the program further
+my_enclosing()  # NameError
 
 # but "my_closure()" should still have access to para1 & para2
-my_closure() # 10 20
+my_closure()  # 10 20
 ```
 * Another example of closure.
 ```Python
-## Example: create a callable that prints maximum from all previous values
-## Creating a callable using a class, 
-# Note: we'll learn more about classes in next chapter, you can comeback to this one later
+## Example: Create a callable that prints maximum from all previous values
+## Creating a callable using a class,
+# Note: We'll learn more about classes in next chapter, you can comeback to this one later
 class Make_maxer:
     def __init__(self):
         self.my_values = {10, 50, 80}
-        self.all_time_max = self.max(my_values)
+        self.all_time_max = max(self.my_values)
 
     def __call__(self, new_value):
         self.my_values.add(new_value)
@@ -2249,7 +2263,7 @@ class Make_maxer:
 # creating a instance of Make_maxer
 my_maxer = Make_maxer()
 my_maxer(20)
-my_maxer(95) # Found new max: 95
+my_maxer(95)  # Found new max: 95
 
 
 ## Now creating the same with closures
@@ -2269,118 +2283,123 @@ def make_maxer():
 
     return maxer
 
-# creating closure object
+## Creating closure object
 my_maxer = make_maxer()
-# Note: "my_maxer" is just referring to "maxer()", checking its name
-print(my_maxer.__name__) # maxer
+# Note: my_maxer is just referring to "maxer()", checking its name
+print(my_maxer.__name__)  # maxer
 
 # adding some values to maxer
 my_maxer(42)
-my_maxer(105) # Found new max: 105
+my_maxer(105)  # Found new max: 105
 
-## the free variable names can be found in "__code__" attribute of a function
-print(my_maxer.__code__.co_freevars) # ('all_time_max', 'my_values')
-# their values are attached to the __closure__ attribute
+## The free variable's names can be found in "__code__" attribute of a function
+print(my_maxer.__code__.co_freevars)  # ('all_time_max', 'my_values')
+# their values are attached to the "__closure__" attribute
 closure_values = my_maxer.__closure__
-print(closure_values[0].cell_contents, closure_values[1].cell_contents) # 105 {105, 10, 42, 80, 50, 20}
+print(closure_values[0].cell_contents)  # 105
+print(closure_values[1].cell_contents)  # {105, 10, 42, 80, 50, 20}
 ```
 ### <strong>6.7 Decorators</strong>
 * They are used to wrap another function around to extend/replace its functionality. It is simply running a function inside another function, like a nested function. This allows extending the wrapped function's behaviour without actually modifying the function itself. This functionality is utilized using functions being first class in Python. A function can be decorated using '@' prefix, which is just a "Syntactic sugar".
 * In Python, functions and classes (we'll see an example in next Chapter) can be decorated. The wrapper/decorator function has an inner function that can choose to call or not call the wrapped/decorated function, which is replacing the decorated function entirely. Finally the decorators can also have their own parameters.
 * Creating a simple decorator.
 ```Python
-# this is a decorator function
+## Define a decorator function
 def my_decorator(func):
     # decorator function has a inner function which calls the decorated function
-    def inner():  
+    def inner():
         print("decorator did something")
         # calling decorated function
         output = func()
         print(output)
-    return inner 
+    # lastly the inner function is returned
+    return inner
 
-# decorated function, decorate with '@' prefix
+## Define a decorated function, decorate with '@' prefix
 @my_decorator
 def my_decorated():
-  print("decorated did something")
-  return 42
-  
+    print("decorated did something")
+    return 42
+
+
 # calling the decorated function
 my_decorated()
 
-# the above lines without the '@' prefix are similar to this
-my_decorator(my_decorated) 
+## Decorator is just as running a function and its nested function, 
+# The above functions without the '@' prefix are similar to this
+my_decorator(my_decorated)
 ```
 * A decorated function with parameters.
 ```Python
-## Example: create a decorator to extend functionality of other function
-# First defined the decorator function with parameter as decorated function 
+## Example: Create a decorator to extend the functionality of a function
+# First defined the decorator function with parameter as decorated function
 def my_decorator(deco_func):
-  # Second define the inner function
-  # Note: inner function can do something before/after calling our wrapped function
-  def my_inner(deco_func_para1, deco_func_para2): 
-    # Notice: the parameters of a decorated should be the parameters of inner function
-    # because this function is going to be returned and we're going to call it
-    # do something of inner function say printing
-    print(f"Product of two numbers is {deco_func_para1 * deco_func_para2}")
+    # Second define the inner function
+    # Note: Inner function can do something before/after calling our wrapped function
+    def my_inner(deco_func_para1, deco_func_para2):
+        # Notice: The parameters of a decorated should be the parameters of inner function
+        # because this function is going to be returned and we're going to call it
+        # do something of inner function say printing
+        print(f"Product of two numbers is {deco_func_para1 * deco_func_para2}")
+        # now calling our decorated function, passing the required arguments
+        output = deco_func(deco_func_para1, deco_func_para2)
+        return output
 
-    # now calling our decorated function, passing the required arguments
-    output = deco_func(deco_func_para1, deco_func_para2) 
-    return output
+    # Finally return the inner function
+    return my_inner
 
-  # Finally return the inner function
-  return my_inner 
+def my_fun(a, b):
+    print(f"Sum of two numbers is {a+b}")
 
-def my_fun(a,b):
-  print(f"Sum of two numbers is {a+b}")
 
 # calling my_fun gets sum of two numbers
-my_fun(10, 20) # Sum of two numbers is 30
-# to extend my_fun's functionality without changing its previous code
-
+my_fun(10, 20)  # Sum of two numbers is 30
+# to extend my_fun's functionality without changing its previous code,
 # pass the my_fun as deco_func to my_decorator
-my_decorated_fun = my_decorator(my_fun) 
-
+my_decorated_fun = my_decorator(my_fun)
 # done, my_decorated_fun can now do both product as well as sum
-my_decorated_fun(10, 20) # Product of two numbers is 200 # Sum of two numbers is 30
+my_decorated_fun(10, 20)  # Product of two numbers is 200 # Sum of two numbers is 30
 
-## now doing the same using decorators
+## Now doing the same using decorators, just add @<decorator_function_name>
 @my_decorator
-def my_fun(a,b):
-  print(f"Sum of two numbers is {a+b}")
+def my_fun(a, b):
+    print(f"Sum of two numbers is {a+b}")
 
 # now calling 'my_fun()' will automatically call/invoke my_decorator()
-my_fun(10,20) # Product of two numbers is 200 # Sum of two numbers is 30
+my_fun(10, 20)  # Product of two numbers is 200 # Sum of two numbers is 30
 ```
 * Replacing the functionality of a decorated function.
 ```Python
-## Example: create a decorator function that replaces the decorated function 
+## Example: Create a decorator function that replaces the decorated function
 def my_adder(func):
-  def adder(para1, para2):
-    return para1 + para2
-  return adder
+    def adder(para1, para2):
+        return para1 + para2
 
-# decorating subtr and mutpl
+    return adder
+
+# Decorating subtr() and mutpl() with my_adder
 @my_adder
 def subtr(p1, p2):
-  return p1 - p2
+    return p1 - p2
 
 @my_adder
 def mutpl(p1, p2):
-  return p1 * p2
+    return p1 * p2
 
-# now calling subtr and mutpl
-print(subtr(20, 10)) # 30
-print(mutpl(2, 5)) # 7
+
+## Now calling subtr and mutpl
+print(subtr(20, 10))  # 30
+print(mutpl(2, 5))  # 7
 # this is because we didn't call the 'func'/decorated function inside 'my_adder'
-# so if a function is decorated with 'my_adder' it is going to be replace by 'adder' and 'func' won't be called
+# so if a function is decorated with 'my_adder' it is going to be replaced by 'adder'
+# and 'func' won't be called
 ```
 * A decorator function with parameters.
 ```Python
-## Example: create a function that prints/returns the output
-# this function is called decorator factory, because it returns a decorator
+## Example: Create a function that prints/returns the output
+# this outer function is called a decorator factory, because it returns a decorator
 def result_fetcher(print_op=True):
-    def resulter(func): # this is our decorator function
+    def resulter(func):  # this is our decorator function
         def inner(para1, para2):
             output = func(para1, para2)
             if print_op:
@@ -2390,7 +2409,7 @@ def result_fetcher(print_op=True):
         return inner
     return resulter
 
-# passing the parameters in result_fetcher decorator
+## Passing parameters to our decorator
 @result_fetcher(print_op=False)
 def addr(p1, p2):
     return p1 + p2
@@ -2399,57 +2418,58 @@ def addr(p1, p2):
 def multpl(p1, p2):
     return p1 * p2
 
-# calling addr and multpl
-print(addr(10, 20)) # 30     
-multpl(10, 20) # Output is 200     
+
+# Now calling addr() and multpl()
+print(addr(10, 20))  # 30
+multpl(10, 20)  # Output is 200
 ```
-* The *lru_cache* decorator to manage memory.
+* Using the *lru_cache* decorator to manage memory.
 ```Python
-## lru_cache basics
 from functools import lru_cache
-# simply add a decorator to computational function 
+
+# simply add a decorator to our power_of() function
 @lru_cache
 def power_of(num1, num2):
-  print('power_of was called')
-  return pow(num1, num2)
+    print("power_of was called")
+    return pow(num1, num2)
 
-# call the function and lru_cache will store the result
+
+# when calling the function for the first time lru_cache will store its result
 v = power_of(342, 388)  # power_of was called
-# so next time for the same inputs results will be returned directly
-v = power_of(342, 388)  
+# and next time for the same inputs results will be returned directly,
+# without running our function
+v = power_of(342, 388)
 
-# set the size of lru_cache by passing a parameter
+## Set the size of lru_cache by passing a parameter
 # if the memory gets full, the least recently used ones will be removed
 @lru_cache(256)
 def power_of(num1, num2):
-  print('power_of was called')
-  return pow(num1, num2)
-
-# check cache info like times hit/used, missed and current remaining size
-print(fib.cache_info()) # CacheInfo(hits=8, misses=11, maxsize=128, currsize=11)
-# clear the cache 
-fib.cache_clear()
+    print("power_of was called")
+    return pow(num1, num2)
 ```
 * Another example of *lru_cache*.
 ```Python
 ## Checking function call counts of fibonacci function with and without lru_cache
 # Note: cache is similar to lru_cache, only without the size limit, good for smaller programs
 from functools import cache
-# checking without caching
+
+## Checking without caching
 call_counter = 0
+
 def fib(num):
     global call_counter
     call_counter += 1
     if num < 2:
         return num
     else:
-        return fib(num-1) + fib(num-2)
+        return fib(num - 1) + fib(num - 2)
 
 fib(10)
-print(call_counter) # 177
+print(call_counter)  # 177
 
-# checking with caching
+## Checking with caching
 call_counter = 0
+
 @cache
 def fib(num):
     global call_counter
@@ -2457,193 +2477,210 @@ def fib(num):
     if num < 2:
         return num
     else:
-        return fib(num-1) + fib(num-2)
+        return fib(num - 1) + fib(num - 2)
 
 fib(10)
-print(call_counter) # 11
-# 177 vs 11, the difference speaks everything
+print(call_counter)  # 11
+# 177 vs 11, the difference is significant
 
-## check cache info like times hit/used, missed and current remaining size
-print(fib.cache_info()) # CacheInfo(hits=8, misses=11, maxsize=None, currsize=11)
-# clear the  cache 
+## Check cache info like times hit/used, missed and current remaining size
+print(fib.cache_info())  # CacheInfo(hits=8, misses=11, maxsize=None, currsize=11)
+# clearing the cache
 fib.cache_clear()
 ```
 ### <strong>6.8 Generators and Coroutines</strong>
-* Generators are used to generate streams of data. Instead of loading all the data at once (example like *list* object does) they "lazy load" the data, which means they return a value only when the *next()* function is called upon them. The *next()* function is used to fetch the next element from the *generator* object.
+* Generators are used to generate streams of data. Instead of loading all the data at once (example like *list* object does) they "lazy load" the data, which means they return a value only when the *next()* function is called upon them. The *next()* function is used to fetch the next element from the *generator* object. Now the fetching can be from databases or generating on the fly.
 * Generators are *iterator*s (we'll learn more about them in next Chapter) objects, so they can be iterated using loops. A generator object is created using a function with one or more *yield* statements in it. *yield* allows generators to be iterated with/without defining loops in their function.
 * *yield* helps to save the state (or maintains current index of iteration) of a *generator* object, this allows generators to be interrupted and resumed throughout the program's execution. Once a *generator*'s data is exhausted it stops returning values and raises *StopIteration*, at this point it needs to be created again. 
 * For longer iteration (larger/infinite length of data handling) generators are preferred because they are memory efficient, in a sense they can be utilized to generate/load data when required. This helps in avoiding the machine to run out of memory. Lastly, generators can also be created using comprehensions, using the rounded brackets.
 * Creating a simple generator.
 ```Python
-## Example 1: create a generator function which returns a square of each values
+## Example 1: Create a generator function which returns square of each values
 def square_generator(*args):
-  for a in args:
-    yield a**2
-    # Notice: using 'yield' instead of 'return' makes this function "lazy" and hence a generator
+    for a in args:
+        yield a ** 2
+        # Notice: Using 'yield' instead of 'return' makes this function "lazy"
+        # and hence a generator
 
-generator = square_generator(2,3,4)
+generator = square_generator(2, 3, 4)
 # fetch the value using the next() function
-print(next(generator)) # 4
+print(next(generator))  # 4
 # whenever a value is returned the generator is paused at the 'yield' statement
-# now next value is called the 'for' loop will be resumed and so on
-print(next(generator)) # 9
-print(next(generator)) # 16
-# now once exhausted, StopIteration is raised
-print(next(generator)) # StopIteration
+# now as the next() called again, the 'for' loop will be resumed and so on
+print(next(generator))  # 9
+print(next(generator))  # 16
+# once the generator is exhausted, 'StopIteration' is raised
+print(next(generator))  # StopIteration
 
 
 ## Creating the above generator using comprehensions
-generator = (a**2 for a in [2,3,4,5])
-print(type(generator)) # <class 'generator'>
-print(hasattr(generator, '__next__')) # True
+generator = (a ** 2 for a in [2, 3, 4, 5])
+print(type(generator))  # <class 'generator'>
+print(hasattr(generator, "__next__"))  # True
 # fetch the first value
-print(next(generator)) # 4
+print(next(generator))  # 4
 
-# now try iterating a generator
+## Iterating a generator
 for a in generator:
-  print(a) # [9, 16, 25]
-  # Notice: generator resumed after first value
+    print(a)  # [9, 16, 25]
+    # Notice: Generator resumed after first value
 
 # creating a new generator
-generator = (x**2 for x in [2,3,4,5])
+generator = (x ** 2 for x in [2, 3, 4, 5])
 for v in generator:
-  print(v) # [4, 9, 16, 25]
-  # Notice: we didn't call "next()" first, so all values are iterated properly
-# however now it is exhausted, so will raise error 
-print(next(generator)) # StopIteration
+    print(v)  # [4, 9, 16, 25]
+    # Notice: We didn't call "next()" first, so all values are iterated properly
+# however now it is exhausted, so will raise error
+print(next(generator))  # StopIteration
 ```
 * The pause and play of generators.
 ```Python
 def some_generator():
-  print('Hello 1')
-  yield 10
-  print('Hello 2')
-  yield 20
-  print('Hello 3')
-  yield 30
-  
-# creating a generator  
+    print("Hello 1")
+    yield 10
+    print("Hello 2")
+    yield 20
+    print("Hello 3")
+    yield 30
+
+## Creating a generator
 my_generator = some_generator()
 # calling the next() on generator will execute till first 'yield' statement
-print(next(my_generator)) # Hello 1 # 10
-# now calling the next() again will resume from the execute 'yield 10' till next 'yield' statement which is 'yield 20'
-print(next(my_generator)) # Hello 2 # 20
-# so we get the returned value
-# this is how the generator saves its state at yield statement, allowing the object to be interrupted and resumed anytime
+print(next(my_generator))  # Hello 1 # 10
+# now calling the next() again will resume from line 3 till next 'yield' statement which is 'yield 20'
+print(next(my_generator))  # Hello 2 # 20
+# and so on..
+## This is how the generator saves its state at yield statement, 
+# allowing the object to be interrupted and resumed anytime
 ```
 * Iterating generators that don't have loops in them.
 ```Python
 def my_generator():
-  yield 1
-  yield 2
-  yield 3
+    yield 1
+    yield 2
+    yield 3
 
 generator = my_generator()
-## now iterating the generator  
-for a in generator:
-  print(a) # [1,2,3]
-# behind the scenes the 'for' loop is actually calling the 'next()' function on each iteration, 
-# which is why in our square_generator example the 'for' loop was able to continue from the interruption/breakpoint 
 
-## yield from: to yield from a sequence or even a generator (it'll be called a subgenerator) 
-# above function can be coded as following
+## Now iterating the generator
+for a in generator:
+    print(a)  # [1,2,3]
+# behind the scenes the 'for' loop is actually calling the 'next()' function on each iteration,
+# which is why in our square_generator example the 'for' loop was able to continue from the interruption
+
+
+## yield from: Is used to 'yield' from a sequence or even a generator (it'll be called a subgenerator)
+# the above function can be coded as following
 def my_generator():
-  yield from [1,2,3]
+    yield from [1, 2, 3]
 
 for a in my_generator():
-  print(a) # [1,2,3]
+    print(a)  # [1,2,3]
 ```
 * Coroutines are similar to generators, but instead of generating data they are used for consuming the data. Similar to a *generator*, a coroutine also has *yield* in its function. The difference is that the *yield* is assigned to a variable, it is used to pass some value into the function. So a generator becomes coroutine if its *yield* is assigned to a variable.
-* Coroutines can also maintain their state just like a *generator*, allowing to a constant flow of input data. Apart from *send()*, there are more two methods named *close()* and *throw()* associated with the *generator* objects. *close()* is used to terminate the *generator*'s/*coroutine*'s execution and *throw()* is used to raise an *Exception* into a *generator* function. 
-* Coroutines are easy to define and can be combined with other generators/coroutines, this helps in building pipelines and in other asynchronous workflows.   
+* Coroutines can also maintain their state just like a *generator*, allowing a constant flow of input data. Apart from *send()*, there are two more methods named *close()* and *throw()* associated with the *generator* objects. *close()* is used to terminate the *generator*'s/*coroutine*'s execution and *throw()* is used to raise an *Exception* into a *generator* function. 
+* Coroutines are easy to define and can be combined with other generators/coroutines, this helps in building pipelines and in other asynchronous workflows.
 * Creating a coroutine.
 ```Python
+## Define a coroutine function
 def my_coroutine():
-  print('Coroutine is activated..')
-  val = yield   
-  print(f"{val} received")
-
-# Note: a coroutine is activated only after reaching the first yield statement
-# to activate you need to call next() on its object
-coroutine = my_coroutine()
-next(coroutine)
-# now you can start sending values
-# Note: if you call next() at this point None will be send
-coroutine.send(42) # 42 received
-# now coroutine has started looking for next yield, if it doesn't find any the coroutine terminates raising StopIteration
-
-# to stop this from happening, create a infinite loop and call '.close()' method when done 
-def my_coroutine():
-  print('Coroutine is activated..')
-  while True:
-    val = yield   
+    print("Coroutine is activated..")
+    # Note: The 'yield' is assigned to a variable
+    val = yield
     print(f"{val} received")
 
+# Note: A coroutine is activated only after reaching the first 'yield' statement
+# to activate you need to call 'next()' on its object
 coroutine = my_coroutine()
 next(coroutine)
-coroutine.send(42) # 42 received
-coroutine.send(34) # 34 received
+# And now you can start sending in values
+# Note: If you call 'next()' at this point 'None' will be send
+coroutine.send(42)  # 42 received
+# At this point our coroutine has started looking for the next 'yield' statement,
+# if it doesn't find any, the coroutine will terminate itself, raising 'StopIteration'
+
+
+## To stop this from happening, create a infinite loop and call '.close()' method when done
+def my_coroutine():
+    print("Coroutine is activated..")
+    while True:
+        val = yield
+        print(f"{val} received")
+
+# create and activate my_coroutine
+coroutine = my_coroutine()
+next(coroutine)
+# now sending values
+coroutine.send(42)  # 42 received
+coroutine.send(34)  # 34 received
+# when done call the 'close()' to terminate the coroutine
 coroutine.close()
-
-## Example: percent calculator using coroutine
-# Note: when pairing yield with a expression it is recommended to use parentheses like this (yield)
+```
+* Another example of coroutine.
+```Python
+## Example: Percent calculator using coroutine
+# Note: When pairing 'yield' with a expression it is recommended to use parentheses like this (yield)
 def percent_coroutine(total):
-  while True:
-    result = (yield) / total * 100  
-    # limiting float number to 3 decimal points using :.3
-    print(f"Your Percentage are {result:.3}")
+    while True:
+        result = (yield) / total * 100
+        # limiting float number to 3 decimal points using :.3
+        print(f"Your Percentage are {result:.3}")
 
-percent_calc = percent_coroutine(420)  
+percent_calc = percent_coroutine(420)
 next(percent_calc)
-percent_calc.send(250) # Your Percentage are 59.5
-percent_calc.send(356) # Your Percentage are 84.8
-percent_calc.send(155) # Your Percentage are 36.9
+
+percent_calc.send(250)  # Your Percentage are 59.5
+percent_calc.send(356)  # Your Percentage are 84.8
+percent_calc.send(155)  # Your Percentage are 36.9
 percent_calc.close()
 ```
-* Using generators and coroutines together.
+* Using generator and coroutine together.
 ```Python
-## Example: Create a fibonacci generator and then a coroutine to filter even numbers in a list and finally return it 
+## Example: Create a fibonacci generator and then a coroutine to filter the even numbers and return it
 def fib_gen(limit=10):
-  """
-  This is a generator function that generates fibonacci numbers.
-  """
-  x, y = 0, 1
-  for _ in range(limit):
-      x, y = y, x+y
-      yield x
-  # at last send None to coroutine, to signal for stopping
-  yield None
+    """
+    This is a generator function that generates fibonacci numbers.
+    """
+    x, y = 0, 1
+    for _ in range(limit):
+        x, y = y, x + y
+        yield x
+    # at last send None to coroutine, to signal for stopping
+    yield None
 
 def co_fetcher():
-  """
-  This is a coroutine function that takes numbers and stores the even numbers in a list and finally returns the list.
-  """
-  even_fibs = []
-  while True:
-    num = yield
-    # stopping condition for coroutine
-    if not num:
-      break
-    if num % 2 == 0:
-      even_fibs.append(num)
-  return even_fibs
+    """
+    This is a coroutine function that takes numbers and stores 
+    the even numbers in a list and finally returns the list.
+    """
+    even_fibs = []
+    while True:
+        num = yield
+        # stopping condition for the coroutine
+        if not num:
+            break
+        if num % 2 == 0:
+            even_fibs.append(num)
+    return even_fibs
 
-# create a generator
+
+## Create a generator
 fib = fib_gen()
-# create and activate the coroutine 
+
+## Create and activate the coroutine
 fetcher = co_fetcher()
 next(fetcher)
 
-# Note: As the coroutine is terminated it raises StopIteration, 
-# so the returned value should inside the "value" attribute of the exception
+# Note: As the coroutine is terminated it raises 'StopIteration',
+# so the final returned value should be inside the "value" attribute of the exception
 while True:
-  try:
-      # send values generated from generator to coroutine
-      fetcher.send(next(fib))
-  except StopIteration as e:
-    print(f"Your even fibonacci are {e.value}") # Your even fibonacci are [2, 8, 34]
-    # make sure to stop this loop too
-    break
+    try:
+        # send values generated from generator to coroutine
+        fetcher.send(next(fib))
+    except StopIteration as e:
+        print(f"Your even fibonacci are {e.value}") # Your even fibonacci are [2, 8, 34]
+        # make sure to stop this loop too
+        break
 ```
 ### <strong>6.9 Functional Programming</strong>
 * Python like C++ is a multi-paradigm and supports functional programming. In functional programming, input flow through various functions and outputs are generated based on their behaviour. As functions don't have an internal state like objects, they can't produce different outputs given the same inputs (as state/data cannot be saved in a function), they are just meant to perform some operation on some data and return the output. 
