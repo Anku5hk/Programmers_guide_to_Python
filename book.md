@@ -46,7 +46,7 @@ a = 'something'
 ### <strong>1.3 Keywords</strong>
 * Keywords are reserved words which are defined by Python. They can't be used as operands/variable names.
 ```Python
-# some keywords
+# Some keywords
 if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pass, raise
 ```
 ### <strong>1.4 Operands</strong>
@@ -57,19 +57,20 @@ if, else, for, while, is, as, or, not, and, None, def, class, return, yield, pas
 ```python
 ## Some commonly used naming style
 # camel casing names (preffered for variable names)
-myVar, myString42, rawData 
+# myVar, myString42, rawData 
 # capital camel casing names (preffered for class names)
-MyVar, MyString30, FileData
+# MyVar, MyString30, FileData
 # snake casing names (preffered for variable/function names)
-my_var, my_string12, some_data3
-# Note: I use my_<data_type> names throughout the book just for the sake of simplicity, 
+# my_var, my_string12, some_data3
+
+# Note: I use 'my_<data_type>' names throughout the book just for the sake of simplicity, 
 # don't use such names in real world projects.
 
 ## Dynamically typed: Type checking.
 # the type is checked only at run-time
 if False:
-  30 + "some string"
-# Above statement should return a TypeError but it will not,
+    30 + "some string"
+# Above statement should raise a 'TypeError' but it will not,
 # because that condition is never executed, if it did it will raise the exception, try with "if True"
 
 ## Dynamically typed: Assigning a name (variable) to the object.
@@ -112,11 +113,11 @@ is,is not
 in,not in
 """
 ```
-* <b>Logical operators</b>: not,and,or.
+* <b>Logical operators</b>: not, and, or.
 ```Python
-## not: to negate the underlying condition (it reverses the condition).
+## not: To negate the underlying condition (it reverses the condition).
 a = 30
-# here the underlying condition is the isinstance() function, which return True/False
+# here the underlying condition is the 'isinstance()' function, which return True/False
 # normally 'if' executes when a underlying condition is 'True' right?, by applying 'not' to it
 # the 'if' condition is satisfied only when the output is 'False'
 if not isinstance(a, int):
@@ -125,7 +126,7 @@ if not isinstance(a, str):
   print('printed')
 # here 'a' is not a string, so the second condition is executed
 
-## 'and' is similar to '&&' in C/C++/Java: both conditions should be satisfied.
+## 'and' is similar to '&&' in C/C++/Java: Both conditions should be satisfied.
 a=20
 b=30
 if a > 10 and b < 50:
@@ -133,15 +134,15 @@ if a > 10 and b < 50:
 if a > 42 and b < 50:
   print('not printed')
 
-## 'or' is similar to '||' in C/C++/Java: either of conditions should be satisfied.
+## 'or' is similar to '||' in C/C++/Java: Either of conditions should be satisfied.
 if a > 10 or b < 10:
   print('printed')
 if a > 20 or b < 30:
   print('not printed')
 ```
-* <b>Identity operator</b>: is,is not.
+* <b>Identity operator</b>: is, is not.
 ```Python
-## is: checks if 2 objects have same identity.
+## is: Checks if 2 objects have same identity.
 my_var1 = 42
 my_var2 = 42
 # checking values with '=='
@@ -151,7 +152,7 @@ if my_var1 == my_var2:
 if my_var1 is my_var2:
   print('printed')
 
-# another example
+# Another example
 x = 500
 y = 500
 # let's check with 'is' operator
@@ -161,12 +162,12 @@ if x is y:
 # When a object is created the Python Interpreter assigns it a unique number, known as its identity 
 # Note: ids can vary on each machine.
 # This id is what the 'is' operator checks, we can print the id of a object using 'id()' built-in function  
-# lets check the id of my_var1 and my_var2
+# lets check the id of 'my_var1' and 'my_var2'
 print(id(my_var1)) # 1991186280016
 print(id(my_var2)) # 1991186280016
 # they have same ids, that is why "if my_var1 is my_var2" condition was executed
 
-# now lets check id for x & y 
+# now lets check id for 'x' & 'y' 
 print(id(x)) # 140544545318224 
 print(id(y)) # 140544545318416
 # they don't have same ids,
@@ -176,16 +177,16 @@ print(id(y)) # 140544545318416
 # This is not the case with 500, they are not from that range so each time they are re-created as new objects
 # Python does this because values in this range are frequently used, so this helps to gain some performance boost
 
-## is not: negate the 'is' condition, working is similar as we saw above.
+## is not: Negate the 'is' condition, working is similar as we saw above.
 # Notice: 'not' should be applied after 'if' and not after 'is'
 a = 3
 b = 4
 if not a is b:
   print("printed")
 ```
-* <b>Membership operators</b>: in,not in.
+* <b>Membership operators</b>: in, not in.
 ```Python
-## in: used to check if a value is inside a sequence or not, returns a boolean value.
+## in: Used to check if a value is inside a sequence or not, returns a boolean value.
 # consider a list containing some values, we'll learn about lists in details later, for now think of it as an array
 my_list = [23,5,32,65,20]
 # check with 'in' operator if 'my_list' contains the value 20, yes so True
@@ -196,7 +197,7 @@ print(20 in my_list) # True
 # similarly check if it contains 30, nope so False
 print(30 in my_list) # False
 
-## not in: negate the 'in' condition, same as above but returns opposite values.
+## not in: Negate the 'in' condition, same as above but returns opposite values.
 # consider the same list, we'll check values again
 # checking if 10 'not in' 'my_list' 
 print(10 not in my_list) # True
@@ -257,7 +258,7 @@ c = some_var
 if 10 <= 20 < 30:
   print("okay got it")
 
-## continuations
+## Continuations
 # Example 1: Using backslash
 # use '\' at the end of the line to continue on another line
 text = "This is text 1." \
@@ -286,7 +287,7 @@ multiline comment
 * They are used in Flow Control, Exception Handling, Functions/Classes definitions in Python, else *IndentationError* is raised. Every statement should follow the indentation rule.
 ```Python
 ## Example 1
-# Notice: the colon at the end of 'if' condition, it is to show the start of block of code
+# Notice: The colon at the end of 'if' condition, it is to show the start of block of code
 if 10 > 5:
 print('printed') # IndentationError
 
@@ -315,25 +316,28 @@ some_var = 10 # IndentationError
   2. **global**: Are which user defines outside of any function/class. They can be used anywhere inside a program.
   3. **local**: Are which user defines inside a function/class. They cannot be used outside thier class/function's scope.
 ```Python
-## built-in namespace
+## Built-in namespace
 """
 # For example, some functions which do not require any import
 print(), len(), map(), range(), list(), set(), str(), etc. 
 """
 
-## global namespace
+## Global namespace
 # importing any modules adds them global namespace
 import time
 # variables/functions/classes outside of any function/class
 my_var = 10
+
 def my_fun():
     pass
 
-## local namespace
+
+## Local namespace
 def some_fun():
     # variables and functions defined here are in local namespace
-    # these cannot be used/called outside some_fun's scope 
+    # these cannot be used/called outside some_fun's scope
     my_var = 10
+
     def my_fun():
         pass
 ```
@@ -413,11 +417,11 @@ print(str(my_float)) # 3.0
 * They are immutable i.e items/values (here characters) cannot be altered/deleted once created. But you can use *replace()* method of string to alter and *strip()* to remove specific substring.
 * Creating text types.
 ```Python
-# Single Quote: insert string value inside single inverted commas.
+# Single Quote: Insert string value inside single inverted commas.
 text = 'A strings can be single quoted'
-# Double Quote: can be useful for escaping single inverted comma(') rest there is no difference.
+# Double Quote: Can be useful for escaping single inverted comma(') rest there is no difference.
 text = "This string's under double quotes" 
-# Triple Quote: used for multi-line text, can be used with single/double inverted commas.
+# Triple Quote: Used for multi-line text, can be used with single/double inverted commas.
 text = """This is a long text.
         And want to use multiple lines."""
 ```
@@ -551,7 +555,7 @@ print(True + 4) # 5
 # stays 4
 print(False + 4) # 4
 
-# using boolean in if..else conditions, executes only when boolean is True
+# Using boolean in if..else conditions, executes only when boolean is True
 if my_bool:
     print('printed') # printed
     
@@ -594,7 +598,7 @@ print(data[0], chr(data[0])) # 84 T
 ``` 
 * Type conversion. 
 ```Python
-## create bytes object using a iterable objects
+## Create bytes object using a iterable objects
 # from a list
 print(bytes([1,2,3])) # b'\x01\x02\x03'
 # from a tuple
@@ -624,15 +628,15 @@ print(output) # bytearray(b'\x1e\x00\x00\x00')
 * Create a user defined data type.
 ```Python
 class MyDataType:
-  def __init__(self, x, y):
-    # initialize here
-    self.x = x 
-    self.y = y
-    
-  # Note: This function is totally optional  
-  def __str__(self):
-    """Define this 'magic method' to enable print functionality for this object, it should return a string."""
-    return f"{self.x} {self.y}"
+    def __init__(self, x, y):
+        # initialize here
+        self.x = x
+        self.y = y
+
+    # Note: This function is totally optional
+    def __str__(self):
+        """Define this 'magic method' to enable print functionality for this object, it should return a string."""
+        return f"{self.x} {self.y}"
 
 my_dt = MyDataType(10, "Hello")
 # check type
@@ -657,7 +661,7 @@ class MyDataType:
         # raise error if type does not match
         if not isinstance(x, int) or not isinstance(y, str):
             raise TypeError("x should be integer and y should be string") 
-        # define x and y as private variables to protect them from being altered directly
+        # define 'x' and 'y' as private variables to protect them from being altered directly
         self.__x = x 
         self.__y = y
 
@@ -674,23 +678,23 @@ class MyDataType:
             else:
                 raise TypeError("Should be a String")
                 
-    # define x & y as methods to access thier value        
+    # define 'x' & 'y' as methods to access thier value        
     def x(self):
             return self.__x
     def y(self):
         return self.__y
 
-## create our data type
+## Create our data type
 my_dt = MyDataType(10, "Hello")  
 
-# insert values
+# Insert values
 my_dt.insert(15, "Foo")
 print(my_dt.x(), my_dt.y()) # 15 Foo
 my_dt.insert(20) 
 my_dt.insert(y="Bar")
 print(my_dt.x(), my_dt.y()) # 20 Bar
 
-# raising type error if data type is not what we expected
+# raising error if data type is not what we expected
 my_dt.insert(y=20) # TypeError: Should be a String
 
 # There's a even better way to create custom data-types, that is using descriptors
@@ -704,13 +708,13 @@ my_dt.insert(y=20) # TypeError: Should be a String
 n = None
 print(type(None)) # <class 'NoneType'>
 
-## To check whether an object is not None simply use 'if <object_name>'
+## To check whether an object is not 'None' simply use 'if <object_name>'
 if n: # same as "if n != None:"
-  print('will not enter this condition')
+    print('will not enter this condition')
 
 ## Use 'not' to negate that condition
 if not n: # same as "if n == None:"
-  print('will enter this condition, as n is None')
+    print('will enter this condition, as n is None')
 ```
 ### <strong>2.7 Some related built-in functions</strong>
  Let's check some functions which we'll be using later on such as [type()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#1-typeobject--str), [isinstance()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#2-isinstanceobject-class--bool), [id()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#3-idobject--int), [dir()](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#4-dirobject--list).
@@ -752,12 +756,12 @@ print(id(my_float)) # 1875526208176
 
 **Explanation**: Returns a *list* containing names of variables/functions/class in an object. This function also works on modules, as modules are also objects.
 ```Python
-## names under current local scope
+## Names under current local scope
 print(dir())
 
-## list of object's attributes
+## List of object's attributes
 print(dir(int))
-print(dir(my_obj))
+print(dir(str))
 ```
 
 ## <strong>3. Data Structures</strong>
@@ -842,7 +846,7 @@ my_list1[-1] = 200
 
 ## Iterating: Going over item by item from a list
 for var in my_list1:
-  print(var) # [100, 23, 5, 6, 34, 6, 200]
+    print(var) # [100, 23, 5, 6, 34, 6, 200]
 
 ## Slicing: For creating sub-list, syntax is [start_index:end_index:step]
 print(my_list[3:5]) # ['a', 'cab boy']
@@ -857,7 +861,7 @@ print(my_list[::-1]) # [4.0, 'cab boy', 'a', 3, 1, 1]
 * *list* comprehension.
 ```Python
 ## List comprehension: Create a new list in a single line 
-# Note: range function creates a sequence of integers, we'll learn more on range later 
+# Note: 'range()' function creates a sequence of integers, we'll learn more on range later 
 my_list1 = [x for x in range(10)]
 # this is similar to 
 my_list1 = []
@@ -868,7 +872,7 @@ for x in range(10):
 my_list2 = [[y for y in range(x)] for x in range(5)] # it can be nested
 my_list3 = [abc for abc in range(10) if abc > 5] # if condition
 my_list4 = [True if z > 5 else False for z in range(10)] # if and else condition
-# Notice: the syntax difference between if and if..else clauses
+# Notice: The syntax difference between if and if..else clauses
 # also try printing each of the list
 ```
 * Copy a *list* example. 
@@ -989,14 +993,14 @@ print(my_array) # array('i', [5, 3, 5, 2, 7, 8, 67, 87])
 * They are mostly used to store different data type items, unlike *list*s which are mostly used for storing similar items, but either way is also valid. 
 * Creating a *tuple*.
 ```Python
-# insert items inside '()' brackets
+# Insert items inside '()' brackets
 my_tuple = (1,2,3,'we','are','one',5.0)
 # create empty tuple
 some_tuple = () # or using tuple() function
 ```
 * Basic operations on a *tuple*.
 ```Python
-## Tuple is immutable, there is no append()/remove(), can't use 'del' like in list
+## Tuple is immutable, there is no 'append/remove', can't use 'del' like in list
 # so to add a element join two tuples, and assign it to the previous/new variable
 my_tuple = (1,2,3,4)
 my_tuple += (5,) # adding another element as tuple, its basically joining two tuples
@@ -1026,10 +1030,10 @@ my_tuple[0] = 23 # not okay because Immutable, raises TypeError
 
 ## Iterating: Going over item by item from a tuple
 for var in my_tuple:
-   print(var) # (1,2,3,'we','are','one',5.0)
+    print(var) # (1,2,3,'we','are','one',5.0)
 # checking if some value is present using the 'in' operator
 if 5.0 in my_tuple:
-  print('printed')
+    print('printed')
 
 ## Slicing: For creating sub-tuple, syntax is [start_index:end_index:step] 
 print(my_tuple[3:5]) # ('we','are')
@@ -1046,7 +1050,7 @@ print(my_tuple[::-1]) # (5.0, 'one', 'are', 'we', 3, 2, 1)
 ```Python
 ## Unpacking tuple (more on unpacking later on)
 a,b,c = (1,2,3) # unpacking values into a,b,c
-# even below line does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c 
+# even below line does the same, 1,2,3 becomes a tuple and then unpacks into a,b,c
 # same is true when returning comma separated values from a function 
 a,b,c = 1,2,3 # same as (1,2,3)
 # this behaviour further aids in swapping without using extra variable,
@@ -1152,8 +1156,8 @@ print(name_tup1._replace(aa=32)) # mynamedtuple(aa=32, bbk=60, cab=52)
 * They are used in Dynamic Programming and generally where values are supposed to have some key associated with them.
 * Creating a dictionary.
 ```Python
-# insert keys & values inside '{}' brackets
-# Note: key & value are separated with ':' colon. i.e key:value
+# Insert keys & values inside '{}' brackets
+# Note: Key & value are separated with ':' colon. i.e key:value
 
 my_dict = {'e':23, 'w':65, 'q':52}
 # create empty dictionary
@@ -1186,7 +1190,7 @@ print(my_dictionary.get("ar", None)) # None
 
 ## Check if key is inside my_dictionary   
 if 'az' in my_dictionary:
-  print('printed')
+    print('printed')
 ```
 * Joining and iterating operations on a dictionary.
 ```Python
@@ -1205,7 +1209,7 @@ print({**my_dictionary, **my_dictionary1}) # {'a': 34, 'b': 42, 'z': 5, 'y': 3, 
 ## Iterating: Going over item by item from a dictionary
 # use the items method for both keys, values unpacking
 for k,v in my_dictionary1.items(): 
-   print(k, v) # {'z':5, 'y':3, 'x':4}
+    print(k, v) # {'z':5, 'y':3, 'x':4}
 ```
 * Dictionary comprehension. 
 ```Python 
@@ -1254,7 +1258,7 @@ iteration is O(n).
 * Sets are used to maintain unique values and in membership testing i.e check if the variable is already present in a *set*. Like in BFS/DFS algorithms for checking visited nodes.
 * Creating a *set*.
 ```Python
-# insert values inside '{}' brackets
+# Insert values inside '{}' brackets
 my_set = {9,1,5,2,20} # Notice: dictionary like parenthesis but without keys
 # items order don't matter, so while printing order might differ
 print(my_set) # {1, 2, 20, 5, 9}
@@ -1494,7 +1498,7 @@ print(range(20)[0]) # 0
 # supports slicing but its not preferred/recommended
 print(range(20)[0:10]) 
 
-## looping a range object
+## Looping a range object
 for var in range(5): 
     print(var) # [1,2,3,4,5]
 # reversing the order with step=-1 and end_index=-1
@@ -1589,7 +1593,7 @@ print(sorted(my_list, key=my_fun)) # [[200], [2, 7, 23], [10, 20, 56, 23, 12]]
 
 **Explanation**: This function takes an input function & an iterable and applies that function on every item of that iterable. The return value of the filter's input function has to be boolean. *filter()* returns only if *True* condition is met, if *False* is met nothing is returned, also if no condition is met nothing is returned. *filter()* as the name suggests, is used to filter out non-required values from an iterable object. *filter()* returns a filter object which is iterable and indexing/slicing is not supported.
 ```Python
-## Example: create simple filter object that filter elements which are divisible by 10
+## Example: Create simple filter object that filter elements which are divisible by 10
 def my_func(var):
     # returns True if number is divisible by 10
     if var % 10 == 0:
@@ -1959,7 +1963,7 @@ def my_function2(var1: int, var2: int) -> None:
   
 # Example 3: Defining a function with a default parameter and return statement
 def my_function3(var1, var2, var3, return_op=False): 
-    # Note: return_op is a default parameter, they should always follow later
+    # Note: 'return_op' is a default parameter, they should always follow later
     if return_op:
         # did something, now returning something
         return var1 + var2 + var3
@@ -2360,7 +2364,7 @@ my_decorated_fun = my_decorator(my_fun)
 # done, my_decorated_fun can now do both product as well as sum
 my_decorated_fun(10, 20)  # Product of two numbers is 200 # Sum of two numbers is 30
 
-## Now doing the same using decorators, just add @<decorator_function_name>
+## Now doing the same using decorators, just add '@<decorator_function_name>'
 @my_decorator
 def my_fun(a, b):
     print(f"Sum of two numbers is {a+b}")
@@ -2377,7 +2381,7 @@ def my_adder(func):
 
     return adder
 
-# Decorating subtr() and mutpl() with my_adder
+# Decorating 'subtr' and 'mutpl' with 'my_adder'
 @my_adder
 def subtr(p1, p2):
     return p1 - p2
@@ -2387,7 +2391,7 @@ def mutpl(p1, p2):
     return p1 * p2
 
 
-## Now calling subtr and mutpl
+## Now calling 'subtr' and 'mutpl'
 print(subtr(20, 10))  # 30
 print(mutpl(2, 5))  # 7
 # this is because we didn't call the 'func'/decorated function inside 'my_adder'
@@ -2427,7 +2431,7 @@ multpl(10, 20)  # Output is 200
 ```Python
 from functools import lru_cache
 
-# simply add a decorator to our power_of() function
+# simply add a decorator to our ''power_of()' function
 @lru_cache
 def power_of(num1, num2):
     print("power_of was called")
