@@ -3301,7 +3301,7 @@ A short introduction to what are modules and packages in Python.
 * Is a file with *.py* extension containing Python code, they are also called scripts. Simply write some Python code in a file and save the file as *.py* extension, your module is ready.
 * When you import a module Python looks in a sequence given below:
   1. **Local Directory**: It is where the current *.py* file is located.
-  2. **PYTHONPATH**: It is an environment variable that can be used to set additional Python directory paths which Python can use to find modules/packages, it is provided through command line. eg "PYTHONPATH=/path-to/some-dir".
+  2. **PYTHONPATH**: It is an environment variable that can be used to set additional Python directory paths which Python uses to find modules/packages, it is provided through the command line. eg "PYTHONPATH=/path-to/some-dir".
   3. **Python Installation Directory**: This is where your Python is currently installed, it can be viewed with "which python" command from the command line.
   **Note**: This does mean any module with repeating name will be given priority according to this sequence.
 * As Python is a Interpreted Language, each time a program is run the *.py* files are compiled from source code to bytecode. To speed this up, when a *.py* file is imported the Python interpreter creates the *.pyc* (byte-compiled version of *.py* files) files if Python has permission to write files in that directory (look for the *\_\_pycache\_\_* folder). So next time Python can directly access the *.pyc* instead of re-compiling if no changes are made in that file. These *byte-compiled* files are platform-independent.
@@ -3309,72 +3309,78 @@ A short introduction to what are modules and packages in Python.
 * Check the [List](https://docs.python.org/3/py-modindex.html) of built-in modules available in Python.
 * Importing a module.
 ```Python
-## modules can be imported anywhere in python, there is no restriction
+## Modules can be imported anywhere in python, there is no restriction
 # but for readability they are imported at the beginning
-# Eg. math is built-in module, import it using the 'import' keyword
-# the 'import' statement creates a module object 
+# Eg. 'math' is built-in module, import it using the 'import' keyword
+# the 'import' statement creates a module object in this namespace
 # any module is only imported once in a program, re-importing has no effect
-import math 
+import math
 
-## accessing a function from math object
-# any functions/classes/variables of math module now can be accessed using '.' operator
-my_var = math.sqrt(8) 
+## Accessing a function from 'math' object
+# any functions/classes/variables of 'math' module now can be accessed using '.' operator
+my_var = math.sqrt(8)
 
-## import any specifics from the module using 'from' keyword, here we import a function from math module
+## Import any specifics from the module using 'from' keyword, here we're importing a function
 from math import sqrt
 
-# Note: doing stared import(Eg. from math import *) is not recommended as it might add name collisions
+# Note: Doing stared import (Eg. from math import *) is not usually recommended
+# as it might add name collisions
 my_var = sqrt(16)
 
-## import with a different access name in order to avoid names collisions
+## Make an import with different access name to avoid name collision
 def math(num):
-  return pow(num, 2)
+    return pow(num, 2)
 
-## import a module with different name using 'as' followed by a new name
-import math as maths 
-# accessing a function from 'math' module
-print(maths.sqrt(4)) # 2.0
-# accessing our 'math' function
-print(math(2)) # 4
+## Import a module with different name using 'as' followed by a new name
+import math as maths
 
-## Check the functions/classes/variables of a module using dir()
+# So now accessing a function from 'math' module would be
+print(maths.sqrt(4))  # 2.0
+# And our 'math' function will be
+print(math(2))  # 4
+
+## Check the functions/classes/variables of a module using 'dir()'
 print(dir(math))
 ```
-* Save this below module as *sample.py* or anything you prefer (but change the import name if so in the next module).
+* Now let's create and import our own module, save this below module as *sample.py* or anything you prefer (but change the import name if so in the next module).
 ```Python
 a = 42
 def my_fun():
-  print("This function was called")
+    print("This function was called")
 
-## check if this module is the executing module
+## Check if this module is the executing module
 if __name__ == "__main__":
-  # do something here
-  print("sample module was ran")
-  my_fun()
+    # do something here
+    print("sample module was ran")
+    my_fun()
 ```
 * \_\_main\_\_ in Python, save this module as *my_module.py* and run this module.
 ```Python
-## Notice: Now importing my_module in this module will not call my_fun() 
-# as my_fun() is only called if __name__ equals '__main__', as we intended
-# which is only when running from that module i.e running my_module.py script
+## Notice: Now importing 'sample' module will not call 'my_fun()'
+# as it is only called if '__name__' equals '__main__',
+# which is only when running from that module i.e running 'sample.py' script
 import sample
-print(dir(sample)) # ['__builtins__', '__name__',...]
-print(sample.__name__) # sample
 
-# check __name__ variable of current module 
-print(__name__) # __main__
+print(dir(sample))  # ['__builtins__', '__name__',...]
+print(sample.__name__)  # sample
+# access variable from 'sample' module
+print(sample.a)  # 42
 
-## now try doing otherwise, run sample.py check the if this print method is called
+# check '__name__' variable of current module
+print(__name__)  # __main__
+
+## Now try doing otherwise, add 'import my_module' in 'sample.py' and 
+# check the if this print method is called, check what is printed
 if __name__ == "__main__":
-  # add code here which you don't want to be invoked unless this script is ran
-  print("my_module was ran")
+    # add code here which you don't want to be invoked unless this script is ran
+    print("my_module was ran")
 ```
 ### <strong>8.2 Packages</strong>
 * A folder with a module named *\_\_init\_\_().py* file is a Python package. Any sub-directories containing *\_\_init\_\_().py* file are also packages (we can call them sub-packages). A Package is a collection of modules (.py files) and is a way to structure the modules under a single package's namespace. To import a module from a package use the "<package_name>.<module_name>" signature. To import a package, import it by its name, that'll import the *\_\_init\_\_().py* module from that package.
 * One common practice you might spot in open-source packages is *\_\_init\_\_().py* importing all classes/functions from all of its current directory's modules, this helps in getting all classes/functions under a single package's namespace, so you don't have to call them by following the module names like instead of "<package_name>.<module_name>.<function_name>" you can directly call by "<package_name>.<function_name>".
 * You can find all popular open-source Python packages on Python Package Index ([PyPI](https://pypi.org/)), it is an official third-party software repository for Python. You can install a package simply by "pip install <package-name>" command in the command prompt.
-**Note**: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* following the [official guide](https://pip.pypa.io/en/stable/installation/).
-* You can also create your own packages, create the following given below example directory structure.
+**Note**: *pip* comes pre-bundled with Python, some installation may require you use *pip3* instead of *pip*, you can check with "*which pip*" or "*which pip3*", if you see some directory it's already installed or you can install *pip* by following the [official guide](https://pip.pypa.io/en/stable/installation/).
+* You can also create your own packages, create the given below example directory structure.
 ```
 ./mypackage
   __init__.py
@@ -3389,27 +3395,28 @@ if __name__ == "__main__":
 # Note: From Python 3.3 and up it is optional to have __init__.py to be called package, 
 # so now "somepackage" directory is also a package.
 ```
-* Importing from such a directory/package is very straightforward using the '.' operator. Create a *test.py* outside of the *./mypackage* directory and try the following code. Note you also need to create additional '.py' files as shown in the above example directory and also define *MyClass* and *myfunction* inside *mymodule* with some code (or just define with *pass* statement).
+* Importing from such a directory/package is very straightforward using the '.' operator. Create a *test.py* outside of the *./mypackage* directory and try the following code. Note you also need to create additional '.py' files as shown in the above example directory and also define *MyClass* and *myfunction* inside *mymodule* with some code (or just define them with *pass* statement).
 ```Python
-## importing a module from package
+## Importing a module from package
 import mypackage.mymodule
 
 # now use the <module_name> to call its classes/functions
 mymodule.myfunction() 
 
-## importing the package by name
+## Importing the package by name
 import mypackage
 # this will call './mypackage/__init__.py' module
 
-## but to import specific classes/functions from that module you need to use from...import
-# say import a class from mymodule
+## But to import specific classes/functions from that module you need to use 'from...import'
+# say import a class from 'mymodule'
 from mypackage.mymodule import MyClass
 # similarly a function
 from mypackage.mymodule import myfunction
 ```
-
+* Furthermore you can create your own distribution archives (.whl file) with your package, follow this [guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
+  
 ## <strong>9. Files and I/O</strong>
-Basic I/O operations are to take the input from the user and send the output to the user's screen. To handle a file is the task of basically opening/creating a file, reading or making changes and then closing the file. Basic I/O and File operations are very general when working with a project. We'll take a look at three built-in functions for handling these operations and the *with* statement which is very useful for file handling purposes. Later we'll check *Context Management* which is a way to add the *with* statement support to custom objects. Alright.
+Basic I/O operations are to take the input from the user and send the output to the user's screen. To handle a file is the task of basically opening/creating a file, reading or making changes and then closing the file. Basic I/O and File operations are very general when working with a project. In this chapter, we'll take a look at three built-in functions for handling these operations and the *with* statement which is very useful for file handling purposes. Later we'll check "Context Management" which is a way to add the *with* statement support to custom objects. Alright.
 ### <strong>9.1 Three built-in functions for I/O handling</strong>
 #### 9.1.1 input(prompt) => None
 **Parameters**:</br>
@@ -3425,8 +3432,8 @@ print(v)
 #### 9.1.2 print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) => None
 **Parameters**:</br>
   * *values* object: Takes the object to be printed, '/*' indicates more than one object. 
-  * *sep* Optional[Text]: A separator between multiple values.
-  * *end* Optional[Text]: The last print value.
+  * *sep* Optional[Text]: A separator between multiple values, default is a whitespace.
+  * *end* Optional[Text]: The last print value, default is a newline.
   * *file* Optional[_Writer]: A file-like object (stream), default is screen.
   * *flush* bool: Whether to forcibly flush the stream.
  
@@ -3441,98 +3448,105 @@ print("is not new line") # This    is not new line
 ```
 #### 9.1.3 open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None) => file
 **Parameters**:</br>
-  * *filename* Union[*str*, *bytes*, *int*]: path-like object or a string.
+  * *filename* Union[*str*, *bytes*]: String or byte path to a file.
   * *mode* *str*: Opening file mode.
   * *buffering* *int*: For specifying buffering policy.
   * *encoding* Optional[*str*]: Specify encoding format. On Windows the default is "cp1252" and "utf-8" on Linux.
   * *errors* Optional[*str*]: To handle Encoding/Decoding errors.
   * *newline* Optional[*str*]: Specify how newline works.
-  * *closefd* *bool*: If set to False, the underlying file descriptor will be kept open even when the file is closed.  
-  * *opener* Optional[Callable[[*str*, *int*], *int*]]: A custom file opener, should return a file descriptor.
+  * *closefd* *bool*: If set to *False*, the underlying file descriptor will be kept open even when the file is closed.  
+  * *opener* Optional[Callable[[*str*, *int*], *int*]]: A custom file opener, it should return a file descriptor.
 
-**Explanation**: This function is used to open a file. It returns a file object (also called handle), this object is further used to perform operations such as read/write/append. For different types of operations there are different modes available, default is r (reading). 
+**Explanation**: This function is used to open a file. It returns a file object (also called handle), this object is further used to perform operations such as read/write/append to a file. For different types of operations there are different modes available, default is r (reading). 
 * Various file modes are shown below.
   1. **r**: For opening a file in read-only mode.
-  2. **w**: In write mode if the file already exists and has some previous content, it is completely overwritten or a new file is created and content can be written to it.
-  3. **a**: In append mode if the file already exists and has some previous content, the new input is appended at the end and not overwritten or a new file is created and content can be written to it.
-  4. **x**: In exclusive creation mode if the file already exists, the operation fails or a new file is created and content can be written to it.
+  2. **w**: Opens a file in write mode, if the file already exists its previous content completely overwritten, else a new file is created and content can be written to it.
+  3. **a**: In append mode if the file already exists and has some previous content, the new input is appended at the end and not overwritten, if it does not exists a new file is created and content can be written to it.
+  4. **x**: In exclusive creation mode if the file already exists, the operation fails, else a new file is created and content can be written to it.
   5. **t**: Opening a file in text format, reading a file data as strings, this is the default format.
   6. **b**: Opening a file in binary format, reading a file data as bytes, this is used to handle non-text files like images/database/documents.
 ```Python
-## write to a file, PermissionError is raised if you don't have the permission
+## Write to a file, 'PermissionError' is raised if you don't have the permission
 file = open("sample.txt", mode="w")
 file.write("This is some text written to this file.")
 file.close()
 
-## append mode
+## Append mode
 file = open("sample.txt", mode="a")
 file.write("Previous content will not be overwritten.")
 file.close()
 
-## read from a file, FileNotFoundError is raised if file is not found 
-file = open("sample.txt", mode="r") # or  open("sample.txt")
-print(file.read())
+## Read from a file, 'FileNotFoundError' is raised if the file is not found
+file = open("sample.txt", mode="r")  # or  open("sample.txt")
+print(file.read())  # This is some text written to this file. \
+                     # Previous content will not be overwritten.
 file.close()
+
 ```
 * Mixing modes, you can't mix "a","r" and "w" modes together, but can mix other modes.
 ```Python
-## Example 1: text format and write mode
-file = open("sample.txt", mode="tw") 
+## Example 1: Text format and write mode
+file = open("sample.txt", mode="tw")
 file.write("This is some text written to the file")
 file.close()
 
-## Example 2: read and append mode
+## Example 2: Read and append mode
 file = open("sample.txt", mode="r+")
-print(file.read())
-file.write("This is some text written to the")
+print(file.read()) # This is some text written to the file
+file.write("Appending some more text in here.")
 file.close()
 
-## Example 3: binary format and read mode
+## Example 3: Binary format and read mode, create a 'some.py' in current directory
 file = open("some.py", mode="br")
 print(file.read())
 file.close()
 ```
 * Various file object methods.
 ```Python
-# read all text/non-text data at once, returns string/bytes 
-file = open("sample.txt", mode="r") 
+# read all text/non-text data at once, returns string/bytes
+file = open("sample.txt", mode="r")
 print(file.read())
+
 # read all text/non-text data line by line, returns string/byte list
 print(file.readlines())
-# write string to the file 
+
+# write single string to the file
 file.write("This is some text.")
-# take a iterable object containing multiple strings and writes to the file 
+
+# take a iterable object containing multiple strings and writes to the file
 file.writelines(["This is a text.", "This is also some text"])
-# close a file, frees up system resources, should be called at the last step
+# close a file, frees up system resources, should be called as the last step
 file.close()
 ```
 ### <strong>9.2 *with* statement</strong>
 * This statement simplifies some common resource management like in file streams. It makes code more readable and helps in avoiding resource leaks. When using a *with* statement the resources are handled automatically inside a nested block of code. It guarantees to close the file no matter how the code block is exited. 
 ```Python
-## Example 1: without "with" statement
+## Example 1: Without "with" statement
 file = open("sample.txt")
 print(file.read())
 file.close()
-# here if any exception arrives the "file.close()" will not be executed
+# here if any exception is raised before line 4
+# the "file.close()" will not be executed
 
-## Example 2: closing the file using try..finally
+## Example 2: Closing the file using try..finally
 try:
   file = open("sample.txt")
   print(file.read())  
 finally:
   file.close()
+# here even if a exception is raised the file is going be closed
 
 ## Example 3: Now doing same as above example using "with" statement
 with open("sample.txt") as f:
   print(f.read())
-# Notice: no need to call close() method, "with" has you covered
+# Notice: No need to call close() method, "with" has you covered
 
-## Example 4: But if you want to handle exception use your own try..except..finally
+## Example 4: But if you want to handle exceptions use your own try..except..finally
 try:
   file = open("sample.txt")
   print(file.read())  
 except Exception as e:
-  print(e)  
+  print(e)
 finally:
   file.close()
 ```
@@ -3540,40 +3554,47 @@ finally:
 * It is a simple protocol that an object needs to follow to add support for the *with* statement. A class needs to define *\_\_enter\_\_()* and *\_\_exit\_\_()* special methods to add the functionality of a context manager. Context managers are usually used in Database management and to handle Thread locks. 
 * Also there's a built-in module named [contextlib](https://docs.python.org/3/library/contextlib.html) which can be utilized to achieve the same.
 ```Python
-## Example: simple db manager class with context manager
+## Example: Simple db manager class with context manager
 class MyDBManager:
-  def __init__(self):
-    self.some_db = {"id": [], 'name': []}
-    
-  # this method is called when entering the 'with' statement  
-  def __enter__(self):
-    return self
-    
-  # this method is called when the 'with' block code ends  
-  def __exit__(self, exc_type, exc_val, exc_tb):
-    # here we are setting to clear the database once 'with' code ends
-    self.some_db['id'] = []
-    self.some_db['name'] = []
+    def __init__(self):
+        # our dummy database
+        self.some_db = {"id": [], "name": []}
 
-  # simple function to add values to our db
-  def add(self, my_id, name):
-    self.some_db['id'].append(my_id)
-    self.some_db['name'].append(name)
+    # this method is called when entering the 'with' statement
+    def __enter__(self):
+        return self
 
-with MyDBManager() as db_handler:
-  # add some values to our db
-  db_handler.add(3251, "bob")
-  db_handler.add(3252, "rob")
-  db_handler.add(3253, "job")
-  db_handler.add(3251, "bob")
-  # print the db data
-  print(db_handler.some_db) # {'id': [3251, 3252, 3253, 3251], 'name': ['bob', 'rob', 'job', 'bob']}
-  # now to clear the db just get out of the indentation    
+    # this method is called when exiting the 'with' block code
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # here we are clearing the database when exiting
+        self.some_db["id"] = []
+        self.some_db["name"] = []
+
+    # a function to add values to our db
+    def add(self, my_id, name):
+        self.some_db["id"].append(my_id)
+        self.some_db["name"].append(name)
+
+
+# create a instance of our db class
+db = MyDBManager()
+
+# using the 'with' on our instance
+with db as db_handler:
+    # add some values to our db
+    db_handler.add(3251, "bob")
+    db_handler.add(3252, "rob")
+    db_handler.add(3253, "job")
+    db_handler.add(3251, "tob")
+    # print the db data
+    print(db_handler.some_db)  # {'id': [3251, 3252, 3253, 3251], \
+                                # 'name': ['bob', 'rob', 'job', 'tob']}
+    # now to clear the db just get out of the indentation
 
 # check the data in db
-print(db_handler.some_db) # {'id': [], 'name': []}
+print(db.some_db)  # {'id': [], 'name': []}
 # as soon as we were out of the indentation "__exit__()" was called automatically
-# which cleared the data, try modifying this behaviour to remove duplicate entries  
+# which cleared the data, try modifying this behaviour to remove duplicate entries
 ```
 
 ## <strong>10. OOP concepts</strong>
@@ -3581,125 +3602,133 @@ print(db_handler.some_db) # {'id': [], 'name': []}
 Wikipedia suggests
   > Object-oriented programming is an approach to designing modular reusable software systems. It is a programming paradigm based on the concept of objects.
 
-  Classes and objects are the two important aspects of OOP. As we saw earlier an object is an instance of class and it has its own attributes & methods and class is where all these attributes & methods are defined.
+  Classes and objects are the two important aspects of OOP. As we saw earlier an object is an instance of class and it has its own attributes & methods, class is where all these attributes & methods are defined.
 #### Why OOP?
 OOP helps in reducing code complexities & redundancy by promoting better software design practices as opposed to structural/procedure-oriented programming using the concept called objects. OOP really shines when designing large software systems which typically require huge amounts of inter-dependencies among the blocks of code. By following the OOP approach, a software system becomes more reusable, maintainable, scalable, secure and overall less complex compared to structural programming.
 **There are four main principles of OOP: [Inheritance](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#101-inheritance), [Abstraction](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#102-abstraction), [Encapsulation](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#103-encapsulation) and [Polymorphism](https://github.com/Anku5hk/Programmers_guide_to_Python/blob/main/book.md#104-polymorphism).**
 ### <strong>10.1 Inheritance</strong>
-* Instead of rewriting the code for all identical blocks like in functional programming, we re-use the methods/variables from say a class inside another class in OOP. This concept is called Inheritance. So basically inheritance helps to eliminate the redundant code.
+* Instead of rewriting the code for all identical blocks, we re-use the methods/variables from say a class inside another class in OOP. This concept is called Inheritance. So basically inheritance helps to eliminate the redundant code.
 * We inherit a base/super class and use its methods/variables inside a child/subclass, but not the other way.
 * **super()**: This is a built-in function used to access any child's/parent's methods/variables inside of a child class, it is very similar to *super* keyword in Java. When this function is called it returns a temporary object of parent class which then can be used to access all of its methods/variables. 
-* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in the hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked for in this order. Any name collision is avoided by following this order.
+* **Method Resolution Order (MRO)**: Is the order in which Python looks for a method in the hierarchy of classes. The general order is **child -> parent1 -> parent2...**. When a method/variable is searched, it is looked up in this order. Any name collision is avoided by following this order.
 * Inheritance is a powerful concept and is used pretty much all the time when a software is designed using a OOP based language.
 #### **10.1.1 Four types of Inheritance.**
 1. **Single**: A child/subclass only inherits a single parent/super class.
 ```Python
-## Example: inherit the parent class and try calling its attributes/methods  
+## Example: Inherit the parent class and try calling its attributes/methods
 class MyParent:
-  # class variables
-  some_var = 50  
-  def __init__(self, para1):
-      self.para1 = para1
-  def some_func(self, num):
-      return num**2
-  def other_method(self, num):
-      return self.some_var - num
+    # class variables
+    some_var = 50
 
-# Inherit MyParent class  
-class MyChild(MyParent): 
-  # Notice: the rounded brackets after the class_name, 
-  # this is where the parent class is to be added, we added MyParent
-  def __init__(self, arg1):
-    self.arg1 = arg1
-    # instantiate parent class inside child class by calling 'super().__init__()'
-    super().__init__(arg1)
-    # or pass self to the class's constructor like this 'MyParent.__init__(self)' 
+    def __init__(self, para1):
+        self.para1 = para1
 
-  def my_func(self, num):
-    # call parent's method using 'super()' function
-    output1 = super().some_func(num) 
-    print(output1) # 4
-    # access parent's variables using 'super()'
-    print(super().some_var) # 50
-    # here self calls parent's method, as this class doesn't have 'other_method()'
-    # this happens due to MRO, as we saw after child parent class is the next lookup target
-    output2 = self.other_method(num) 
-    print(output2) # 48
+    def some_func(self, num):
+        return num ** 2
 
-  def some_func(self, num):    
-    return num**3
+    def other_method(self, num):
+        return self.some_var - num
 
-# create a instance of child class
+# Inherit 'MyParent' class
+class MyChild(MyParent):
+    # Notice: The rounded brackets after the class_name,
+    # this is where the parent class needs to be added, we added 'MyParent'
+    def __init__(self, arg1):
+        self.arg1 = arg1
+        # instantiate parent class inside child class by calling 'super().__init__()'
+        super().__init__(arg1)
+        # or pass self to the class's constructor like this 'MyParent.__init__(self)'
+
+    def my_func(self, num):
+        # call parent's method using 'super()' function
+        output1 = super().some_func(num)
+        print(output1)  # 4
+        # access parent's variables using 'super()'
+        print(super().some_var)  # 50
+
+        # here self calls parent's method, as this class doesn't have 'other_method()'
+        # this happens due to MRO, as we saw after child, parent class is the next lookup target
+        output2 = self.other_method(num)
+        print(output2)  # 48
+
+    def some_func(self, num):
+        return num ** 3
+
+
+# Create a instance of child class
 child_instance = MyChild(38)
-# calling my_func() calls child's method
+# calling 'my_func()' calls child's method
 child_instance.my_func(2)
-# calling same named method, calls child's method 
-print(child_instance.some_func(2)) # 8
+# calling same named method from parent & child, calls child's method
+print(child_instance.some_func(2))  # 8
 # now calling parent class's method, because child doesn't have this method
-print(child_instance.other_method(8)) # 42
+print(child_instance.other_method(8))  # 42
 ```
 2. **Multiple**: A child/sub class inherits multiple parent/super classes.
 ```Python
-## Example: Inherit MyParent1,MyParent2 and try calling its attributes/methods  
+## Example: Inherit 'MyParent1' & 'MyParent2', try calling its attributes/methods
 class MyParent1:
-  def __init__(self):
-      self.para1 = 10
-  def doing_something1(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**2
-  
+    def __init__(self):
+        self.para1 = 10
+    def doing_something1(self, num):
+        return self.para1 - num
+    def other_method(self, num):
+        return num ** 2
+
 class MyParent2:
-  def __init__(self):
-      self.para1 = 20
-      self.para2 = 42
-  def doing_something2(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**3
+    def __init__(self):
+        self.para1 = 20
+        self.para2 = 42
+    def doing_something2(self, num):
+        return self.para1 - num
+    def other_method(self, num):
+        return num ** 3
 
-## inherit MyParent1 and MyParent2 classes 
-class MyChild(MyParent1, MyParent2): 
-  def __init__(self, arg1):
-      self.arg1 = arg1
-      # initialize first parent using 'super()'
-      super().__init__()
-      print(self.para1) # 10
-      # initialize second parent by passing 'self' object to its constructor
-      # because super can only keep track of single class, which is MyParent1
-      MyParent2.__init__(self) 
-      # so now MyParent2's variables/methods can be accessed
-      print(self.para1) # 20
-      print(self.para2) # 42
 
-  def my_func(self, num):
-    # here MyParent1's method will be called, due to MRO
-    output1 = self.other_method(num) 
-    # similarly can do 'super().other_method(num)'
-    # or even by class name by passing self 'MyParent1.other_method(self)'
-    return output1
+## Inherit MyParent1 and MyParent2 classes
+class MyChild(MyParent1, MyParent2):
+    def __init__(self, arg1):
+        self.arg1 = arg1
+        # initialize first parent using 'super()'
+        super().__init__()
+        print(self.para1)  # 10
+        # initialize second parent by passing 'self' object to its constructor
+        # because super can only keep track of single class, 
+        # which is 'MyParent1' here
+        MyParent2.__init__(self)
+        # so now 'MyParent2's variables/methods can be accessed
+        print(self.para1)  # 20
+        print(self.para2)  # 42
 
-# create a child instance
+    def my_func(self, num):
+        # here 'MyParent1's method will be called, due to MRO
+        output1 = self.other_method(num)
+        # similarly can do 'super().other_method(num)'
+        # or even by specific class name like this 'MyParent1.other_method(self)'
+        return output1
+
+
+# Create a child instance
 child = MyChild(30)
 # use the mro method on a instance to check the parent classes
-print(MyChild.mro()) # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>,
-# <class '__main__.MyParent2'>, <class 'object'>]
+print(MyChild.mro())  # [<class '__main__.MyChild'>, <class '__main__.MyParent1'>, \
+                        # <class '__main__.MyParent2'>, <class 'object'>]
 
-# same as before, calling MyParent1's method
-print(child.other_method(2)) # 4
+# Same as before, calling MyParent1's method
+print(child.other_method(2))  # 4
 # now calling child's method
-print(child.my_func(2)) # 4
+print(child.my_func(2))  # 4
 
-## to call MyParent2's same named method using child instance
+## To call MyParent2's same named method using child instance
 # call with the class name and pass child instance
-print(MyParent2.other_method(child, 2)) # 8
-print(MyParent1.other_method(child, 2)) # 4
-# calling by class name is always available, you can use it to avoid naming collisions 
+print(MyParent2.other_method(child, 2))  # 8
+print(MyParent1.other_method(child, 2))  # 4
+# calling by class name is always an option, you can use it to avoid naming collisions
 ```
 * When it comes to Multiple Inheritance there is one more concept called *mixins*. You might spot them in some library code, they are named somewhat like "<class_name>Mixin". They are classes that act as base classes carrying some features (i.e functions) that other classes are supposed to use. They usually don't have instance variables (might have class variables), they are base classes which do not inherit another class (other than *object*) and are not intended to be instantiated, only sub-classed.
 * *Mixins* are a cleaner way to define some functions that other classes can use right away without defining them individually. This concept is not recognized by Python, so they act as a normal class.
 ```Python
-## Example: create a class with printing functionality and subclass it
+## Example: Create a class with printing functionality and subclass it
 class SomeMixin:
     def printer(self):
         print(f"a = {self.a}")
@@ -3707,10 +3736,10 @@ class SomeMixin:
         print(f"total = {self.total}")
     # can also have other methods
     def do_something(self):
-        pass 
+        pass
 
-# now inside below classes we wont write the printer function
-# instead just inherit SomeMixin and we'll have that functionality
+# Now inside below classes we won't need to write the printer function,
+# instead we can just inherit 'SomeMixin' and we'll have the functionality
 class Adder(SomeMixin):
     def __init__(self, a, b):
         self.a = a
@@ -3725,107 +3754,112 @@ class Subbtr(SomeMixin):
     def perform_op(self):
         self.total = self.a - self.b
 
+
+# Testing out printer
 v = Adder(10, 20)
 v.perform_op()
-# call printer method, but make sure variables share same names
-# across the mixins and child classes 
-v.printer() # a = 10 # b = 20 # total = 30
+# call the printer method, but make sure variables share same names
+# across the mixins and child classes
+v.printer()  # a = 10 # b = 20 # total = 30
 
 v = Subbtr(40, 10)
 v.perform_op()
-v.printer() # a = 40 # b = 10 # total = 30
+v.printer()  # a = 40 # b = 10 # total = 30
 ```
 3. **Multilevel**: In Multi-Level a child class inherits a parent class and is also a parent class to another class.
 ```Python
-## Example: inherit classes in a sequence like MyClass1 -> MyClass2 -> MyClass3
+## Example: Inherit classes in a sequence like MyClass1 -> MyClass2 -> MyClass3
 class MyClass1:
-  def __init__(self):
-      self.para1 = 5
-  def doing_something1(self, num):
-      return self.para1 - num
-  def other_method(self, num):
-      return num**2
+    def __init__(self):
+        self.para1 = 5
+    def doing_something1(self, num):
+        return self.para1 - num
+    def other_method(self, num):
+        return num ** 2
 
 class MyClass2(MyClass1):
-  def __init__(self):
-      self.para2 = 20
-      # initialize parent class by class name
-      MyClass1.__init__(self)
+    def __init__(self):
+        self.para2 = 20
+        # initialize parent class by class name
+        MyClass1.__init__(self)
+    def doing_something2(self, num):
+        return self.para2 - num
+    def other_method(self, num):
+        return num ** 3
 
-  def doing_something2(self, num):
-      return self.para2 - num
-  def other_method(self, num):
-      return num**3
-  
 class MyClass3(MyClass2):
-  def __init__(self):
-      self.my_para1 = 42
-      self.my_para2 = 42
-      # initialize parent class by class name
-      MyClass2.__init__(self)
+    def __init__(self):
+        self.my_para1 = 42
+        self.my_para2 = 42
+        # initialize parent class by class name
+        MyClass2.__init__(self)
+    def doing_something2(self, num):
+        return self.my_para1 - num
+    def other_method(self, num):
+        return num ** 3
 
-  def doing_something2(self, num):
-      return self.my_para1 - num
-  def other_method(self, num):
-      return num**3
-      
-# can access MyClass1 variables/methods
-parent1 = MyClass1() 
-# check MRO    
-print(MyClass1.mro()) # [<class '__main__.MyClass1'>, <class 'object'>]
 
-# can access MyClass2, MyClass1 variables/methods
-parent2 = MyClass2() 
-print(MyClass2.mro()) # [<class '__main__.MyClass2'>, <class '__main__.MyClass1'>, <class 'object'>]
+# 'MyClass1' can access only its variables/methods
+parent1 = MyClass1()
+# check MRO
+print(MyClass1.mro())  # [<class '__main__.MyClass1'>, <class 'object'>]
 
-# can access MyClass3, MyClass2, MyClass1 variables/methods
+# 'MyClass2' can access its and 'MyClass1's variables/methods
+parent2 = MyClass2()
+print(MyClass2.mro())  # [<class '__main__.MyClass2'>, \
+                        # <class '__main__.MyClass1'>, <class 'object'>]
+
+# 'MyClass3' can access its, 'MyClass2's and 'MyClass1's variables/methods
 child = MyClass3()
-print(MyClass3.mro()) # [<class '__main__.MyClass3'>, <class '__main__.MyClass2'>, \
-# <class '__main__.MyClass1'>, <class 'object'>]
-print(child.para1, child.para2, child.my_para1) # 5 20 42
+print(MyClass3.mro())  # [<class '__main__.MyClass3'>, <class '__main__.MyClass2'>, \
+                        # <class '__main__.MyClass1'>, <class 'object'>]
+print(child.para1, child.para2, child.my_para1)  # 5 20 42
 ```
 4. **Hierarchical**: A parent/super class is inherited by more than one child/subclass. 
 ```Python
-## Example: inherit a base class by 2 sub classes
+## Example: Inherit a base class by 2 sub classes
 class MyParent:
-    args = [22,59,81,34,73,12,35]
-    
+    args = [22, 59, 81, 34, 73, 12, 35]
+
 # inherit the 'MyParent' class
 class MyChild1(MyParent):
-  def max_finder(self):
-    return max(self.args)
-    
+    def max_finder(self):
+        return max(self.args)
+
 # inherit the 'MyParent' class
 class MyChild2(MyParent):
-  def min_finder(self):
-    return min(self.args)
+    def min_finder(self):
+        return min(self.args)
 
+# create the instances
 my_instance1 = MyChild1()
 my_instance2 = MyChild2()
-print(my_instance1.max_finder()) # 81
-print(my_instance2.min_finder()) # 12
+print(my_instance1.max_finder())  # 81
+print(my_instance2.min_finder())  # 12
 ```
 ### <strong>10.2 Abstraction</strong>
-* It is a process of hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods and classes must do and not their exact definition/implementation. Abstract class is not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although Python doesn't support interfaces Abstract classes should be enough.
+* It is a process of hiding internal implementation details and showing only some limited necessary functionality. Hiding in a sense focussing on what methods and classes must do and not their exact definition/implementation. Abstract classes are not the way to achieve complete abstraction, as they can also contain normal methods with definition. Interfaces are the way to complete abstraction, although Python doesn't support interfaces Abstract classes should be good enough.
 * Abstract classes are classes that have at least one abstract method, it can also have other normal method types. Abstract methods are methods that do not have a body (they are empty methods). The abstract classes cannot be instantiated (its object cannot be created). The concrete/inheriting class of this abstract class has to implement all the abstract methods compulsorily else an error should be raised. The concept of abstract is not applicable to variables so they behave normally.
 * Python does not have *abstract* keywords like in Java and also does not directly support abstract classes. But Python provides a module named *abc*, it can be used to define Abstract Base classes (ABC) which act about the same. 
-* The Abstraction concept is not necessarily a compulsion in order to design a system. But when designing larger systems it can be good to have Abstraction checked, the abstract classes can be designed to act as base for other classes to avoid functionality break/bugs and further make it necessary for other programmers to implement/design other classes following some common interface.    
+* The Abstraction concept is not necessarily a compulsion in order to design a system, but when designing larger systems it can be good to have Abstraction checked. The abstract classes can be designed to act as base for other classes to avoid break in functionality and further make it necessary for other programmers to implement/design other classes following some common interface.    
 ```Python
-## Example: create a abstract class and inherit it
-# import the 'ABC' class and 'abstractmethod' from abs module
+## Example: Create a abstract class and inherit it
+# import the 'ABC' class and 'abstractmethod' from 'abc' module
 from abc import ABC, abstractmethod
 
-# inherit the 'ABC' class to create a abstract class 
+# inherit the 'ABC' class to create a abstract class
 class MyBase(ABC):
     # define abstract methods by using 'abstractmethod' as decorator
     @abstractmethod
     def get_vars():
         pass
+
     @abstractmethod
     def change_values(self, a, b):
         pass
-    # defining combination of method types   
-    # Notice: 'abstractmethod' should always follow later 
+
+    # defining combination of method types
+    # Notice: 'abstractmethod' should always follow later
     @staticmethod
     @abstractmethod
     def some_info():
@@ -3834,136 +3868,148 @@ class MyBase(ABC):
     def mydefault_fun():
         print("This is normal method")
 
-# create concrete classes using 'MyBase' class as parent class
+
+# Create concrete classes using 'MyBase' as parent class
 class MyConcrete1(MyBase):
     def __init__(self, a, b):
         self.a = a
         self.b = b
+
     def change_values(self, a, b):
         self.a = a
         self.b = b
+
     def get_vars(self):
         return self.a, self.b
+
     def some_info(self):
         print(f"This is MyConcrete1")
 
+
+# Creating another concrete class
 class MyConcrete2(MyBase):
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
         self.c = c
+
     def get_vars(self):
         return self.a, self.b, self.c
 
-# create a instance to ensure everything is correct
-my_concrete1 = MyConcrete1(10, 20)    
-print(my_concrete1.get_vars()) # 10, 20
-my_concrete1.some_info() # This is MyConcrete1
 
-# remember a concrete class has to implement all abstract methods of the abstract class, 
-# also note that mydefault_fun is not a abstract method so it is not required to be defined
-# 'MyConcrete2' will raise TypeError due to not implementing all abstract methods 
-# TypeError: Can't instantiate abstract class MyConcrete2 with abstract methods change_values, some_info
-my_concrete2 = MyConcrete2(10, 20, 30) 
-# you cannot instantiate a abstract class 
-my_base = MyBase() # TypeError: Can't instantiate abstract class
+# Creating a instance of concrete classes
+my_concrete1 = MyConcrete1(10, 20)
+print(my_concrete1.get_vars())  # 10, 20
+my_concrete1.some_info()  # This is MyConcrete1
+
+## Remember a concrete class has to implement all abstract methods of the abstract class,
+# also note that 'mydefault_fun' is not a abstract method so it is not required to be defined,
+# 'MyConcrete2' will raise 'TypeError' due to not implementing all abstract methods,
+my_concrete2 = MyConcrete2(10, 20, 30) # TypeError: Can't instantiate abstract class MyConcrete2 ...
+
+# You cannot instantiate a abstract class
+my_base = MyBase()  # TypeError: Can't instantiate abstract class MyBase ...
 ```
 ### <strong>10.3 Encapsulation</strong>
-* Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data (of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This is called data hiding. 
-* This technique is essential to protect private data to be accessed/misused from another class directly. To implement this we use Access Modifiers. They are used to define the access type of a variable inside a class. 
-* **Three Types of Access modifiers.** 
+* Encapsulation refers to simply wrapping attributes/data and methods under a single class. This data (of any data-type/data-structure/object) can be only accessed/altered by the class methods themselves essentially to restrict access from outside of the class. This can be called as Data Hiding.
+* This technique is essential to protect private data to be accessed by another class directly. To implement this we use "Access Modifiers". They are used to define the access type of a variable inside a class.
+* **Three Types of Access modifiers.**
   1. **Public**: Can be accessed anywhere in the program. All variables are public by default.
   2. **Protected**: Only the current class and derived class can access them. Use "\_<variable_name>" to define them.
   3. **Private**: Only the current class can access them, not even their instance can access them. Use "\_\_<variable_name>" to define them.
-* To hide some data, first it is set to *private* type to restrict the direct access and if we want to allow these private data to have some kind of access by outside class, create the public *setters()* and *getters()* methods, like in Java/Javascript. But Python also has another way, it is called the *property* object.
+* To hide some data, first it is set to *private* type to restrict the direct access and if we want to allow these private data to have some kind of access by outside class, create the public *setters()* and *getters()* methods, like in Java/Javascript. But Python also has another way, it is called the *property* decorator.
 * In Python, all variables are public by default and the way private/protected are implemented they don't really work as one would expect, below are some examples.
 * Access modifiers basics.
 ```Python
+# Create a parent class
 class MyClass:
-  def __init__(self):
-      self.my_var1 = 10 # public variable
-      # Notice: the _ underscore before my_var2
-      self._my_var2 = 20 # protected variable
-      # Notice: the __ underscore before my_var3
-      self.__my_var3 = 30 # private variable
+    def __init__(self):
+        self.my_var1 = 10  # public variable
+        # Notice: The '_' underscore before 'my_var2'
+        self._my_var2 = 20  # protected variable
+        # Notice: The '__' underscore before 'my_var3'
+        self.__my_var3 = 30  # private variable
 
-  def demo_method(self):
-    # can access all variables
-    print(f"{self.my_var1}, {self._my_var2}, {self.__my_var3}")
+    def demo_method(self):
+        # can access all variables
+        print(f"{self.my_var1}, {self._my_var2}, {self.__my_var3}")
 
+# Create child class
 class MyClass1(MyClass):
-  def __init__(self):
-      super().__init__()
+    def __init__(self):
+        super().__init__()
 
-# Note: "can't be accessed will" raise AttributeError, 
-# to continue program execution comment/remove those lines
 
-## access by parent instance 
+## Access by parent instance
 my_instance = MyClass()
-print(my_instance.my_var1) # can be accessed
-print(my_instance._my_var2) # can be accessed
-print(my_instance.__my_var3) # can't be accessed, private variable
-my_instance.demo_method() # 10, 20, 30
+print(my_instance.my_var1)  # 10
+print(my_instance._my_var2)  # 20
+# acessing private variable
+print(my_instance.__my_var3)  # AttributeError
+my_instance.demo_method()  # 10, 20, 30
 
-## access by child instance
+## Access by child instance
 my_instance = MyClass1()
-print(my_instance.my_var1) # can be accessed
-print(my_instance._my_var2) # can be accessed
-print(my_instance.__my_var3) # can't be accessed, private variable
+print(my_instance.my_var1)  # 10
+print(my_instance._my_var2)  # 20
+print(my_instance.__my_var3)  # AttributeError
 ```
-* Allowing access from outside class.
+* Allowing access from outside of the class.
 ```Python
-## Example: define a class with setter() and getter() methods
+## Example: Define a class with getter and setter methods
 class MyClass:
-  def __init__(self):
-      self.my_var1 = 10 # public variable
-      self._my_var2 = 20 # protected variable
-      self.__my_var3 = 30 # private variable
+    def __init__(self):
+        self.my_var1 = 10  # public variable
+        self._my_var2 = 20  # protected variable
+        self.__my_var3 = 30  # private variable
 
-  # get_my_var() is getter method that returns the private variable 
-  def get_my_var(self):
-    return self.__my_var3
+    # 'get_my_var()' is getter method that returns the private variable
+    def get_my_var(self):
+        return self.__my_var3
 
-  # set_my_var() is a setter method that sets the value of private variable
-  def set_my_var(self, new_value):
-    # if you want '__my_var3' read-only you can raise AttributeError, uncomment the following line 
-    # raise AttributeError("Cannot change this value")
-    self.__my_var3 = new_value  
-    
+    # 'set_my_var()' is a setter method that sets the value to a private variable
+    def set_my_var(self, new_value):
+        # if you want '__my_var3' read-only you can raise 'AttributeError', uncomment the following line
+        # raise AttributeError("Cannot change this value")
+        self.__my_var3 = new_value
+
+
 some_instance = MyClass()
 # call the getter method
-print(some_instance.get_my_var()) # 30
+print(some_instance.get_my_var())  # 30
 # call the setter method
 some_instance.set_my_var(50)
 # check the value with getter again
-print(some_instance.get_my_var()) # 50
+print(some_instance.get_my_var())  # 50
 # but still can't access directly
-print(some_instance.__my_var3) # AttributeError
+print(some_instance.__my_var3)  # AttributeError
 ```
 * Problem with Python's access modifier implementation.
 ```Python
 class MyClass:
-  def __init__(self):
-      self.my_var1 = 10 # public variable
-      self._my_var2 = 20 # protected variable
-      self.__my_var3 = 30 # private variable
+    def __init__(self):
+        self.my_var1 = 10  # public variable
+        self._my_var2 = 20  # protected variable
+        self.__my_var3 = 30  # private variable
+
 
 some_instance = MyClass()
-# '__dict__' a special variable in python that keeps track of attributes of module/class/object
+# '__dict__' a special variable in Python that keeps track of attributes of module/class/object
 # this process is name mangling, which uses '_CLASSNAME' prefix for private variables
 # you can print this to show all the private variables
-print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+print(some_instance.__dict__)  # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
 # or use 'vars()' function to return the '__dict__' variable
-print(vars(some_instance)) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
-# you can see the variable right away,
+print(vars(some_instance))  # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30}
+
+# You can see the private variable right away,
 # and now by knowing its name you can alter/remove it using the same naming convention
 some_instance._MyClass__my_var3 = 42
-print(some_instance._MyClass__my_var3) # 42
+print(some_instance._MyClass__my_var3)  # 42
 # can also remove the variable
-del some_instance._MyClass__my_var3 
-# causing AttributeError
-print(some_instance._MyClass__my_var3) # AttributeError
-# so in summary it's not really a private variable, Python does not follow the concept 
+del some_instance._MyClass__my_var3
+# causing 'AttributeError' next
+print(some_instance._MyClass__my_var3)  # AttributeError
+# So in summary it's not really a private variable, Python does not follow the concept
 ```
 #### **10.3.1 property(fget=None, fset=None, fdel=None, doc=None) => property** </br>
 **Parameters**:</br>
@@ -3973,90 +4019,97 @@ print(some_instance._MyClass__my_var3) # AttributeError
   * *doc* Optional[*str*]: Provide some information about this property.
 
 **Explanation**: It is a Pythonic way to use getters and setters in encapsulation. *property()* function simply allows assigning/altering private variables using the '.' operator without really exposing the real (private) variable. Using this function accessing/modifying becomes just as convenient as operating on a regular variable. *property()* can also be used as decorator for further convenience. For more implementation details check [Official Python docs](https://docs.python.org/3/howto/descriptor.html#properties).
-**Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are descriptors, they are an implementation of descriptors. Although one drawback using descriptors is that for creating a single variable a separate class has to be defined, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
+**Descriptor vs Property**: Descriptors are the low-level mechanism behind allowing class variables to control what happens during attribute lookup. And properties are descriptors, they are an implementation of descriptors. Although one drawback using descriptors is that for every variable it requires a separate class, which is not the case with properties. One can have multiple variables of such behaviour inside a single class using properties.
 ```Python
-## Example: implement encapsulation using property 
+## Example: Implement encapsulation using property
 class MyClass:
-  def __init__(self):
-      self.my_var1 = 10 # public variable
-      self._my_var2 = 20 # protected variable
-      self.__my_var3 = 30 # private variable
-      self.__my_var4 = 40 # private variable
+    def __init__(self):
+        self.my_var1 = 10  # public variable
+        self._my_var2 = 20  # protected variable
+        self.__my_var3 = 30  # private variable
+        self.__my_var4 = 40  # private variable
 
-  # getter method for '__my_var3'
-  # Note: the property decorator, 'my_var' can be renamed to any other name
-  @property 
-  def my_var(self):
-    print("Getter method called")
-    return self.__my_var3
-    
-  # setter method for '__my_var3'
-  # if you don't want '__my_var3' value to be altered, don't define this method     
-  # Notice: the <VAR_NAME>.setter decorator  
-  @my_var.setter
-  def my_var(self, new_value):
-    print("Setter method called")
-    self.__my_var3 = new_value    
-  
-  # deleter method for '__my_var3'
-  # if you don't want '__my_var3' value to be deleted, don't define this method     
-  @my_var.deleter
-  def my_var(self):
-    print("Deleter method called")
-    del self.__my_var3   
-  
-  # getter method for '__my_var4', this is the second variable (we talked about in property vs descriptors)
-  @property
-  def some_var(self):
-    return self.__my_var4
-  
-  # or without using property decorator, just pass the functions to property function, example below  
-  # my_var = property(my_getter, my_setter, my_deleter)
-  # that's it, my_var will have getter, setter, deleter methods
+    # Getter method for '__my_var3'
+    # Note: The property decorator, 'my_var' can be renamed to any other name
+    @property
+    def my_var(self):
+        print("Getter method called")
+        return self.__my_var3
 
-# '__my_var3' is a private variable and 'my_var' is the variable that can be
-# used to modify '__my_var3' from outside the class     
+    # Setter method for '__my_var3'
+    # if you don't want '__my_var3' value to be altered, don't define this method
+    # Notice: The <VAR_NAME>.setter decorator
+    @my_var.setter
+    def my_var(self, new_value):
+        print("Setter method called")
+        self.__my_var3 = new_value
+
+    # Deleter method for '__my_var3'
+    # if you don't want '__my_var3' value to be deleted, don't define this method
+    @my_var.deleter
+    def my_var(self):
+        print("Deleter method called")
+        self.__my_var3 = None
+
+    # getter method for '__my_var4',
+    # this is the second variable (we talked about in property vs descriptors)
+    @property
+    def some_var(self):
+        return self.__my_var4
+
+    # or without using property decorator, just pass the functions
+    # to 'property()' function, example below
+    # my_var = property(my_getter, my_setter, my_deleter)
+    # that's it, 'my_var' will have getter, setter, deleter methods
+
+
+# Note: Now '__my_var3' is a private variable and 'my_var' is the variable that can be
+# used to modify '__my_var3' from outside of the class
 
 some_instance = MyClass()
-print(some_instance.__dict__) # {'my_var1': 10, '_my_var2': 20, '_MyClass__my_var3': 30, '_MyClass__my_var4': 40}
+print(some_instance.__dict__)  # {'my_var1': 10, '_my_var2': 20,  \
+                                # '_MyClass__my_var3': 30, '_MyClass__my_var4': 40}
 
-# access using the property variables by <VAR_NAME>, calls the getter method
-print(some_instance.my_var) # Getter method called # 30
-print(some_instance.some_var) # 40
-# alter their values using '=' operator, calls the setter method
-some_instance.my_var = 50 # Setter method called
-print(some_instance.my_var) # 50
-# remove the variables
-del some_instance.my_var # Deleter method called
 
-# some_var has no setter, deleter methods so will raise AttributeError
-some_instance.some_var = 90 # AttributeError
-del some_instance.some_var # AttributeError
+# Access using the property variables by <VAR_NAME>, calls the getter method
+print(some_instance.my_var)  # Getter method called # 30
+print(some_instance.some_var)  # 40
+# Alter their values using '=' operator, calls the setter method
+some_instance.my_var = 50  # Setter method called
+print(some_instance.my_var)  # 50
+# Delete/reset the value of variable
+del some_instance.my_var  # Deleter method called
+
+# 'some_var' has no setter/deleter methods so will raise 'AttributeError'
+some_instance.some_var = 90  # AttributeError
+del some_instance.some_var  # AttributeError
 ```
 ### <strong>10.4 Polymorphism</strong>
-* Polymorphism means many forms. It is the ability to use a common interface/function to perform tasks on different types of objects. It can be also thought of as a way to get rid of *if..else* or *switch* when the same type of function needs to be called on different objects.     
+* Polymorphism means many forms. It is the ability to use a common interface/function to perform tasks on different types of objects. It can be also thought of as a way to get rid of *if..else* or *switch* when the same type of function needs to be called on different objects.
 * **Two main types of Polymorphism.**
   1. **Static**: The behaviour is decided at Compile-time, like in method/operator overloading. 
   2. **Dynamic**: The behaviour is decided at Runtime, like in method/function overriding.
 #### **10.4.1 The Four types of Polymorphism.**
-1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in Python. As the methods with the same name are overwritten by the newer ones. Usually other parameters are set to *None* and missing object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using functool's singledispatchmethod, [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum). *functool* is included in the standard library and the other two are required to be installed separately using "pip".
+1. **Method overloading**: A class can have same named methods but should have distinct input parameters, this functionality is not supported in Python. As the methods with the same name are overwritten by the newer ones. Usually other parameters are set to *None* and missing object types are checked throughout using *if..else* statement or *isinstance()* function for achieving the same, but similar thing can be achieved using functool's "singledispatchmethod", [multipledispatch](https://github.com/mrocklin/multipledispatch) or [plum](https://github.com/wesselb/plum). *functool* is included in the standard library and the other two are required to be installed separately using "pip".
 ```Python
-## Example 1: simple Method Overloading in Python
+## Example 1: Simple Method Overloading in Python
 class MyClass:
     def printer(self, a, b):
         total = a + b
         print(f"Your total is {total}")
-    # Notice: this method name is same as above
+
+    # Notice: This method name is same as above
     def printer(self, a, b, name):
         total = a + b
         print(f"{name} your total is {total}")
-      
-my_instance = MyClass() 
-# here 'printer(a,b,c)' has overwritten 'printer(a,b)', so it won't work raising TypeError
-my_instance.printer(20, 30, "Bob") # Bob your total is 50
-my_instance.printer(20, 30) # TypeError: printer() missing 1 required positional argument
 
-## Example 2: use a single function to handle everything 
+my_instance = MyClass()
+# here 'printer(a,b,c)' has overwritten 'printer(a,b)', so it won't work raising 'TypeError'
+my_instance.printer(20, 30, "Bob")  # Bob your total is 50
+my_instance.printer(20, 30)  # TypeError
+
+
+## Example 2: Use a single function to handle everything
 class MyClass:
     def printer(self, a, b, name=None):
         total = a + b
@@ -4065,118 +4118,129 @@ class MyClass:
         else:
             print(f"Your total is {total}")
 
-my_instance = MyClass() 
-my_instance.printer(20, 30, "Bob") # Bob your total is 50
-my_instance.printer(20, 30) # Your total is 50
-# now it works
+my_instance = MyClass()
+my_instance.printer(20, 30, "Bob")  # Bob your total is 50
+my_instance.printer(20, 30)  # Your total is 50
+# Now it works
 ```
 * Example using *multipledispatch*.
 ```Python
-## Example: simple Method Overloading using multipledispatch
-## Note: you need to first install multipledispatch using "pip install multipledispatch" command 
+## Example: Simple Method Overloading using 'multipledispatch'
+## Note: You need to first install 'multipledispatch' if you haven't already,
+# using "pip install multipledispatch" command
 from multipledispatch import dispatch
+
 class MyClass:
-    # decorate with dispatch and pass the desired data type for method
-    # its important because using it dispatch will figure out the signature 
+    # decorate with 'dispatch' and pass the desired data type for method
+    # its important because using it dispatch will figure out the signature
     @dispatch(int, int)
     def printer(self, a, b):
         total = a + b
         print(f"Your total is {total}")
-
+    
+    # A same named function with different signature 
     @dispatch(int, int, str)
     def printer(self, a, b, name):
         total = a + b
         print(f"{name} your total is {total}")
-      
-my_instance = MyClass() 
-# now calling methods with parameters
-my_instance.printer(20, 30, "Bob") # Bob your total is 50
-my_instance.printer(20, 30) # Your total is 50
+
+
+my_instance = MyClass()
+# Now calling methods with parameters
+my_instance.printer(20, 30, "Bob")  # Bob your total is 50
+my_instance.printer(20, 30)  # Your total is 50
 ```
 2. **Operator Overloading**: Make operators work for user-defined classes, when a class implements a particular operator's function (which is a special function in Python) and changes its functionality (does something and returns something), that functionality is applicable to that class/object only. Changing an operator's behaviour for a specific object can be done by overloading an operator's function.
 ```Python
-## Example: overload the addition and subtraction operator in MyClass
+## Example: Overload the addition and subtraction operator in 'MyClass'
 class MyClass:
-  def __init__(self, *args):
-    self.args = args
-  
-  # this is a special method to overload '+' operator
-  def __add__(self, my_obj):
-    # Note: my_obj is the other object Python passes when the '+' operator is called
-    """Define functionality behaviour for the '+' operator inside this method, 
-    the input parameter can be of any type as required. Just the functionality defined below should support it."""
-    return sum(self.args) + sum(my_obj.args)
-    
-  # similarly this is a special method to overload '-' operator
-  def __sub__(self, my_obj):
-    """Define functionality behaviour for '-' operator."""
-    return abs(sum(self.args) - sum(my_obj.args))
-    
+    def __init__(self, *args):
+        self.args = args
+
+    # This is a special method to overload '+' operator
+    def __add__(self, my_obj):
+        # Note: 'my_obj' is the other object Python passes when the '+' operator is called
+        """Define functionality behaviour for the '+' operator inside this method,
+        the input parameter can be of any type as required. 
+        Just the functionality defined below should support it."""
+        return sum(self.args) + sum(my_obj.args)
+
+    # Similarly this is a special method to overload '-' operator
+    def __sub__(self, my_obj):
+        """Define functionality behaviour for '-' operator."""
+        return abs(sum(self.args) - sum(my_obj.args))
+
+
 my_ins1 = MyClass(90, 20, 10, 42)
 my_ins2 = MyClass(10, 70, 20, 50)
-# invoking the __add__() method of MyClass
-print(my_ins1 + my_ins2) # 324
-# or call with class by passing a self and my_obj 
-print(MyClass.__add__(my_ins1, my_ins1)) # 324
-# invoking the __sub__() method of MyClass
-print(my_ins1 - my_ins2) # 12
+# invoking the' __add__()' method of 'MyClass'
+print(my_ins1 + my_ins2)  # 312
+# or call with class by passing a 'self' and 'my_obj'
+print(MyClass.__add__(my_ins1, my_ins2))  # 312
+
+# Invoking the '__sub__()' method of 'MyClass'
+print(my_ins1 - my_ins2)  # 12
 ```
-3. **Method overriding**: Use same named methods but inside different classes. Two classes can have same named methods, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred to as Duck Typing. It is a feature of dynamic languages, it means directly (by not caring about exceptions) calling methods on objects without checking their types.  
+3. **Method overriding**: Use same named methods but inside different classes. Two classes can have same named methods, but the functionality might differ with their class. Useful for handling the operation from a common interface/function. This functionality can also be referred to as Duck Typing. It is a feature of dynamic languages, it means directly (by not caring about exceptions) calling methods on objects without checking their types.
 ```Python
-## Example: create two classes with same named methods and a interface function to call these methods
+## Example: Create two classes with same named methods and
+# a interface function to call these methods
+
 class ListHandler:
-  my_list = [70, 30, 80, 20]
-  def return_addition(self):
-    """Returns addition of list elements"""
-    return sum(self.my_list)
+    my_list = [70, 30, 80, 20]
+
+    def return_addition(self):
+        """Returns addition of list elements"""
+        return sum(self.my_list)
 
 class DictHandler:
-  my_dict = {"key1":70, "key2":90, "key3":10, "key4":60}
-  def return_addition(self):
-    """Returns addition of dict elements"""
-    return sum(self.my_dict.values())
+    my_dict = {"key1": 70, "key2": 90, "key3": 10, "key4": 60}
 
-# a common interface to handle same operation
+    def return_addition(self):
+        """Returns addition of dict elements"""
+        return sum(self.my_dict.values())
+
+# A common interface to handle same operation
 def perform_addition(obj):
-  output = obj.return_addition()
-  print(output)
+    output = obj.return_addition()
+    print(output)
 
-# create instances for both classes
+
 handler_l = ListHandler()
 handler_d = DictHandler()
-# we pass our handler_l and handler_d objects to perform_addition() function
+# we pass our 'handler_l' and 'handler_d' objects to 'perform_addition()' function
 # and hope it works
-perform_addition(handler_l) # 200
-perform_addition(handler_d) # 230
+perform_addition(handler_l)  # 200
+perform_addition(handler_d)  # 230
 # and it does, this is duck typing
 ```
-4. **Function overriding**: Changing the default functionality of a built-in function for a particular object, essentially to add some behaviour for a custom object. 
+4. **Function overriding**: Changing the default behaviour of a built-in function for a particular object, essentially to add some other behaviour for a custom object. 
 ```Python
-## Example: create a class and override two functions behaviour
+## Example: Create a class and override two function's behaviour
 class MyClass:
-  def __init__(self, *args):
-    self.args = args
+    def __init__(self, *args):
+        self.args = args
 
-  # this special method represents the 'len()' built-in function
-  def __len__(self):
-    """Defining behaviour here enables function overriding."""
-    return len(self.args)
+    # This special method represents the 'len()' built-in function
+    def __len__(self):
+        """Defining behaviour here enables function overriding."""
+        return len(self.args)
 
-  # Notice: this method is commented so will not execute
-  # def __str__(self):
+    # def __str__(self):
     # """Similarly this is for print functionality for this object."""
     # return " ".join((str(a) for a in self.args))
 
+
 my_ins = MyClass(10, 20, 30, 40, 50)
-# now as the __len__() is implemented this will return the output
-print(len(my_ins)) # 5
+# now as the '__len__()' is implemented this will return the output
+print(len(my_ins))  # 5
 # this will return address of this object by default
-print(my_ins)
-# uncomment __str__() and re-run to see change in its functionality
+print(my_ins) # <__main__.MyClass object at 0x000001D86547EF10>
+# uncomment '__str__()' and re-run to see change in its functionality
 ```
 ## References
 * [Python Official docs](https://docs.python.org/3/reference/index.html)
 * [Fluent Python](https://www.oreilly.com/library/view/fluent-python/9781491946237/)
 * [Time complexity python](https://wiki.python.org/moin/TimeComplexity)
-* [Python built-in modules](https://docs.python.org/3/py-modindex.html)
 * [Python built-in functions](https://docs.python.org/3/library/functions.html)
+* [Python built-in modules](https://docs.python.org/3/py-modindex.html)
